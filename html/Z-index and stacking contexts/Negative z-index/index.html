@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .my-element {
+                position: relative;
+                z-index: 0;
+                margin-left: 100px;
+                background: rgb(232 240 254 / 0.5);
+                border: 1px solid lightblue;
+            }
+
+            .my-element .child {
+                z-index: -1;
+                background: pink;
+                border: 1px solid hotpink;
+                padding: 1rem;
+                width: 275px;
+            }
+
+            /* Decorative styles */
+            .my-element {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 250px;
+                height: 250px;
+            }
+
+            .child {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="my-element">
+            <div class="child">I am on top of my parent</div>
+        </div>
+    </body>
+</html>

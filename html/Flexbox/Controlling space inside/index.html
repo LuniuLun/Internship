@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .flex-container,
+            .wrapper-box {
+                display: flex;
+                gap: 8px;
+                margin-top: 20px;
+            }
+            .wrapper-box div,
+            .flex-container div {
+                background-color: #ccc;
+                padding: 12px 20px;
+                flex: auto; /* use attribute flex to control the items behave.*/
+            }
+
+            .box:nth-child(1) {
+                flex: 1;
+            }
+            .box:nth-child(2) {
+                flex: 2;
+            }
+            .box:nth-child(3) {
+                flex: 3;
+            }
+
+
+
+
+
+            .container {
+                display: flex;
+            }
+            
+            .item {
+                width: 50px;
+                height: 50px;
+                border: 1px solid black;
+                margin: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            #item1 {
+                order: 3; /* showing at last position */
+            }
+            
+            #item2 {
+                order: 1; /* showing at first position */
+            }
+            
+            #item3 {
+                order: 2; /* showing in between item 1st and item 2st */
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="flex-container">
+            <div class="item1">Item One</div>
+            <div class="item2">Item two</div>
+            <div class="item3">A larger item three</div>
+        </div>
+        <div class="wrapper-box">
+            <div class="box">Item One</div>
+            <div class="box">Item two</div>
+            <div class="box">Item three</div>
+        </div>
+        <div class="container">
+            <div class="item" id="item1">1</div>
+            <div class="item" id="item2">2</div>
+            <div class="item" id="item3">3</div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .container {
+                display: grid;
+                grid-template-columns: repeat(3, 100px);
+                grid-auto-flow: row; /* Xếp phần tử theo hàng (mặc định) */
+                gap: 10px;
+            }
+
+            .item {
+                border: 1px solid black;
+                padding: 10px;
+                text-align: center;
+            }
+            .vertical-container {
+                writing-mode: vertical-lr; /* Hiển thị văn bản từ trái sang phải */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container vertical-container">
+            <div class="item">Nguyen duc van 1</div>
+            <div class="item">Nguyen duc van 2</div>
+            <div class="item">Nguyen duc van 3</div>
+            <div class="item">Nguyen duc van 4</div>
+            <div class="item">Nguyen duc van 5</div>
+            <div class="item">Nguyen duc van 6</div>
+            <div class="item">Nguyen duc van 7</div>
+            <div class="item">Nguyen duc van 8</div>
+        </div>
+    </body>
+</html>
