@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo-box {
+            border: 0.5px solid hsla(0deg, 0%, 60%, 0.5);
+            aspect-ratio: 1/1;
+            background: url("./image.png");
+            /* have background-size be within reason within the bounds of box but still allow regular tiling to occur on applicable images */
+            background-size: contain;
+            width: 100%;
+            height: 100%;
+          }
+          
+          #containerOfDemoBoxes {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 5%;
+            margin: 2rem 0;
+          }
+          
+          .demo {
+            display: flex;
+            height: 300px;
+            flex-flow: column nowrap;
+          }
+          
+          .demo-label {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.825rem;
+            color: hsl(0, 0%, 38%);
+          }
+          
+          #demoBox1 {
+            background-size: contain;
+          }
+          
+          #demoBox2 {
+            background-size: cover;
+          }
+          
+          #demoBox3 {
+            background-size: auto;
+          }
+          
+    </style>
+</head>
+<body>
+    <div id="containerOfDemoBoxes">
+
+        <div class="demo">
+          <div id="demoBox1" class="demo-box"></div>
+    
+          <span class="demo-label"><code>background-size: contain</code></span>
+    
+        </div>
+        <div class="demo">
+          <div id="demoBox2" class="demo-box"></div>
+    
+          <span class="demo-label"><code>background-size: cover</code></span>
+    
+        </div>
+    
+        <div class="demo">
+          <div id="demoBox3" class="demo-box"></div>
+    
+          <span class="demo-label"><code>background-size: auto</code></span>
+    
+        </div>
+</body>
+</html>

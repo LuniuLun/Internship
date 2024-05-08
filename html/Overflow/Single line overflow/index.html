@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .text-container {
+                width: 200px;
+                overflow: hidden; /* Ẩn phần vượt quá khỏi container */
+                white-space: nowrap; /* Ngăn chặn việc bọc văn bản */
+            }
+
+            .text {
+                direction: rtl;
+                text-overflow: ellipsis;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="text-container">
+            <input
+                type="text"
+                class="text"
+                value="This is a long text that needs to be truncated if it exceeds the width of its container. "
+            />
+        </div>
+    </body>
+</html>
