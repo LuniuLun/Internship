@@ -392,7 +392,6 @@ header {
     max-width: 168px;
 }
 
-
 /* section 5 - testimonials */
 .testimonials {
     display: flex;
@@ -482,4 +481,122 @@ header {
 .carousel-active {
     opacity: 1 !important;
     background-color: var(--primary-color) !important;
+}
+
+/* footer */
+/* footer */
+footer {
+    display: flex;
+    flex-direction: column;
+    padding-top: 150px;
+    gap: 80px;
+    max-height: 448.66px;
+}
+
+.other-informations {
+    justify-content: space-between;
+    display: flex;
+    gap: 88px;
+    padding: 0 150px;
+}
+
+.detail-eco-informations {
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+    gap: 16px;
+}
+
+.detail-eco-informations img {
+    max-height: 74px;
+    max-width: 227px;
+}
+
+.detail-eco-informations p {
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    height: 118px;
+}
+
+.detail-eco-informations div {
+    display: flex;
+    gap: 16px;
+}
+
+.link-lists {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.link-lists span,
+.subscribe span {
+    font-weight: 600;
+    line-height: 27px;
+    color: #091e42;
+}
+
+.link-lists div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.link-lists a {
+    padding: 8px;
+    color: #091e42;
+    text-decoration: none;
+}
+
+.subscribe {
+    flex: 2;
+}
+
+.wrapper-sub {
+    display: flex;
+    margin-top: 20px;
+}
+
+.wrapper-input-sub {
+    display: flex;
+    border: 1px solid;
+    border-radius: 8px 0px 0px 8px;
+    padding: 0px 16px;
+    gap: 8px;
+}
+
+.wrapper-input-sub input {
+    outline: 0;
+    border: 0;
+}
+
+.wrapper-sub button {
+    border-radius: 0 8px 8px 0;
+}
+
+.supper-footer {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #dcdfe4;
+    padding: 20px 150px;
+}
+
+.supper-footer a,
+.supper-footer p {
+    color: #091e42;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    opacity: 0.7;
+}
+
+.supper-footer a {
+    text-decoration: none;
+}
+
+.supper-footer div {
+    display: flex;
+    gap: 24px;
 }
