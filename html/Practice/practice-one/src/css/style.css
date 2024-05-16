@@ -391,3 +391,95 @@ header {
 .promotional-banner button {
     max-width: 168px;
 }
+
+
+/* section 5 - testimonials */
+.testimonials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: #e9f8ef;
+    gap: 80px;
+    padding: 80px 150px;
+    max-height: 633px;
+}
+
+.slider {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.slider .content-slider {
+    display: flex;
+    gap: 16px;
+}
+
+.box-message {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 24px;
+    gap: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 3px 5px 0px rgba(9, 30, 66, 0.2);
+}
+
+.message {
+    line-height: 24px;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--primary-content);
+}
+
+.user {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail-information-user {
+    display: flex;
+    align-items: center;
+    gap: 19px;
+}
+
+.detail-information-user div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail-information-user div span:nth-child(1) {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.detail-information-user div span:nth-child(2) {
+    color: #a8a9b2;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.carousel {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel > span {
+    width: 40px;
+    height: 8px;
+    border-radius: 8px;
+    opacity: 0.2;
+    background-color: #000;
+}
+
+.carousel-active {
+    opacity: 1 !important;
+    background-color: var(--primary-color) !important;
+}
