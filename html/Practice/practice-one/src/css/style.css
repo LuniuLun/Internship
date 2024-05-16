@@ -148,3 +148,92 @@ header {
 .content .show-now_btn img {
     margin-left: 12px;
 }
+
+/* section 2 - strength-points */
+
+.strength-points {
+    margin: 50px 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+}
+
+.top-items {
+    display: flex;
+    gap: 20px;
+}
+
+.bottom-items {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.bottom-items .content {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    border-radius: 16px;
+    padding: 20px 0;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    position: relative;
+}
+
+.bottom-items .content .title {
+    font-size: 44px;
+    line-height: 66px;
+    font-weight: 600;
+}
+
+.bottom-items .content:nth-child(1) {
+    background-image: url(../assets/img/background-mouthwash.svg);
+    color: #fff;
+}
+
+.bottom-items .content:nth-child(1) button {
+    background-color: rgba(154, 203, 107, 1);
+}
+
+.bottom-items .content:nth-child(2) {
+    background-image: url(../assets/img/background-bundle.svg);
+}
+
+.bottom-items .content-text {
+    width: 55%;
+    margin-left: 20px;
+    position: relative;
+}
+
+.bottom-items .content-text p {
+    font-weight: 500;
+    line-height: 27px;
+    font-size: 16px;
+}
+
+.bottom-items .content button {
+    margin-top: 36px;
+    width: 160px;
+}
+
+.mouthwash-bottle {
+    max-width: 250px;
+    z-index: 2;
+}
+
+.hightlight, .bundle-image {
+    position: absolute;
+    max-width: 550px;
+}
+
+.hightlight {
+    top: 0;
+    right: -10px;
+}
+
+.bundle-image {
+    bottom: 0;
+    right: 0;
+}
