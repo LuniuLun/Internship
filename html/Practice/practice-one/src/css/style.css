@@ -103,3 +103,48 @@ header {
 .user-icon img {
     margin-left: 20px;
 }
+
+/* body */
+.body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* section 1 - hero-banner*/
+.hero-banner {
+    margin-top: 90px;
+    width: 100%;
+    background-image: url(../assets/img/background-image-hero-banner.svg);
+    min-height: 560px;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+
+.hero-banner .content {
+    margin-left: 150px;
+    gap: 56px;
+    display: flex;
+    flex-direction: column;
+}
+.hero-banner .content-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.content-text h3 {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--secondary-content);
+}
+
+.content .show-now_btn {
+    width: 220px;
+}
+
+.content .show-now_btn img {
+    margin-left: 12px;
+}
