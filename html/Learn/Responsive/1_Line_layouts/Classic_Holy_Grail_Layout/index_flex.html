@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        .wrapper {
+            display: flex;
+            flex-flow: row wrap; /* Arrange items in a row and wrap them if necessary */
+            font-weight: bold; 
+            text-align: center; 
+        }
+
+        /* Apply styles to all immediate children of the wrapper */
+        .wrapper > * {
+            padding: 10px; /* Add padding around each child element */
+            flex: 1 100%; /* Allow items to grow and shrink equally to fill the container */
+        }
+
+        /* Styles for the header */
+        .header {
+            background: tomato; /* Set background color to tomato */
+        }
+
+        /* Styles for the footer */
+        .footer {
+            background: lightgreen; /* Set background color to light green */
+        }
+
+        /* Styles for the main content */
+        .main {
+            text-align: left; /* Align text to the left */
+            background: deepskyblue; /* Set background color to deep sky blue */
+        }
+
+        /* Styles for the first aside */
+        .aside-1 {
+            background: gold; /* Set background color to gold */
+        }
+
+        /* Styles for the second aside */
+        .aside-2 {
+            background: hotpink; /* Set background color to hot pink */
+        }
+
+        /* Media query for screens wider than 600px */
+        @media all and (min-width: 600px) {
+            .aside {
+                flex: 1 0 0; /* Allow the aside elements to shrink to fit content */
+            }
+        }
+
+        /* Media query for screens wider than 800px */
+        @media all and (min-width: 800px) {
+            .main {
+                flex: 3 0px; /* Let the main content take up more space */
+            }
+            .aside-1 {
+                order: 1; /* Change the order of the first aside */
+            }
+            .main {
+                order: 2; /* Change the order of the main content */
+            }
+            .aside-2 {
+                order: 3; /* Change the order of the second aside */
+            }
+            .footer {
+                order: 4; /* Change the order of the footer */
+            }
+        }
+        
+        /* Additional styles for the body */
+        body {
+            padding: 2em; /* Add padding around the body */
+        }
+    </style>
+    <body>
+        <div class="wrapper">
+            <header class="header">Header</header>
+            <article class="main">
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                    Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit
+                    amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                </p>
+            </article>
+            <aside class="aside aside-1">Aside 1</aside>
+            <aside class="aside aside-2">Aside 2</aside>
+            <footer class="footer">Footer</footer>
+        </div>
+    </body>
+</html>
