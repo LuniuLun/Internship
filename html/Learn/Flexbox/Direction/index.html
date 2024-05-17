@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RTL Example</title>
+<style>
+.container {
+    display: flex;
+    direction: rtl; /* Set direction to right-to-left */
+    border: 1px solid #ccc;
+    padding: 20px;
+    writing-mode: vertical-rl; /* A row will run vertically */
+}
+
+.container p {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin: 5px 0;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <p>This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    <p>This is yet another paragraph.</p>
+</div>
+
+</body>
+</html>
