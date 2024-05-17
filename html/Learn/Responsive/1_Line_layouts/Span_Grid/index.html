@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                margin: 0;
+            }
+            .pink {
+                background-color: pink;
+            }
+
+            .blue {
+                background-color: blue;
+            }
+
+            .coral {
+                background-color: coral;
+            }
+
+            .yellow {
+                background-color: yellow;
+            }
+
+            .green {
+                background-color: green;
+            }
+            .parent {
+                height: 100vh;
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+            }
+
+            .span-12 {
+                grid-column: 1 / span 12;
+            }
+
+            .span-6 {
+                grid-column: 1 / span 6;
+            }
+
+            .span-4 {
+                grid-column: 4 / span 4;
+            }
+
+            .span-2 {
+                grid-column: 3 / span 2;
+            }
+
+            /* centering text */
+            .section {
+                display: grid;
+                place-items: center;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="parent white">
+            <div class="span-12 green section">Span 12</div>
+            <div class="span-6 coral section">Span 6</div>
+            <div class="span-4 blue section">Span 4</div>
+            <div class="span-2 yellow section">Span 2</div>
+        </div>
+    </body>
+</html>

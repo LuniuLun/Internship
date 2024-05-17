@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .pink {
+                background-color: pink;
+            }
+
+            .blue {
+                background-color: rgb(136, 136, 243);
+            }
+
+            .coral {
+                background-color: coral;
+            }
+
+            .yellow {
+                background-color: yellow;
+            }
+
+            .green {
+                background-color: rgb(98, 228, 98);
+            }
+            .parent {
+                display: grid;
+                place-items: center;
+            }
+
+            .visual {
+                aspect-ratio: 16 / 9;
+            }
+
+            .card {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                padding: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="parent white">
+            <div class="card blue">
+                <h1>Video Title</h1>
+                <div class="visual green"></div>
+                <p>Descriptive text for aspect ratio card demo.</p>
+            </div>
+        </div>
+    </body>
+</html>
