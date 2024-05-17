@@ -1,0 +1,28 @@
+.gallery__item {
+    float: left;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    @media (max-width: 800px) {
+        width: 30%;
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+    }
+
+    /* combining both min-width and max-width queries */
+    @media (min-width: 800px) and (max-width: 1200px) {
+        /*  (100% - 15%) / 4 */
+        width: 21.25%;
+        &:nth-child(4n) {
+            margin-right: 0;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        /* (100% - 20%) / 5 */
+        width: 16%;
+        &:nth-child(5n) {
+            margin-right: 0;
+        }
+    }
+}
