@@ -1,0 +1,52 @@
+:root {
+    font-size: 4vmin;
+    font-family: sans-serif;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.puzzle .word {
+    display: flex;
+}
+
+.puzzle .word .letter {
+    width: 2em;
+    height: 2em;
+    margin: 0.05em;
+    background-color: #555; 
+    color: white; 
+    text-align: center; /* Center the text inside each letter */
+    position: relative; /* Use relative positioning */
+    order: 2; /* Set the order of letters to 2 (default order) */
+    right: 50%; /* Move letters to the right by 50% */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+.puzzle .word .letter:before {
+    content: ""; /* Create an empty content before each letter */
+    display: inline-block; /* Make it inline-block to affect vertical alignment */
+    height: 100%; /* Set its height to 100% */
+    vertical-align: middle; /* Vertically align it to the middle */
+}
+
+.puzzle .word .letter:last-child {
+    margin-right: auto; /* Push the last letter to the far right */
+}
+
+.puzzle .word .pivot {
+    background-color: #75a987; /* Set a different background color for the pivot letter */
+}
+
+.puzzle .word .pivot,
+.puzzle .word .pivot ~ .letter {
+    order: 1; /* Set the order of the pivot and letters after it to 1 */
+    left: 50%; /* Move these letters to the left by 50% */
+}
