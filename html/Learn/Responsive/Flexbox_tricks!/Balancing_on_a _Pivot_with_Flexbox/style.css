@@ -11,6 +11,14 @@ body {
     height: 100%;
 }
 
+/* The key to this balance is to divide it into two parts, the head and the tail, 
+with the axis point in the middle called the privot. 
+The head is set attribute order: 1 => will be located behind the tail because the tail has the order attribute value: 2.
+(the lower values are in front of the higher points)
+However, if you continue to set the margin-right:50%(with condition having position: relative) property for the head, 
+it will fly to the left and vice versa, set the margin-left:50% property for the first part
+=> the tail will fly to the right. Very cool */
+
 .puzzle .word {
     display: flex;
 }
@@ -19,8 +27,8 @@ body {
     width: 2em;
     height: 2em;
     margin: 0.05em;
-    background-color: #555; 
-    color: white; 
+    background-color: #555;
+    color: white;
     text-align: center; /* Center the text inside each letter */
     position: relative; /* Use relative positioning */
     order: 2; /* Set the order of letters to 2 (default order) */
