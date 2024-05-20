@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* nav */
+.product-filter {
+    display: flex;
+    padding: 20px 50px;
+}
+.product-filter h1 {
+    flex-grow: 1;
+}
+.sort {
+    display: flex;
+    gap: 20px;
+}
+.collection-sort {
+    display: flex;
+    flex-direction: column;
+}
+
+/* content */
+.products {
+    display: flex;
+    flex-wrap: wrap;
+}
+.product-card {
+    padding: 2%;
+    flex-grow: 1;
+    flex-basis: 16%;
+    display: flex; /* so child elements can use flexbox stuff too! */
+    flex-direction: column;
+    border: 1px solid rgba(204, 204, 204, 0.5);
+}
+
+.product-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.product-image img {
+    max-width: 100%;
+}
+.product-info {
+    margin: auto;
+    text-align: center;
+}
+
+@media (max-width: 920px) {
+    .product-card {
+        flex: 1 25%;
+    }
+}
+/* Select the first two */
+.products .product-card:first-child,
+.products .product-card:nth-child(2) {
+    flex: 2 50%;
+}
+@media (max-width: 600px) {
+    .product-card {
+        flex: 1 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-filter {
+        flex-direction: column;
+    }
+    .sort {
+        align-self: flex-start;
+    }
+}
