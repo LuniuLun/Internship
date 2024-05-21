@@ -134,7 +134,7 @@ header {
 .hero-banner {
     margin-top: 90px;
     width: 100%;
-    background-image: url(../assets/img/background-image-hero-banner.svg);
+    background-image: url(../assets/img/background_image_hero_banner.svg);
     min-height: 560px;
     background-size: cover;
     display: flex;
@@ -207,7 +207,7 @@ header {
 }
 
 .bottom-items .content:nth-child(1) {
-    background-image: url(../assets/img/background-mouthwash.svg);
+    background-image: url(../assets/img/background_mouthwash.svg);
     color: #fff;
 }
 
@@ -216,7 +216,7 @@ header {
 }
 
 .bottom-items .content:nth-child(2) {
-    background-image: url(../assets/img/background-bundle.svg);
+    background-image: url(../assets/img/background_bundle.svg);
 }
 
 .bottom-items .content-text {
@@ -348,7 +348,7 @@ header {
 /* section 4 - promotional-banner */
 
 .promotional-banner {
-    background-image: url(../assets/img/background-Promotioanal\ Banner.svg);
+    background-image: url(../assets/img/background_promotioanal_banner.svg);
     min-height: 444.38px;
     margin: 0 150px 100px;
     background-repeat: no-repeat;
