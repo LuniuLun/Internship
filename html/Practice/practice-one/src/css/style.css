@@ -65,7 +65,7 @@ body {
 }
 
 .product-card {
-    width: calc(25% - 16px);
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -446,7 +446,7 @@ body {
 }
 
 .promotional-banner .shop-now_btn {
-    max-width: 168px;
+    width: 168px;
 }
 
 /* section 5 - testimonials */
@@ -612,5 +612,5 @@ body {
 }
 
 .supper-footer a {
-    text-decoration: none;
+    text-decoration: none ;
 }
