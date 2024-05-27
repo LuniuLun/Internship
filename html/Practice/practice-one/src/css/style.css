@@ -232,6 +232,7 @@ body {
     align-items: center;
     flex-direction: column;
     width: 100%;
+    padding: 0;
 }
 
 /* section 1 - hero-banner*/
@@ -297,12 +298,14 @@ body {
     width: 100%;
     display: flex;
     gap: 10px;
+    align-items: center;
+    justify-content: center;
 }
 
 .bottom-items .content {
     display: flex;
     align-items: center;
-    width: 50%;
+    width: 45%;
     border-radius: 16px;
     padding: 20px 0;
     background-repeat: no-repeat;
@@ -314,6 +317,7 @@ body {
     font-size: 44px;
     line-height: 66px;
     font-weight: 600;
+    align-items: unset;
 }
 
 .bottom-items .content:nth-child(1) {
@@ -347,8 +351,10 @@ body {
 }
 
 .mouthwash-bottle {
+    position: absolute;
     max-width: 250px;
     z-index: 2;
+    right: 4%;
 }
 
 .hightlight,
@@ -359,12 +365,12 @@ body {
 
 .hightlight {
     top: 0;
-    right: -10px;
+    right: 4%;
 }
 
 .bundle-image {
     bottom: 0;
-    right: 0;
+    right: 4%;
 }
 
 /* section 3 - trending product */
@@ -410,8 +416,8 @@ body {
     background-repeat: no-repeat;
     display: flex;
     border-radius: 24px;
-    width: 75%;
     justify-content: flex-end;
+    padding: 0;
 }
 
 .content-promotinal-banner {
@@ -419,7 +425,7 @@ body {
     flex-direction: column;
     flex: 1;
     gap: 32.92px;
-    max-width: 50%;
+    max-width: 52%;
     background-color: var(--blue-background);
     padding: 0 20px;
     border-radius: 0 24px 24px 0;
@@ -532,6 +538,7 @@ body {
     display: flex;
     gap: 16px;
     list-style: none;
+    padding-left: 0;
 }
 
 .social-network-lists li,
@@ -584,6 +591,7 @@ body {
     flex-direction: column;
     gap: 8px;
     list-style: none;
+    padding-left: 0;
 }
 
 .quick-link {
