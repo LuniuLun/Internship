@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+.box {
+    background-color: lightblue;
+    border: 2px solid #007BFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #007BFF;
+    width: 150px; /* Set width for all boxes */
+}
+.aspect-1-1 {
+    aspect-ratio: 1 / 1; /* width and height are equal */
+    width: 150px;
+}
+.aspect-2-1 {
+    aspect-ratio: 2 / 1; /* width is twice the height */
+    width: 300px;
+}
+.aspect-1-2 {
+    aspect-ratio: 1 / 2; /* width is half the height */
+    width: 150px;
+}
+.aspect-16-9 {
+    aspect-ratio: 16 / 9; /* typical video aspect ratio */
+    width: 320px;
+}
+.aspect-0-5 {
+    aspect-ratio: 0.5; /* float value equivalent to 1 / 2 */
+    width: 150px;
+}
