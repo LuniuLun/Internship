@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .box {
+                position: relative;
+                height: 100px;
+                width: 100px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: white;
+                border: 2px solid transparent; /* To reserve space for the border */
+            }
+
+            .box::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+                border: 2px solid #ebcb80;
+                /* 
+                extension support https://bennettfeely.com/clippy/
+                */
+                clip-path: polygon(0 0, 50% 0, 100% 46%, 100% 100%, 0 100%, 0% 50%);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">79</div>
+    </body>
+</html>
