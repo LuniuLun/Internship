@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Light-Dark Mode Example</title>
+        <style>
+            :root {
+                &:has(input[name="color-scheme"][value="light"]:checked) {
+                    color-scheme: light;
+                }
+                &:has(input[name="color-scheme"][value="dark"]:checked) {
+                    color-scheme: dark;
+                }
+            }
+            :root {
+                color-scheme: light dark;
+                --primary-color: light-dark(#333, #fafafa);
+                --primary-background: light-dark(#e4e4e4, #121212);
+                --highlight-color: light-dark(hotpink, lime);
+            }
+
+            body {
+                color: var(--primary-color);
+                background-color: var(--primary-background);
+                font-family: Arial, sans-serif;
+            }
+
+            h1 {
+                color: var(--highlight-color);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Hello, World!</h1>
+        <p>This is an example of using the light-dark() function in CSS to switch between light and dark modes.</p>
+        <div class="row gap">
+            <label><input name="color-scheme" type="radio" value="light" /> light</label>
+            <label><input name="color-scheme" type="radio" value="dark" /> dark</label>
+        </div>
+    </body>
+</html>
