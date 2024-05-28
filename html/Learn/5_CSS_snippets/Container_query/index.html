@@ -1,0 +1,40 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Container Query Units</title>
+        <link rel="stylesheet" href="style.css" />
+        <style>
+            @keyframes slide-out-of-container {
+                to {
+                    transform: translateX(-100%);
+                }
+            }
+
+            .slide-out {
+                animation: slide-out-of-container 10s forwards;
+            }
+
+            .card {
+                :is(h2, h3) {
+                    font-size: clamp(1.5rem, 5cqi, 4rem);
+                }
+
+                img {
+                    inline-size: 100cqi;
+                    @container (orientation: landscape) {
+                        inline-size: 50cqi;
+                    }
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card slide-out">
+            <h2>This is a card</h2>
+            <p>It slides out of the container</p>
+            <img src="./image.jpg" alt="cu cau de thuong" />
+        </div>
+    </body>
+</html> -->

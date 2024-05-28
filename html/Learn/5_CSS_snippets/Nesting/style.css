@@ -1,0 +1,52 @@
+:root {
+    &:has(input[name="color-scheme"][value="light"]:checked) {
+        color-scheme: light;
+    }
+    &:has(input[name="color-scheme"][value="dark"]:checked) {
+        color-scheme: dark;
+    }
+}
+:root {
+    color-scheme: light dark;
+    --primary-color: light-dark(#333, #fafafa);
+    --primary-background: light-dark(#e4e4e4, #121212);
+    --highlight-color: light-dark(hotpink, lime);
+}
+
+body {
+    color: var(--primary-color);
+    background-color: var(--primary-background);
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+.you {
+    .can-totally-ship-this {
+        &.if-you-wanted {
+            /* it's VERY MUCH like SCSS */
+            padding: 10px;
+            border-radius: 5px;
+            &:is(:hover, :focus-visible) {
+                background-color: lightblue;
+                /* put a bird on it */
+            }
+        }
+    }
+}
+
+/* or for theming with [data-theme="dark"] */
+.button {
+    background: var(--primary-color);
+    color: var(--primary-background);
+    margin: 10px;
+    border-radius: 12px;
+    padding: 8px 12px;
+    &:is(:hover, :focus-visible) {
+        background-color: lightblue;
+        color: black;
+        border: 0;
+    }
+}

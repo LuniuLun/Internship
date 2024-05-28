@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Example :has() Selector</title>
+        <style>
+            /* Styling button with an icon */
+            button:has(.icon) {
+                gap: 1ch;
+                background-color: #007bff;
+                color: white;
+                padding: 0.5rem 1rem;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            /* Changing card orientation based on image presence */
+            .card:has(img) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <button><span class="icon">🚀</span> Click me</button>
+
+        <div class="card">
+            <img src="image.jpg" alt="Sample Image" />
+            <p>This card has an image</p>
+        </div>
+    </body>
+</html>
