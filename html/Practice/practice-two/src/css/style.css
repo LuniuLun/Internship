@@ -366,7 +366,7 @@ body {
 
 .bottom-items .content-text {
     width: 55%;
-    margin-left: 20px;
+    margin-left: 16px;
     position: relative;
     z-index: 3;
 }
@@ -840,6 +840,9 @@ body {
                 position: absolute;
                 max-width: 100%;
                 bottom: 0;
+                border-radius: unset;
+                text-align: center;
+                align-items: center;
             }
         }
     }
@@ -893,7 +896,7 @@ body {
         }
     }
     .main-footer {
-        .other-informations  {
+        .other-informations {
             .detail-eco-informations p {
                 height: unset;
             }
@@ -908,7 +911,7 @@ body {
                     border-radius: 8px;
                     padding: 10px 16px;
                 }
-                .subsribe_btn{
+                .subsribe_btn {
                     border-radius: 8px;
                     width: 120px;
                 }
