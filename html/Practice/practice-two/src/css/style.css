@@ -449,7 +449,7 @@ body {
     gap: 32.92px;
     max-width: 52%;
     background-color: var(--blue-background);
-    padding: 0 20px;
+    padding: 20px;
     border-radius: 0 24px 24px 0;
 }
 
@@ -474,7 +474,7 @@ body {
 }
 
 .promotional-banner .shop-now_btn {
-    width: 168px;
+    width: 180px;
 }
 
 /* section 5 - testimonials */
@@ -742,6 +742,15 @@ body {
                 width: 100%;
             }
         }
+
+        .promotional-banner {
+            .content-text {
+                margin-top: unset;
+                .title {
+                    line-height: 3rem;
+                }
+            }
+        }
     }
 
     .main-footer {
@@ -755,9 +764,6 @@ body {
 }
 
 @media (max-width: 992) {
-    .btn {
-        padding: 8px;
-    }
     .body {
         .hero-banner {
             .content {
@@ -775,6 +781,9 @@ body {
                     width: 82%;
                 }
             }
+        }
+        .promotional-banner {
+            background-position: 20% 0;
         }
     }
 }
@@ -819,10 +828,22 @@ body {
                 display: none;
             }
         }
+        .promotional-banner {
+            position: relative;
+            height: 70vh;
+            background-size: unset;
+            background-position: unset;
+            background-size: 206%;
+            .content-promotinal-banner {
+                position: absolute;
+                max-width: 100%;
+                bottom: 0;
+            }
+        }
     }
 }
 
-@media (max-width: 540) {
+@media (max-width: 640) {
     .body {
         .strength-points {
             .bottom-items .content-text {
@@ -861,9 +882,12 @@ body {
 
 @media (max-width: 470) {
     .body {
-        .promotional-banner .content-text .title {
-            line-height: 2.5rem;
-            font-size: 1.875rem;
+        .promotional-banner {
+            min-height: 70vh;
+            .content-text .title {
+                line-height: 2.5rem;
+                font-size: 1.875rem;
+            }
         }
     }
 }
