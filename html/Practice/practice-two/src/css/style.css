@@ -278,6 +278,7 @@ body {
 .content-text .main-title {
     font-size: 2.75rem;
     line-height: 4.125rem;
+    font-weight: 600;
     color: var(--black-primary-content);
 }
 
@@ -656,6 +657,7 @@ body {
 
 .subsribe_btn {
     border-radius: 0 8px 8px 0;
+    width: 101px;
 }
 
 .supper-footer {
@@ -887,6 +889,29 @@ body {
             .content-text .title {
                 line-height: 2.5rem;
                 font-size: 1.875rem;
+            }
+        }
+    }
+    .main-footer {
+        .other-informations  {
+            .detail-eco-informations p {
+                height: unset;
+            }
+        }
+        .contact-wrapper {
+            .subscribe .wrapper-sub {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                .wrapper-input-sub {
+                    border-radius: 8px;
+                    padding: 10px 16px;
+                }
+                .subsribe_btn{
+                    border-radius: 8px;
+                    width: 120px;
+                }
             }
         }
     }
