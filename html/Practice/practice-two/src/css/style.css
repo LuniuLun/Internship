@@ -1,6 +1,6 @@
 html {
     box-sizing: border-box;
-    font-size: 62.5%;
+    font-size: 16px;
 }
 *,
 *:before,
@@ -24,7 +24,7 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: "Poppins", sans-serif;
-    font-size: 1.6rem;
+    font-size: 1rem;
     position: relative;
 }
 
@@ -37,7 +37,7 @@ body {
     border: 0;
     cursor: pointer;
     font-weight: 600;
-    font-size: 1.6rem;
+    font-size: 1rem;
 }
 
 .primary-btn {
@@ -68,8 +68,8 @@ body {
     .small-title {
         font-weight: 400;
         color: var(--blue-content-2);
-        line-height: 2.4rem;
-        font-size: 1.6rem;
+        line-height: 1.5rem;
+        font-size: 1rem;
     }
 }
 .container-fluid {
@@ -94,8 +94,8 @@ body {
     }
 
     .description {
-        line-height: 2.1rem;
-        font-size: 1.4rem;
+        line-height: 1.3125rem;
+        font-size: 0.875rem;
         font-weight: 500;
         color: var(--black-primary-content);
     }
@@ -108,16 +108,16 @@ body {
 
     .discount-price {
         font-weight: 600;
-        line-height: 3rem;
+        line-height: 1.875rem;
         color: #000;
-        font-size: 2rem;
+        font-size: 1.25rem;
     }
 
     .main-price {
         margin-left: 8px;
         color: var(--grey-content-2);
-        line-height: 2.4rem;
-        font-size: 1.6rem;
+        line-height: 1.5rem;
+        font-size: 1rem;
     }
 
     .add-to-cart_btn {
@@ -141,9 +141,9 @@ body {
     box-shadow: 0px 3px 5px 0px rgba(9, 30, 66, 0.2);
 
     .message {
-        line-height: 2.4rem;
+        line-height: 1.5rem;
         font-weight: 400;
-        font-size: 1.6rem;
+        font-size: 1rem;
         color: var(--black-primary-content);
     }
 
@@ -166,15 +166,15 @@ body {
 
     .detail-infomation-text .fullname {
         font-weight: 500;
-        font-size: 1.6rem;
-        line-height: 2.4rem;
+        font-size: 1rem;
+        line-height: 1.5rem;
     }
 
     .detail-infomation-text .role {
         color: var(--grey-content-3);
         font-weight: 400;
-        font-size: 1.4rem;
-        line-height: 2.1rem;
+        font-size: 0.875rem;
+        line-height: 1.3125rem;
     }
 }
 
@@ -212,16 +212,16 @@ body {
     display: flex;
     align-items: center;
     font-weight: 500;
-    font-size: 1.6rem;
-    line-height: 2.4rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
 }
 
 .tab {
     opacity: 0.72;
     font-weight: 500;
     color: var(--grey-content-1);
-    font-size: 1.6rem;
-    line-height: 2.4rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
 }
 
 .tab-icon {
@@ -276,13 +276,13 @@ body {
 }
 
 .content-text .main-title {
-    font-size: 4.4rem;
-    line-height: 6.6rem;
+    font-size: 2.75rem;
+    line-height: 4.125rem;
     color: var(--black-primary-content);
 }
 
 .content-text .main-adv {
-    font-size: 2rem;
+    font-size: 1.25rem;
     font-weight: 400;
     color: var(--grey-content-1);
 }
@@ -339,8 +339,8 @@ body {
 }
 
 .bottom-items .content .title {
-    font-size: 4.4rem;
-    line-height: 6.6rem;
+    font-size: 2.75rem;
+    line-height: 4.125rem;
     font-weight: 600;
     align-items: unset;
 }
@@ -372,8 +372,8 @@ body {
 
 .bottom-items .content-text .adv {
     font-weight: 500;
-    line-height: 2.7rem;
-    font-size: 1.6rem;
+    line-height: 1.6875rem;
+    font-size: 1rem;
 }
 
 .bottom-items .content button {
@@ -462,15 +462,15 @@ body {
 
 .promotional-banner .content-text .title {
     font-weight: 700;
-    font-size: 3.6rem;
-    line-height: 5.4rem;
+    font-size: 2.25rem;
+    line-height: 3.375rem;
 }
 
 .promotional-banner .content-text .description {
     color: #000;
     font-weight: 400;
-    font-size: 1.8rem;
-    line-height: 2.7rem;
+    font-size: 1.125rem;
+    line-height: 1.6875rem;
 }
 
 .promotional-banner .shop-now_btn {
@@ -550,8 +550,8 @@ body {
 }
 
 .detail-eco-informations p {
-    line-height: 2.4rem;
-    font-size: 1.6rem;
+    line-height: 1.5rem;
+    font-size: 1rem;
     font-weight: 400;
     height: 118px;
 }
@@ -611,7 +611,7 @@ body {
 .quick-link-lists-wrapper .headline,
 .subscribe .headline {
     font-weight: 600;
-    line-height: 2.7rem;
+    line-height: 1.6875rem;
     color: var(--blue-content-1);
 }
 
@@ -675,8 +675,8 @@ body {
 .supper-footer p {
     color: var(--blue-content-1);
     font-weight: 400;
-    font-size: 1.4rem;
-    line-height: 2.1rem;
+    font-size: 0.875rem;
+    line-height: 1.3125rem;
     opacity: 0.7;
 }
 
@@ -697,17 +697,12 @@ body {
         }
     }
 }
-/* @media (min-width: 1200px) {
-    .other-informations {
-        max-width: 1200px;
 
-    }
-} */
 /* tablet */
 
 @media (max-width: 1250) {
     html {
-        font-size: calc(14 / 16 * 62.5%);
+        font-size: 18px;
     }
     .main-header {
         padding: 12px 20px;
@@ -739,6 +734,12 @@ body {
             }
             .content-slider > .box-message:nth-child(n + 3) {
                 display: none;
+            }
+        }
+
+        .strength-points {
+            .bottom-items .content-text {
+                width: 100%;
             }
         }
     }
@@ -793,7 +794,7 @@ body {
 /* moblie */
 @media (max-width: 640) {
     html {
-        font-size: calc(12 / 16 * 62.5%);
+        font-size: 20px;
     }
     .body {
         .hero-banner {
@@ -826,7 +827,6 @@ body {
         .strength-points {
             .bottom-items .content-text {
                 width: 100%;
-                padding: 20px 0;
             }
         }
     }
@@ -846,7 +846,8 @@ body {
             display: flex;
             flex-direction: column;
             align-items: center;
-            .quick-link-lists-wrapper, .subscribe {
+            .quick-link-lists-wrapper,
+            .subscribe {
                 text-align: center;
             }
         }
@@ -861,8 +862,8 @@ body {
 @media (max-width: 470) {
     .body {
         .promotional-banner .content-text .title {
-            line-height: 4rem;
-            font-size: 3rem;
+            line-height: 2.5rem;
+            font-size: 1.875rem;
         }
     }
 }
