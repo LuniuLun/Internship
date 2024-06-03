@@ -641,6 +641,7 @@ body {
 .quick-link a {
     color: var(--blue-content-1);
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .subscribe {
