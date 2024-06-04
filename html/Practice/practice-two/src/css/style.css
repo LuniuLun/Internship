@@ -423,11 +423,14 @@ body {
 }
 
 .list-products {
-    height: 424px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    height: 450px;
+    display: flex;
     gap: 20px;
     overflow: hidden;
+}
+
+.product-card {
+    width: 25%;
 }
 
 /* section 4 - promotional-banner */
@@ -732,8 +735,8 @@ body {
 
     .body {
         .trending-products {
-            .list-products {
-                grid-template-columns: 1fr 1fr;
+            .product-card {
+                width: 50%;
             }
         }
 
@@ -742,12 +745,9 @@ body {
             .slider {
                 .content-slider {
                     overflow: hidden;
-
-                    /* grid-template-columns: repeat(2, 1fr); */
                 }
             }
             .box-message {
-                /* width: 320px; */
                 flex: 0 0 50%;
             }
         }
@@ -820,8 +820,8 @@ body {
             }
         }
         .trending-products {
-            .list-products {
-                grid-template-columns: 1fr;
+            .product-card {
+                width: 100%;
             }
             .arrow_forward,
             .arrow_back {
@@ -831,10 +831,6 @@ body {
 
         .testimonials {
             .slider {
-                .content-slider {
-                    overflow: hidden;
-                    /* grid-template-columns: 1fr; */
-                }
                 .box-message {
                     width: 320px;
                     height: 270px;
@@ -845,7 +841,6 @@ body {
 
         .promotional-banner {
             position: relative;
-            height: 70vh;
             background-size: unset;
             background-position: unset;
             background-size: 206%;
