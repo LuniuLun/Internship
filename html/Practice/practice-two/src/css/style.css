@@ -439,7 +439,6 @@ body {
     background-image: url(../assets/img/background_promotioanal_banner.svg);
     background-size: cover;
     min-height: 444.38px;
-    margin-bottom: 100px;
     background-repeat: no-repeat;
     display: flex;
     border-radius: 24px;
@@ -491,6 +490,7 @@ body {
     background-color: var(--blue-background);
     gap: 80px;
     padding: 80px 150px;
+    margin-top: 100px;
 }
 
 .slider {
@@ -830,6 +830,7 @@ body {
         }
 
         .testimonials {
+            margin-top: 500px;
             .slider {
                 .box-message {
                     width: 320px;
@@ -847,7 +848,7 @@ body {
             .content-promotinal-banner {
                 position: absolute;
                 max-width: 100%;
-                bottom: 0;
+                bottom: -80%;
                 border-radius: unset;
                 text-align: center;
                 align-items: center;
