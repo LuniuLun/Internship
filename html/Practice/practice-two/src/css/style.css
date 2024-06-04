@@ -498,7 +498,7 @@ body {
 
 .slider .content-slider {
     width: 100%;
-    height: 250px;
+    height: 280px;
     display: flex;
     /* grid-template-columns: repeat(3, 1fr); */
     gap: 16px;
@@ -837,6 +837,7 @@ body {
                 }
                 .box-message {
                     width: 320px;
+                    height: 270px;
                     flex: 0 0 100%;
                 }
             }
@@ -878,7 +879,6 @@ body {
             .subscribe {
                 text-align: center;
                 .subsribe_btn {
-                    border-radius: 8px;
                     width: 120px;
                 }
             }
@@ -914,10 +914,19 @@ body {
                 flex-direction: column;
                 align-items: center;
                 gap: 20px;
+                .subsribe_btn {
+                    border-radius: 8px;
+                }
                 .wrapper-input-sub {
                     border-radius: 8px;
                     padding: 10px 16px;
                 }
+            }
+        }
+        .supper-footer {
+            .right-text {
+                flex-direction: column-reverse;
+                align-items: center;
             }
         }
     }
