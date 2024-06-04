@@ -924,6 +924,8 @@ body {
             }
         }
         .supper-footer {
+            flex-direction: column-reverse;
+            gap: 24px;
             .right-text {
                 flex-direction: column-reverse;
                 align-items: center;
