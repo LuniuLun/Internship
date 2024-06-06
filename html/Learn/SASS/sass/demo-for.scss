@@ -11,10 +11,17 @@
     }
 }
 
-$items: 1, 2, 3, 4, 5;
-@each $i in $items {
+$colors: (
+    1: #ff0000,
+    2: #00ff00,
+    3: #0000ff,
+    4: #ffff00,
+    5: #ff00ff 
+);
+
+@each $i, $color in $colors {
     .slider-item-#{$i} {
-        background-color: $primaryColor;
+        background-color: #{$color};
         border: 1px solid #999;
         color: #fff;
         padding: 12px 16px;
