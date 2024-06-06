@@ -1,0 +1,21 @@
+@import './variables.scss';
+
+@if ($screenWidth < 500px) {
+    h1 {
+        width: 600px;
+        padding: 10px;
+        border-radius: 5px;
+        text-transform: lowercase;
+    }
+}
+
+@else {
+    h1 {
+        border: 1px solid $primaryColor;
+        width: 500px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: grey;
+        color: $textColor;
+    }
+}
