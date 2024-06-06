@@ -41,3 +41,9 @@ SASS
 4. Extend
 5. If Else
 6. Loop (for, foreach)
+7. Function
+    - Khai báo:
+        @function nameFunction($param1, $param2,...) {
+            <!-- logic -->
+            @return value
+        }

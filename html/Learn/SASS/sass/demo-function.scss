@@ -24,3 +24,19 @@ nav {
         }
     }
 }
+
+@function setWidth($width) {
+    @if($width < 10px) {
+        @return ($width + 20px); 
+    }
+
+    @return $width;
+}
+
+.container {
+    width: setWidth(300px);
+    height: setWidth(500px);
+    font-size: setWidth(1px);
+    border: 1px solid #ccc;
+    margin-top: 20px;
+}
