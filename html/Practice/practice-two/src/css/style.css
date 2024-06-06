@@ -70,6 +70,7 @@ body {
         color: var(--blue-content-2);
         line-height: 1.5rem;
         font-size: 1rem;
+        text-align: center;
     }
 }
 .container-fluid {
