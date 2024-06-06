@@ -1,0 +1,22 @@
+@mixin button($bgColor, $color, $hoverColor) {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    color: $color;
+    background-color: $bgColor;
+    cursor: pointer;
+
+    &:hover {
+        color: $hoverColor;
+        background-color: $bgColor;
+    }
+}
+
+.success {
+    @include button(#d4edda, #155274, #fff);
+}
+
+.remove {
+    @include button(#fff3cd, #856404, orange);
+}

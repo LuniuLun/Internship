@@ -1,0 +1,21 @@
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav ul li {
+  display: inline-block;
+}
+nav ul li a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #2b2b2b;
+  background-color: rgba(39, 199, 159, 0.5568627451);
+}
+nav ul li a:hover {
+  background-color: #f2ee03;
+}
+
+/*# sourceMappingURL=style.css.map */

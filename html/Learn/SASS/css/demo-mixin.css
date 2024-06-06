@@ -1,0 +1,29 @@
+.success {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #155274;
+  background-color: #d4edda;
+  cursor: pointer;
+}
+.success:hover {
+  color: #fff;
+  background-color: #d4edda;
+}
+
+.remove {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #856404;
+  background-color: #fff3cd;
+  cursor: pointer;
+}
+.remove:hover {
+  color: orange;
+  background-color: #fff3cd;
+}
+
+/*# sourceMappingURL=demo-mixin.css.map */

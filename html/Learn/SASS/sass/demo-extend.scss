@@ -1,0 +1,24 @@
+@import './variables.scss';
+
+.register {
+    background-color: $primaryColor;
+    color: #fff;
+    font-size: $normalSize;
+    border: none;
+    padding: 8px 12px;
+}
+
+.boder{
+    border: 2px solid darkorange
+}
+
+.content {
+    @extend .register;
+    @extend .boder;
+    max-width: 500px;
+    font-weight: bold;
+    text-indent: 25px;
+    line-height: 30px;
+    margin-top: 20px;
+    color: $textColor;
+}

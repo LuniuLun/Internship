@@ -1,0 +1,22 @@
+.register, .content {
+  background-color: orange;
+  color: #fff;
+  font-size: 1.1rem;
+  border: none;
+  padding: 8px 12px;
+}
+
+.boder, .content {
+  border: 2px solid darkorange;
+}
+
+.content {
+  max-width: 500px;
+  font-weight: bold;
+  text-indent: 25px;
+  line-height: 30px;
+  margin-top: 20px;
+  color: #2b2b2b;
+}
+
+/*# sourceMappingURL=demo-extend.css.map */
