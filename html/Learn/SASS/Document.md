@@ -40,3 +40,4 @@ SASS
 
 4. Extend
 5. If Else
+6. Loop (for, foreach)
