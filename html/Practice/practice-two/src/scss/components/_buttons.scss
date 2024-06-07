@@ -1,0 +1,27 @@
+
+.btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.primary-btn {
+    background-color: var(--green-primary-color);
+    color: #fff;
+}
+
+.primary-btn:hover {
+    background-color: var(--green-secondary-color);
+    color: #fff;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--black-primary-content);
+}

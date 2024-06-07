@@ -1,0 +1,61 @@
+
+.main-header {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 150px;
+    box-shadow: 0px 3px 5px 0px rgba(9, 30, 66, 0.2);
+    background-color: #fff;
+    z-index: 99;
+}
+
+.show-navigation {
+    display: none;
+}
+
+.nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tabs {
+    display: flex;
+    color: #000;
+    opacity: 0.72;
+    gap: 16px;
+}
+
+.tabs .home-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.tab {
+    opacity: 0.72;
+    font-weight: 500;
+    color: var(--grey-content-1);
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.tab-icon {
+    margin-left: 8px;
+}
+
+.active {
+    opacity: 1;
+    color: #000;
+}
+
+.nav-bar > * + * {
+    margin-left: 20px;
+}
+
+.user-icon {
+    margin-left: 20px;
+}

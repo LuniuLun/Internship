@@ -1,0 +1,47 @@
+.box-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0px 3px 5px 0px rgba(9, 30, 66, 0.2);
+    height: 250px;
+    max-width: 375px;
+    .message {
+        line-height: 1.5rem;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--black-primary-content);
+    }
+
+    .user {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .detail-information-user {
+        display: flex;
+        align-items: center;
+        gap: 19px;
+    }
+
+    .detail-infomation-text {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .detail-infomation-text .fullname {
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .detail-infomation-text .role {
+        color: var(--grey-content-3);
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 1.3125rem;
+    }
+}

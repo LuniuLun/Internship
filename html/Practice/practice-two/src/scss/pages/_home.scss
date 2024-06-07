@@ -1,0 +1,269 @@
+/* body */
+.body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+}
+
+/* section 1 - hero-banner*/
+.hero-banner {
+    margin-top: 90px;
+    width: 100%;
+    min-height: 560px;
+    background-image: url(../assets/img/background_image_hero_banner.svg);
+
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    background-position: right;
+}
+
+.hero-banner .content {
+    margin-left: 150px;
+    gap: 56px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.hero-banner .content-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.content-text .main-title {
+    font-size: 2.75rem;
+    line-height: 4.125rem;
+    font-weight: 600;
+    color: var(--black-primary-content);
+}
+
+.content-text .main-adv {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--grey-content-1);
+}
+
+.content .show-now_btn {
+    width: 220px;
+}
+
+.content .show-now_btn img {
+    margin-left: 12px;
+}
+
+/* section 2 - strength-points */
+
+.strength-points {
+    margin: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+}
+
+.top-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    gap: 20px;
+}
+
+.strength-point-img {
+    width: 100%;
+    height: auto;
+    max-width: 278px;
+}
+
+.bottom-items {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-items .content {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    border-radius: 16px;
+    padding: 20px 0;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    position: relative;
+}
+
+.bottom-items .content .title {
+    font-size: 2.75rem;
+    line-height: 4.125rem;
+    font-weight: 600;
+    align-items: unset;
+}
+
+.bottom-items .content:nth-child(1) {
+    background-image: url(../assets/img/background_mouthwash.svg);
+    color: #fff;
+}
+
+.bottom-items .content:nth-child(1) button {
+    background-color: var(--green-secondary-color);
+}
+
+.bottom-items .content:nth-child(1) button:hover {
+    background-color: var(--green-primary-color);
+    color: #fff;
+}
+
+.bottom-items .content:nth-child(2) {
+    background-image: url(../assets/img/background_bundle.svg);
+}
+
+.bottom-items .content-text {
+    width: 55%;
+    margin-left: 16px;
+    position: relative;
+    z-index: 3;
+}
+
+.bottom-items .content-text .adv {
+    font-weight: 500;
+    line-height: 1.6875rem;
+    font-size: 1rem;
+}
+
+.bottom-items .content button {
+    margin-top: 36px;
+    width: 160px;
+}
+
+.mouthwash-bottle {
+    position: absolute;
+    max-width: 250px;
+    z-index: 2;
+    right: 4%;
+}
+
+.hightlight,
+.bundle-image {
+    position: absolute;
+    max-width: 550px;
+}
+
+.hightlight {
+    top: 0;
+    right: 4%;
+}
+
+.bundle-image {
+    bottom: 0;
+    right: 4%;
+}
+
+/* section 3 - trending product */
+.trending-products {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 100px 0 50px;
+}
+
+.display-list-products {
+    width: 100%;
+    gap: 4px;
+    margin: 60px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.list-products {
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.product-card {
+    width: 25%;
+}
+
+/* section 4 - promotional-banner */
+
+.promotional-banner {
+    background-image: url(../assets/img/background_promotioanal_banner.svg);
+    background-size: cover;
+    min-height: 444.38px;
+    background-repeat: no-repeat;
+    display: flex;
+    border-radius: 24px;
+    justify-content: flex-end;
+    padding: 0;
+}
+
+.content-promotinal-banner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 32.92px;
+    max-width: 52%;
+    background-color: var(--blue-background);
+    padding: 20px;
+    border-radius: 0 24px 24px 0;
+}
+
+.promotional-banner .content-text {
+    display: flex;
+    flex-direction: column;
+    gap: 13.17px;
+    margin-top: 53px;
+}
+
+.promotional-banner .content-text .title {
+    font-weight: 700;
+    font-size: 2.25rem;
+    line-height: 3.375rem;
+}
+
+.promotional-banner .content-text .description {
+    color: #000;
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.6875rem;
+}
+
+.promotional-banner .shop-now_btn {
+    width: 180px;
+}
+
+/* section 5 - testimonials */
+.testimonials {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 1440px;
+    background-color: var(--blue-background);
+    gap: 80px;
+    padding: 80px 150px;
+    margin-top: 100px;
+}
+
+.slider {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.slider .content-slider {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 20px 0;
+}
+
+.box-message {
+    flex: 0 0 33%;
+}
