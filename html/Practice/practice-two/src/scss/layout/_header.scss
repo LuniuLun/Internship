@@ -1,4 +1,3 @@
-
 .main-header {
     position: fixed;
     display: flex;
@@ -7,10 +6,22 @@
     box-shadow: 0px 3px 5px 0px rgba(9, 30, 66, 0.2);
     background-color: #fff;
     z-index: 99;
+
+    @include respond-to('huge') {
+        padding: 12px 20px;
+
+        .user-icon-lists {
+            display: none;
+        }
+    }
 }
 
 .show-navigation {
     display: none;
+
+    @include respond-to('huge') {
+        display: flex;
+    }
 }
 
 .nav-bar {
@@ -41,6 +52,10 @@
     color: var(--grey-content-1);
     font-size: 1rem;
     line-height: 1.5rem;
+
+    @include respond-to('huge') {
+        display: none;
+    }
 }
 
 .tab-icon {
@@ -52,7 +67,7 @@
     color: #000;
 }
 
-.nav-bar > * + * {
+.nav-bar>*+* {
     margin-left: 20px;
 }
 

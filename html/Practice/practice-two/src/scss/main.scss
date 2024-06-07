@@ -1,15 +1,14 @@
-@import 'abstracts/variables';
-
 @import 'base/normalize';
-@import 'base/mixin';
-
-@import 'layout/header';
-@import 'layout/footer';
 
 @import 'components/buttons';
 @import 'components/carousel';
 @import 'components/box-message';
 @import 'components/product-card';
 
-@import 'pages/home';
+@import 'utilities/variables';
+@import 'utilities/mixins';
 
+@import 'layout/header';
+@import 'layout/footer';
+
+@import 'pages/home';
