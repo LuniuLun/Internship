@@ -1,3 +1,5 @@
+@import 'utilities/variables';
+
 @import 'base/normalize';
 
 @import 'components/buttons';
@@ -5,7 +7,6 @@
 @import 'components/box-message';
 @import 'components/product-card';
 
-@import 'utilities/variables';
 @import 'utilities/mixins';
 
 @import 'layout/header';

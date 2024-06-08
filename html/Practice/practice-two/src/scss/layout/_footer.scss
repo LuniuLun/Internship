@@ -6,12 +6,26 @@
     padding-top: 150px;
     gap: 80px;
     max-height: 448.66px;
+
+    @include respond-to("medium") {
+        gap: 40px;
+    }
 }
 
 .other-informations {
     justify-content: space-between;
     display: flex;
     gap: 88px;
+
+    @include respond-to("huge") {
+        flex-direction: column-reverse;
+    }
+
+    @include respond-to("medium") {
+        gap: 44px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
 }
 
 .detail-eco-informations {
@@ -19,6 +33,11 @@
     flex-direction: column;
     flex: 1;
     gap: 16px;
+
+    @include respond-to("medium") {
+        align-items: center;
+        text-align: center;
+    }
 }
 
 .detail-eco-informations img {
@@ -31,6 +50,10 @@
     font-size: 1rem;
     font-weight: 400;
     height: 118px;
+
+    @include respond-to("small") {
+        height: unset;
+    }
 }
 
 .social-network-lists {
@@ -76,6 +99,12 @@
     display: flex;
     flex-direction: row;
     gap: 88px;
+
+    @include respond-to("medium") {
+        gap: 40px;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .quick-link-lists-wrapper {
@@ -83,6 +112,11 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+
+    @include respond-to("medium") {
+
+        text-align: center;
+    }
 }
 
 .quick-link-lists-wrapper .headline,
@@ -113,11 +147,23 @@
 
 .subscribe {
     flex: 2;
+
+    @include respond-to("medium") {
+
+        text-align: center;
+    }
 }
 
 .wrapper-sub {
     display: flex;
     margin-top: 20px;
+
+    @include respond-to("small") {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
 }
 
 .wrapper-input-sub {
@@ -126,6 +172,11 @@
     border-radius: 8px 0px 0px 8px;
     padding: 0px 16px;
     gap: 8px;
+
+    @include respond-to("small") {
+        border-radius: 8px;
+        padding: 10px 16px;
+    }
 }
 
 .wrapper-input-sub .email {
@@ -136,6 +187,14 @@
 .subsribe_btn {
     border-radius: 0 8px 8px 0;
     width: 101px;
+
+    @include respond-to("medium") {
+        width: 120px;
+    }
+
+    @include respond-to("small") {
+        border-radius: 8px;
+    }
 }
 
 .supper-footer {
@@ -144,11 +203,25 @@
     justify-content: space-between;
     border-top: 1px solid var(--grey-border);
     padding: 20px 150px;
+
+    @include respond-to("huge") {
+        padding: 20px;
+    }
+
+    @include respond-to("small") {
+        flex-direction: column-reverse;
+        gap: 24px;
+    }
 }
 
 .supper-footer .right-text {
     display: flex;
     gap: 24px;
+
+    @include respond-to("small") {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
 }
 
 .supper-footer a,
