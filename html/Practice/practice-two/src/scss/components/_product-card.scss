@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid var(--grey-border);
+    border: 1px solid $grey-border;
     border-radius: 16px;
     min-height: 424px;
     padding: 16px;
@@ -19,7 +19,7 @@
         line-height: 1.3125rem;
         font-size: 0.875rem;
         font-weight: 500;
-        color: var(--black-primary-content);
+        color: $black-primary-content;
     }
 
     .price {
@@ -37,7 +37,7 @@
 
     .main-price {
         margin-left: 8px;
-        color: var(--grey-content-2);
+        color: $grey-content-2;
         line-height: 1.5rem;
         font-size: 1rem;
     }

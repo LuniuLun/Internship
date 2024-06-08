@@ -12,16 +12,16 @@
 }
 
 .primary-btn {
-    background-color: var(--green-primary-color);
+    background-color: $green-primary-color;
     color: #fff;
 }
 
 .primary-btn:hover {
-    background-color: var(--green-secondary-color);
+    background-color: $green-secondary-color;
     color: #fff;
 }
 
 .secondary-btn {
     background-color: transparent;
-    color: var(--black-primary-content);
+    color: $black-primary-content;
 }

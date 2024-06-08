@@ -123,7 +123,7 @@
 .subscribe .headline {
     font-weight: 600;
     line-height: 1.6875rem;
-    color: var(--blue-content-1);
+    color: $blue-content-1;
     white-space: nowrap;
 }
 
@@ -140,7 +140,7 @@
 }
 
 .quick-link a {
-    color: var(--blue-content-1);
+    color: $blue-content-1;
     text-decoration: none;
     white-space: nowrap;
 }
@@ -201,7 +201,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid var(--grey-border);
+    border-top: 1px solid $grey-border;
     padding: 20px 150px;
 
     @include respond-to("huge") {
@@ -226,7 +226,7 @@
 
 .supper-footer a,
 .supper-footer p {
-    color: var(--blue-content-1);
+    color: $blue-content-1;
     font-weight: 400;
     font-size: 0.875rem;
     line-height: 1.3125rem;

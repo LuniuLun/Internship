@@ -36,13 +36,13 @@
     font-size: 2.75rem;
     line-height: 4.125rem;
     font-weight: 600;
-    color: var(--black-primary-content);
+    color: $black-primary-content;
 }
 
 .content-text .main-adv {
     font-size: 1.25rem;
     font-weight: 400;
-    color: var(--grey-content-1);
+    color: $grey-content-1;
 }
 
 .content .show-now_btn {
@@ -109,11 +109,11 @@
 }
 
 .bottom-items .content:nth-child(1) button {
-    background-color: var(--green-secondary-color);
+    background-color: $green-secondary-color;
 }
 
 .bottom-items .content:nth-child(1) button:hover {
-    background-color: var(--green-primary-color);
+    background-color: $green-primary-color;
     color: #fff;
 }
 
@@ -208,7 +208,7 @@
     flex: 1;
     gap: 32.92px;
     max-width: 52%;
-    background-color: var(--blue-background);
+    background-color: $blue-background;
     padding: 20px;
     border-radius: 0 24px 24px 0;
 }
@@ -243,7 +243,7 @@
     justify-content: center;
     flex-direction: column;
     max-width: 1440px;
-    background-color: var(--blue-background);
+    background-color: $blue-background;
     gap: 80px;
     padding: 80px 150px;
     margin-top: 100px;

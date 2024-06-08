@@ -12,7 +12,7 @@
         line-height: 1.5rem;
         font-weight: 400;
         font-size: 1rem;
-        color: var(--black-primary-content);
+        color: $black-primary-content;
     }
 
     .user {
@@ -39,7 +39,7 @@
     }
 
     .detail-infomation-text .role {
-        color: var(--grey-content-3);
+        color: $grey-content-3;
         font-weight: 400;
         font-size: 0.875rem;
         line-height: 1.3125rem;
