@@ -9,68 +9,71 @@
 
     @include respond-to('huge') {
         padding: 12px 20px;
-
+        
         .user-icon-lists {
             display: none;
         }
     }
-}
 
-.show-navigation {
-    display: none;
-
-    @include respond-to('huge') {
+    &__nav-bar {
         display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &__tabs {
+            display: flex;
+            color: #000;
+            opacity: 0.72;
+            gap: 16px;
+
+            .home-link {
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                font-weight: 500;
+                font-size: $normalSize;
+                line-height: 1.5rem;
+            }
+
+            .tab__item {
+                opacity: 0.72;
+                font-weight: 500;
+                color: $grey-content-1;
+                font-size: $normalSize;
+                line-height: 1.5rem;
+
+                @include respond-to('huge') {
+                    display: none;
+                }
+
+
+                &__tab-icon {
+                    margin-left: 8px;
+                }
+            }
+
+            .tab__item--active {
+                opacity: 1;
+                color: #000;
+            }
+
+            .tab__show-navigation {
+                display: none;
+
+                @include respond-to('huge') {
+                    display: flex;
+                }
+            }
+        }
+
+        &__user-icon-lists {
+            @include respond-to('huge') {
+                display: none;
+            }
+
+            .user-icon {
+                margin-left: 20px;
+            }
+        }
     }
-}
-
-.nav-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.tabs {
-    display: flex;
-    color: #000;
-    opacity: 0.72;
-    gap: 16px;
-}
-
-.tabs .home-link {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    font-weight: 500;
-    font-size: $normalSize;
-    line-height: 1.5rem;
-}
-
-.tab {
-    opacity: 0.72;
-    font-weight: 500;
-    color: $grey-content-1;
-    font-size: $normalSize;
-    line-height: 1.5rem;
-
-    @include respond-to('huge') {
-        display: none;
-    }
-}
-
-.tab-icon {
-    margin-left: 8px;
-}
-
-.active {
-    opacity: 1;
-    color: #000;
-}
-
-.nav-bar>*+* {
-    margin-left: 20px;
-}
-
-.user-icon {
-    margin-left: 20px;
 }
