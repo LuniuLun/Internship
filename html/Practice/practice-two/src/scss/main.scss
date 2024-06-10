@@ -1,16 +1,16 @@
-@import 'utilities/variables';
-@import 'utilities/mixins';
+@import 'utilities/variables',
+        'utilities/mixins';
 
 @import 'base/normalize';
 
-@import 'components/buttons';
-@import 'components/carousel';
-@import 'components/box-message';
-@import 'components/product-card';
-@import 'components/sub-heading';
+@import 'components/buttons', 
+        'components/carousel', 
+        'components/box-message', 
+        'components/product-card', 
+        'components/sub-heading';
 
 
-@import 'layout/header';
-@import 'layout/footer';
+@import 'layout/header', 
+        'layout/footer';
 
 @import 'pages/home';

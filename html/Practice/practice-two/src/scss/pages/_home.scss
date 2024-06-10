@@ -17,6 +17,7 @@
     display: flex;
     align-items: center;
     background-position: right;
+
     &__content {
         margin-left: 150px;
         gap: 56px;
@@ -67,129 +68,132 @@
     align-items: center;
     justify-content: center;
     gap: 80px;
-}
 
-.top-items {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-content: center;
-    gap: 20px;
 
-    @include respond-to("large") {
+    &__top-items {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: center;
+        gap: 20px;
 
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
+        @include respond-to("huge") {
 
-.strength-point-img {
-    width: 100%;
-    height: auto;
-    max-width: 278px;
-}
+            grid-template-columns: repeat(2, 1fr);
+        }
 
-.bottom-items {
-    width: 100%;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-
-    @include respond-to("large") {
-        flex-direction: column;
-    }
-}
-
-.bottom-items .content {
-    display: flex;
-    align-items: center;
-    width: 50%;
-    border-radius: 16px;
-    padding: 20px 0;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    position: relative;
-
-    @include respond-to("colossal") {
-        width: 45%;
+        &__ {
+            .strength-point-img {
+                width: 100%;
+                height: auto;
+                max-width: 278px;
+            }
+        }
     }
 
-    @include respond-to("large") {
-        width: 82%;
-    }
-
-    @include respond-to("medium") {
+    &__bottom-items {
         width: 100%;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+
+        @include respond-to("large") {
+            flex-direction: column;
+        }
+
+        &__content {
+            display: flex;
+            align-items: center;
+            width: 50%;
+            border-radius: 16px;
+            padding: 20px 0;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            position: relative;
+
+            @include respond-to("colossal") {
+                width: 45%;
+            }
+
+            @include respond-to("large") {
+                width: 82%;
+            }
+
+            @include respond-to("medium") {
+                width: 100%;
+            }
+
+            &__content-text {
+                width: 55%;
+                margin-left: 16px;
+                position: relative;
+                z-index: 3;
+
+                @include respond-to("huge") {
+                    width: 100%;
+                }
+
+                .title {
+                    font-size: 2.75rem;
+                    line-height: 4.125rem;
+                    font-weight: 600;
+                    align-items: unset;
+                }
+
+                .adv {
+                    font-weight: 500;
+                    line-height: 1.6875rem;
+                    font-size: $normalSize;
+                }
+
+                .primary-btn {
+                    margin-top: 36px;
+                    width: 160px;
+                }
+            }
+
+            &__mouthwash-bottle-img {
+                position: absolute;
+                max-width: 250px;
+                z-index: 2;
+                right: 4%;
+            }
+
+            &__hightlight-img {
+                top: 0;
+                right: 4%;
+            }
+
+            &__bundle-img {
+                bottom: 0;
+                right: 4%;
+            }
+
+            &__hightlight-img,
+            &__bundle-img {
+                position: absolute;
+                max-width: 550px;
+            }
+        }
+
+        &__content:nth-child(1) {
+            background-image: url(../assets/img/background_mouthwash.svg);
+            color: #fff;
+
+            .primary-btn {
+                background-color: $green-secondary-color;
+
+                &:hover {
+                    background-color: $green-primary-color;
+                    color: #fff;
+                }
+            }
+        }
+
+        &__content:nth-child(2) {
+            background-image: url(../assets/img/background_bundle.svg);
+        }
     }
-}
-
-.bottom-items .content .title {
-    font-size: 2.75rem;
-    line-height: 4.125rem;
-    font-weight: 600;
-    align-items: unset;
-}
-
-.bottom-items .content:nth-child(1) {
-    background-image: url(../assets/img/background_mouthwash.svg);
-    color: #fff;
-}
-
-.bottom-items .content:nth-child(1) button {
-    background-color: $green-secondary-color;
-}
-
-.bottom-items .content:nth-child(1) button:hover {
-    background-color: $green-primary-color;
-    color: #fff;
-}
-
-.bottom-items .content:nth-child(2) {
-    background-image: url(../assets/img/background_bundle.svg);
-}
-
-.bottom-items .content-text {
-    width: 55%;
-    margin-left: 16px;
-    position: relative;
-    z-index: 3;
-
-    @include respond-to("huge") {
-        width: 100%;
-    }
-}
-
-.bottom-items .content-text .adv {
-    font-weight: 500;
-    line-height: 1.6875rem;
-    font-size: $normalSize;
-}
-
-.bottom-items .content button {
-    margin-top: 36px;
-    width: 160px;
-}
-
-.mouthwash-bottle {
-    position: absolute;
-    max-width: 250px;
-    z-index: 2;
-    right: 4%;
-}
-
-.hightlight,
-.bundle-image {
-    position: absolute;
-    max-width: 550px;
-}
-
-.hightlight {
-    top: 0;
-    right: 4%;
-}
-
-.bundle-image {
-    bottom: 0;
-    right: 4%;
 }
 
 /* section 3 - trending product */

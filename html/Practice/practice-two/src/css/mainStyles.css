@@ -2,7 +2,7 @@ html {
   box-sizing: border-box;
   font-size: 16px;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
   html {
     font-size: 18px;
   }
@@ -200,7 +200,7 @@ body {
   background-color: #fff;
   z-index: 99;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
   .main-header {
     padding: 12px 20px;
   }
@@ -234,7 +234,7 @@ body {
   font-size: 1rem;
   line-height: 1.5rem;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
   .main-header__nav-bar__tabs .tab__item {
     display: none;
   }
@@ -249,12 +249,12 @@ body {
 .main-header__nav-bar__tabs .tab__show-navigation {
   display: none;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
   .main-header__nav-bar__tabs .tab__show-navigation {
     display: flex;
   }
 }
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
   .main-header__nav-bar__user-icon-lists {
     display: none;
   }
@@ -283,7 +283,7 @@ body {
   display: flex;
   gap: 88px;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
   .other-informations {
     flex-direction: column-reverse;
   }
@@ -479,7 +479,7 @@ body {
   border-top: 1px solid #dcdfe4;
   padding: 20px 150px;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
   .supper-footer {
     padding: 20px;
   }
@@ -586,26 +586,23 @@ body {
   justify-content: center;
   gap: 80px;
 }
-
-.top-items {
+.strength-points__top-items {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
   gap: 20px;
 }
-@media (max-width: 990px) {
-  .top-items {
+@media (max-width: 1200px) {
+  .strength-points__top-items {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-.strength-point-img {
+.strength-points__top-items__ .strength-point-img {
   width: 100%;
   height: auto;
   max-width: 278px;
 }
-
-.bottom-items {
+.strength-points__bottom-items {
   width: 100%;
   display: flex;
   gap: 10px;
@@ -613,12 +610,11 @@ body {
   justify-content: center;
 }
 @media (max-width: 990px) {
-  .bottom-items {
+  .strength-points__bottom-items {
     flex-direction: column;
   }
 }
-
-.bottom-items .content {
+.strength-points__bottom-items__content {
   display: flex;
   align-items: center;
   width: 50%;
@@ -629,90 +625,77 @@ body {
   position: relative;
 }
 @media (min-width: 1400px) {
-  .bottom-items .content {
+  .strength-points__bottom-items__content {
     width: 45%;
   }
 }
 @media (max-width: 990px) {
-  .bottom-items .content {
+  .strength-points__bottom-items__content {
     width: 82%;
   }
 }
 @media (max-width: 768px) {
-  .bottom-items .content {
+  .strength-points__bottom-items__content {
     width: 100%;
   }
 }
-
-.bottom-items .content .title {
-  font-size: 2.75rem;
-  line-height: 4.125rem;
-  font-weight: 600;
-  align-items: unset;
-}
-
-.bottom-items .content:nth-child(1) {
-  background-image: url(../assets/img/background_mouthwash.svg);
-  color: #fff;
-}
-
-.bottom-items .content:nth-child(1) button {
-  background-color: #9acb6b;
-}
-
-.bottom-items .content:nth-child(1) button:hover {
-  background-color: #405741;
-  color: #fff;
-}
-
-.bottom-items .content:nth-child(2) {
-  background-image: url(../assets/img/background_bundle.svg);
-}
-
-.bottom-items .content-text {
+.strength-points__bottom-items__content__content-text {
   width: 55%;
   margin-left: 16px;
   position: relative;
   z-index: 3;
 }
-@media (max-width: 1400px) {
-  .bottom-items .content-text {
+@media (max-width: 1200px) {
+  .strength-points__bottom-items__content__content-text {
     width: 100%;
   }
 }
-
-.bottom-items .content-text .adv {
+.strength-points__bottom-items__content__content-text .title {
+  font-size: 2.75rem;
+  line-height: 4.125rem;
+  font-weight: 600;
+  align-items: unset;
+}
+.strength-points__bottom-items__content__content-text .adv {
   font-weight: 500;
   line-height: 1.6875rem;
   font-size: 1rem;
 }
-
-.bottom-items .content button {
+.strength-points__bottom-items__content__content-text .primary-btn {
   margin-top: 36px;
   width: 160px;
 }
-
-.mouthwash-bottle {
+.strength-points__bottom-items__content__mouthwash-bottle-img {
   position: absolute;
   max-width: 250px;
   z-index: 2;
   right: 4%;
 }
-
-.hightlight,
-.bundle-image {
-  position: absolute;
-  max-width: 550px;
-}
-
-.hightlight {
+.strength-points__bottom-items__content__hightlight-img {
   top: 0;
   right: 4%;
 }
-
-.bundle-image {
+.strength-points__bottom-items__content__bundle-img {
   bottom: 0;
   right: 4%;
+}
+.strength-points__bottom-items__content__hightlight-img, .strength-points__bottom-items__content__bundle-img {
+  position: absolute;
+  max-width: 550px;
+}
+.strength-points__bottom-items__content:nth-child(1) {
+  background-image: url(../assets/img/background_mouthwash.svg);
+  color: #fff;
+}
+.strength-points__bottom-items__content:nth-child(1) .primary-btn {
+  background-color: #9acb6b;
+}
+.strength-points__bottom-items__content:nth-child(1) .primary-btn:hover {
+  background-color: #405741;
+  color: #fff;
+}
+.strength-points__bottom-items__content:nth-child(2) {
+  background-image: url(../assets/img/background_bundle.svg);
 }
 
 /* section 3 - trending product */
@@ -741,7 +724,7 @@ body {
 .product-card {
   width: 25%;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
   .product-card {
     width: 50%;
   }
@@ -804,7 +787,7 @@ body {
   gap: 13.17px;
   margin-top: 53px;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
   .promotional-banner .content-text {
     margin-top: 0;
   }
@@ -865,7 +848,7 @@ body {
 .box-message {
   flex: 0 0 33%;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
   .box-message {
     flex: 0 0 50%;
   }
