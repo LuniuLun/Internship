@@ -491,6 +491,13 @@ body {
     padding: 20px;
   }
 }
+@media (max-width: 768px) {
+  .supper-footer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+}
 @media (max-width: 640px) {
   .supper-footer {
     flex-direction: column-reverse;
@@ -643,6 +650,11 @@ body {
     width: 82%;
   }
 }
+@media (max-width: 768px) {
+  .bottom-items .content {
+    width: 100%;
+  }
+}
 
 .bottom-items .content .title {
   font-size: 2.75rem;
@@ -746,6 +758,11 @@ body {
     width: 50%;
   }
 }
+@media (max-width: 768px) {
+  .product-card {
+    width: 100%;
+  }
+}
 
 /* section 4 - promotional-banner */
 .promotional-banner {
@@ -763,6 +780,14 @@ body {
     background-position: 20% 0;
   }
 }
+@media (max-width: 768px) {
+  .promotional-banner {
+    position: relative;
+    background-size: unset;
+    background-position: unset;
+    background-size: 206%;
+  }
+}
 
 .content-promotinal-banner {
   display: flex;
@@ -773,6 +798,16 @@ body {
   background-color: #e9f8ef;
   padding: 20px;
   border-radius: 0 24px 24px 0;
+}
+@media (max-width: 768px) {
+  .content-promotinal-banner {
+    position: absolute;
+    max-width: 100%;
+    bottom: -80%;
+    border-radius: unset;
+    text-align: center;
+    align-items: center;
+  }
 }
 
 .promotional-banner .content-text {
@@ -816,6 +851,12 @@ body {
   padding: 80px 20px;
   margin-top: 100px;
 }
+@media (max-width: 768px) {
+  .testimonials {
+    margin-top: 500px;
+    align-items: unset;
+  }
+}
 
 .slider {
   display: flex;
@@ -839,6 +880,12 @@ body {
 @media (max-width: 1250px) {
   .box-message {
     flex: 0 0 50%;
+  }
+}
+@media (max-width: 768px) {
+  .box-message {
+    flex: 0 0 100%;
+    height: unset;
   }
 }
 

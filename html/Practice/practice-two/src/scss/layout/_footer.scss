@@ -208,6 +208,12 @@
         padding: 20px;
     }
 
+    @include respond-to("medium") {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
     @include respond-to("small") {
         flex-direction: column-reverse;
         gap: 24px;

@@ -115,6 +115,10 @@
     @include respond-to("large") {
         width: 82%;
     }
+
+    @include respond-to("medium") {
+        width: 100%;
+    }
 }
 
 .bottom-items .content .title {
@@ -216,6 +220,10 @@
     @include respond-to("huge") {
         width: 50%;
     }
+
+    @include respond-to("medium") {
+        width: 100%;
+    }
 }
 
 /* section 4 - promotional-banner */
@@ -233,6 +241,13 @@
     @include respond-to("large") {
         background-position: 20% 0;
     }
+
+    @include respond-to("medium") {
+        position: relative;
+        background-size: unset;
+        background-position: unset;
+        background-size: 206%;
+    }
 }
 
 .content-promotinal-banner {
@@ -244,6 +259,15 @@
     background-color: $blue-background;
     padding: 20px;
     border-radius: 0 24px 24px 0;
+
+    @include respond-to("medium") {
+        position: absolute;
+        max-width: 100%;
+        bottom: -80%;
+        border-radius: unset;
+        text-align: center;
+        align-items: center;
+    }
 }
 
 .promotional-banner .content-text {
@@ -285,6 +309,11 @@
     gap: 80px;
     padding: 80px 20px;
     margin-top: 100px;
+
+    @include respond-to("medium") {
+        margin-top: 500px;
+        align-items: unset;
+    }
 }
 
 .slider {
@@ -308,5 +337,10 @@
 
     @include respond-to("huge") {
         flex: 0 0 50%;
+    }
+
+    @include respond-to("medium") {
+        flex: 0 0 100%;
+        height: unset;
     }
 }
