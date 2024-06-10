@@ -1,4 +1,5 @@
 @import 'utilities/variables';
+@import 'utilities/mixins';
 
 @import 'base/normalize';
 
@@ -6,8 +7,8 @@
 @import 'components/carousel';
 @import 'components/box-message';
 @import 'components/product-card';
+@import 'components/sub-heading';
 
-@import 'utilities/mixins';
 
 @import 'layout/header';
 @import 'layout/footer';

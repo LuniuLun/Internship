@@ -11,6 +11,10 @@ html {
   margin: 0;
 }
 
+p {
+  margin: 0;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -155,6 +159,26 @@ body {
 }
 .product-card .add-to-cart_icon {
   margin-right: 8px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+}
+.title .supper-title {
+  color: #091e42;
+  font-weight: 600;
+  font-size: 2.75rem;
+}
+.title .small-title {
+  font-weight: 400;
+  color: #172b4d;
+  line-height: 1.5rem;
+  font-size: 1rem;
+  text-align: center;
 }
 
 .main-header {

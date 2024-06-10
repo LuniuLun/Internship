@@ -63,6 +63,7 @@ body {
     .supper-title {
         color: var(--blue-content-1);
         font-weight: 600;
+        font-size: 2.75rem;
     }
     .small-title {
         font-weight: 400;
