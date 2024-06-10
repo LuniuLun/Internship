@@ -12,7 +12,6 @@
     width: 100%;
     min-height: 560px;
     background-image: url(../assets/img/background_image_hero_banner.svg);
-
     background-size: cover;
     display: flex;
     align-items: center;
@@ -25,7 +24,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    @include respond-to("large") {
+        margin-left: 20px;
+    }
 }
+
 .hero-banner .content-text {
     display: flex;
     flex-direction: column;
@@ -69,6 +73,11 @@
     grid-template-columns: repeat(4, 1fr);
     justify-content: center;
     gap: 20px;
+
+    @include respond-to("large") {
+
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .strength-point-img {
@@ -83,6 +92,10 @@
     gap: 10px;
     align-items: center;
     justify-content: center;
+
+    @include respond-to("large") {
+        flex-direction: column;
+    }
 }
 
 .bottom-items .content {
@@ -94,6 +107,14 @@
     background-repeat: no-repeat;
     overflow: hidden;
     position: relative;
+
+    @include respond-to("colossal") {
+        width: 45%;
+    }
+
+    @include respond-to("large") {
+        width: 82%;
+    }
 }
 
 .bottom-items .content .title {
@@ -126,6 +147,10 @@
     margin-left: 16px;
     position: relative;
     z-index: 3;
+
+    @include respond-to("huge") {
+        width: 100%;
+    }
 }
 
 .bottom-items .content-text .adv {
@@ -187,6 +212,10 @@
 
 .product-card {
     width: 25%;
+
+    @include respond-to("huge") {
+        width: 50%;
+    }
 }
 
 /* section 4 - promotional-banner */
@@ -200,6 +229,10 @@
     border-radius: 24px;
     justify-content: flex-end;
     padding: 0;
+
+    @include respond-to("large") {
+        background-position: 20% 0;
+    }
 }
 
 .content-promotinal-banner {
@@ -218,6 +251,10 @@
     flex-direction: column;
     gap: 13.17px;
     margin-top: 53px;
+
+    @include respond-to("huge") {
+        margin-top: 0;
+    }
 }
 
 .promotional-banner .content-text .title {
@@ -241,11 +278,12 @@
 .testimonials {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     max-width: 1440px;
     background-color: $blue-background;
     gap: 80px;
-    padding: 80px 150px;
+    padding: 80px 20px;
     margin-top: 100px;
 }
 
@@ -262,8 +300,13 @@
     flex-wrap: nowrap;
     justify-content: flex-start;
     padding: 20px 0;
+    overflow: hidden;
 }
 
 .box-message {
     flex: 0 0 33%;
+
+    @include respond-to("huge") {
+        flex: 0 0 50%;
+    }
 }

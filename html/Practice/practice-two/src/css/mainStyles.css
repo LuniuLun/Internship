@@ -539,6 +539,11 @@ body {
   flex-direction: column;
   width: 100%;
 }
+@media (max-width: 990px) {
+  .hero-banner .content {
+    margin-left: 20px;
+  }
+}
 
 .hero-banner .content-text {
   display: flex;
@@ -583,6 +588,11 @@ body {
   justify-content: center;
   gap: 20px;
 }
+@media (max-width: 990px) {
+  .top-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 .strength-point-img {
   width: 100%;
@@ -597,6 +607,11 @@ body {
   align-items: center;
   justify-content: center;
 }
+@media (max-width: 990px) {
+  .bottom-items {
+    flex-direction: column;
+  }
+}
 
 .bottom-items .content {
   display: flex;
@@ -607,6 +622,16 @@ body {
   background-repeat: no-repeat;
   overflow: hidden;
   position: relative;
+}
+@media (min-width: 1400px) {
+  .bottom-items .content {
+    width: 45%;
+  }
+}
+@media (max-width: 990px) {
+  .bottom-items .content {
+    width: 82%;
+  }
 }
 
 .bottom-items .content .title {
@@ -639,6 +664,11 @@ body {
   margin-left: 16px;
   position: relative;
   z-index: 3;
+}
+@media (max-width: 1250px) {
+  .bottom-items .content-text {
+    width: 100%;
+  }
 }
 
 .bottom-items .content-text .adv {
@@ -701,6 +731,11 @@ body {
 .product-card {
   width: 25%;
 }
+@media (max-width: 1250px) {
+  .product-card {
+    width: 50%;
+  }
+}
 
 /* section 4 - promotional-banner */
 .promotional-banner {
@@ -712,6 +747,11 @@ body {
   border-radius: 24px;
   justify-content: flex-end;
   padding: 0;
+}
+@media (max-width: 990px) {
+  .promotional-banner {
+    background-position: 20% 0;
+  }
 }
 
 .content-promotinal-banner {
@@ -730,6 +770,11 @@ body {
   flex-direction: column;
   gap: 13.17px;
   margin-top: 53px;
+}
+@media (max-width: 1250px) {
+  .promotional-banner .content-text {
+    margin-top: 0;
+  }
 }
 
 .promotional-banner .content-text .title {
@@ -753,11 +798,12 @@ body {
 .testimonials {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   max-width: 1440px;
   background-color: #e9f8ef;
   gap: 80px;
-  padding: 80px 150px;
+  padding: 80px 20px;
   margin-top: 100px;
 }
 
@@ -774,10 +820,16 @@ body {
   flex-wrap: nowrap;
   justify-content: flex-start;
   padding: 20px 0;
+  overflow: hidden;
 }
 
 .box-message {
   flex: 0 0 33%;
+}
+@media (max-width: 1250px) {
+  .box-message {
+    flex: 0 0 50%;
+  }
 }
 
 /*# sourceMappingURL=mainStyles.css.map */
