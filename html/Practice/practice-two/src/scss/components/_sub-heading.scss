@@ -1,21 +1,21 @@
-.title {
+.sub-heading {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    text-align: center;
     gap: 4px;
 
-    .supper-title {
+    &__supper-title {
         color: $blue-content-1;
         font-weight: 600;
         font-size: 2.75rem;
     }
 
-    .small-title {
+    &__small-title {
         font-weight: 400;
         color: $blue-content-2;
         line-height: 1.5rem;
         font-size: $normalSize;
-        text-align: center;
     }
 }

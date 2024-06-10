@@ -12,49 +12,50 @@
     width: 100%;
     min-height: 560px;
     background-image: url(../assets/img/background_image_hero_banner.svg);
+    background-repeat: no-repeat;
     background-size: cover;
     display: flex;
     align-items: center;
     background-position: right;
-}
+    &__content {
+        margin-left: 150px;
+        gap: 56px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
 
-.hero-banner .content {
-    margin-left: 150px;
-    gap: 56px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+        @include respond-to("large") {
+            margin-left: 20px;
+        }
 
-    @include respond-to("large") {
-        margin-left: 20px;
+        &__content-text {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            &__heading {
+                font-size: 2.75rem;
+                line-height: 4.125rem;
+                font-weight: 600;
+                color: $black-primary-content;
+            }
+
+            &_adv {
+                font-size: 1.25rem;
+                font-weight: 400;
+                color: $grey-content-1;
+            }
+        }
+
+        &__show-now-btn {
+            width: 220px;
+
+            img {
+                margin-left: 12px;
+
+            }
+        }
     }
-}
-
-.hero-banner .content-text {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.content-text .main-title {
-    font-size: 2.75rem;
-    line-height: 4.125rem;
-    font-weight: 600;
-    color: $black-primary-content;
-}
-
-.content-text .main-adv {
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: $grey-content-1;
-}
-
-.content .show-now_btn {
-    width: 220px;
-}
-
-.content .show-now_btn img {
-    margin-left: 12px;
 }
 
 /* section 2 - strength-points */
