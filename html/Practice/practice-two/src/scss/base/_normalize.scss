@@ -1,6 +1,12 @@
 html {
     box-sizing: border-box;
     font-size: 16px;
+    @include respond-to("huge") {
+        font-size: 18px;
+    }
+    @include respond-to("medium") {
+        font-size: 20px;
+    }
 }
 *,
 *:before,

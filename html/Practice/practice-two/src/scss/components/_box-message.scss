@@ -11,7 +11,7 @@
     .message {
         line-height: 1.5rem;
         font-weight: 400;
-        font-size: 1rem;
+        font-size: $normalSize;
         color: $black-primary-content;
     }
 
@@ -34,7 +34,7 @@
 
     .detail-infomation-text .fullname {
         font-weight: 500;
-        font-size: 1rem;
+        font-size: $normalSize;
         line-height: 1.5rem;
     }
 
