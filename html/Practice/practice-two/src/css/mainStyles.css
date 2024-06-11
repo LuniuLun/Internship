@@ -755,8 +755,7 @@ body {
     background-size: 206%;
   }
 }
-
-.content-promotinal-banner {
+.promotional-banner__content {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -767,7 +766,7 @@ body {
   border-radius: 0 24px 24px 0;
 }
 @media (max-width: 768px) {
-  .content-promotinal-banner {
+  .promotional-banner__content {
     position: absolute;
     max-width: 100%;
     bottom: -80%;
@@ -776,33 +775,29 @@ body {
     align-items: center;
   }
 }
-
-.promotional-banner .content-text {
+.promotional-banner__content__content-text {
   display: flex;
   flex-direction: column;
   gap: 13.17px;
   margin-top: 53px;
 }
 @media (max-width: 1200px) {
-  .promotional-banner .content-text {
+  .promotional-banner__content__content-text {
     margin-top: 0;
   }
 }
-
-.promotional-banner .content-text .title {
+.promotional-banner__content__content-text__title {
   font-weight: 700;
   font-size: 2.25rem;
   line-height: 3.375rem;
 }
-
-.promotional-banner .content-text .description {
+.promotional-banner__content__content-text__description {
   color: #000;
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.6875rem;
 }
-
-.promotional-banner .shop-now_btn {
+.promotional-banner__content__shop-now-btn {
   width: 180px;
 }
 

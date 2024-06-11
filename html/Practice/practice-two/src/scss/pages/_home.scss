@@ -252,54 +252,54 @@
         background-position: unset;
         background-size: 206%;
     }
-}
 
-.content-promotinal-banner {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 32.92px;
-    max-width: 52%;
-    background-color: $blue-background;
-    padding: 20px;
-    border-radius: 0 24px 24px 0;
+    &__content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 32.92px;
+        max-width: 52%;
+        background-color: $blue-background;
+        padding: 20px;
+        border-radius: 0 24px 24px 0;
 
-    @include respond-to("medium") {
-        position: absolute;
-        max-width: 100%;
-        bottom: -80%;
-        border-radius: unset;
-        text-align: center;
-        align-items: center;
+        @include respond-to("medium") {
+            position: absolute;
+            max-width: 100%;
+            bottom: -80%;
+            border-radius: unset;
+            text-align: center;
+            align-items: center;
+        }
+
+        &__content-text {
+            display: flex;
+            flex-direction: column;
+            gap: 13.17px;
+            margin-top: 53px;
+
+            @include respond-to("huge") {
+                margin-top: 0;
+            }
+
+            &__title {
+                font-weight: 700;
+                font-size: 2.25rem;
+                line-height: 3.375rem;
+            }
+
+            &__description {
+                color: #000;
+                font-weight: 400;
+                font-size: 1.125rem;
+                line-height: 1.6875rem;
+            }
+        }
+
+        &__shop-now-btn {
+            width: 180px;
+        }
     }
-}
-
-.promotional-banner .content-text {
-    display: flex;
-    flex-direction: column;
-    gap: 13.17px;
-    margin-top: 53px;
-
-    @include respond-to("huge") {
-        margin-top: 0;
-    }
-}
-
-.promotional-banner .content-text .title {
-    font-weight: 700;
-    font-size: 2.25rem;
-    line-height: 3.375rem;
-}
-
-.promotional-banner .content-text .description {
-    color: #000;
-    font-weight: 400;
-    font-size: 1.125rem;
-    line-height: 1.6875rem;
-}
-
-.promotional-banner .shop-now_btn {
-    width: 180px;
 }
 
 /* section 5 - testimonials */
