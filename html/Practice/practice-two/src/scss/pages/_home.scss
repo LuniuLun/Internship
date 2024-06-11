@@ -1,12 +1,12 @@
 /* body */
 .body {
-    @include flex-center(column);
+    @include flex-layout(column);
     padding: 0;
 }
 
 /* section 1 - hero-banner*/
 .hero-banner {
-    @include flex-center();
+    @include flex-layout();
     margin-top: 85px;
     width: 100%;
     min-height: 560px;
@@ -59,7 +59,7 @@
 /* section 2 - strength-points */
 .strength-points {
     margin: 50px 0;
-    @include flex-center(column);
+    @include flex-layout(column);
     gap: 80px;
 
     &__top-items {
@@ -82,7 +82,7 @@
 
     &__bottom-items {
         width: 100%;
-        @include flex-center;
+        @include flex-layout;
         gap: 10px;
 
         @include respond-to("large") {
@@ -186,14 +186,14 @@
 
 /* section 3 - trending product */
 .trending-products {
-    @include flex-center(column);
+    @include flex-layout(column);
     margin: 100px 0 50px;
 
     &__display-list-products {
         width: 100%;
         gap: 4px;
         margin: 60px 0;
-        @include flex-center;
+        @include flex-layout;
 
         &__list-products {
             display: flex;
@@ -288,7 +288,7 @@
 
 /* section 5 - testimonials */
 .testimonials {
-    @include flex-center(column, space-between);
+    @include flex-layout(column, space-between);
     max-width: 1440px;
     width: 100%;
     background-color: $blue-background;

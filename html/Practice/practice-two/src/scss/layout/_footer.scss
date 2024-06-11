@@ -116,7 +116,7 @@
 
             &__quick-link-lists-wrapper {
                 flex: 1;
-                @include flex-center(column);
+                @include flex-layout(column);
                 gap: 24px;
 
                 @include respond-to("medium") {
@@ -125,7 +125,7 @@
                 }
 
                 .quick-link-lists {
-                    @include flex-center(column);
+                    @include flex-layout(column);
                     gap: 8px;
                     list-style: none;
                     padding-left: 0;
@@ -155,7 +155,7 @@
                     margin-top: 20px;
 
                     @include respond-to("small") {
-                        @include flex-center(column);
+                        @include flex-layout(column);
                         gap: 20px;
                     }
                 }
@@ -195,7 +195,7 @@
     }
 
     &__supper-footer {
-        @include flex-center(row, space-between);
+        @include flex-layout(row, space-between);
         border-top: 1px solid $grey-border;
         padding: 20px 150px;
 

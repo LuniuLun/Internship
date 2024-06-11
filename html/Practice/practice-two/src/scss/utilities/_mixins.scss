@@ -25,7 +25,7 @@ $breakpoints: (
     }
 }
 
-@mixin flex-center($direction: row, $justify: center, $align: center) {
+@mixin flex-layout($direction: row, $justify: center, $align: center) {
     display: flex;
     align-items: $align;
     justify-content: $justify;

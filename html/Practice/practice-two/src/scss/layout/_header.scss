@@ -16,7 +16,7 @@
     }
 
     &__nav-bar {
-        @include flex-center();
+        @include flex-layout();
 
         &__tabs {
             display: flex;

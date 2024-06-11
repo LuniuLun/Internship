@@ -1,9 +1,7 @@
 .sp-btn {
+    @include flex-layout;
     padding: 10px 16px;
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: 0;
     cursor: pointer;
     font-weight: 600;

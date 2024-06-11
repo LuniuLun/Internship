@@ -34,11 +34,11 @@ body {
 }
 
 .sp-btn, .secondary-btn, .primary-btn {
-  padding: 10px 16px;
-  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px 16px;
+  border-radius: 8px;
   border: 0;
   cursor: pointer;
   font-weight: 600;
@@ -62,9 +62,9 @@ body {
 
 .carousel {
   display: flex;
-  gap: 8px;
   align-items: center;
   justify-content: center;
+  gap: 8px;
 }
 .carousel__line {
   width: 40px;
@@ -80,8 +80,9 @@ body {
 
 .box-message {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
+  flex-direction: column;
   background-color: #fff;
   padding: 24px;
   border-radius: 8px;
@@ -96,12 +97,14 @@ body {
   color: #121216;
 }
 .box-message__user {
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
 .box-message__user__detail-information {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 19px;
 }
 .box-message__user__detail-information__text {
@@ -123,9 +126,9 @@ body {
 
 .product-card {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
   border: 1px solid #dcdfe4;
   border-radius: 16px;
   min-height: 424px;

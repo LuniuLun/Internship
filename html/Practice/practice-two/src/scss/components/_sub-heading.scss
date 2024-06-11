@@ -1,8 +1,5 @@
 .sub-heading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    @include flex-layout(column);
     text-align: center;
     gap: 4px;
 

@@ -1,8 +1,5 @@
 .product-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flex-layout(column);
     border: 1px solid $grey-border;
     border-radius: 16px;
     min-height: 424px;

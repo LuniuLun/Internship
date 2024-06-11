@@ -1,7 +1,5 @@
 .box-message {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    @include flex-layout(column, space-between);
     background-color: #fff;
     padding: 24px;
     border-radius: 8px;
@@ -17,12 +15,12 @@
     }
 
     &__user {
+        width: 100%;
         display: flex;
         justify-content: space-between;
 
         &__detail-information {
-            display: flex;
-            align-items: center;
+            @include flex-layout;
             gap: 19px;
 
             &__text {

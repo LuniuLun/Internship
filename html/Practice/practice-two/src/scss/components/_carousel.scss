@@ -1,8 +1,6 @@
 .carousel {
-    display: flex;
+    @include flex-layout;
     gap: 8px;
-    align-items: center;
-    justify-content: center;
 
     &__line {
         width: 40px;
