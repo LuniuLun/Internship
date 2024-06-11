@@ -19,7 +19,7 @@
         <!-- Instructs search engine robots to index the content of the webpage but not to follow the links on this page -->
         <meta name="robots" content="index, nofollow" />
         <!-- Automatically reload the webpage after 1 day -->
-        <meta http-equiv="refresh" content="86400" />
+        <meta http-equiv="refresh" content="360" />
         <!-- Define content language as English -->
         <meta http-equiv="Content-Language" content="en" />
         <link
@@ -40,8 +40,11 @@
     </head>
     <body>
         <header class="main-header container-fluid">
-            <a href="/" class="main-header__logo">
-                <img src="./assets/logo/logo.svg" alt="logo of Eco-Dental shop" class="logo-dental"
+            <a href="/" class="main-header__link-home-page">
+                <img
+                    src="./assets/logo/logo.svg"
+                    alt="logo of Eco-Dental shop"
+                    class="main-header__link-home-page__logo"
             /></a>
             <nav class="main-header__nav-bar">
                 <div class="main-header__nav-bar__tabs">
@@ -351,15 +354,19 @@
             </section>
         </div>
         <footer class="main-footer container-fluid">
-            <article class="other-informations container">
-                <div class="detail-eco-informations">
-                    <img src="./assets/logo/logo.svg" alt="eco-dental logo" />
-                    <p>
+            <article class="main-footer__other-informations container">
+                <div class="main-footer__other-informations__detail">
+                    <img
+                        class="main-footer__other-informations__detail__logo"
+                        src="./assets/logo/logo.svg"
+                        alt="eco-dental logo"
+                    />
+                    <p class="main-footer__other-informations__adv">
                         Eco Dental is your go-to destination for premium natural oral care products. We are dedicated to
                         providing you with a holistic approach to dental hygiene, harnessing the power of nature to
                         promote a healthy smile.
                     </p>
-                    <ul class="social-network-lists">
+                    <ul class="main-footer__other-informations__detail__social-network-lists">
                         <li class="facebook-network"><a href="#"></a></li>
                         <li class="linkin-network"><a href="#"></a></li>
                         <li class="instagram-network"><a href="#"></a></li>
@@ -367,8 +374,8 @@
                         <li class="yotube-network"><a href="#"></a></li>
                     </ul>
                 </div>
-                <div class="contact-wrapper">
-                    <div class="quick-link-lists-wrapper">
+                <div class="main-footer__other-informations__contact">
+                    <div class="main-footer__other-informations__contact__quick-link-lists-wrapper">
                         <span class="headline">Quick Links</span>
                         <ul class="quick-link-lists">
                             <li class="quick-link">
@@ -382,7 +389,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="subscribe">
+                    <div class="main-footer__other-informations__contact__subscribe">
                         <span class="headline">Receive offers & discounts via e-mail</span>
                         <div class="wrapper-sub">
                             <div class="wrapper-input-sub">
@@ -394,12 +401,12 @@
                     </div>
                 </div>
             </article>
-            <article class="supper-footer">
-                <p class="left-text">© 2024, Eco Dental - All rights reserved.</p>
-                <div class="right-text">
-                    <a href="#">Terms & Conditions</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Refund Policy</a>
+            <article class="main-footer__supper-footer">
+                <p class="main-footer__supper-footer__left-text">© 2024, Eco Dental - All rights reserved.</p>
+                <div class="main-footer__supper-footer__right-text">
+                    <a class="main-footer__supper-footer__right-text__policy" href="#">Terms & Conditions</a>
+                    <a class="main-footer__supper-footer__right-text__policy" href="#">Privacy Policy</a>
+                    <a class="main-footer__supper-footer__right-text__policy" href="#">Refund Policy</a>
                 </div>
             </article>
         </footer>
