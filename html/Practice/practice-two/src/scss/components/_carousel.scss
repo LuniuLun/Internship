@@ -3,17 +3,17 @@
     gap: 8px;
     align-items: center;
     justify-content: center;
-}
 
-.carousel-line {
-    width: 40px;
-    height: 8px;
-    border-radius: 8px;
-    opacity: 0.2;
-    background-color: #000;
-}
+    &__line {
+        width: 40px;
+        height: 8px;
+        border-radius: 8px;
+        opacity: 0.2;
+        background-color: #000;
+    }
 
-.carousel-active {
-    opacity: 1;
-    background-color: $green-primary-color;
+    &__line--active {
+        opacity: 1;
+        background-color: $green-primary-color;
+    }
 }

@@ -8,40 +8,41 @@
     box-shadow: 0px 3px 5px 0px rgba(9, 30, 66, 0.2);
     height: 250px;
     max-width: 375px;
-    .message {
+
+    &__message {
         line-height: 1.5rem;
         font-weight: 400;
         font-size: $normalSize;
         color: $black-primary-content;
     }
 
-    .user {
+    &__user {
         display: flex;
         justify-content: space-between;
-    }
 
-    .detail-information-user {
-        display: flex;
-        align-items: center;
-        gap: 19px;
-    }
+        &__detail-information {
+            display: flex;
+            align-items: center;
+            gap: 19px;
 
-    .detail-infomation-text {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    }
+            &__text {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
 
-    .detail-infomation-text .fullname {
-        font-weight: 500;
-        font-size: $normalSize;
-        line-height: 1.5rem;
-    }
+                .fullname {
+                    font-weight: 500;
+                    font-size: $normalSize;
+                    line-height: 1.5rem;
+                }
 
-    .detail-infomation-text .role {
-        color: $grey-content-3;
-        font-weight: 400;
-        font-size: 0.875rem;
-        line-height: 1.3125rem;
+                .role {
+                    color: $grey-content-3;
+                    font-weight: 400;
+                    font-size: 0.875rem;
+                    line-height: 1.3125rem;
+                }
+            }
+        }
     }
 }

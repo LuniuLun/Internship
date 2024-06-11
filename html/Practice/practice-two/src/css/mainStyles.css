@@ -66,16 +66,14 @@ body {
   align-items: center;
   justify-content: center;
 }
-
-.carousel-line {
+.carousel__line {
   width: 40px;
   height: 8px;
   border-radius: 8px;
   opacity: 0.2;
   background-color: #000;
 }
-
-.carousel-active {
+.carousel__line--active {
   opacity: 1;
   background-color: #405741;
 }
@@ -91,32 +89,32 @@ body {
   height: 250px;
   max-width: 375px;
 }
-.box-message .message {
+.box-message__message {
   line-height: 1.5rem;
   font-weight: 400;
   font-size: 1rem;
   color: #121216;
 }
-.box-message .user {
+.box-message__user {
   display: flex;
   justify-content: space-between;
 }
-.box-message .detail-information-user {
+.box-message__user__detail-information {
   display: flex;
   align-items: center;
   gap: 19px;
 }
-.box-message .detail-infomation-text {
+.box-message__user__detail-information__text {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.box-message .detail-infomation-text .fullname {
+.box-message__user__detail-information__text .fullname {
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.5rem;
 }
-.box-message .detail-infomation-text .role {
+.box-message__user__detail-information__text .role {
   color: #a8a9b2;
   font-weight: 400;
   font-size: 0.875rem;
@@ -531,7 +529,7 @@ body {
 
 /* section 1 - hero-banner*/
 .hero-banner {
-  margin-top: 90px;
+  margin-top: 85px;
   width: 100%;
   min-height: 560px;
   background-image: url(../assets/img/background_image_hero_banner.svg);
@@ -596,7 +594,7 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-.strength-points__top-items__ .strength-point-img {
+.strength-points__top-items__strength-point-img {
   width: 100%;
   height: auto;
   max-width: 278px;
@@ -808,6 +806,7 @@ body {
   align-items: center;
   flex-direction: column;
   max-width: 1440px;
+  width: 100%;
   background-color: #e9f8ef;
   gap: 80px;
   padding: 80px 20px;
@@ -819,14 +818,12 @@ body {
     align-items: unset;
   }
 }
-
-.slider {
+.testimonials__slider {
   display: flex;
   flex-direction: column;
   gap: 60px;
 }
-
-.slider .content-slider {
+.testimonials__slider__content {
   width: 100%;
   display: flex;
   gap: 16px;
@@ -835,17 +832,16 @@ body {
   padding: 20px 0;
   overflow: hidden;
 }
-
-.box-message {
+.testimonials__slider__content .box-message {
   flex: 0 0 33%;
 }
 @media (max-width: 1200px) {
-  .box-message {
+  .testimonials__slider__content .box-message {
     flex: 0 0 50%;
   }
 }
 @media (max-width: 768px) {
-  .box-message {
+  .testimonials__slider__content .box-message {
     flex: 0 0 100%;
     height: unset;
   }

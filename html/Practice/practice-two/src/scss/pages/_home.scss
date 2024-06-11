@@ -8,7 +8,7 @@
 
 /* section 1 - hero-banner*/
 .hero-banner {
-    margin-top: 90px;
+    margin-top: 85px;
     width: 100%;
     min-height: 560px;
     background-image: url(../assets/img/background_image_hero_banner.svg);
@@ -80,12 +80,10 @@
             grid-template-columns: repeat(2, 1fr);
         }
 
-        &__ {
-            .strength-point-img {
-                width: 100%;
-                height: auto;
-                max-width: 278px;
-            }
+        &__strength-point-img {
+            width: 100%;
+            height: auto;
+            max-width: 278px;
         }
     }
 
@@ -309,6 +307,7 @@
     align-items: center;
     flex-direction: column;
     max-width: 1440px;
+    width: 100%;
     background-color: $blue-background;
     gap: 80px;
     padding: 80px 20px;
@@ -318,33 +317,33 @@
         margin-top: 500px;
         align-items: unset;
     }
-}
 
-.slider {
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-}
+    &__slider {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
 
-.slider .content-slider {
-    width: 100%;
-    display: flex;
-    gap: 16px;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    padding: 20px 0;
-    overflow: hidden;
-}
+        &__content {
+            width: 100%;
+            display: flex;
+            gap: 16px;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            padding: 20px 0;
+            overflow: hidden;
 
-.box-message {
-    flex: 0 0 33%;
+            .box-message {
+                flex: 0 0 33%;
 
-    @include respond-to("huge") {
-        flex: 0 0 50%;
-    }
+                @include respond-to("huge") {
+                    flex: 0 0 50%;
+                }
 
-    @include respond-to("medium") {
-        flex: 0 0 100%;
-        height: unset;
+                @include respond-to("medium") {
+                    flex: 0 0 100%;
+                    height: unset;
+                }
+            }
+        }
     }
 }
