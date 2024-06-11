@@ -371,6 +371,8 @@ body {
 .main-footer__other-informations__contact__quick-link-lists-wrapper {
   flex: 1;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: 24px;
 }
@@ -381,6 +383,8 @@ body {
 }
 .main-footer__other-informations__contact__quick-link-lists-wrapper .quick-link-lists {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: 8px;
   list-style: none;
@@ -409,8 +413,9 @@ body {
 @media (max-width: 640px) {
   .main-footer__other-informations__contact__subscribe .wrapper-sub {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
     gap: 20px;
   }
 }
@@ -496,20 +501,22 @@ body {
 .body {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   padding: 0;
 }
 
 /* section 1 - hero-banner*/
 .hero-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 85px;
   width: 100%;
   min-height: 560px;
   background-image: url(../assets/img/background_image_hero_banner.svg);
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  align-items: center;
   background-position: right;
 }
 .hero-banner__content {
@@ -551,9 +558,9 @@ body {
 .strength-points {
   margin: 50px 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   gap: 80px;
 }
 .strength-points__top-items {
@@ -575,9 +582,9 @@ body {
 .strength-points__bottom-items {
   width: 100%;
   display: flex;
-  gap: 10px;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 }
 @media (max-width: 990px) {
   .strength-points__bottom-items {
@@ -681,6 +688,7 @@ body {
   gap: 4px;
   margin: 60px 0;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 .trending-products__display-list-products__list-products {
@@ -775,8 +783,8 @@ body {
 /* section 5 - testimonials */
 .testimonials {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
   flex-direction: column;
   max-width: 1440px;
   width: 100%;

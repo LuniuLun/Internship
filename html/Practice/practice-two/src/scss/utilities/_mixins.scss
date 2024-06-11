@@ -24,3 +24,13 @@ $breakpoints: (
         @error 'No value found for `#{$breakpoint}`. '+'Please make sure it is defined in `$breakpoints` map.';
     }
 }
+
+@mixin flex-center($direction: row, $justify: center, $align: center) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+
+    @if $direction !=row {
+        flex-direction: $direction;
+    }
+}

@@ -9,16 +9,14 @@
 
     @include respond-to('huge') {
         padding: 12px 20px;
-        
+
         .user-icon-lists {
             display: none;
         }
     }
 
     &__nav-bar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flex-center();
 
         &__tabs {
             display: flex;
