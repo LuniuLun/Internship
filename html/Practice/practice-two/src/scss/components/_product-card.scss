@@ -8,47 +8,49 @@
     min-height: 424px;
     padding: 16px;
     gap: 16px;
-    
-    .product-img {
+
+    &__product-img {
         max-width: 246.75px;
-        max-height: 220px;
         height: auto;
     }
 
-    .description {
+    &__description {
         line-height: 1.3125rem;
         font-size: 0.875rem;
         font-weight: 500;
         color: $black-primary-content;
     }
 
-    .price {
+    &__price {
         display: flex;
         width: 100%;
         align-items: center;
+
+        &__discount-price {
+            font-weight: 600;
+            line-height: 1.875rem;
+            color: #000;
+            font-size: 1.25rem;
+        }
+
+        &__main-price {
+            margin-left: 8px;
+            color: $grey-content-2;
+            line-height: 1.5rem;
+            font-size: $normalSize;
+        }
     }
 
-    .discount-price {
-        font-weight: 600;
-        line-height: 1.875rem;
-        color: #000;
-        font-size: 1.25rem;
-    }
 
-    .main-price {
-        margin-left: 8px;
-        color: $grey-content-2;
-        line-height: 1.5rem;
-        font-size: $normalSize;
-    }
 
-    .add-to-cart_btn {
+    &__add-to-cart-btn {
         display: flex;
         width: 100%;
         margin-top: 8px;
+
+        &__icon {
+            margin-right: 8px;
+        }
     }
 
-    .add-to-cart_icon {
-        margin-right: 8px;
-    }
 }

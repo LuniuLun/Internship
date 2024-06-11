@@ -60,7 +60,6 @@
 }
 
 /* section 2 - strength-points */
-
 .strength-points {
     margin: 50px 0;
     display: flex;
@@ -203,36 +202,36 @@
     justify-content: center;
     flex-direction: column;
     margin: 100px 0 50px;
-}
 
-.display-list-products {
-    width: 100%;
-    gap: 4px;
-    margin: 60px 0;
-    display: flex;
-    justify-content: center;
-}
-
-.list-products {
-    display: flex;
-    gap: 20px;
-    overflow: hidden;
-}
-
-.product-card {
-    width: 25%;
-
-    @include respond-to("huge") {
-        width: 50%;
-    }
-
-    @include respond-to("medium") {
+    &__display-list-products {
         width: 100%;
+        gap: 4px;
+        margin: 60px 0;
+        display: flex;
+        justify-content: center;
+
+
+        &__list-products {
+            display: flex;
+            gap: 20px;
+            overflow: hidden;
+
+            .product-card {
+                width: 25%;
+
+                @include respond-to("huge") {
+                    width: 50%;
+                }
+
+                @include respond-to("medium") {
+                    width: 100%;
+                }
+            }
+        }
     }
 }
 
 /* section 4 - promotional-banner */
-
 .promotional-banner {
     background-image: url(../assets/img/background_promotioanal_banner.svg);
     background-size: cover;
