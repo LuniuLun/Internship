@@ -1,3 +1,34 @@
+.strength-points__bottom-items__content__content-text .title, .hero-banner__content__content-text__heading, .sub-heading__supper-title {
+  font-size: 2.75rem;
+  line-height: 4.125rem;
+  font-weight: 600;
+  color: #091e42;
+}
+
+.main-header__nav-bar__tabs .tab__item, .main-header__nav-bar__tabs .home-link, .sub-heading__small-title, .box-message__user__detail-information__text .fullname {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+}
+
+.main-footer__other-informations__detail__adv, .product-card__price__main-price, .box-message__message {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+}
+
+.product-card__description {
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+  font-weight: 500;
+}
+
+.main-footer__supper-footer__left-text, .main-footer__supper-footer__right-text__policy, .box-message__user__detail-information__text .role {
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+  font-weight: 400;
+}
+
 html {
   box-sizing: border-box;
   font-size: 16px;
@@ -91,9 +122,6 @@ body {
   max-width: 375px;
 }
 .box-message__message {
-  line-height: 1.5rem;
-  font-weight: 400;
-  font-size: 1rem;
   color: #121216;
 }
 .box-message__user {
@@ -113,15 +141,10 @@ body {
   gap: 4px;
 }
 .box-message__user__detail-information__text .fullname {
-  font-weight: 500;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  color: #121216;
 }
 .box-message__user__detail-information__text .role {
   color: #a8a9b2;
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 1.3125rem;
 }
 
 .product-card {
@@ -140,9 +163,6 @@ body {
   height: auto;
 }
 .product-card__description {
-  line-height: 1.3125rem;
-  font-size: 0.875rem;
-  font-weight: 500;
   color: #121216;
 }
 .product-card__price {
@@ -159,8 +179,6 @@ body {
 .product-card__price__main-price {
   margin-left: 8px;
   color: #8590a2;
-  line-height: 1.5rem;
-  font-size: 1rem;
 }
 .product-card__add-to-cart-btn {
   display: flex;
@@ -179,16 +197,8 @@ body {
   text-align: center;
   gap: 4px;
 }
-.sub-heading__supper-title {
-  color: #091e42;
-  font-weight: 600;
-  font-size: 2.75rem;
-}
 .sub-heading__small-title {
-  font-weight: 400;
   color: #172b4d;
-  line-height: 1.5rem;
-  font-size: 1rem;
 }
 
 .main-header {
@@ -223,16 +233,10 @@ body {
   text-decoration: none;
   display: flex;
   align-items: center;
-  font-weight: 500;
-  font-size: 1rem;
-  line-height: 1.5rem;
 }
 .main-header__nav-bar__tabs .tab__item {
   opacity: 0.72;
-  font-weight: 500;
   color: #494961;
-  font-size: 1rem;
-  line-height: 1.5rem;
 }
 @media (max-width: 1200px) {
   .main-header__nav-bar__tabs .tab__item {
@@ -311,10 +315,8 @@ body {
   max-width: 227px;
 }
 .main-footer__other-informations__detail__adv {
-  line-height: 1.5rem;
-  font-size: 1rem;
-  font-weight: 400;
   height: 118px;
+  color: #091e42;
 }
 @media (max-width: 640px) {
   .main-footer__other-informations__detail__adv {
@@ -368,14 +370,13 @@ body {
 .main-footer__other-informations__contact__quick-link-lists-wrapper .headline, .main-footer__other-informations__contact__subscribe .headline {
   font-weight: 600;
   line-height: 1.6875rem;
+  font-size: 1.125rem;
   color: #091e42;
   white-space: nowrap;
 }
 .main-footer__other-informations__contact__quick-link-lists-wrapper {
   flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
   gap: 24px;
 }
@@ -385,10 +386,6 @@ body {
   }
 }
 .main-footer__other-informations__contact__quick-link-lists-wrapper .quick-link-lists {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   gap: 8px;
   list-style: none;
   padding-left: 0;
@@ -480,9 +477,6 @@ body {
 }
 .main-footer__supper-footer__left-text, .main-footer__supper-footer__right-text__policy {
   color: #091e42;
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 1.3125rem;
   opacity: 0.7;
   white-space: nowrap;
 }
@@ -540,9 +534,6 @@ body {
   gap: 8px;
 }
 .hero-banner__content__content-text__heading {
-  font-size: 2.75rem;
-  line-height: 4.125rem;
-  font-weight: 600;
   color: #121216;
 }
 .hero-banner__content__content-text_adv {
@@ -629,12 +620,6 @@ body {
   .strength-points__bottom-items__content__content-text {
     width: 100%;
   }
-}
-.strength-points__bottom-items__content__content-text .title {
-  font-size: 2.75rem;
-  line-height: 4.125rem;
-  font-weight: 600;
-  align-items: unset;
 }
 .strength-points__bottom-items__content__content-text .adv {
   font-weight: 500;
@@ -772,6 +757,7 @@ body {
   font-weight: 700;
   font-size: 2.25rem;
   line-height: 3.375rem;
+  color: #000;
 }
 .promotional-banner__content__content-text__description {
   color: #000;

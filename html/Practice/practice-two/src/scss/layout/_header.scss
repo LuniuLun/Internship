@@ -16,7 +16,7 @@
     }
 
     &__nav-bar {
-        @include flex-layout();
+        @include flex-layout;
 
         &__tabs {
             display: flex;
@@ -28,17 +28,13 @@
                 text-decoration: none;
                 display: flex;
                 align-items: center;
-                font-weight: 500;
-                font-size: $normalSize;
-                line-height: 1.5rem;
+                @extend %normal-text;
             }
 
             .tab__item {
                 opacity: 0.72;
-                font-weight: 500;
                 color: $grey-content-1;
-                font-size: $normalSize;
-                line-height: 1.5rem;
+                @extend %normal-text;
 
                 @include respond-to('huge') {
                     display: none;

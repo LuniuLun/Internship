@@ -8,9 +8,7 @@
     max-width: 375px;
 
     &__message {
-        line-height: 1.5rem;
-        font-weight: 400;
-        font-size: $normalSize;
+        @extend %blur-normal-text;
         color: $black-primary-content;
     }
 
@@ -29,16 +27,13 @@
                 gap: 4px;
 
                 .fullname {
-                    font-weight: 500;
-                    font-size: $normalSize;
-                    line-height: 1.5rem;
+                    color: $black-primary-content;
+                    @extend %normal-text;
                 }
 
                 .role {
                     color: $grey-content-3;
-                    font-weight: 400;
-                    font-size: 0.875rem;
-                    line-height: 1.3125rem;
+                    @extend %blur-small-text;
                 }
             }
         }

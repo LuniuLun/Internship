@@ -4,15 +4,11 @@
     gap: 4px;
 
     &__supper-title {
-        color: $blue-content-1;
-        font-weight: 600;
-        font-size: 2.75rem;
+        @extend %big-heading;
     }
 
     &__small-title {
-        font-weight: 400;
         color: $blue-content-2;
-        line-height: 1.5rem;
-        font-size: $normalSize;
+        @extend %normal-text;
     }
 }

@@ -45,11 +45,9 @@
             }
 
             &__adv {
-                line-height: 1.5rem;
-                font-size: $normalSize;
-                font-weight: 400;
+                @extend %blur-normal-text;
                 height: 118px;
-
+                color: $blue-content-1;
                 @include respond-to("small") {
                     height: unset;
                 }
@@ -110,13 +108,15 @@
             &__subscribe .headline {
                 font-weight: 600;
                 line-height: 1.6875rem;
+                font-size: 1.125rem;
                 color: $blue-content-1;
                 white-space: nowrap;
             }
 
             &__quick-link-lists-wrapper {
                 flex: 1;
-                @include flex-layout(column);
+                display: flex;
+                flex-direction: column;
                 gap: 24px;
 
                 @include respond-to("medium") {
@@ -125,7 +125,6 @@
                 }
 
                 .quick-link-lists {
-                    @include flex-layout(column);
                     gap: 8px;
                     list-style: none;
                     padding-left: 0;
@@ -217,9 +216,7 @@
         &__left-text,
         &__right-text__policy {
             color: $blue-content-1;
-            font-weight: 400;
-            font-size: 0.875rem;
-            line-height: 1.3125rem;
+            @extend %blur-small-text;
             opacity: 0.7;
             white-space: nowrap;
         }
