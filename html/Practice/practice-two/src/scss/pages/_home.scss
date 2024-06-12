@@ -81,7 +81,7 @@
     @include flex-layout;
     gap: 10px;
 
-    @include respond-to("large") {
+    @include respond-to("huge") {
       flex-direction: column;
     }
 
@@ -103,7 +103,7 @@
         position: relative;
         z-index: 2;
 
-        @include respond-to("huge") {
+        @include respond-to("medium") {
           width: 100%;
         }
 
@@ -266,8 +266,6 @@
 /* section 5 - testimonials */
 .testimonials {
   @include flex-layout(column, space-between);
-  max-width: 1440px;
-  width: 100%;
   background-color: $blue-background;
   gap: 80px;
   padding: 80px 20px;

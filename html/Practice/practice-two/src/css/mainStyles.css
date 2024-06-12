@@ -271,6 +271,11 @@ body {
   opacity: 1;
   color: #405741;
 }
+@media (max-width: 768px) {
+  .header__navbar__user-icons {
+    display: none;
+  }
+}
 .header__navbar__user-icons .user-icon {
   margin-left: 20px;
 }
@@ -615,7 +620,7 @@ body {
   justify-content: center;
   gap: 10px;
 }
-@media (max-width: 990px) {
+@media (max-width: 1200px) {
   .strength-points__bottom-items {
     flex-direction: column;
   }
@@ -638,7 +643,7 @@ body {
   position: relative;
   z-index: 2;
 }
-@media (max-width: 1200px) {
+@media (max-width: 768px) {
   .strength-points__bottom-items .content__content-text {
     width: 100%;
   }
@@ -785,8 +790,6 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  max-width: 1440px;
-  width: 100%;
   background-color: #e9f8ef;
   gap: 80px;
   padding: 80px 20px;
