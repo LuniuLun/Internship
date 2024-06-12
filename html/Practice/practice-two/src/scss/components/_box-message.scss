@@ -7,13 +7,16 @@
   height: 250px;
   max-width: 375px;
 
+  // width: 33%;
   flex: 0 0 33%;
 
   @include respond-to("huge") {
+    // width: 50%;
     flex: 0 0 50%;
   }
 
   @include respond-to("medium") {
+    // width: 100%;
     flex: 0 0 100%;
     height: unset;
   }
@@ -25,8 +28,7 @@
 
   &__user {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    @include flex-layout(row, space-between, center);
 
     .detail-info {
       @include flex-layout;

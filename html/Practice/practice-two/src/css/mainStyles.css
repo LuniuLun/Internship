@@ -139,6 +139,7 @@ body {
 .box-message__user {
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 .box-message__user .detail-info {
@@ -805,9 +806,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 60px;
+  max-width: 1185px;
 }
 .testimonials__slider .content {
-  width: 100%;
   display: flex;
   gap: 16px;
   flex-wrap: nowrap;
