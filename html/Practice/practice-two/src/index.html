@@ -41,30 +41,54 @@
   <body>
     <header class="header container-fluid">
       <a href="/" class="header__home-page">
-        <img src="./assets/logo/logo.svg" alt="logo of Eco-Dental shop" class="header__home-page__logo"
+        <img
+          src="./assets/logo/logo.svg"
+          alt="logo of Eco-Dental shop"
+          class="header__home-page__logo"
       /></a>
       <nav class="header__navbar">
-        <div class="tabs">
-          <a href="#" class="tab__item--active home-page">Home</a>
-          <button class="tab__item secondary-btn">
-            Teeth whitening
-            <img class="tab__item__icon" src="./assets/icon/keyboard_arrow_down_icon.svg" alt="arrow down icon" />
-          </button>
-          <button class="tab__item secondary-btn">
-            Toothpaste
-            <img class="tab__item__icon" src="./assets/icon/keyboard_arrow_down_icon.svg" alt="arrow down icon" />
-          </button>
-          <button class="tab__item secondary-btn">
-            Mouthwash
-            <img class="tab__item__icon" src="./assets/icon/keyboard_arrow_down_icon.svg" alt="arrow down icon" />
-          </button>
-          <button class="tab__show-nav secondary-btn">
-            <i class="fa-solid fa-bars"></i>
-          </button>
+        <ul class="header__navbar__tabs">
+          <li class="tab-item">
+            <a href="/" class="tab-item__content tab-item__content--active">Home</a>
+          </li>
+          <li class="tab-item">
+            <a href="#" class="tab-item__content">
+              Teeth whitening
+              <img
+                class="icon"
+                src="./assets/icon/keyboard_arrow_down_icon.svg"
+                alt="arrow down icon"
+            /></a>
+          </li>
+          <li class="tab-item">
+            <a href="#" class="tab-item__content">
+              Toothpaste
+              <img
+                class="icon"
+                src="./assets/icon/keyboard_arrow_down_icon.svg"
+                alt="arrow down icon"
+            /></a>
+          </li>
+          <li class="tab-item">
+            <a href="#" class="tab-item__content">
+              Mouthwash
+              <img
+                class="icon"
+                src="./assets/icon/keyboard_arrow_down_icon.svg"
+                alt="arrow down icon"
+            /></a>
+          </li>
+        </ul>
+        <div class="header__navbar__user-icons">
+          <a href="#"
+            ><img class="user-icon" src="./assets/icon/user_icon.svg" alt="user icon"
+          /></a>
+          <a href="#">
+            <img class="user-icon" src="./assets/icon/shopping_icon.svg" alt="shopping icon"
+          /></a>
         </div>
-        <div class="user-icon-lists">
-          <a href="#"><img class="user-icon" src="./assets/icon/user_icon.svg" alt="user icon" /></a>
-          <a href="#"> <img class="user-icon" src="./assets/icon/shopping_icon.svg" alt="shopping icon" /></a>
+        <div class="header__navbar__show-nav">
+          <button class="secondary-btn"><i class="icon fa-solid fa-bars"></i></button>
         </div>
       </nav>
     </header>
@@ -73,7 +97,9 @@
         <article class="hero-banner__content">
           <div class="content-text">
             <h1 class="content-text__heading">Eco - Friendy Smile</h1>
-            <h2 class="content-text__adv">Transform Your Dental Routine with Eco-Friendly Toothbrushes</h2>
+            <h2 class="content-text__adv">
+              Transform Your Dental Routine with Eco-Friendly Toothbrushes
+            </h2>
           </div>
           <button class="show-now-btn primary-btn">
             SHOP NOW
@@ -88,7 +114,11 @@
             src="./assets/img/strength_point_no_artifical_colours.svg"
             alt="No artifical colours"
           />
-          <img class="strength-point-img" src="./assets/img/strength_point_no_paraben.svg" alt="No paraben" />
+          <img
+            class="strength-point-img"
+            src="./assets/img/strength_point_no_paraben.svg"
+            alt="No paraben"
+          />
           <img class="strength-point-img" src="./assets/img/strength_point_vegan.svg" alt="Vegan" />
           <img
             class="strength-point-img"
@@ -97,22 +127,34 @@
           />
         </article>
         <article class="strength-points__bottom-items">
-          <div class="strength-points__bottom-items__content">
-            <div class="content-text">
-              <div class="content-text__title">Mouth Wash</div>
-              <p class="content-text__adv">your go-to choice for a naturally clean and eco-friendly smile</p>
-              <button class="content-text__btn primary-btn">BUY NOW</button>
+          <div class="content">
+            <div class="content__content-text">
+              <div class="title">Mouth Wash</div>
+              <p class="adv">your go-to choice for a naturally clean and eco-friendly smile</p>
+              <button class="buy-btn primary-btn">BUY NOW</button>
             </div>
-            <img class="mouthwash-bottle-img" src="./assets/img/product_mouthwash_bottle.svg" alt="mouthwash bottle" />
-            <img class="hightlight-img" src="./assets/img/highlight_mouthwash_bottle.svg" alt="hightlight" />
+            <img
+              class="content__mouthwash-bottle-img"
+              src="./assets/img/product_mouthwash_bottle.svg"
+              alt="mouthwash bottle"
+            />
+            <img
+              class="content__hightlight-img"
+              src="./assets/img/highlight_mouthwash_bottle.svg"
+              alt="hightlight"
+            />
           </div>
-          <div class="strength-points__bottom-items__content">
-            <div class="content-text">
-              <div class="content-text__title">Tooth Brush</div>
-              <p class="content-text__adv">your go-to choice for a naturally clean and eco-friendly smile</p>
-              <button class="content-text__btn primary-btn">BUY NOW</button>
+          <div class="content">
+            <div class="content__content-text">
+              <div class="title">Tooth Brush</div>
+              <p class="adv">your go-to choice for a naturally clean and eco-friendly smile</p>
+              <button class="buy-btn primary-btn">BUY NOW</button>
             </div>
-            <img class="bundle-img" src="./assets/img/product_bundle_v1.svg" alt="bundle" />
+            <img
+              class="content__bundle-img"
+              src="./assets/img/product_bundle_v1.svg"
+              alt="bundle"
+            />
           </div>
         </article>
       </section>
@@ -122,11 +164,21 @@
           <p class="sub-heading__small-title">Top Picks for Sustainable Dental Care</p>
         </article>
         <article class="trending-products__display-products">
-          <img class="arrow-back" src="./assets/icon/arrow_back_ios_icon.svg" alt="arrow backward icon" />
+          <img
+            class="arrow-back"
+            src="./assets/icon/arrow_back_ios_icon.svg"
+            alt="arrow backward icon"
+          />
           <div class="list-products">
             <div class="product-card">
-              <img class="product-card__img" src="./assets/img/product_mouthwash_bottle.svg" alt="mouthwash bottle" />
-              <p class="product-card__description">Sensitivity Relief Vanilla & Peppermint Natural Mouthwash</p>
+              <img
+                class="product-card__img"
+                src="./assets/img/product_mouthwash_bottle.svg"
+                alt="mouthwash bottle"
+              />
+              <p class="product-card__description">
+                Sensitivity Relief Vanilla & Peppermint Natural Mouthwash
+              </p>
               <div class="product-card__price">
                 <span class="discount-price">$100</span>
                 <span class="main-price">$150</span>
@@ -140,8 +192,14 @@
               </button>
             </div>
             <div class="product-card">
-              <img class="product-card__product-card__img" src="./assets/img/product_toothpaste.svg" alt="toothpaste" />
-              <p class="product-card__description">Sensitivity Relief Vanilla & Peppermint Natural Mouthwash</p>
+              <img
+                class="product-card__product-card__img"
+                src="./assets/img/product_toothpaste.svg"
+                alt="toothpaste"
+              />
+              <p class="product-card__description">
+                Sensitivity Relief Vanilla & Peppermint Natural Mouthwash
+              </p>
               <div class="product-card__price">
                 <span class="discount-price">$100</span>
                 <span class="main-price">$150</span>
@@ -156,7 +214,9 @@
             </div>
             <div class="product-card">
               <img class="product-card__img" src="./assets/img/product_bundle.svg" alt="bundle" />
-              <p class="product-card__description">Sensitivity Relief Vanilla & Peppermint Natural Mouthwash</p>
+              <p class="product-card__description">
+                Sensitivity Relief Vanilla & Peppermint Natural Mouthwash
+              </p>
               <div class="product-card__price">
                 <span class="discount-price">$100</span>
                 <span class="main-price">$150</span>
@@ -170,28 +230,43 @@
               </button>
             </div>
             <div class="product-card">
-              <img class="product-card__img" src="./assets/img/product_mouthwash_bottle.svg" alt="mouthwash bottle" />
-              <p class="product-card__description">Sensitivity Relief Vanilla & Peppermint Natural Mouthwash</p>
+              <img
+                class="product-card__img"
+                src="./assets/img/product_mouthwash_bottle.svg"
+                alt="mouthwash bottle"
+              />
+              <p class="product-card__description">
+                Sensitivity Relief Vanilla & Peppermint Natural Mouthwash
+              </p>
               <div class="product-card__price">
                 <span class="discount-price">$100</span>
                 <span class="main-price">$150</span>
               </div>
               <button class="product-card__add-to-cart-btn primary-btn">
-                <img class="add-to-cart__icon" src="./assets/icon/white_shopping_icon.svg" alt="shopping icon" />Add to
-                cart
+                <img
+                  class="add-to-cart__icon"
+                  src="./assets/icon/white_shopping_icon.svg"
+                  alt="shopping icon"
+                />Add to cart
               </button>
             </div>
           </div>
-          <img class="arrow-forward" src="./assets/icon/arrow_forward_ios_icon.svg" alt="arrow forward icon" />
+          <img
+            class="arrow-forward"
+            src="./assets/icon/arrow_forward_ios_icon.svg"
+            alt="arrow forward icon"
+          />
         </article>
       </section>
       <section class="promotional-banner container-md">
         <article class="promotional-banner__content">
           <div class="content-text">
-            <div class="content-text__title">Pure Bliss Mouthwash - Refresh Your Smile Naturally</div>
+            <div class="content-text__title">
+              Pure Bliss Mouthwash - Refresh Your Smile Naturally
+            </div>
             <p class="content-text__description">
-              Say goodbye to harsh chemicals and hello to a naturally invigorated smile. Feel the difference of pure,
-              organic oral care with every swish.
+              Say goodbye to harsh chemicals and hello to a naturally invigorated smile. Feel the
+              difference of pure, organic oral care with every swish.
             </p>
           </div>
           <button class="shop-now-btn primary-btn">
@@ -206,15 +281,19 @@
           <p class="sub-heading__small-title">Hear what out customers say</p>
         </article>
         <article class="testimonials__slider">
-          <div class="testimonials__slider__content">
+          <div class="content">
             <div class="box-message">
               <p class="box-message__message">
-                Quite different!! You can feel the difference between chemical-based and natural toothpaste. I felt
-                better after using Tea tree & Charcoal tooth paste.
+                Quite different!! You can feel the difference between chemical-based and natural
+                toothpaste. I felt better after using Tea tree & Charcoal tooth paste.
               </p>
               <div class="box-message__user">
                 <div class="detail-info">
-                  <img class="detail-info__avatar" src="./assets/img/a_girl_customer.svg" alt="avatar-user" />
+                  <img
+                    class="detail-info__avatar"
+                    src="./assets/img/a_girl_customer.svg"
+                    alt="avatar-user"
+                  />
                   <div class="detail-info__text">
                     <span class="fullname">Courtney Henry</span> <span class="role">Customer</span>
                   </div>
@@ -227,12 +306,16 @@
             </div>
             <div class="box-message">
               <p class="box-message__message">
-                Quite different!! You can feel the difference between chemical-based and natural toothpaste. I felt
-                better after using Tea tree & Charcoal tooth paste.
+                Quite different!! You can feel the difference between chemical-based and natural
+                toothpaste. I felt better after using Tea tree & Charcoal tooth paste.
               </p>
               <div class="box-message__user">
                 <div class="detail-info">
-                  <img class="detail-info__avatar" src="./assets/img/a_boy_customer.svg" alt="avatar-user" />
+                  <img
+                    class="detail-info__avatar"
+                    src="./assets/img/a_boy_customer.svg"
+                    alt="avatar-user"
+                  />
                   <div class="detail-info__text">
                     <span class="fullname">Ronald Richards</span> <span class="role">Customer</span>
                   </div>
@@ -245,12 +328,16 @@
             </div>
             <div class="box-message">
               <p class="box-message__message">
-                Quite different!! You can feel the difference between chemical-based and natural toothpaste. I felt
-                better after using Tea tree & Charcoal tooth paste.
+                Quite different!! You can feel the difference between chemical-based and natural
+                toothpaste. I felt better after using Tea tree & Charcoal tooth paste.
               </p>
               <div class="box-message__user">
                 <div class="detail-info">
-                  <img class="detail-info__avatar" src="./assets/img/a_girl_customer_1.svg" alt="avatar-user" />
+                  <img
+                    class="detail-info__avatar"
+                    src="./assets/img/a_girl_customer_1.svg"
+                    alt="avatar-user"
+                  />
                   <div class="detail-info__text">
                     <span class="fullname">Jenny Wilson</span> <span class="role">Customer</span>
                   </div>
@@ -276,8 +363,9 @@
         <article class="detail-info">
           <img class="detail-info__logo" src="./assets/logo/logo.svg" alt="eco-dental logo" />
           <p class="detail-info__adv">
-            Eco Dental is your go-to destination for premium natural oral care products. We are dedicated to providing
-            you with a holistic approach to dental hygiene, harnessing the power of nature to promote a healthy smile.
+            Eco Dental is your go-to destination for premium natural oral care products. We are
+            dedicated to providing you with a holistic approach to dental hygiene, harnessing the
+            power of nature to promote a healthy smile.
           </p>
           <ul class="detail-info__social-network-lists">
             <li class="facebook-network"><a href="#"></a></li>
@@ -315,12 +403,12 @@
         </article>
       </section>
       <section class="footer__supper-footer">
-        <p class="footer__supper-footer__left-text">© 2024, Eco Dental - All rights reserved.</p>
-        <div class="footer__supper-footer__right-text">
-          <a class="policy" href="#">Terms & Conditions</a>
-          <a class="policy" href="#">Privacy Policy</a>
-          <a class="policy" href="#">Refund Policy</a>
-        </div>
+        <p class="left-text">© 2024, Eco Dental - All rights reserved.</p>
+        <ul class="right-text">
+          <li class="right-text__policy"><a href="#" class="content-text" >Terms & Conditions</a></li>
+          <li class="right-text__policy"><a href="#" class="content-text" >Privacy Policy</a></li>
+          <li class="right-text__policy"><a href="#" class="content-text" >Refund Policy</a></li>
+        </ul>
       </section>
     </footer>
   </body>

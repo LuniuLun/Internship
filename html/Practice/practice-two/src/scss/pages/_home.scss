@@ -85,7 +85,7 @@
       flex-direction: column;
     }
 
-    &__content {
+    .content {
       display: flex;
       align-items: center;
       width: 50%;
@@ -107,7 +107,7 @@
         width: 100%;
       }
 
-      .content-text {
+      &__content-text {
         width: 55%;
         margin-left: 16px;
         position: relative;
@@ -117,23 +117,23 @@
           width: 100%;
         }
 
-        &__title {
+        .title {
           @extend %big-heading;
         }
 
-        &__adv {
+        .adv {
           font-weight: 500;
           line-height: 1.6875rem;
           font-size: $normalSize;
         }
 
-        &__btn {
+        .buy-btn {
           margin-top: 36px;
           width: 160px;
         }
       }
 
-      .mouthwash-bottle-img {
+      &__mouthwash-bottle-img {
         position: absolute;
         max-width: 250px;
         height: auto;
@@ -141,43 +141,45 @@
         right: 4%;
       }
 
-      .hightlight-img {
+      &__hightlight-img {
         top: 0;
         right: 4%;
       }
 
-      .bundle-img {
+      &__bundle-img {
         bottom: 0;
         right: 4%;
       }
 
-      .hightlight-img,
-      .bundle-img {
+      &__hightlight-img,
+      &__bundle-img {
         position: absolute;
         max-width: 550px;
         height: auto;
       }
     }
 
-    &__content:nth-child(1) {
+    .content:nth-child(1) {
       background-image: url(../assets/img/background_mouthwash.svg);
       color: #fff;
 
-      .content-text__title {
-        color: #fff;
-      }
-
-      .content-text__btn {
-        background-color: $green-secondary-color;
-
-        &:hover {
-          background-color: $green-primary-color;
+      .content__content-text {
+        .title {
           color: #fff;
+        }
+
+        .buy-btn {
+          background-color: $green-secondary-color;
+
+          &:hover {
+            background-color: $green-primary-color;
+            color: #fff;
+          }
         }
       }
     }
 
-    &__content:nth-child(2) {
+    .content:nth-child(2) {
       background-image: url(../assets/img/background_bundle.svg);
     }
   }
@@ -293,7 +295,7 @@
     flex-direction: column;
     gap: 60px;
 
-    &__content {
+    .content {
       width: 100%;
       display: flex;
       gap: 16px;
