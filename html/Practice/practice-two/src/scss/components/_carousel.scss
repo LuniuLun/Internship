@@ -1,17 +1,17 @@
 .carousel {
-    @include flex-layout;
-    gap: 8px;
+  @include flex-layout;
+  gap: 8px;
 
-    &__line {
-        width: 40px;
-        height: 8px;
-        border-radius: 8px;
-        opacity: 0.2;
-        background-color: #000;
-    }
+  &__line {
+    width: 40px;
+    height: 8px;
+    border-radius: 8px;
+    opacity: 0.2;
+    background-color: #000;
+  }
 
-    &__line--active {
-        opacity: 1;
-        background-color: $green-primary-color;
-    }
+  &__line--active {
+    opacity: 1;
+    background-color: $green-primary-color;
+  }
 }

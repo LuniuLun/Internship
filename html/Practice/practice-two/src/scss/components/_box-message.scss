@@ -1,41 +1,52 @@
 .box-message {
-    @include flex-layout(column, space-between);
-    background-color: #fff;
-    padding: 24px;
-    border-radius: 8px;
-    box-shadow: 0px 3px 5px 0px rgba(9, 30, 66, 0.2);
-    height: 250px;
-    max-width: 375px;
+  @include flex-layout(column, space-between);
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0px 3px 5px 0px rgba(9, 30, 66, 0.2);
+  height: 250px;
+  max-width: 375px;
 
-    &__message {
-        @extend %blur-normal-text;
-        color: $black-primary-content;
-    }
+  flex: 0 0 33%;
 
-    &__user {
-        width: 100%;
+  @include respond-to("huge") {
+    flex: 0 0 50%;
+  }
+
+  @include respond-to("medium") {
+    flex: 0 0 100%;
+    height: unset;
+  }
+
+  &__message {
+    @extend %blur-normal-text;
+    color: $black-primary-content;
+  }
+
+  &__user {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .detail-info {
+      @include flex-layout;
+      gap: 19px;
+
+      &__text {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        gap: 4px;
 
-        &__detail-information {
-            @include flex-layout;
-            gap: 19px;
-
-            &__text {
-                display: flex;
-                flex-direction: column;
-                gap: 4px;
-
-                .fullname {
-                    color: $black-primary-content;
-                    @extend %normal-text;
-                }
-
-                .role {
-                    color: $grey-content-3;
-                    @extend %blur-small-text;
-                }
-            }
+        .fullname {
+          color: $black-primary-content;
+          @extend %normal-text;
         }
+
+        .role {
+          color: $grey-content-3;
+          @extend %blur-small-text;
+        }
+      }
     }
+  }
 }

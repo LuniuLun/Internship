@@ -1,42 +1,42 @@
 $breakpoints: (
-    'tiny': (max-width: 470px),
-    'small': (max-width: 640px),
-    'medium': (max-width: 768px),
-    'large': (max-width: 990px),
-    'huge': (max-width: 1200px),
-    'colossal': (min-width: 1400px)
+  'tiny': (max-width: 470px),
+  'small': (max-width: 640px),
+  'medium': (max-width: 768px),
+  'large': (max-width: 990px),
+  'huge': (max-width: 1200px),
+  'colossal': (min-width: 1400px)
 );
 
 @mixin respond-to($breakpoint) {
-    $raw-query: map-get($breakpoints, $breakpoint);
+  $raw-query: map-get($breakpoints, $breakpoint);
 
-    @if $raw-query {
-        $query: if(type-of($raw-query)=='string',
-                unquote($raw-query),
-                inspect($raw-query));
+  @if $raw-query {
+    $query: if(type-of($raw-query)=='string',
+        unquote($raw-query),
+        inspect($raw-query));
 
-        @media #{$query} {
-            @content;
-        }
+    @media #{$query} {
+      @content;
     }
+  }
 
-    @else {
-        @error 'No value found for `#{$breakpoint}`. '+'Please make sure it is defined in `$breakpoints` map.';
-    }
+  @else {
+    @error 'No value found for `#{$breakpoint}`. '+'Please make sure it is defined in `$breakpoints` map.';
+  }
 }
 
 @mixin flex-layout($direction: row, $justify: center, $align: center) {
-    display: flex;
-    align-items: $align;
-    justify-content: $justify;
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
 
-    @if $direction !=row {
-        flex-direction: $direction;
-    }
+  @if $direction !=row {
+    flex-direction: $direction;
+  }
 }
 
 @mixin text-styles($font-size, $line-height, $font-weight: 500) {
-    font-size: $font-size;
-    line-height: $line-height;
-    font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
 }

@@ -1,328 +1,306 @@
 /* body */
 .body {
-    @include flex-layout(column);
-    padding: 0;
+  @include flex-layout(column);
+  padding: 0;
 }
 
 /* section 1 - hero-banner*/
 .hero-banner {
-    @include flex-layout;
-    margin-top: 85px;
+  @include flex-layout;
+  margin-top: 85px;
+  min-height: 560px;
+  background-image: url(../assets/img/background_image_hero_banner.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+
+  &__content {
+    margin-left: 150px;
+    gap: 56px;
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    min-height: 560px;
-    background-image: url(../assets/img/background_image_hero_banner.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: right;
 
-    &__content {
-        margin-left: 150px;
-        gap: 56px;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-
-        @include respond-to("large") {
-            margin-left: 20px;
-        }
-
-        &__content-text {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-
-            &__heading {
-                @extend %big-heading;
-                color: $black-primary-content;
-            }
-
-            &_adv {
-                font-size: 1.25rem;
-                font-weight: 400;
-                color: $grey-content-1;
-            }
-        }
-
-        &__show-now-btn {
-            width: 220px;
-
-            img {
-                margin-left: 12px;
-
-            }
-        }
+    @include respond-to("large") {
+      margin-left: 20px;
     }
+
+    .content-text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      &__heading {
+        @extend %big-heading;
+        color: $black-primary-content;
+      }
+
+      &__adv {
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: $grey-content-1;
+      }
+    }
+
+    .show-now-btn {
+      width: 220px;
+
+      img {
+        margin-left: 12px;
+      }
+    }
+  }
 }
 
 /* section 2 - strength-points */
 .strength-points {
-    margin: 50px 0;
-    @include flex-layout(column);
-    gap: 80px;
+  margin: 50px 0;
+  @include flex-layout(column);
+  gap: 80px;
 
-    &__top-items {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        justify-content: center;
-        gap: 20px;
+  &__top-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    gap: 20px;
+
+    @include respond-to("huge") {
+
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .strength-point-img {
+      width: 100%;
+      height: auto;
+      max-width: 278px;
+    }
+  }
+
+  &__bottom-items {
+    width: 100%;
+    @include flex-layout;
+    gap: 10px;
+
+    @include respond-to("large") {
+      flex-direction: column;
+    }
+
+    &__content {
+      display: flex;
+      align-items: center;
+      width: 50%;
+      border-radius: 16px;
+      padding: 20px 0;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      position: relative;
+
+      @include respond-to("colossal") {
+        width: 45%;
+      }
+
+      @include respond-to("large") {
+        width: 82%;
+      }
+
+      @include respond-to("medium") {
+        width: 100%;
+      }
+
+      .content-text {
+        width: 55%;
+        margin-left: 16px;
+        position: relative;
+        z-index: 3;
 
         @include respond-to("huge") {
-
-            grid-template-columns: repeat(2, 1fr);
+          width: 100%;
         }
 
-        &__strength-point-img {
-            width: 100%;
-            height: auto;
-            max-width: 278px;
+        &__title {
+          @extend %big-heading;
         }
+
+        &__adv {
+          font-weight: 500;
+          line-height: 1.6875rem;
+          font-size: $normalSize;
+        }
+
+        &__btn {
+          margin-top: 36px;
+          width: 160px;
+        }
+      }
+
+      .mouthwash-bottle-img {
+        position: absolute;
+        max-width: 250px;
+        height: auto;
+        z-index: 2;
+        right: 4%;
+      }
+
+      .hightlight-img {
+        top: 0;
+        right: 4%;
+      }
+
+      .bundle-img {
+        bottom: 0;
+        right: 4%;
+      }
+
+      .hightlight-img,
+      .bundle-img {
+        position: absolute;
+        max-width: 550px;
+        height: auto;
+      }
     }
 
-    &__bottom-items {
-        width: 100%;
-        @include flex-layout;
-        gap: 10px;
+    &__content:nth-child(1) {
+      background-image: url(../assets/img/background_mouthwash.svg);
+      color: #fff;
 
-        @include respond-to("large") {
-            flex-direction: column;
+      .content-text__title {
+        color: #fff;
+      }
+
+      .content-text__btn {
+        background-color: $green-secondary-color;
+
+        &:hover {
+          background-color: $green-primary-color;
+          color: #fff;
         }
-
-        &__content {
-            display: flex;
-            align-items: center;
-            width: 50%;
-            border-radius: 16px;
-            padding: 20px 0;
-            background-repeat: no-repeat;
-            overflow: hidden;
-            position: relative;
-
-            @include respond-to("colossal") {
-                width: 45%;
-            }
-
-            @include respond-to("large") {
-                width: 82%;
-            }
-
-            @include respond-to("medium") {
-                width: 100%;
-            }
-
-            &__content-text {
-                width: 55%;
-                margin-left: 16px;
-                position: relative;
-                z-index: 3;
-
-                @include respond-to("huge") {
-                    width: 100%;
-                }
-
-                .title {
-                    @extend %big-heading;
-                }
-
-                .adv {
-                    font-weight: 500;
-                    line-height: 1.6875rem;
-                    font-size: $normalSize;
-                }
-
-                .primary-btn {
-                    margin-top: 36px;
-                    width: 160px;
-                }
-            }
-
-            &__mouthwash-bottle-img {
-                position: absolute;
-                max-width: 250px;
-                z-index: 2;
-                right: 4%;
-            }
-
-            &__hightlight-img {
-                top: 0;
-                right: 4%;
-            }
-
-            &__bundle-img {
-                bottom: 0;
-                right: 4%;
-            }
-
-            &__hightlight-img,
-            &__bundle-img {
-                position: absolute;
-                max-width: 550px;
-            }
-        }
-
-        &__content:nth-child(1) {
-            background-image: url(../assets/img/background_mouthwash.svg);
-            color: #fff;
-
-            .primary-btn {
-                background-color: $green-secondary-color;
-
-                &:hover {
-                    background-color: $green-primary-color;
-                    color: #fff;
-                }
-            }
-        }
-
-        &__content:nth-child(2) {
-            background-image: url(../assets/img/background_bundle.svg);
-        }
+      }
     }
+
+    &__content:nth-child(2) {
+      background-image: url(../assets/img/background_bundle.svg);
+    }
+  }
 }
 
 /* section 3 - trending product */
 .trending-products {
-    @include flex-layout(column);
-    margin: 100px 0 50px;
+  @include flex-layout(column);
+  margin: 100px 0 50px;
 
-    &__display-list-products {
-        width: 100%;
-        gap: 4px;
-        margin: 60px 0;
-        @include flex-layout;
+  &__display-products {
+    width: 100%;
+    gap: 4px;
+    margin: 60px 0;
+    @include flex-layout;
 
-        &__list-products {
-            display: flex;
-            gap: 20px;
-            overflow: hidden;
-
-            .product-card {
-                width: 25%;
-
-                @include respond-to("huge") {
-                    width: 50%;
-                }
-
-                @include respond-to("medium") {
-                    width: 100%;
-                }
-            }
-        }
+    .list-products {
+      display: flex;
+      gap: 20px;
+      overflow: hidden;
     }
+  }
 }
 
 /* section 4 - promotional-banner */
 .promotional-banner {
-    background-image: url(../assets/img/background_promotioanal_banner.svg);
-    background-size: cover;
-    min-height: 444.38px;
-    background-repeat: no-repeat;
-    display: flex;
-    border-radius: 24px;
-    justify-content: flex-end;
-    padding: 0;
+  background-image: url(../assets/img/background_promotioanal_banner.svg);
+  background-size: cover;
+  min-height: 444.38px;
+  background-repeat: no-repeat;
+  display: flex;
+  border-radius: 24px;
+  justify-content: flex-end;
+  padding: 0;
 
-    @include respond-to("large") {
-        background-position: 20% 0;
-    }
+  @include respond-to("large") {
+    background-position: 20% 0;
+  }
+
+  @include respond-to("medium") {
+    position: relative;
+    background-position: unset;
+    background-size: 206%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 32.92px;
+    max-width: 52%;
+    background-color: $blue-background;
+    padding: 20px;
+    border-radius: 0 24px 24px 0;
 
     @include respond-to("medium") {
-        position: relative;
-        background-size: unset;
-        background-position: unset;
-        background-size: 206%;
+      position: absolute;
+      max-width: 100%;
+      bottom: -80%;
+      border-radius: unset;
+      text-align: center;
+      align-items: center;
     }
 
-    &__content {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        gap: 32.92px;
-        max-width: 52%;
-        background-color: $blue-background;
-        padding: 20px;
-        border-radius: 0 24px 24px 0;
+    .content-text {
+      display: flex;
+      flex-direction: column;
+      gap: 13.17px;
+      margin-top: 53px;
 
-        @include respond-to("medium") {
-            position: absolute;
-            max-width: 100%;
-            bottom: -80%;
-            border-radius: unset;
-            text-align: center;
-            align-items: center;
-        }
+      @include respond-to("huge") {
+        margin-top: 0;
+      }
 
-        &__content-text {
-            display: flex;
-            flex-direction: column;
-            gap: 13.17px;
-            margin-top: 53px;
+      &__title {
+        font-weight: 700;
+        font-size: 2.25rem;
+        line-height: 3.375rem;
+        color: #000;
+      }
 
-            @include respond-to("huge") {
-                margin-top: 0;
-            }
-
-            &__title {
-                font-weight: 700;
-                font-size: 2.25rem;
-                line-height: 3.375rem;
-                color: #000;
-            }
-
-            &__description {
-                color: #000;
-                font-weight: 400;
-                font-size: 1.125rem;
-                line-height: 1.6875rem;
-            }
-        }
-
-        &__shop-now-btn {
-            width: 180px;
-        }
+      &__description {
+        color: #000;
+        font-weight: 400;
+        font-size: 1.125rem;
+        line-height: 1.6875rem;
+      }
     }
+
+    .shop-now-btn {
+      width: 180px;
+    }
+  }
 }
 
 /* section 5 - testimonials */
 .testimonials {
-    @include flex-layout(column, space-between);
-    max-width: 1440px;
-    width: 100%;
-    background-color: $blue-background;
-    gap: 80px;
-    padding: 80px 20px;
-    margin-top: 100px;
+  @include flex-layout(column, space-between);
+  max-width: 1440px;
+  width: 100%;
+  background-color: $blue-background;
+  gap: 80px;
+  padding: 80px 20px;
+  margin-top: 100px;
 
-    @include respond-to("medium") {
-        margin-top: 500px;
-        align-items: unset;
+  @include respond-to("medium") {
+    margin-top: 500px;
+    align-items: unset;
+  }
+
+  &__slider {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+
+    &__content {
+      width: 100%;
+      display: flex;
+      gap: 16px;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      padding: 20px 0;
+      overflow: hidden;
     }
-
-    &__slider {
-        display: flex;
-        flex-direction: column;
-        gap: 60px;
-
-        &__content {
-            width: 100%;
-            display: flex;
-            gap: 16px;
-            flex-wrap: nowrap;
-            justify-content: flex-start;
-            padding: 20px 0;
-            overflow: hidden;
-
-            .box-message {
-                flex: 0 0 33%;
-
-                @include respond-to("huge") {
-                    flex: 0 0 50%;
-                }
-
-                @include respond-to("medium") {
-                    flex: 0 0 100%;
-                    height: unset;
-                }
-            }
-        }
-    }
+  }
 }

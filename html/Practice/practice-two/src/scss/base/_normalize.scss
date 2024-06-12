@@ -1,29 +1,32 @@
 html {
-    box-sizing: border-box;
-    font-size: 16px;
-    @include respond-to("huge") {
-        font-size: 18px;
-    }
-    @include respond-to("medium") {
-        font-size: 20px;
-    }
+  box-sizing: border-box;
+  font-size: 16px;
+
+  @include respond-to("huge") {
+    font-size: 18px;
+  }
+
+  @include respond-to("medium") {
+    font-size: 20px;
+  }
 }
+
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
-    padding: 0;
-    margin: 0;
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
 }
 
 p {
-    margin: 0;
+  margin: 0;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: "Poppins", sans-serif;
-    font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
 }

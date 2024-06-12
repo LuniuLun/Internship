@@ -1,14 +1,14 @@
 .sub-heading {
-    @include flex-layout(column);
-    text-align: center;
-    gap: 4px;
+  @include flex-layout(column);
+  text-align: center;
+  gap: 4px;
 
-    &__supper-title {
-        @extend %big-heading;
-    }
+  &__supper-title {
+    @extend %big-heading;
+  }
 
-    &__small-title {
-        color: $blue-content-2;
-        @extend %normal-text;
-    }
+  &__small-title {
+    color: $blue-content-2;
+    @extend %normal-text;
+  }
 }

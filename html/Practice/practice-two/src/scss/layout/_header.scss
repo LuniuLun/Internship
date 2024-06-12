@@ -1,73 +1,72 @@
-.main-header {
-    position: fixed;
-    display: flex;
-    justify-content: space-between;
-    padding: 16px 150px;
-    box-shadow: 0px 3px 5px 0px rgba(9, 30, 66, 0.2);
-    background-color: #fff;
-    z-index: 99;
+.header {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 150px;
+  box-shadow: 0px 3px 5px 0px rgba(9, 30, 66, 0.2);
+  background-color: #fff;
+  z-index: 99;
 
-    @include respond-to('huge') {
-        padding: 12px 20px;
+  @include respond-to('huge') {
+    padding: 12px 20px;
 
-        .user-icon-lists {
-            display: none;
+    .user-icon-lists {
+      display: none;
+    }
+  }
+
+  &__navbar {
+    @include flex-layout;
+
+    .tabs {
+      display: flex;
+      color: #000;
+      opacity: 0.72;
+      gap: 16px;
+
+      .home-page {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        @extend %normal-text;
+      }
+
+      .tab__item {
+        opacity: 0.72;
+        color: $grey-content-1;
+        @extend %normal-text;
+
+        @include respond-to('huge') {
+          display: none;
         }
+
+        &__icon {
+          margin-left: 8px;
+        }
+      }
+
+      .tab__item--active {
+        opacity: 1;
+        color: #000;
+      }
+
+      .tab__show-nav {
+        display: none;
+
+        @include respond-to('huge') {
+          display: flex;
+        }
+      }
     }
 
-    &__nav-bar {
-        @include flex-layout;
+    .user-icon-lists {
+      @include respond-to('huge') {
+        display: none;
+      }
 
-        &__tabs {
-            display: flex;
-            color: #000;
-            opacity: 0.72;
-            gap: 16px;
-
-            .home-link {
-                text-decoration: none;
-                display: flex;
-                align-items: center;
-                @extend %normal-text;
-            }
-
-            .tab__item {
-                opacity: 0.72;
-                color: $grey-content-1;
-                @extend %normal-text;
-
-                @include respond-to('huge') {
-                    display: none;
-                }
-
-
-                &__tab-icon {
-                    margin-left: 8px;
-                }
-            }
-
-            .tab__item--active {
-                opacity: 1;
-                color: #000;
-            }
-
-            .tab__show-navigation {
-                display: none;
-
-                @include respond-to('huge') {
-                    display: flex;
-                }
-            }
-        }
-
-        &__user-icon-lists {
-            @include respond-to('huge') {
-                display: none;
-            }
-
-            .user-icon {
-                margin-left: 20px;
-            }
-        }
+      .user-icon {
+        margin-left: 20px;
+      }
     }
+  }
 }
