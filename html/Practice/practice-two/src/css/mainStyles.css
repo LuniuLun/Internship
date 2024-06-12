@@ -516,6 +516,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 0;
+  padding-left: 0;
   gap: 24px;
   list-style: none;
 }
@@ -604,7 +605,7 @@ body {
 }
 .strength-points__top-items .strength-point-img {
   width: 100%;
-  height: auto;
+  max-height: 160px;
   max-width: 278px;
 }
 .strength-points__bottom-items {
@@ -622,33 +623,20 @@ body {
 .strength-points__bottom-items .content {
   display: flex;
   align-items: center;
-  width: 50%;
+  width: 100%;
+  max-width: 584.5px;
+  height: 273px;
   border-radius: 16px;
-  padding: 20px 0;
+  padding: 18px 0;
   background-repeat: no-repeat;
   overflow: hidden;
   position: relative;
-}
-@media (min-width: 1400px) {
-  .strength-points__bottom-items .content {
-    width: 45%;
-  }
-}
-@media (max-width: 990px) {
-  .strength-points__bottom-items .content {
-    width: 82%;
-  }
-}
-@media (max-width: 768px) {
-  .strength-points__bottom-items .content {
-    width: 100%;
-  }
 }
 .strength-points__bottom-items .content__content-text {
   width: 55%;
   margin-left: 16px;
   position: relative;
-  z-index: 3;
+  z-index: 2;
 }
 @media (max-width: 1200px) {
   .strength-points__bottom-items .content__content-text {
@@ -665,23 +653,20 @@ body {
   width: 160px;
 }
 .strength-points__bottom-items .content__mouthwash-bottle-img {
-  position: absolute;
-  max-width: 250px;
-  height: auto;
-  z-index: 2;
-  right: 4%;
+  max-width: 277px;
+  z-index: 1;
 }
 .strength-points__bottom-items .content__hightlight-img {
-  top: 0;
-  right: 4%;
+  max-width: 366px;
 }
 .strength-points__bottom-items .content__bundle-img {
+  max-width: 548px;
+}
+.strength-points__bottom-items .content__mouthwash-bottle-img, .strength-points__bottom-items .content__hightlight-img, .strength-points__bottom-items .content__bundle-img {
+  position: absolute;
   bottom: 0;
   right: 4%;
-}
-.strength-points__bottom-items .content__hightlight-img, .strength-points__bottom-items .content__bundle-img {
-  position: absolute;
-  max-width: 550px;
+  width: 100%;
   height: auto;
 }
 .strength-points__bottom-items .content:nth-child(1) {

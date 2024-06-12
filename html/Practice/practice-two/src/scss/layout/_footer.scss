@@ -236,6 +236,7 @@
     .right-text {
       @include flex-layout;
       margin-bottom: 0;
+      padding-left: 0;
       gap: 24px;
       list-style: none;
 

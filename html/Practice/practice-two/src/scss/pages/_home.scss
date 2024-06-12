@@ -71,7 +71,7 @@
 
     .strength-point-img {
       width: 100%;
-      height: auto;
+      max-height: 160px;
       max-width: 278px;
     }
   }
@@ -88,30 +88,20 @@
     .content {
       display: flex;
       align-items: center;
-      width: 50%;
+      width: 100%;
+      max-width: 584.5px;
+      height: 273px;
       border-radius: 16px;
-      padding: 20px 0;
+      padding: 18px 0;
       background-repeat: no-repeat;
       overflow: hidden;
       position: relative;
-
-      @include respond-to("colossal") {
-        width: 45%;
-      }
-
-      @include respond-to("large") {
-        width: 82%;
-      }
-
-      @include respond-to("medium") {
-        width: 100%;
-      }
 
       &__content-text {
         width: 55%;
         margin-left: 16px;
         position: relative;
-        z-index: 3;
+        z-index: 2;
 
         @include respond-to("huge") {
           width: 100%;
@@ -134,27 +124,25 @@
       }
 
       &__mouthwash-bottle-img {
-        position: absolute;
-        max-width: 250px;
-        height: auto;
-        z-index: 2;
-        right: 4%;
+        max-width: 277px;
+        z-index: 1;
       }
 
       &__hightlight-img {
-        top: 0;
-        right: 4%;
+        max-width: 366px;
       }
 
       &__bundle-img {
-        bottom: 0;
-        right: 4%;
+        max-width: 548px;
       }
 
+      &__mouthwash-bottle-img,
       &__hightlight-img,
       &__bundle-img {
         position: absolute;
-        max-width: 550px;
+        bottom: 0;
+        right: 4%;
+        width: 100%;
         height: auto;
       }
     }
