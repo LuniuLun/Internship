@@ -174,18 +174,27 @@ body {
   border: 1px solid #dcdfe4;
   border-radius: 16px;
   min-height: 424px;
-  width: 278.75px;
+  max-width: 278.75px;
+  width: 25%;
   padding: 16px;
   gap: 16px;
 }
 @media (max-width: 1400px) {
   .product-card {
-    width: 300px;
+    max-width: 300px;
+    width: 33%;
+  }
+}
+@media (max-width: 1024px) {
+  .product-card {
+    max-width: 400px;
+    width: 50%;
   }
 }
 @media (max-width: 768px) {
   .product-card {
-    width: 400px;
+    max-width: 500px;
+    width: 100%;
   }
 }
 .product-card__img {
@@ -300,7 +309,6 @@ body {
 }
 
 .footer {
-  max-width: 1440px;
   display: flex;
   flex-direction: column;
   padding: 150px 0 0 0;

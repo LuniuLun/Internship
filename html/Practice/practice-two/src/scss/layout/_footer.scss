@@ -1,5 +1,4 @@
 .footer {
-  max-width: 1440px;
   display: flex;
   flex-direction: column;
   padding: 150px 0 0 0;
@@ -210,7 +209,6 @@
     border-top: 1px solid $grey-border;
     padding: 20px 150px;
     opacity: 0.7;
-
     @include respond-to("huge") {
       padding: 20px;
     }
