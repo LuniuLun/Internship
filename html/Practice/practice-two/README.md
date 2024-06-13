@@ -2,11 +2,11 @@
  This is the first practice of html/css, parcel. This website advertises oral care products.
 
 ## Overview
- - Design: Hofmann UI Kit
+ - Design: [Echo Dental](https://www.figma.com/design/2i1Gl2KPAicvRRPXxeTyD4/E-Commerce-Minimal-UI-(Community)?node-id=2-875&t=ovx2qVtAYs5ukrCj-0)
  - Timeline: 1 week
 
 ## Requirements
- - Use the right HTML Tags
+ - Use the right HTML Tags, BEM, sass
  - Apply Flexbox and Grid
  - Use validate tools: W3 Validator
  - Getting the code to work cross browsers latest version (Chrome, Firefox)
@@ -16,6 +16,7 @@
  - More practice with CSS selectors
  - Learn how to make a responsive website
  - Learn how to make a website that can cross-browser
+ - Apply basic BEM and scss
 
 ## Installation and Running the Project
 
