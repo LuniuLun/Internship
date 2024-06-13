@@ -172,26 +172,23 @@ body {
   border: 1px solid #dcdfe4;
   border-radius: 16px;
   min-height: 424px;
-  max-width: 278.75px;
+  width: 278.75px;
   padding: 16px;
   gap: 16px;
 }
 @media (max-width: 1400px) {
   .product-card {
-    max-width: 300px;
-    width: 33%;
+    width: calc(33% - 8px);
   }
 }
 @media (max-width: 1024px) {
   .product-card {
-    max-width: 400px;
-    width: 50%;
+    width: calc(50% - 8px);
   }
 }
 @media (max-width: 768px) {
   .product-card {
-    max-width: 500px;
-    width: 100%;
+    width: calc(100% - 16px);
   }
 }
 .product-card__img {

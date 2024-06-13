@@ -3,23 +3,20 @@
   border: 1px solid $grey-border;
   border-radius: 16px;
   min-height: 424px;
-  max-width: 278.75px;
+  width: 278.75px;
   padding: 16px;
   gap: 16px;
 
   @include respond-to("huge") {
-    max-width: 300px;
-    width: 33%;
+    width: calc(33% - 8px);
   }
 
   @include respond-to("large") {
-    max-width: 400px;
-    width: 50%;
+    width: calc(50% - 8px);
   }
 
   @include respond-to("medium") {
-    max-width: 500px;
-    width: 100%;
+    width: calc(100% - 16px);
   }
 
   &__img {
