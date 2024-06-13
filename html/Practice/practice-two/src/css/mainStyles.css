@@ -812,7 +812,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 60px;
-  max-width: 1190px;
+}
+@media (min-width: 1400) or (min-width: 1200) {
+  .testimonials__slider {
+    max-width: 1190px;
+  }
 }
 .testimonials__slider .content {
   display: flex;
