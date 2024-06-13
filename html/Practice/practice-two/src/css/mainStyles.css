@@ -122,7 +122,7 @@ body {
   width: 375px;
   flex-shrink: 0;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .box-message {
     width: calc(50% - 8px);
   }
@@ -181,7 +181,7 @@ body {
     width: calc(33% - 8px);
   }
 }
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .product-card {
     width: calc(50% - 8px);
   }
@@ -572,7 +572,7 @@ body {
   flex-direction: column;
   width: 100%;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .hero-banner__content {
     margin-left: 20px;
   }
@@ -734,7 +734,7 @@ body {
   justify-content: flex-end;
   padding: 0;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .promotional-banner {
     background-position: 20% 0;
   }
