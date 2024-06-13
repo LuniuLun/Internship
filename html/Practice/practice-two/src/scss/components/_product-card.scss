@@ -3,16 +3,16 @@
   border: 1px solid $grey-border;
   border-radius: 16px;
   min-height: 424px;
+  width: 278.75px;
   padding: 16px;
   gap: 16px;
-  width: 25%;
 
   @include respond-to("huge") {
-    width: 50%;
+    width: 300px;
   }
 
   @include respond-to("medium") {
-    width: 100%;
+    width: 400px;
   }
 
   &__img {

@@ -5,20 +5,21 @@
   border-radius: 8px;
   box-shadow: 0px 3px 5px 0px rgba(9, 30, 66, 0.2);
   height: 250px;
-  max-width: 375px;
+  width: 375px;
+  flex-shrink: 0;
 
-  // width: 33%;
-  flex: 0 0 33%;
-
-  @include respond-to("huge") {
-    // width: 50%;
-    flex: 0 0 50%;
+  @include respond-to("large") {
+    max-width: 336px;
+    width: 50%;
   }
 
   @include respond-to("medium") {
-    // width: 100%;
-    flex: 0 0 100%;
-    height: unset;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  @include respond-to("tiny") {
+    height: 350px;
   }
 
   &__message {
