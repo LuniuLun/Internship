@@ -9,13 +9,15 @@
   flex-shrink: 0;
 
   @include respond-to("large") {
-    max-width: 336px;
+    max-width: 456px;
     width: 50%;
+    // width: 456px;
   }
 
   @include respond-to("medium") {
     max-width: 500px;
     width: 100%;
+    // width: 500px;
   }
 
   @include respond-to("tiny") {
