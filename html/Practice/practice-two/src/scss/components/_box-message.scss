@@ -9,19 +9,17 @@
   flex-shrink: 0;
 
   @include respond-to("large") {
-    max-width: 456px;
-    width: 50%;
+    width: calc(50% - 8px);
     // width: 456px;
   }
 
   @include respond-to("medium") {
-    max-width: 500px;
-    width: 100%;
+    width: calc(100% - 8px);
     // width: 500px;
   }
 
   @include respond-to("tiny") {
-    height: 350px;
+    height: 300px;
   }
 
   &__message {
