@@ -311,24 +311,26 @@
   }
 
   .slider {
-    display: flex;
-    flex-direction: column;
+    @include flex-layout(column);
     gap: 60px;
-
-    @media (min-width: 1400) or (min-width: 1200) {
-      max-width: 1190px;
-    }
 
     &__content {
       display: flex;
       gap: 16px;
       flex-wrap: nowrap;
-      justify-content: center;
       padding: 20px 0;
       overflow: hidden;
 
-      @include respond-to("huge") {
-        justify-content: flex-start;
+      @media (min-width: 1200) {
+        max-width: 1185px;
+      }
+
+      @include respond-to("extra-large") {
+        width: 816px;
+      }
+
+      @include respond-to("large") {
+        width: 363px;
       }
     }
   }
