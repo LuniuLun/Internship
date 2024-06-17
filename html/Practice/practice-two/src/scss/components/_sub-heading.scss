@@ -3,12 +3,12 @@
   text-align: center;
   gap: 4px;
 
-  &__supper-title {
-    @extend %big-heading;
-  }
-
-  &__small-title {
+  &__item {
     color: $blue-content-2;
     @extend %normal-text;
+  }
+
+  &__item--big {
+    @extend %big-heading;
   }
 }

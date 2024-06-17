@@ -1,11 +1,4 @@
-.strength-points__bottom-items .content .content-text__title, .hero-banner__content .content-text__heading, .sub-heading__supper-title {
-  font-size: 2.75rem;
-  line-height: 4.125rem;
-  font-weight: 600;
-  color: #091e42;
-}
-
-.header .navbar__tabs .tab__content, .sub-heading__small-title, .box-message__user .detail-info__text .fullname {
+.header .navbar__tabs .tab__content, .sub-heading__item, .box-message__user .detail-info__text .fullname {
   font-size: 1rem;
   line-height: 1.5rem;
   font-weight: 500;
@@ -27,6 +20,13 @@
   font-size: 0.88rem;
   line-height: 1.3125rem;
   font-weight: 400;
+}
+
+.strength-points__bottom-items .content .content-text__title, .hero-banner__content .content-text__heading, .sub-heading__item--big {
+  font-size: 2.75rem;
+  line-height: 4.125rem;
+  font-weight: 600;
+  color: #091e42;
 }
 
 html {
@@ -236,10 +236,9 @@ body {
   text-align: center;
   gap: 4px;
 }
-.sub-heading__small-title {
+.sub-heading__item {
   color: #172b4d;
 }
-
 .header {
   position: fixed;
   display: flex;
@@ -788,9 +787,8 @@ body {
 }
 .promotional-banner__product .product-img {
   width: 160%;
-  transform: scale(1.32);
+  transform: scale(1.4);
   transform-origin: left top;
-  height: auto;
 }
 .promotional-banner__content {
   display: flex;
