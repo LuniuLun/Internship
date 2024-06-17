@@ -707,7 +707,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 100px 0 50px;
+  margin: 100px 0;
 }
 .trending-products__display-products {
   width: 100%;
@@ -725,7 +725,7 @@ body {
 
 /* section 4 - promotional-banner */
 .promotional-banner {
-  background-image: url(../assets/img/background_promotioanal_banner.svg);
+  background-image: url(../assets/img/background_promotional_banner.svg);
   background-size: cover;
   min-height: 444.38px;
   background-repeat: no-repeat;
@@ -733,6 +733,8 @@ body {
   border-radius: 24px;
   justify-content: flex-end;
   padding: 0;
+  margin-bottom: 100px;
+  overflow: hidden;
 }
 @media (max-width: 1200px) {
   .promotional-banner {
@@ -741,10 +743,24 @@ body {
 }
 @media (max-width: 768px) {
   .promotional-banner {
+    border-radius: unset;
+    flex-direction: column;
     position: relative;
-    background-position: unset;
-    background-size: 206%;
   }
+}
+.promotional-banner .product-promotion {
+  display: none;
+}
+@media (max-width: 768px) {
+  .promotional-banner .product-promotion {
+    display: block;
+  }
+}
+.promotional-banner .product-promotion__img {
+  width: 160%;
+  transform: scale(1.32);
+  transform-origin: left top;
+  height: auto;
 }
 .promotional-banner__content {
   display: flex;
@@ -753,14 +769,14 @@ body {
   gap: 32.92px;
   max-width: 52%;
   background-color: #e9f8ef;
-  padding: 20px;
+  padding: 20px 20px 40px;
   border-radius: 0 24px 24px 0;
+  z-index: 1;
 }
 @media (max-width: 768px) {
   .promotional-banner__content {
-    position: absolute;
+    margin-top: 50px;
     max-width: 100%;
-    bottom: -80%;
     border-radius: unset;
     text-align: center;
     align-items: center;
@@ -806,7 +822,6 @@ body {
 }
 @media (max-width: 768px) {
   .testimonials {
-    margin-top: 500px;
     align-items: unset;
   }
 }

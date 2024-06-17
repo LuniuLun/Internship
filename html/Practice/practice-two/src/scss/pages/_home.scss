@@ -176,7 +176,7 @@
 /* section 3 - trending product */
 .trending-products {
   @include flex-layout(column);
-  margin: 100px 0 50px;
+  margin: 100px 0;
 
   &__display-products {
     width: 100%;
@@ -194,7 +194,7 @@
 
 /* section 4 - promotional-banner */
 .promotional-banner {
-  background-image: url(../assets/img/background_promotioanal_banner.svg);
+  background-image: url(../assets/img/background_promotional_banner.svg);
   background-size: cover;
   min-height: 444.38px;
   background-repeat: no-repeat;
@@ -202,15 +202,32 @@
   border-radius: 24px;
   justify-content: flex-end;
   padding: 0;
+  margin-bottom: 100px;
+  overflow: hidden;
 
   @include respond-to("large") {
     background-position: 20% 0;
   }
 
   @include respond-to("medium") {
+    border-radius: unset;
+    flex-direction: column;
     position: relative;
-    background-position: unset;
-    background-size: 206%;
+  }
+
+  .product-promotion {
+    display: none;
+
+    @include respond-to("medium") {
+      display: block;
+    }
+
+    &__img {
+      width: 160%;
+      transform: scale(1.32);
+      transform-origin: left top;
+      height: auto;
+    }
   }
 
   &__content {
@@ -220,13 +237,13 @@
     gap: 32.92px;
     max-width: 52%;
     background-color: $blue-background;
-    padding: 20px;
+    padding: 20px 20px 40px;
     border-radius: 0 24px 24px 0;
+    z-index: 1;
 
     @include respond-to("medium") {
-      position: absolute;
+      margin-top: 50px;
       max-width: 100%;
-      bottom: -80%;
       border-radius: unset;
       text-align: center;
       align-items: center;
@@ -272,7 +289,6 @@
   margin-top: 100px;
 
   @include respond-to("medium") {
-    margin-top: 500px;
     align-items: unset;
   }
 
