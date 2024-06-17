@@ -122,7 +122,7 @@ body {
   width: 384.33px;
   flex-shrink: 0;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   .box-message {
     width: 400px;
   }
@@ -872,7 +872,7 @@ body {
     max-width: 1185px;
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   .testimonials .slider__content {
     width: 816px;
   }

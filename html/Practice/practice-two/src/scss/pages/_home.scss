@@ -324,7 +324,7 @@
         max-width: 1185px;
       }
 
-      @include respond-to("extra-large") {
+      @include respond-to("huge") {
         width: 816px;
       }
 

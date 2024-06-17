@@ -8,7 +8,7 @@
   width: 384.33px;
   flex-shrink: 0;
 
-  @include respond-to("extra-large") {
+  @include respond-to("huge") {
     width: 400px;
   }
 
