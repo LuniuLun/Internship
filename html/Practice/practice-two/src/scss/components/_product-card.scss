@@ -3,18 +3,16 @@
   border: 1px solid $grey-border;
   border-radius: 16px;
   min-height: 424px;
-  max-width: 278.75px;
+  width: 278.75px;
   padding: 16px;
   gap: 16px;
-  width: calc(25% - 15px);
   flex-shrink: 0;
 
   @include respond-to("huge") {
-    max-width: 340px;
-    width: calc(50% - 10px);
+    width: 340px;
   }
 
-  @include respond-to("medium") {
+  @include respond-to("large") {
     width: 100%;
   }
 
