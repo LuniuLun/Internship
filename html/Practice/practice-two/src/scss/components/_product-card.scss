@@ -20,12 +20,11 @@
 
   &__img {
     max-width: 246.75px;
+    height: auto;
 
     @include respond-to("huge") {
       max-width: 300px;
     }
-
-    height: auto;
 
     @include respond-to("huge") {
       width: 100%;
