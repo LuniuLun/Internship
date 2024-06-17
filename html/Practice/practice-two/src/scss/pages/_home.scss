@@ -200,10 +200,10 @@
       overflow: hidden;
 
       @include respond-to("huge") {
-        max-width: 700px;
+        max-width: 568px;
       }
 
-      @include respond-to("large") {
+      @include respond-to("medium") {
         max-width: 340px;
       }
     }
@@ -325,10 +325,10 @@
       }
 
       @include respond-to("huge") {
-        width: 816px;
+        width: 768px;
       }
 
-      @include respond-to("large") {
+      @include respond-to("medium") {
         width: 363px;
       }
     }

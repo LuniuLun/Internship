@@ -9,14 +9,11 @@
   flex-shrink: 0;
 
   @include respond-to("huge") {
-    width: 400px;
+    width: 370px;
   }
-
-  @include respond-to("large") {
-    width: 100%;
-  }
-
+  
   @include respond-to("medium") {
+    width: 100%;
     height: 300px;
   }
 
