@@ -3,25 +3,33 @@
   border: 1px solid $grey-border;
   border-radius: 16px;
   min-height: 424px;
-  width: 278.75px;
+  max-width: 278.75px;
   padding: 16px;
   gap: 16px;
+  width: calc(25% - 15px);
+  flex-shrink: 0;
 
   @include respond-to("huge") {
-    width: calc(33% - 8px);
-  }
-
-  @include respond-to("large") {
-    width: calc(50% - 8px);
+    max-width: 340px;
+    width: calc(50% - 10px);
   }
 
   @include respond-to("medium") {
-    width: calc(100% - 16px);
+    width: 100%;
   }
 
   &__img {
     max-width: 246.75px;
+
+    @include respond-to("huge") {
+      max-width: 300px;
+    }
+
     height: auto;
+
+    @include respond-to("huge") {
+      width: 100%;
+    }
   }
 
   &__description {
@@ -47,8 +55,6 @@
       @extend %blur-normal-text;
     }
   }
-
-
 
   &__btn {
     display: flex;

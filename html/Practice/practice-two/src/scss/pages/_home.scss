@@ -182,12 +182,30 @@
     width: 100%;
     gap: 4px;
     margin: 60px 0;
+    padding: unset;
     @include flex-layout;
+
+    .arrow-back,
+    .arrow-forward {
+      padding: 8px 12px;
+
+      @include respond-to("tiny") {
+        padding: unset;
+      }
+    }
 
     .list-products {
       display: flex;
       gap: 20px;
       overflow: hidden;
+
+      @include respond-to("huge") {
+        max-width: 700px;
+      }
+
+      @include respond-to("medium") {
+        max-width: 350px;
+      }
     }
   }
 }
