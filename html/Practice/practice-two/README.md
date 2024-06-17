@@ -3,7 +3,10 @@
 
 ## Overview
  - Design: [Echo Dental](https://www.figma.com/design/2i1Gl2KPAicvRRPXxeTyD4/E-Commerce-Minimal-UI-(Community)?node-id=2-875&t=ovx2qVtAYs5ukrCj-0)
- - Timeline: 1 week
+ - Timeline: 68 hours (2024/05/30 - 2024/06/24)
+
+## Team size:
+ - One developer
 
 ## Requirements
  - Use the right HTML Tags, BEM, sass
