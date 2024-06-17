@@ -15,11 +15,18 @@
  - Getting the code to work cross browsers latest version (Chrome, Firefox)
 
 ## Targets
- - Improve more ability picking HTML tags and styling solutions
- - More practice with CSS selectors
- - Learn how to make a responsive website
- - Learn how to make a website that can cross-browser
- - Apply basic BEM and scss
+ - Build a site that will be applied all HTML/CSS 
+  BEM, SASS knowledge
+ - Slice from Figma to HTML/CSS
+ - Understand the concepts of Grid and Flex in CSS
+ - Responsive (Mobile, Tablet, Desktop)
+ - Cross browsers like MS Edge, Chrome, Firefox latest version
+
+## Techninal stack
+ - HTML5/CSS3
+ - Web Bundler: Parcel
+ - BEM
+ - SASS
 
 ## Installation and Running the Project
 
