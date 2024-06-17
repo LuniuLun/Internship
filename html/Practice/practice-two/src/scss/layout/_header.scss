@@ -11,7 +11,7 @@
     padding: 12px 20px;
   }
 
-  &__navbar {
+  .navbar {
     @include flex-layout;
 
     &__tabs {
@@ -21,7 +21,7 @@
       gap: 16px;
       list-style: none;
 
-      .tab-item {
+      .tab {
         padding: 8px 12px;
 
         @include respond-to('huge') {
@@ -45,17 +45,18 @@
       }
     }
 
-    &__user-icons {
+    &__icons {
       @include respond-to('medium') {
         display: none;
       }
 
-      .user-icon {
+      .user-icon,
+      .shopping-icon {
         margin-left: 20px;
       }
     }
 
-    &__show-nav {
+    &__toggler {
       display: none;
 
       .icon {

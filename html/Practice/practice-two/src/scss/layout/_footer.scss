@@ -51,7 +51,7 @@
         }
       }
 
-      &__social-network-lists {
+      &__social-networks {
         display: flex;
         gap: 16px;
         list-style: none;
@@ -112,7 +112,7 @@
         align-items: center;
       }
 
-      &__quick-link-lists-wrapper .headline,
+      &__quick-links-wrapper .headline,
       &__interact-email .headline {
         font-weight: 600;
         line-height: 1.69rem;
@@ -120,7 +120,7 @@
         color: $blue-content-1;
       }
 
-      &__quick-link-lists-wrapper {
+      &__quick-links-wrapper {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -135,7 +135,7 @@
           white-space: nowrap;
         }
 
-        .quick-link-lists {
+        .quick-links {
           gap: 8px;
           list-style: none;
           padding-left: 0;
@@ -242,7 +242,7 @@
         align-items: center;
       }
 
-      &__policy {
+      .policy {
         .content-text {
           @extend .left-text;
           text-decoration: none;

@@ -97,7 +97,7 @@
       overflow: hidden;
       position: relative;
 
-      &__content-text {
+      .content-text {
         width: 55%;
         margin-left: 16px;
         position: relative;
@@ -107,38 +107,38 @@
           width: 100%;
         }
 
-        .title {
+        &__title {
           @extend %big-heading;
         }
 
-        .adv {
+        &__adv {
           font-weight: 500;
           line-height: 1.69rem;
           font-size: $normalSize;
         }
 
-        .buy-btn {
+        &__btn {
           margin-top: 36px;
           width: 160px;
         }
       }
 
-      &__mouthwash-bottle-img {
+      .mouthwash-bottle-img {
         max-width: 277px;
         z-index: 1;
       }
 
-      &__hightlight-img {
+      .hightlight-img {
         max-width: 366px;
       }
 
-      &__bundle-img {
+      .bundle-img {
         max-width: 548px;
       }
 
-      &__mouthwash-bottle-img,
-      &__hightlight-img,
-      &__bundle-img {
+      .mouthwash-bottle-img,
+      .hightlight-img,
+      .bundle-img {
         position: absolute;
         bottom: 0;
         right: 4%;
@@ -151,12 +151,12 @@
       background-image: url(../assets/img/background_mouthwash.svg);
       color: #fff;
 
-      .content__content-text {
-        .title {
+      .content-text {
+        &__title {
           color: #fff;
         }
 
-        .buy-btn {
+        &__btn {
           background-color: $green-secondary-color;
 
           &:hover {
@@ -178,7 +178,7 @@
   @include flex-layout(column);
   margin: 100px 0;
 
-  &__display-products {
+  .display-products {
     width: 100%;
     gap: 4px;
     margin: 60px 0;
@@ -215,14 +215,14 @@
     position: relative;
   }
 
-  .product-promotion {
+  &__product {
     display: none;
 
     @include respond-to("medium") {
       display: block;
     }
 
-    &__img {
+    .product-img {
       width: 160%;
       transform: scale(1.32);
       transform-origin: left top;
@@ -292,7 +292,7 @@
     align-items: unset;
   }
 
-  &__slider {
+  .slider {
     display: flex;
     flex-direction: column;
     gap: 60px;
@@ -301,7 +301,7 @@
       max-width: 1190px;
     }
 
-    .content {
+    &__content {
       display: flex;
       gap: 16px;
       flex-wrap: nowrap;

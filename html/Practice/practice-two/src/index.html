@@ -40,19 +40,19 @@
   </head>
   <body>
     <header class="header container-fluid">
-      <a href="/" class="header__home-page">
+      <a href="/" class="home-page">
         <img
           src="./assets/logo/logo.svg"
           alt="Eco-Dental shop"
-          class="header__home-page__logo"
+          class="logo"
       /></a>
-      <nav class="header__navbar">
-        <ul class="header__navbar__tabs">
-          <li class="tab-item">
-            <a href="/" class="tab-item__content tab-item__content--active">Home</a>
+      <nav class="navbar">
+        <ul class="navbar__tabs">
+          <li class="tab">
+            <a href="/" class="tab__content tab__content--active">Home</a>
           </li>
-          <li class="tab-item">
-            <a href="#" class="tab-item__content">
+          <li class="tab">
+            <a href="#" class="tab__content">
               Teeth whitening
               <img
                 class="icon"
@@ -60,8 +60,8 @@
                 alt="arrow down icon"
             /></a>
           </li>
-          <li class="tab-item">
-            <a href="#" class="tab-item__content">
+          <li class="tab">
+            <a href="#" class="tab__content">
               Toothpaste
               <img
                 class="icon"
@@ -69,8 +69,8 @@
                 alt="arrow down icon"
             /></a>
           </li>
-          <li class="tab-item">
-            <a href="#" class="tab-item__content">
+          <li class="tab">
+            <a href="#" class="tab__content">
               Mouthwash
               <img
                 class="icon"
@@ -79,7 +79,7 @@
             /></a>
           </li>
         </ul>
-        <div class="header__navbar__user-icons">
+        <div class="navbar__icons">
           <a href="#"
             ><img class="user-icon" src="./assets/icon/user_icon.svg" alt="user icon"
           /></a>
@@ -87,7 +87,7 @@
             <img class="shopping-icon" src="./assets/icon/shopping_icon.svg" alt="shopping icon"
           /></a>
         </div>
-        <div class="header__navbar__show-nav">
+        <div class="navbar__toggler">
           <button class="secondary-btn"><i class="icon fa-solid fa-bars"></i></button>
         </div>
       </nav>
@@ -128,30 +128,30 @@
         </article>
         <article class="strength-points__bottom-items">
           <div class="content">
-            <div class="content__content-text">
-              <div class="title">Mouth Wash</div>
-              <p class="adv">your go-to choice for a naturally clean and eco-friendly smile</p>
-              <button class="buy-btn primary-btn">BUY NOW</button>
+            <div class="content-text">
+              <div class="content-text__title">Mouth Wash</div>
+              <p class="content-text__adv">your go-to choice for a naturally clean and eco-friendly smile</p>
+              <button class="content-text__btn primary-btn">BUY NOW</button>
             </div>
             <img
-              class="content__mouthwash-bottle-img"
+              class="mouthwash-bottle-img"
               src="./assets/img/product_mouthwash_bottle.svg"
               alt="mouthwash bottle"
             />
             <img
-              class="content__hightlight-img"
+              class="hightlight-img"
               src="./assets/img/highlight_mouthwash_bottle.svg"
               alt="hightlight"
             />
           </div>
           <div class="content">
-            <div class="content__content-text">
-              <div class="title">Tooth Brush</div>
-              <p class="adv">your go-to choice for a naturally clean and eco-friendly smile</p>
-              <button class="buy-btn primary-btn">BUY NOW</button>
+            <div class="content-text">
+              <div class="content-text__title">Tooth Brush</div>
+              <p class="content-text__adv">your go-to choice for a naturally clean and eco-friendly smile</p>
+              <button class="content-text__btn primary-btn">BUY NOW</button>
             </div>
             <img
-              class="content__bundle-img"
+              class="bundle-img"
               src="./assets/img/product_bundle_v1.svg"
               alt="bundle"
             />
@@ -163,7 +163,7 @@
           <div class="sub-heading__supper-title">Trending Products</div>
           <p class="sub-heading__small-title">Top Picks for Sustainable Dental Care</p>
         </article>
-        <article class="trending-products__display-products">
+        <article class="display-products">
           <img
             class="arrow-back"
             src="./assets/icon/arrow_back_ios_icon.svg"
@@ -183,9 +183,9 @@
                 <span class="discount-price">$100</span>
                 <span class="main-price">$150</span>
               </div>
-              <button class="product-card__add-to-cart-btn primary-btn">
+              <button class="product-card__btn primary-btn">
                 <img
-                  class="product-card__add-to-cart-btn__icon"
+                  class="icon"
                   src="./assets/icon/white_shopping_icon.svg"
                   alt="shopping icon"
                 />Add to cart
@@ -204,9 +204,9 @@
                 <span class="discount-price">$100</span>
                 <span class="main-price">$150</span>
               </div>
-              <button class="product-card__add-to-cart-btn primary-btn">
+              <button class="product-card__btn primary-btn">
                 <img
-                  class="product-card__add-to-cart-btn__icon"
+                  class="icon"
                   src="./assets/icon/white_shopping_icon.svg"
                   alt="shopping icon"
                 />Add to cart
@@ -221,9 +221,9 @@
                 <span class="discount-price">$100</span>
                 <span class="main-price">$150</span>
               </div>
-              <button class="product-card__add-to-cart-btn primary-btn">
+              <button class="product-card__btn primary-btn">
                 <img
-                  class="product-card__add-to-cart-btn__icon"
+                  class="icon"
                   src="./assets/icon/white_shopping_icon.svg"
                   alt="shopping icon"
                 />Add to cart
@@ -242,7 +242,7 @@
                 <span class="discount-price">$100</span>
                 <span class="main-price">$150</span>
               </div>
-              <button class="product-card__add-to-cart-btn primary-btn">
+              <button class="product-card__btn primary-btn">
                 <img
                   class="add-to-cart__icon"
                   src="./assets/icon/white_shopping_icon.svg"
@@ -259,8 +259,8 @@
         </article>
       </section>
       <section class="promotional-banner container-md">
-        <article class="product-promotion">
-          <img class="product-promotion__img" src="./assets/img/background_promotional_banner.svg" alt="promotion banner">
+        <article class="promotional-banner__product">
+          <img class="product-img" src="./assets/img/background_promotional_banner.svg" alt="product promotion">
         </article>
         <article class="promotional-banner__content">
           <div class="content-text">
@@ -283,8 +283,8 @@
           <div class="sub-heading__supper-title">Testimonials</div>
           <p class="sub-heading__small-title">Hear what out customers say</p>
         </article>
-        <article class="testimonials__slider container">
-          <div class="content">
+        <article class="slider container">
+          <div class="slider__content">
             <div class="box-message">
               <p class="box-message__message">
                 Quite different!! You can feel the difference between chemical-based and natural
@@ -370,7 +370,7 @@
             dedicated to providing you with a holistic approach to dental hygiene, harnessing the
             power of nature to promote a healthy smile.
           </p>
-          <ul class="detail-info__social-network-lists">
+          <ul class="detail-info__social-networks">
             <li class="facebook-network"><a href="#"></a></li>
             <li class="linkin-network"><a href="#"></a></li>
             <li class="instagram-network"><a href="#"></a></li>
@@ -379,9 +379,9 @@
           </ul>
         </article>
         <article class="contact-info">
-          <div class="contact-info__quick-link-lists-wrapper">
+          <div class="contact-info__quick-links-wrapper">
             <span class="headline">Quick Links</span>
-            <ul class="quick-link-lists">
+            <ul class="quick-links">
               <li class="quick-link">
                 <a href="#">Our story</a>
               </li>
@@ -408,11 +408,11 @@
       <section class="footer__supper-footer">
         <p class="left-text">© 2024, Eco Dental - All rights reserved.</p>
         <ul class="right-text">
-          <li class="right-text__policy">
+          <li class="policy">
             <a href="#" class="content-text">Terms & Conditions</a>
           </li>
-          <li class="right-text__policy"><a href="#" class="content-text">Privacy Policy</a></li>
-          <li class="right-text__policy"><a href="#" class="content-text">Refund Policy</a></li>
+          <li class="policy"><a href="#" class="content-text">Privacy Policy</a></li>
+          <li class="policy"><a href="#" class="content-text">Refund Policy</a></li>
         </ul>
       </section>
     </footer>
