@@ -12,19 +12,19 @@
 
 .product-card__description {
   font-size: 0.88rem;
-  line-height: 1.3125rem;
+  line-height: 1.31rem;
   font-weight: 500;
 }
 
 .footer__supper-footer .left-text, .footer__supper-footer .right-text .policy .content-text, .box-message__user .detail-info__text .role {
   font-size: 0.88rem;
-  line-height: 1.3125rem;
+  line-height: 1.31rem;
   font-weight: 400;
 }
 
 .strength-points__bottom-items .content .content-text__title, .hero-banner__content .content-text__heading, .sub-heading__item--big {
   font-size: 2.75rem;
-  line-height: 4.125rem;
+  line-height: 4.16rem;
   font-weight: 600;
   color: #091e42;
 }
@@ -185,16 +185,12 @@ body {
 }
 .product-card__img {
   max-width: 246.75px;
+  width: 100%;
   height: auto;
 }
-@media (max-width: 1400px) {
+@media (max-width: 768px) {
   .product-card__img {
     max-width: 300px;
-  }
-}
-@media (max-width: 1400px) {
-  .product-card__img {
-    width: 100%;
   }
 }
 .product-card__description {
@@ -734,6 +730,7 @@ body {
 }
 .trending-products .display-products .list-products {
   display: flex;
+  justify-content: flex-start;
   gap: 20px;
   overflow: hidden;
 }

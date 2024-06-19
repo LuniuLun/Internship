@@ -18,14 +18,11 @@
 
   &__img {
     max-width: 246.75px;
+    width: 100%;
     height: auto;
 
-    @include respond-to("huge") {
+    @include respond-to("medium") {
       max-width: 300px;
-    }
-
-    @include respond-to("huge") {
-      width: 100%;
     }
   }
 
