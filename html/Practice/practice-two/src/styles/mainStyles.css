@@ -747,10 +747,8 @@ body {
 
 /* section 4 - promotional-banner */
 .promotional-banner {
-  background-image: url(../assets/img/background_promotional_banner.svg);
   background-size: cover;
   min-height: 444.38px;
-  background-repeat: no-repeat;
   display: flex;
   border-radius: 24px;
   justify-content: flex-end;
@@ -758,30 +756,29 @@ body {
   margin-bottom: 100px;
   overflow: hidden;
 }
-@media (max-width: 992px) {
-  .promotional-banner {
-    background-position: 20% 0;
-  }
-}
 @media (max-width: 768px) {
   .promotional-banner {
     border-radius: unset;
     flex-direction: column;
-    position: relative;
+  }
+}
+@media (min-width: 1200px) {
+  .promotional-banner {
+    max-width: 1185px;
   }
 }
 .promotional-banner__product {
-  display: none;
+  width: 50%;
 }
 @media (max-width: 768px) {
   .promotional-banner__product {
-    display: block;
+    width: 100%;
+    transform: scale(1.1);
   }
 }
 .promotional-banner__product .product-img {
-  width: 205%;
-  transform: scale(1.1);
-  transform-origin: left top;
+  height: 100%;
+  width: 100%;
 }
 .promotional-banner__content {
   display: flex;
