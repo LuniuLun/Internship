@@ -5,8 +5,20 @@
     <meta charset="UTF-8" />
     <!-- Define compatibility version for Internet Explorer -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Set viewport meta tag to optimize experience on mobile devices -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 
+    This viewport meta tag will set the width of the viewport according to the width of the device, 
+    initial zoom ratio is 1.0, 
+    maximum zoom ratio is 1.5, 
+    minimum zoom ratio is 0.5, 
+    allowing users to zoom in or out small
+    and ensures content covers the viewport even on devices with notches. 
+    -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.5, 
+      minimum-scale=0.5, user-scalable=yes, viewport-fit=cover"
+    />
+
     <!-- Define keywords for search engines -->
     <meta name="keywords" content="tooth, dental, mouth" />
     <!-- Define description for search engines -->
@@ -440,7 +452,13 @@
             <div class="subscribe">
               <div class="subscribe__input">
                 <img src="./assets/icon/email_icon.svg" alt="email icon" />
-                <input type="email" name="email" id="email" placeholder="Enter email" class="email" />
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Enter email"
+                  class="email"
+                />
               </div>
               <button class="subscribe__btn primary-btn">Subscribe</button>
             </div>
