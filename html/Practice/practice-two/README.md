@@ -1,5 +1,5 @@
 ## Eco Dental
- This is the first practice of html/css, parcel. This website advertises oral care products.
+ This is the second practice of html/css, parcel. This website advertises oral care products.
 
 ## Overview
  - Design: [Echo Dental](https://www.figma.com/design/2i1Gl2KPAicvRRPXxeTyD4/E-Commerce-Minimal-UI-(Community)?node-id=2-875&t=ovx2qVtAYs5ukrCj-0)

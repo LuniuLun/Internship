@@ -779,8 +779,8 @@ body {
   }
 }
 .promotional-banner__product .product-img {
-  width: 160%;
-  transform: scale(1.4);
+  width: 205%;
+  transform: scale(1.1);
   transform-origin: left top;
 }
 .promotional-banner__content {
@@ -796,7 +796,6 @@ body {
 }
 @media (max-width: 768px) {
   .promotional-banner__content {
-    margin-top: 50px;
     max-width: 100%;
     border-radius: unset;
     text-align: center;

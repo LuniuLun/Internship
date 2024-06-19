@@ -242,8 +242,8 @@
     }
 
     .product-img {
-      width: 160%;
-      transform: scale(1.4);
+      width: 205%;
+      transform: scale(1.1);
       transform-origin: left top;
     }
   }
@@ -260,7 +260,6 @@
     z-index: 1;
 
     @include respond-to("medium") {
-      margin-top: 50px;
       max-width: 100%;
       border-radius: unset;
       text-align: center;
