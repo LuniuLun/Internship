@@ -196,6 +196,7 @@
 
     .list-products {
       display: flex;
+      justify-content: flex-start;
       gap: 20px;
       overflow: hidden;
 

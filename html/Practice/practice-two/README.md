@@ -9,18 +9,17 @@
  - One developer
 
 ## Requirements
- - Use the right HTML Tags, BEM, sass
- - Apply Flexbox and Grid
- - Use validate tools: W3 Validator
+ - Use the right HTML Tags
+ - Apply Flexbox and Grid, BEM, SASS
+ - Use validate tools: [W3 Validator](https://validator.w3.org/)
  - Getting the code to work cross browsers latest version (Chrome, Firefox)
 
 ## Targets
- - Build a site that will be applied all HTML/CSS 
-  BEM, SASS knowledge
- - Slice from Figma to HTML/CSS
- - Understand the concepts of Grid and Flex in CSS
- - Responsive (Mobile, Tablet, Desktop)
- - Cross browsers like MS Edge, Chrome, Firefox latest version
+ - Improve more ability picking HTML tags and styling solutions
+ - Apply basic BEM and SASS
+ - More practice with CSS selectors
+ - Learn how to make a responsive website
+ - Learn how to make a website that can cross-browser
 
 ## Techninal stack
  - HTML5/CSS3
