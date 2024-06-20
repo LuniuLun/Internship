@@ -1,1 +1,0 @@
-Here is some simple syntax in html/css
