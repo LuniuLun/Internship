@@ -111,6 +111,10 @@
           @extend %big-heading;
         }
 
+        &__title {
+          white-space: nowrap;
+        }
+
         &__adv {
           font-weight: 500;
           line-height: 1.69rem;
