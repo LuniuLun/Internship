@@ -1,0 +1,20 @@
+%normal-text {
+  @include text-styles($normalSize, 1.5rem);
+}
+
+%blur-normal-text {
+  @include text-styles($normalSize, 1.5rem, 400);
+}
+
+%small-text {
+  @include text-styles($smallSize, 1.31rem);
+}
+
+%blur-small-text {
+  @include text-styles($smallSize, 1.31rem, 400);
+}
+
+%big-heading {
+  @include text-styles(2.75rem, 4.16rem, 600);
+  color: $blue-content-1;
+}

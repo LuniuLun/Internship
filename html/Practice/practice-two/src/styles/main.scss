@@ -1,0 +1,16 @@
+@import 'utilities/variables',
+        'utilities/mixins',
+        'utilities/placeholders';
+
+@import 'base/normalize';
+
+@import 'components/buttons', 
+        'components/carousel', 
+        'components/box-message', 
+        'components/product-card', 
+        'components/sub-heading';
+
+@import 'layout/header', 
+        'layout/footer';
+
+@import 'pages/home';

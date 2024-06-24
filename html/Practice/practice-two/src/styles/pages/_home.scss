@@ -1,0 +1,337 @@
+/* body */
+.body {
+  @include flex-layout(column);
+  padding: 0;
+}
+
+/* section 1 - hero-banner*/
+.hero-banner {
+  @include flex-layout;
+  margin-top: 85px;
+  min-height: 560px;
+  background-image: url(../assets/img/background_image_hero_banner.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+
+  &__content {
+    margin-left: 150px;
+    gap: 56px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @include respond-to("large") {
+      margin-left: 20px;
+    }
+
+    .content-text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      &__heading {
+        @extend %big-heading;
+        color: $black-primary-content;
+      }
+
+      &__adv {
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: $grey-content-1;
+      }
+    }
+
+    .show-now-btn {
+      width: 220px;
+
+      img {
+        margin-left: 12px;
+      }
+    }
+  }
+}
+
+/* section 2 - strength-points */
+.strength-points {
+  margin: 50px 0;
+  @include flex-layout(column);
+  gap: 80px;
+
+  &__top-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    gap: 20px;
+
+    @include respond-to("huge") {
+
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .strength-point-img {
+      width: 100%;
+      max-height: 160px;
+      max-width: 278px;
+    }
+  }
+
+  &__bottom-items {
+    width: 100%;
+    @include flex-layout;
+    gap: 10px;
+
+    @include respond-to("huge") {
+      flex-direction: column;
+    }
+
+    .content {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 584.5px;
+      height: 273px;
+      border-radius: 16px;
+      padding: 18px 0;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      position: relative;
+
+      .content-text {
+        width: 55%;
+        margin-left: 16px;
+        position: relative;
+        z-index: 2;
+
+        @include respond-to("medium") {
+          width: 100%;
+        }
+
+        &__title {
+          @extend %big-heading;
+        }
+
+        &__title {
+          white-space: nowrap;
+        }
+
+        &__adv {
+          font-weight: 500;
+          line-height: 1.69rem;
+          font-size: $normalSize;
+        }
+
+        &__btn {
+          margin-top: 36px;
+          width: 160px;
+        }
+      }
+
+      .mouthwash-bottle-img {
+        max-width: 277px;
+        z-index: 1;
+      }
+
+      .hightlight-img {
+        max-width: 366px;
+      }
+
+      .bundle-img {
+        max-width: 548px;
+      }
+
+      .mouthwash-bottle-img,
+      .hightlight-img,
+      .bundle-img {
+        position: absolute;
+        bottom: 0;
+        right: 4%;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .content:nth-child(1) {
+      background-image: url(../assets/img/background_mouthwash.svg);
+      color: #fff;
+
+      .content-text {
+        &__title {
+          color: #fff;
+        }
+
+        &__btn {
+          background-color: $green-secondary-color;
+
+          &:hover {
+            background-color: $green-primary-color;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    .content:nth-child(2) {
+      background-image: url(../assets/img/background_bundle.svg);
+    }
+  }
+}
+
+/* section 3 - trending product */
+.trending-products {
+  @include flex-layout(column);
+  margin: 100px 0;
+
+  .display-products {
+    width: 100%;
+    gap: 4px;
+    margin: 60px 0;
+    padding: unset;
+    @include flex-layout;
+
+    .arrow-back,
+    .arrow-forward {
+      padding: 8px 12px;
+
+      @include respond-to("tiny") {
+        padding: unset;
+      }
+    }
+
+    .list-products {
+      display: flex;
+      justify-content: flex-start;
+      gap: 20px;
+      overflow: hidden;
+
+      @include respond-to("huge") {
+        max-width: 568px;
+      }
+
+      @include respond-to("medium") {
+        max-width: 340px;
+      }
+    }
+  }
+}
+
+/* section 4 - promotional-banner */
+.promotional-banner {
+  background-size: cover;
+  min-height: 444.38px;
+  display: flex;
+  border-radius: 24px;
+  justify-content: flex-end;
+  padding: 0;
+  margin-bottom: 100px;
+  overflow: hidden;
+
+  @include respond-to("medium") {
+    border-radius: unset;
+    flex-direction: column;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1185px;
+  }
+
+  &__product {
+    width: 50%;
+
+    @include respond-to("medium") {
+      width: 100%;
+      transform: scale(1.1);
+    }
+
+    .product-img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 32.92px;
+    max-width: 52%;
+    background-color: $blue-background;
+    padding: 20px 20px 40px;
+    border-radius: 0 24px 24px 0;
+    z-index: 1;
+
+    @include respond-to("medium") {
+      max-width: 100%;
+      border-radius: unset;
+      text-align: center;
+      align-items: center;
+    }
+
+    .content-text {
+      display: flex;
+      flex-direction: column;
+      gap: 13.17px;
+      margin-top: 53px;
+
+      @include respond-to("huge") {
+        margin-top: 0;
+      }
+
+      &__title {
+        font-weight: 700;
+        font-size: 2.25rem;
+        line-height: 3.38rem;
+        color: #000;
+      }
+
+      &__description {
+        color: #000;
+        font-weight: 400;
+        font-size: 1.18rem;
+        line-height: 1.69rem;
+      }
+    }
+
+    .shop-now-btn {
+      width: 180px;
+    }
+  }
+}
+
+/* section 5 - testimonials */
+.testimonials {
+  @include flex-layout(column, space-between);
+  background-color: $blue-background;
+  gap: 80px;
+  padding: 80px 0;
+  margin-top: 100px;
+
+  @include respond-to("medium") {
+    align-items: unset;
+  }
+
+  .slider {
+    @include flex-layout(column);
+    gap: 60px;
+
+    &__content {
+      display: flex;
+      gap: 16px;
+      flex-wrap: nowrap;
+      padding: 20px 0;
+      overflow: hidden;
+
+      @media (min-width: 1200) {
+        max-width: 1185px;
+      }
+
+      @include respond-to("huge") {
+        width: 768px;
+      }
+
+      @include respond-to("medium") {
+        width: 363px;
+      }
+    }
+  }
+}

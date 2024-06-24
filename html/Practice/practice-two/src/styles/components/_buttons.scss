@@ -1,0 +1,26 @@
+.sp-btn {
+  @include flex-layout;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: $normalSize;
+}
+
+.primary-btn {
+  @extend .sp-btn;
+  background-color: $green-primary-color;
+  color: #fff;
+}
+
+.primary-btn:hover {
+  background-color: $green-secondary-color;
+  color: #fff;
+}
+
+.secondary-btn {
+  @extend .sp-btn;
+  background-color: transparent;
+  color: $black-primary-content;
+}

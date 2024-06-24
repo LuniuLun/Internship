@@ -1,0 +1,72 @@
+.header {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 150px;
+  box-shadow: 0px 3px 5px 0px rgba(9, 30, 66, 0.2);
+  background-color: #fff;
+  z-index: 99;
+
+  @include respond-to('huge') {
+    padding: 12px 20px;
+  }
+
+  .navbar {
+    @include flex-layout;
+
+    &__tabs {
+      @include flex-layout;
+      margin-bottom: 0;
+      opacity: 0.72;
+      gap: 16px;
+      list-style: none;
+
+      .tab {
+        padding: 8px 12px;
+
+        @include respond-to('huge') {
+          display: none;
+        }
+
+        &__content {
+          text-decoration: none;
+          @extend %normal-text;
+          color: $grey-content-1;
+
+          .icon {
+            margin-left: 8px;
+          }
+        }
+
+        &__content--active {
+          opacity: 1;
+          color: $green-primary-color;
+        }
+      }
+    }
+
+    &__icons {
+      @include respond-to('medium') {
+        display: none;
+      }
+
+      .user-icon,
+      .shopping-icon {
+        margin-left: 20px;
+      }
+    }
+
+    &__toggler {
+      display: none;
+
+      .icon {
+        font-size: 1.25rem;
+      }
+
+      @include respond-to('huge') {
+        margin-left: 20px;
+        display: flex;
+      }
+    }
+  }
+}
