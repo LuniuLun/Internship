@@ -9,10 +9,20 @@
   @include flex-layout;
   margin-top: 85px;
   min-height: 560px;
-  background-image: url(../assets/img/background_image_hero_banner.svg);
+  background-image: url(../assets/img/background_image_hero_banner@3x.png);
   background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
+    background-image: url(../assets/img/background_image_hero_banner@2x.png);
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 3),
+  (min-resolution: 288dpi) {
+    background-image: url(../assets/img/background_image_hero_banner@1x.png);
+  }
 
   &__content {
     @extend %flex-col;
