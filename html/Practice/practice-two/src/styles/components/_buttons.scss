@@ -1,4 +1,4 @@
-.sp-btn {
+.btn {
   @include flex-layout;
   border: 0;
   border-radius: 8px;
@@ -8,19 +8,17 @@
   cursor: pointer;
 }
 
-.primary-btn {
-  @extend .sp-btn;
+.btn--primary {
   background-color: $green-primary-color;
   color: #fff;
 }
 
-.primary-btn:hover {
+.btn--primary:hover {
   background-color: $green-secondary-color;
   color: #fff;
 }
 
-.secondary-btn {
-  @extend .sp-btn;
+.btn--secondary {
   background-color: transparent;
   color: $black-primary-content;
 }

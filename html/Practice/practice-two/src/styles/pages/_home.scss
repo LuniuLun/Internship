@@ -56,7 +56,7 @@
   margin: 50px 0;
   gap: 80px;
 
-  &__top-items {
+  &__abilities {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: center;
@@ -66,14 +66,14 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
-    .strength-point-img {
+    &__img {
       width: 100%;
       max-width: 278px;
       max-height: 160px;
     }
   }
 
-  &__bottom-items {
+  &__products {
     @include flex-layout;
     gap: 10px;
     width: 100%;
@@ -142,10 +142,9 @@
       .bundle-img {
         position: absolute;
         bottom: 0;
-        right: 4%;
+        right: 0;
         width: 100%;
         height: auto;
-        min-height: 247px;
       }
     }
 
