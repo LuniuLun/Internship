@@ -19,6 +19,7 @@
   &__img {
     max-width: 246.75px;
     width: 100%;
+    min-height: 220px;
     height: auto;
 
     @include respond-to("medium") {
