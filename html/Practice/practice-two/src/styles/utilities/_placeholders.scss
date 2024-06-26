@@ -18,3 +18,8 @@
   @include text-styles(2.75rem, 4.16rem, 600);
   color: $blue-content-1;
 }
+
+%flex-col {
+  display: flex;
+  flex-direction: column;
+}
