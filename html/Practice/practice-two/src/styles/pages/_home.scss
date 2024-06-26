@@ -196,10 +196,7 @@
     width: 100%;
     padding: unset;
 
-    .arrow-back,
-    .arrow-forward {
-      padding: 8px 12px;
-
+    .btn {
       @include respond-to("tiny") {
         padding: unset;
       }
