@@ -1,11 +1,11 @@
 .sp-btn {
   @include flex-layout;
-  padding: 10px 16px;
-  border-radius: 8px;
   border: 0;
-  cursor: pointer;
+  border-radius: 8px;
+  padding: 10px 16px;
   font-weight: 600;
   font-size: $normal-size;
+  cursor: pointer;
 }
 
 .primary-btn {

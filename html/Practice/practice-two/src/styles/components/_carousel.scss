@@ -3,10 +3,10 @@
   gap: 8px;
 
   &__line {
+    opacity: 0.2;
+    border-radius: 8px;
     width: 40px;
     height: 8px;
-    border-radius: 8px;
-    opacity: 0.2;
     background-color: #000;
   }
 

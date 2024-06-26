@@ -1,17 +1,17 @@
 .footer {
   display: flex;
   flex-direction: column;
-  padding: 150px 0 0 0;
   gap: 80px;
   max-height: 448.66px;
+  padding: 150px 0 0 0;
 
   @include respond-to("medium") {
     gap: 40px;
   }
 
   &__other-info {
-    justify-content: space-between;
     display: flex;
+    justify-content: space-between;
     gap: 88px;
     max-width: 1186px;
 
@@ -27,9 +27,9 @@
 
 
     .detail-info {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      flex: 1;
       gap: 16px;
       max-width: 490px;
 
@@ -43,8 +43,8 @@
       }
 
       &__logo {
-        max-height: 74px;
         max-width: 227px;
+        max-height: 74px;
       }
 
       &__adv {
@@ -60,13 +60,13 @@
       &__social-networks {
         display: flex;
         gap: 16px;
-        list-style: none;
         padding-left: 0;
+        list-style: none;
 
         li,
         a {
-          height: 44px;
           display: block;
+          height: 44px;
         }
 
         .facebook-network {
@@ -120,9 +120,9 @@
 
       &__quick-links-wrapper .headline,
       &__interact-email .headline {
+        font-size: 1.13rem;
         font-weight: 600;
         line-height: 1.69rem;
-        font-size: 1.13rem;
         color: $blue-content-1;
       }
 
@@ -133,7 +133,6 @@
         gap: 24px;
 
         @include respond-to("medium") {
-
           text-align: center;
         }
 
@@ -143,8 +142,8 @@
 
         .quick-links {
           gap: 8px;
-          list-style: none;
           padding-left: 0;
+          list-style: none;
         }
 
         .quick-link {
@@ -152,9 +151,9 @@
         }
 
         .quick-link a {
-          color: $blue-content-1;
           text-decoration: none;
           white-space: nowrap;
+          color: $blue-content-1;
         }
       }
 
@@ -167,8 +166,8 @@
         }
 
         @include respond-to("medium") {
-          text-align: center; 
           @include flex-layout(column);
+          text-align: center;
         }
 
         .subscribe {
@@ -182,12 +181,12 @@
           &__input {
             display: flex;
             align-items: center;
+            gap: 8px;
             border: 1px solid;
             border-radius: 8px 0px 0px 8px;
-            padding: 0px 16px;
-            gap: 8px;
-            height: 56px;
             max-width: 246px;
+            height: 56px;
+            padding: 0px 16px;
 
             @include respond-to("small") {
               padding: 10px 16px;
@@ -209,8 +208,8 @@
             border-radius: 0 8px 8px 0;
             width: 101px;
             font-size: 0.88rem;
-            font-weight: 600;
             font-family: "Inter", sans-serif;
+            font-weight: 600;
           }
         }
       }
