@@ -65,7 +65,7 @@
       display: none;
 
       .icon {
-        font-size: 1.25rem;
+        font-size: convertToRem(20);
       }
 
       @include respond-to('huge') {

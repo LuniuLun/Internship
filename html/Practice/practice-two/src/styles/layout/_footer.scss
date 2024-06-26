@@ -120,9 +120,9 @@
 
       &__quick-links-wrapper .headline,
       &__interact-email .headline {
-        font-size: 1.13rem;
+        font-size: convertToRem(18);
         font-weight: 600;
-        line-height: 1.69rem;
+        line-height: convertToRem(27);
         color: $blue-content-1;
       }
 
@@ -207,7 +207,7 @@
           &__btn {
             border-radius: 0 8px 8px 0;
             width: 101px;
-            font-size: 0.88rem;
+            font-size: convertToRem(14);
             font-family: "Inter", sans-serif;
             font-weight: 600;
           }

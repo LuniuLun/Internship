@@ -37,8 +37,8 @@
     width: 100%;
 
     .discount-price {
-      font-size: 1.25rem;
-      line-height: 1.88rem;
+      font-size: convertToRem(20);
+      line-height: convertToRem(30);
       font-weight: 600;
       color: #000;
     }
