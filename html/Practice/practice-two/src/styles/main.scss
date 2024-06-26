@@ -1,8 +1,10 @@
 @import 'utilities/variables',
+        'utilities/function',
         'utilities/mixins',
         'utilities/placeholders';
 
 @import 'base/normalize';
+@import 'base/typography';
 
 @import 'components/buttons', 
         'components/carousel', 

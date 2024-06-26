@@ -1,11 +1,11 @@
 .sub-heading {
   @include flex-layout(column);
-  text-align: center;
   gap: 4px;
+  text-align: center;
 
   &__item {
-    color: $blue-content-2;
     @extend %normal-text;
+    color: $blue-content-2;
   }
 
   &__item--big {

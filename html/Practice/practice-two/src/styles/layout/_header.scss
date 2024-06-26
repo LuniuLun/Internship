@@ -1,11 +1,11 @@
 .header {
   position: fixed;
+  z-index: 99;
   display: flex;
   justify-content: space-between;
-  padding: 16px 150px;
   box-shadow: 0px 3px 5px 0px rgba(9, 30, 66, 0.2);
+  padding: 16px 150px;
   background-color: #fff;
-  z-index: 99;
 
   @include respond-to('huge') {
     padding: 12px 20px;
@@ -13,12 +13,13 @@
 
   .navbar {
     @include flex-layout;
+    padding: 0;
 
     &__tabs {
       @include flex-layout;
-      margin-bottom: 0;
-      opacity: 0.72;
       gap: 16px;
+      opacity: 0.72;
+      margin-bottom: 0;
       list-style: none;
 
       .tab {
@@ -29,9 +30,14 @@
         }
 
         &__content {
-          text-decoration: none;
           @extend %normal-text;
+          text-decoration: none;
           color: $grey-content-1;
+
+          &:hover {
+            opacity: 1;
+            color: $green-primary-color;
+          }
 
           .icon {
             margin-left: 8px;
@@ -46,13 +52,10 @@
     }
 
     &__icons {
+      @include flex-layout;
+
       @include respond-to('medium') {
         display: none;
-      }
-
-      .user-icon,
-      .shopping-icon {
-        margin-left: 20px;
       }
     }
 
@@ -60,12 +63,12 @@
       display: none;
 
       .icon {
-        font-size: 1.25rem;
+        font-size: convertToRem(20);
       }
 
       @include respond-to('huge') {
-        margin-left: 20px;
         display: flex;
+        margin-left: 20px;
       }
     }
   }
