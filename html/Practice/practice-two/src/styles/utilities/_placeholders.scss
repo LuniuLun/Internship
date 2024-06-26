@@ -1,17 +1,17 @@
 %normal-text {
-  @include text-styles($normalSize, 1.5rem);
+  @include text-styles($normal-size, 1.5rem);
 }
 
 %blur-normal-text {
-  @include text-styles($normalSize, 1.5rem, 400);
+  @include text-styles($normal-size, 1.5rem, 400);
 }
 
 %small-text {
-  @include text-styles($smallSize, 1.31rem);
+  @include text-styles($small-size, 1.31rem);
 }
 
 %blur-small-text {
-  @include text-styles($smallSize, 1.31rem, 400);
+  @include text-styles($small-size, 1.31rem, 400);
 }
 
 %big-heading {
