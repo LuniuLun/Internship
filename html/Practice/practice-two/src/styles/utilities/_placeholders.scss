@@ -1,21 +1,21 @@
 %normal-text {
-  @include text-styles($normal-size, 1.5rem);
+  @include text-styles(1rem, convertToRem(24));
 }
 
 %blur-normal-text {
-  @include text-styles($normal-size, 1.5rem, 400);
+  @include text-styles(1rem, convertToRem(24), 400);
 }
 
 %small-text {
-  @include text-styles($small-size, 1.31rem);
+  @include text-styles(convertToRem(14), convertToRem(21));
 }
 
 %blur-small-text {
-  @include text-styles($small-size, 1.31rem, 400);
+  @include text-styles(convertToRem(14), convertToRem(21), 400);
 }
 
 %big-heading {
-  @include text-styles(2.75rem, 4.16rem, 600);
+  @include text-styles(convertToRem(44), convertToRem(66), 600);
   color: $blue-content-1;
 }
 
