@@ -2,7 +2,7 @@ html {
   box-sizing: border-box;
   font-size: 16px;
   line-height: 1.15;
-
+  
   @include respond-to("huge") {
     font-size: 18px;
   }
