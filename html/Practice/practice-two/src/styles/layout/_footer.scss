@@ -13,6 +13,7 @@
     justify-content: space-between;
     display: flex;
     gap: 88px;
+    max-width: 1186px;
 
     @include respond-to("huge") {
       flex-direction: column-reverse;
@@ -30,6 +31,11 @@
       flex-direction: column;
       flex: 1;
       gap: 16px;
+      max-width: 490px;
+
+      @include respond-to("huge") {
+        max-width: unset;
+      }
 
       @include respond-to("medium") {
         align-items: center;
@@ -153,11 +159,16 @@
       }
 
       &__interact-email {
-        flex: 2;
+        max-width: 347px;
+
+        @include respond-to("huge") {
+          flex: 2;
+          max-width: unset;
+        }
 
         @include respond-to("medium") {
-
-          text-align: center;
+          text-align: center; 
+          @include flex-layout(column);
         }
 
         .subscribe {
@@ -165,39 +176,41 @@
           margin-top: 20px;
 
           @include respond-to("small") {
-            @include flex-layout(column);
-            gap: 20px;
+            justify-content: center;
           }
 
           &__input {
             display: flex;
+            align-items: center;
             border: 1px solid;
             border-radius: 8px 0px 0px 8px;
             padding: 0px 16px;
             gap: 8px;
+            height: 56px;
+            max-width: 246px;
 
             @include respond-to("small") {
-              border-radius: 8px;
               padding: 10px 16px;
             }
+          }
 
-            .email {
-              outline: 0;
-              border: 0;
-            }
+          .email-icon {
+            width: 24px;
+            height: 24px;
+          }
+
+          .email-input {
+            outline: 0;
+            border: 0;
+            width: 100%;
           }
 
           &__btn {
             border-radius: 0 8px 8px 0;
             width: 101px;
-
-            @include respond-to("medium") {
-              width: 120px;
-            }
-
-            @include respond-to("small") {
-              border-radius: 8px;
-            }
+            font-size: 0.88rem;
+            font-weight: 600;
+            font-family: "Inter", sans-serif;
           }
         }
       }
@@ -209,6 +222,7 @@
     border-top: 1px solid $grey-border;
     padding: 20px 150px;
     opacity: 0.7;
+
     @include respond-to("huge") {
       padding: 20px;
     }
