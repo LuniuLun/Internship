@@ -125,6 +125,10 @@ img {
   border-style: none;
 }
 
+figure {
+  margin: unset;
+}
+
 button, input, optgroup, select, textarea {
   margin: 0;
   font-family: inherit;
