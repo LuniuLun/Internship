@@ -1,4 +1,4 @@
-# Eco Dental
+## Eco Dental
  This is the first practice of html/css, parcel. This website advertises oral care products.
 
 ## Target
