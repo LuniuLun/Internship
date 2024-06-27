@@ -88,6 +88,10 @@ a {
   background-color: #0000;
 }
 
+p {
+  margin: 0;
+}
+
 abbr[title] {
   border-bottom: none;
   text-decoration: underline dotted;
@@ -123,6 +127,10 @@ sup {
 
 img {
   border-style: none;
+}
+
+figure {
+  margin: unset;
 }
 
 button, input, optgroup, select, textarea {
