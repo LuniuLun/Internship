@@ -1,0 +1,25 @@
+%normal-text {
+  @include text-styles(1rem, convertToRem(24));
+}
+
+%blur-normal-text {
+  @include text-styles(1rem, convertToRem(24), 400);
+}
+
+%small-text {
+  @include text-styles(convertToRem(14), convertToRem(21));
+}
+
+%blur-small-text {
+  @include text-styles(convertToRem(14), convertToRem(21), 400);
+}
+
+%big-heading {
+  @include text-styles(convertToRem(44), convertToRem(66), 600);
+  color: $blue-content-1;
+}
+
+%flex-col {
+  display: flex;
+  flex-direction: column;
+}

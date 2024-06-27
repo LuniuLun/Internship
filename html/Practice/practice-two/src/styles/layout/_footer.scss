@@ -1,0 +1,266 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  max-height: 448.66px;
+  padding: 150px 0 0 0;
+
+  @include respond-to("medium") {
+    gap: 40px;
+  }
+
+  &__other-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 88px;
+    max-width: 1186px;
+
+    @include respond-to("huge") {
+      flex-direction: column-reverse;
+    }
+
+    @include respond-to("medium") {
+      gap: 44px;
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+
+    .detail-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 490px;
+
+      @include respond-to("huge") {
+        max-width: unset;
+      }
+
+      @include respond-to("medium") {
+        align-items: center;
+        text-align: center;
+      }
+
+      &__logo {
+        max-width: 227px;
+        max-height: 74px;
+      }
+
+      &__adv {
+        @extend %blur-normal-text;
+        height: 118px;
+        color: $blue-content-1;
+
+        @include respond-to("small") {
+          height: unset;
+        }
+      }
+
+      &__social-networks {
+        display: flex;
+        gap: 16px;
+        padding-left: 0;
+        list-style: none;
+
+        li,
+        a {
+          display: block;
+          height: 44px;
+        }
+
+        .facebook-network {
+          max-width: 44px;
+          width: 100%;
+          height: auto;
+          background: url("../assets/icon/facebook_icon.svg") 0 0;
+        }
+
+        .linkin-network {
+          max-width: 44px;
+          width: 100%;
+          height: auto;
+          background: url("../assets/icon/linkedin_icon.svg") 0 0;
+        }
+
+        .instagram-network {
+          max-width: 44px;
+          width: 100%;
+          height: auto;
+          background: url("../assets/icon/instagram_icon.svg") 0 0;
+        }
+
+        .twitter-network {
+          max-width: 44px;
+          width: 100%;
+          height: auto;
+          background: url("../assets/icon/twitter_icon.svg") 0 0;
+        }
+
+        .yotube-network {
+          max-width: 44px;
+          width: 100%;
+          height: auto;
+          background: url("../assets/icon/yotube_icon.svg") 0 0;
+        }
+      }
+    }
+
+    .contact-info {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      gap: 88px;
+
+      @include respond-to("medium") {
+        gap: 40px;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      &__quick-links-wrapper .headline,
+      &__interact-email .headline {
+        font-size: convertToRem(18);
+        font-weight: 600;
+        line-height: convertToRem(27);
+        color: $blue-content-1;
+      }
+
+      &__quick-links-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        @include respond-to("medium") {
+          text-align: center;
+        }
+
+        .headline {
+          white-space: nowrap;
+        }
+
+        .quick-links {
+          gap: 8px;
+          padding-left: 0;
+          list-style: none;
+        }
+
+        .quick-link {
+          padding: 8px 0;
+        }
+
+        .quick-link a {
+          text-decoration: none;
+          white-space: nowrap;
+          color: $blue-content-1;
+        }
+      }
+
+      &__interact-email {
+        max-width: 347px;
+
+        @include respond-to("huge") {
+          flex: 2;
+          max-width: unset;
+        }
+
+        @include respond-to("medium") {
+          @include flex-layout(column);
+          text-align: center;
+        }
+
+        .subscribe {
+          display: flex;
+          margin-top: 20px;
+
+          @include respond-to("small") {
+            justify-content: center;
+          }
+
+          &__input {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid;
+            border-radius: 8px 0px 0px 8px;
+            max-width: 246px;
+            height: 56px;
+            padding: 0px 16px;
+
+            @include respond-to("small") {
+              padding: 10px 16px;
+            }
+          }
+
+          .email-icon {
+            width: 24px;
+            height: 24px;
+          }
+
+          .email-input {
+            outline: 0;
+            border: 0;
+            width: 100%;
+          }
+
+          &__btn {
+            border-radius: 0 8px 8px 0;
+            width: 101px;
+            font-size: convertToRem(14);
+            font-family: "Inter", sans-serif;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
+  &__supper-footer {
+    @include flex-layout(row, space-between);
+    border-top: 1px solid $grey-border;
+    padding: 20px 150px;
+    opacity: 0.7;
+
+    @include respond-to("huge") {
+      padding: 20px;
+    }
+
+    @include respond-to("medium") {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @include respond-to("small") {
+      flex-direction: column-reverse;
+      gap: 24px;
+    }
+
+    .left-text {
+      color: $blue-content-1;
+      @extend %blur-small-text;
+      white-space: nowrap;
+    }
+
+    .right-text {
+      @include flex-layout;
+      margin-bottom: 0;
+      padding-left: 0;
+      gap: 24px;
+      list-style: none;
+
+      @include respond-to("small") {
+        flex-direction: column-reverse;
+        align-items: center;
+      }
+
+      .policy {
+        .content-text {
+          @extend .left-text;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

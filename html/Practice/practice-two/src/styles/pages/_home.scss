@@ -1,0 +1,340 @@
+/* body */
+.body {
+  @include flex-layout(column);
+  padding: 0;
+}
+
+/* section 1 - hero-banner*/
+.hero-banner {
+  @include flex-layout;
+  margin-top: 85px;
+  min-height: 560px;
+  background-image: url(../assets/img/background_image_hero_banner@3x.png);
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
+    background-image: url(../assets/img/background_image_hero_banner@2x.png);
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 3),
+  (min-resolution: 288dpi) {
+    background-image: url(../assets/img/background_image_hero_banner@1x.png);
+  }
+
+  &__content {
+    @extend %flex-col;
+    gap: 56px;
+    margin-left: 150px;
+    width: 100%;
+
+    @include respond-to("large") {
+      margin-left: 20px;
+    }
+
+    .content-text {
+      @extend %flex-col;
+      gap: 8px;
+
+      &__heading {
+        @extend %big-heading;
+        color: $black-primary-content;
+      }
+
+      &__adv {
+        font-size: convertToRem(20);
+        font-weight: 400;
+        color: $grey-content-1;
+      }
+    }
+
+    .show-now-btn {
+      width: 220px;
+
+      img {
+        margin-left: 12px;
+      }
+    }
+  }
+}
+
+/* section 2 - strength-points */
+.strength-points {
+  @include flex-layout(column);
+  margin: 50px 0;
+  gap: 80px;
+
+  &__abilities {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    gap: 20px;
+
+    @include respond-to("huge") {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__img {
+      width: 100%;
+      max-width: 278px;
+      max-height: 160px;
+    }
+  }
+
+  &__products {
+    @include flex-layout;
+    gap: 10px;
+    width: 100%;
+
+    @include respond-to("huge") {
+      flex-direction: column;
+    }
+
+    .content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 584.5px;
+      height: 273px;
+      padding: 18px 0;
+      background-repeat: no-repeat;
+
+      .content-text {
+        position: relative;
+        z-index: 2;
+        margin-left: 16px;
+        width: 55%;
+
+        @include respond-to("medium") {
+          width: 100%;
+        }
+
+        &__title {
+          @extend %big-heading;
+        }
+
+        &__title {
+          white-space: nowrap;
+        }
+
+        &__adv {
+          font-size: 1rem;
+          line-height: convertToRem(27);
+          font-weight: 500;
+        }
+
+        &__btn {
+          margin-top: 36px;
+          width: 160px;
+        }
+      }
+
+      .mouthwash-bottle-img {
+        z-index: 1;
+        max-width: 277px;
+      }
+
+      .hightlight-img {
+        max-width: 366px;
+      }
+
+      .bundle-img {
+        max-width: 548px;
+      }
+
+      .mouthwash-bottle-img,
+      .hightlight-img,
+      .bundle-img {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .content:nth-child(1) {
+      background-image: url(../assets/img/background_mouthwash.svg);
+      color: #fff;
+
+      .content-text {
+        &__title {
+          color: #fff;
+        }
+
+        &__btn {
+          background-color: $green-secondary-color;
+
+          &:hover {
+            background-color: $green-primary-color;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    .content:nth-child(2) {
+      background-image: url(../assets/img/background_bundle.svg);
+    }
+  }
+}
+
+/* section 3 - trending product */
+.trending-products {
+  @include flex-layout(column);
+  margin: 100px 0;
+
+  .display-products {
+    @include flex-layout;
+    gap: 4px;
+    margin: 60px 0;
+    width: 100%;
+    padding: unset;
+
+    .btn {
+      @include respond-to("tiny") {
+        padding: unset;
+      }
+    }
+
+    .list-products {
+      display: flex;
+      justify-content: flex-start;
+      gap: 20px;
+      overflow: hidden;
+
+      @include respond-to("huge") {
+        max-width: 568px;
+      }
+
+      @include respond-to("medium") {
+        max-width: 340px;
+      }
+    }
+  }
+}
+
+/* section 4 - promotional-banner */
+.promotional-banner {
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  margin-bottom: 100px;
+  border-radius: 24px;
+  min-height: 444.38px;
+  padding: 0;
+  background-size: cover;
+
+  @include respond-to("medium") {
+    flex-direction: column;
+    border-radius: unset;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1185px;
+  }
+
+  &__product {
+    width: 50%;
+
+    @include respond-to("medium") {
+      transform: scale(1.1);
+      width: 100%;
+    }
+
+    .product-img {
+      width: 100%;
+      min-height: 320px;
+      height: 100%;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    z-index: 1;
+    @extend %flex-col;
+    gap: 32.92px;
+    border-radius: 0 24px 24px 0;
+    padding: 20px 20px 40px;
+    max-width: 52%;
+    background-color: $blue-background;
+
+    @include respond-to("medium") {
+      align-items: center;
+      border-radius: unset;
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .content-text {
+      @extend %flex-col;
+      gap: 13.17px;
+      margin-top: 53px;
+
+      @include respond-to("huge") {
+        margin-top: 0;
+      }
+
+      &__title {
+        font-size: convertToRem(36);
+        line-height: convertToRem(54);
+        font-weight: 700;
+        color: #000;
+      }
+
+      &__description {
+        font-size: convertToRem(18);
+        line-height: convertToRem(27);
+        font-weight: 400;
+        color: #000;
+      }
+    }
+
+    .shop-now-btn {
+      width: 180px;
+    }
+  }
+}
+
+/* section 5 - testimonials */
+.testimonials {
+  @include flex-layout(column, space-between);
+  gap: 80px;
+  margin-top: 100px;
+  padding: 80px 0;
+  background-color: $blue-background;
+
+  @include respond-to("medium") {
+    align-items: unset;
+  }
+
+  .slider {
+    @include flex-layout(column);
+    gap: 60px;
+
+    &__content {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 16px;
+      overflow: hidden;
+      padding: 20px 0;
+
+      @media (min-width: 1200) {
+        max-width: 1185px;
+      }
+
+      @include respond-to("huge") {
+        width: 768px;
+      }
+
+      @include respond-to("medium") {
+        width: 363px;
+      }
+    }
+  }
+}
