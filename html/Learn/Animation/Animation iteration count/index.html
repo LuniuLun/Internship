@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @keyframes example {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(300px);
+        }
+      }
+
+      .once {
+        animation: example 2s ease-in-out 1;
+      }
+
+      .twice {
+        animation: example 2s ease-in-out 2;
+      }
+
+      .infinite {
+        animation: example 2s ease-in-out infinite;
+      }
+
+      .inherit {
+        animation: example 2s ease-in-out;
+        animation-iteration-count: inherit;
+      }
+
+      .parent {
+        animation-iteration-count: 3;
+      }
+
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        width: 100px;
+        height: 70px;
+        background-color: red;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box once">1 time</div>
+    <div class="box twice">2 times</div>
+    <div class="box infinite">Infinity</div>
+    <div class="parent">
+      <div class="box inherit">Inherit</div>
+    </div>
+  </body>
+</html>

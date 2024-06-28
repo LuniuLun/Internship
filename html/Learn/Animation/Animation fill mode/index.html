@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        padding: 50px;
+      }
+      @keyframes rotateExample {
+        0% {
+          transform: rotate(0deg);
+          background-color: red;
+        }
+        100% {
+          transform: rotate(340deg);
+          background-color: blue;
+        }
+      }
+
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        width: 100px;
+        height: 70px; 
+        background-color: green;
+        color: #fff;
+        transform: rotate(30deg);
+        animation: rotateExample 3s;
+      }
+
+      .forwards {
+        animation-fill-mode: forwards;
+      }
+
+      .backwards {
+        animation-fill-mode: backwards;
+      }
+
+      .both {
+        animation-fill-mode: both;
+      }
+
+      .none {
+        animation-fill-mode: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box forwards">Forwards</div>
+    <div class="box backwards">Backwards</div>
+    <div class="box both">Both</div>
+    <div class="box none">None</div>
+  </body>
+</html>

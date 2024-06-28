@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @keyframes example {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(300px);
+        }
+      }
+
+      .ease {
+        animation: example 2s ease infinite;
+      }
+
+      .linear {
+        animation: example 2s linear infinite;
+      }
+
+      .ease-in {
+        animation: example 2s ease-in infinite;
+      }
+
+      .ease-out {
+        animation: example 2s ease-out infinite;
+      }
+
+      .ease-in-out {
+        animation: example 2s ease-in-out infinite;
+      }
+
+      .cubic-bezier {
+        animation: example 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+      }
+
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        width: 100px;
+        height: 70px;
+        background-color: red;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box ease">ease</div>
+    <div class="box linear">linear</div>
+    <div class="box ease-in">ease-in</div>
+    <div class="box ease-out">ease-out</div>
+    <div class="box ease-in-out">ease-in-out</div>
+    <div class="box cubic-bezier">cubic-bezier</div>
+  </body>
+</html>
