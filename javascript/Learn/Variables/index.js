@@ -16,9 +16,6 @@ if (true) {
 }
 console.log(varVariable); // 'Inside block' (no block scope)
 
-
-
-
 // LET
 try {
   console.log(letVariable); // ReferenceError: Cannot access 'letVariable' before initialization
@@ -40,9 +37,6 @@ if (true) {
   console.log(letVariable); // 'Inside block'
 }
 console.log(letVariable); // 'This is a let variable' (block scope)
-
-
-
 
 // CONST
 try {
@@ -84,3 +78,16 @@ try {
 } catch (e) {
   console.log(e.message);
 }
+
+// OBJECT
+const car = {
+  brand: {
+    name: "Ford",
+  },
+  color: "blue",
+};
+
+console.log(car.brand.name);
+console.log(car["brand"]["name"]);
+console.log(car.brand["name"]);
+console.log(car["brand"].name);
