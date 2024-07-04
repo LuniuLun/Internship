@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body * {
+        margin: 10px;
+        border: 1px solid blue;
+      }
+    </style>
+  </head>
+  <body onclick="alert(`the bubbling doesn't reach here`)">
+    <button onclick="event.stopPropagation()">Click me</button>
+  </body>
+  <script src="./index.js"></script>
+</html>
