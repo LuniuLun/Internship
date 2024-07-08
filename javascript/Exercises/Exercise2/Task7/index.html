@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Change the content of a cell</title>
+    <style type="text/css">
+      body {
+        margin: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="myTable" border="1"></table>
+    <form>
+      <input type="button" onclick="createTable()" value="Create the table" />
+    </form>
+  </body>
+  <script>
+    let currentRow = 1;
+    function createTable() {
+      const myTable = document.getElementById("myTable");
+      const rn = window.prompt("Number row: ", 1);
+      const cn = window.prompt("Number column: ", 1);
+      for (let i = 0; i < parseInt(rn); i++) {
+        const trEle = myTable.insertRow(i);
+        for (let j = 0; j < parseInt(cn); j++) {
+          const tdEle = trEle.insertCell(j);
+          tdEle.innerText = `Row ${currentRow} - column ${j + 1}`;
+        }
+        currentRow++;
+      }
+    }
+  </script>
+</html>
