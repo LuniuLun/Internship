@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Write a JavaScript program to set paragraph background color.</p>
+    <button onclick="setBackground()">Set background</button>
+  </body>
+  <script>
+    function setBackground() {
+      const pEle = document.getElementsByTagName("p");
+      pEle[0].style.backgroundColor = "red";
+    }
+  </script>
+</html>
