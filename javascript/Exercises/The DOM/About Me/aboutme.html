@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>About Me</title>
+  </head>
+  <style>
+    .listitem {
+      color: red;
+    }
+  </style>
+  <body>
+    <h1>About Me</h1>
+
+    <ul>
+      <li>Nickname: <span id="nickname"></span></li>
+      <li>Favorites: <span id="favorites"></span></li>
+      <li>Hometown: <span id="hometown"></span></li>
+    </ul>
+  </body>
+  <script>
+    document.body.style.fontFamily = "Arial, sans-serif";
+    document.getElementById("nickname").innerText = "Duc Van";
+    document.getElementById("favorites").innerText = "Football";
+    document.getElementById("hometown").innerText = "79 Duong Ba Cung";
+
+    let liItems = document.getElementsByTagName("li");
+    for (let i = 0; i < liItems.length; i++) {
+      liItems[i].className = "listitem";
+    }
+
+    let myPic = document.createElement("img");
+    myPic.src =
+      "https://scontent.fdad3-4.fna.fbcdn.net/v/t39.30808-1/447016137_1001691431389095_6919366091388432717_n.jpg?stp=c0.53.200.200a_dst-jpg_p200x200&_nc_cat=100&ccb=1-7&_nc_sid=0ecb9b&_nc_eui2=AeGAL-t15aykwnfeoUJ7mQqPg68DcCtHiCGDrwNwK0eIIRqQQL0bvSy8EzBY9FfEYGz2RGNqH-5X261Y890RWTOn&_nc_ohc=bRO0tNI_J3YQ7kNvgFC_nsZ&_nc_ht=scontent.fdad3-4.fna&oh=00_AYBdVTxjLT5656VxRJlv60egJ26udnA7uf5PeW3ihCkj-g&oe=66913C67";
+    document.body.appendChild(myPic);
+  </script>
+</html>

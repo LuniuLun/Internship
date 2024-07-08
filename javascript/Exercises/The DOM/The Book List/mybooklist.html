@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>My Book List</h1>
+  </body>
+  <script>
+    let books = [
+      {
+        title: "The Design of EveryDay Things",
+        img: "http://ecx.images-amazon.com/images/I/41j2ODGkJDL._AA115_.jpg",
+        author: "Don Norman",
+        alreadyRead: false,
+      },
+      {
+        title: "The Most Human Human",
+        img: "http://ecx.images-amazon.com/images/I/41Z56GwEv9L._AA115_.jpg",
+        author: "Brian Christian",
+        alreadyRead: true,
+      },
+    ];
+    let bookList = document.createElement("ul");
+
+    books.map((book) => {
+      let bookItem = document.createElement("li");
+      let bookImg = document.createElement("img");
+      let bookEle = document.createElement("p");
+
+      bookImg.src = book.img;
+      bookEle.innerText = `${book.title} - by ${book.author}`;
+
+      bookItem.appendChild(bookImg);
+      bookItem.appendChild(bookEle);
+      bookList.appendChild(bookItem);
+    });
+
+    document.body.appendChild(bookList);
+  </script>
+</html>
