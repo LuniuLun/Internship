@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Change the content of a cell</title>
+  </head>
+  <body>
+    <table id="myTable" border="1">
+      <tr>
+        <td>Row1 cell1</td>
+        <td>Row1 cell2</td>
+      </tr>
+      <tr>
+        <td>Row2 cell1</td>
+        <td>Row2 cell2</td>
+      </tr>
+      <tr>
+        <td>Row3 cell1</td>
+        <td>Row3 cell2</td>
+      </tr>
+    </table>
+    <form>
+      <input type="button" onclick="changeContent()" value="Change content" />
+    </form>
+  </body>
+  <script>
+    function changeContent() {
+      // Prompting the user to input the row number
+      rn = window.prompt("Input the Row number(0,1,2)", "0");
+      // Prompting the user to input the column number
+      cn = window.prompt("Input the Column number(0,1)", "0");
+      // Prompting the user to input the cell content
+      content = window.prompt("Input the Cell content");
+      var updateRow = document.getElementById("myTable").rows[parseInt(rn)].cells;
+      updateRow[parseInt(cn)].innerHTML = content;
+    }
+  </script>
+</html>
