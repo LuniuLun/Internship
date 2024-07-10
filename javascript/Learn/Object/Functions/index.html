@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // Object.keys(obj): Trả về một mảng chứa tất cả các khóa (key) của đối tượng obj.
+    const obj1 = { a: 1, b: 2, c: 3 };
+    console.log(Object.keys(obj1)); // ["a", "b", "c"]
+
+    // Object.values(obj): Trả về một mảng chứa tất cả các giá trị (value) của đối tượng obj.
+    console.log(Object.values(obj1)); // [1, 2, 3]
+
+    // Object.entries(obj): Trả về một mảng các cặp [key, value] của đối tượng obj.
+    console.log(Object.entries(obj1)); // [["a", 1], ["b", 2], ["c", 3]]
+
+    // Object.assign(target, ...sources): Sao chép các thuộc tính của một hoặc nhiều đối tượng nguồn (source) vào đối tượng đích (target).
+    const target = { a: 1, b: 2 };
+    const source = { b: 3, c: 4 };
+    const result = Object.assign(target, source);
+    console.log(result); // { a: 1, b: 3, c: 4 }
+
+    // Object.freeze(obj): Đóng băng đối tượng obj, ngăn chặn mọi thay đổi về cấu trúc và giá trị của nó.
+    const obj2 = { a: 1 };
+    Object.freeze(obj2);
+    obj2.a = 2; // Không có tác dụng vì đối tượng đã bị đóng băng
+    console.log(obj2.a); // 1
+
+    // Object.seal(obj): Niêm phong đối tượng obj, ngăn chặn việc thêm hoặc xóa thuộc tính nhưng cho phép sửa đổi các thuộc tính hiện tại.
+    const obj3 = { a: 1 };
+    Object.seal(obj3);
+    obj3.a = 2; // Thay đổi giá trị của thuộc tính hiện có
+    delete obj3.a; // Không có tác dụng vì đối tượng đã bị niêm phong
+    console.log(obj3.a); // 2
+
+    // Object.create(proto, [propertiesObject]): Tạo một đối tượng mới với đối tượng nguyên mẫu (proto) được chỉ định và các thuộc tính tùy chọn.
+    const proto = { a: 1 };
+    const obj4 = Object.create(proto);
+    console.log(obj4.a); // 1
+
+    // Object.defineProperty(obj, prop, descriptor): Định nghĩa hoặc sửa đổi một thuộc tính của đối tượng obj.
+    const obj5 = {};
+    Object.defineProperty(obj5, "a", {
+      value: 1,
+      writable: false,
+    });
+    obj5.a = 2; // Không có tác dụng vì thuộc tính 'a' không cho phép ghi
+    console.log(obj5.a); // 1
+
+    // Object.defineProperties(obj, props): Định nghĩa hoặc sửa đổi nhiều thuộc tính của đối tượng obj.
+    const obj6 = {};
+    Object.defineProperties(obj6, {
+      a: { value: 1, writable: true },
+      b: { value: 2, writable: false },
+    });
+    obj6.a = 3;
+    obj6.b = 4; // Không có tác dụng vì thuộc tính 'b' không cho phép ghi
+    console.log(obj6.a); // 3
+    console.log(obj6.b); // 2
+
+    // Object.getOwnPropertyDescriptor(obj, prop): Lấy mô tả của thuộc tính prop của đối tượng obj.
+    const obj7 = { a: 1 };
+    const descriptor = Object.getOwnPropertyDescriptor(obj7, "a");
+    console.log(descriptor); // { value: 1, writable: true, enumerable: true, configurable: true }
+
+    // Object.getOwnPropertyNames(obj): Trả về một mảng chứa tất cả các thuộc tính (kể cả không enumerable) của đối tượng obj.
+    const obj8 = { a: 1, b: 2 };
+    console.log(Object.getOwnPropertyNames(obj8)); // ["a", "b"]
+
+    // Object.getPrototypeOf(obj): Trả về nguyên mẫu (prototype) của đối tượng obj.
+    const obj9 = {};
+    const proto2 = Object.getPrototypeOf(obj9);
+    console.log(proto2); // {} (tùy thuộc vào môi trường, thường là Object.prototype)
+
+    // Object.is(value1, value2): So sánh xem hai giá trị value1 và value2 có bằng nhau hay không. Đây là so sánh chính xác hơn so với ===.
+    console.log(Object.is(0, -0)); // false
+    console.log(Object.is(NaN, NaN)); // true
+  </script>
+</html>
