@@ -34,7 +34,7 @@
         },
       ];
       const img = document.createElement("img");
-      let temp = Math.round(Math.random(0) * 2);
+      let temp = Math.round((Math.random() * 2) + 0);
       img.src = srcArr[temp].src;
       img.height = srcArr[temp].height;
       img.width = srcArr[temp].width;
