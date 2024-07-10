@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>String Methods and Toggle Case</title>
+  </head>
+  <body>
+    <div id="main"></div>
+
+    <script>
+      // String methods examples
+      const str = "Hello";
+
+      // charAt(index)
+      console.log("charAt(0):", str.charAt(0)); // "H"
+
+      // charCodeAt(index)
+      console.log("charCodeAt(0):", str.charCodeAt(0)); // 72
+
+      // concat(string2, string3, ..., stringN)
+      const str1 = "Hello";
+      const str2 = "World";
+      console.log("concat:", str1.concat(" ", str2)); // "Hello World"
+
+      // includes(searchString, position)
+      console.log("includes('ell'):", str.includes("ell")); // true
+
+      // endsWith(searchString, length)
+      console.log("endsWith('lo'):", str.endsWith("lo")); // true
+
+      // indexOf(searchValue, fromIndex)
+      console.log("indexOf('l'):", str.indexOf("l")); // 2
+
+      // lastIndexOf(searchValue, fromIndex)
+      console.log("lastIndexOf('l'):", str.lastIndexOf("l")); // 3
+
+      // match(regex)
+      const regex = /[A-Z]/g;
+      console.log("match(/[A-Z]/g):", str.match(regex)); // ["H"]
+
+      // repeat(count)
+      console.log("repeat(3):", str.repeat(3)); // "HelloHelloHello"
+
+      // replace(searchValue, newValue)
+      console.log("replace('l', 'x'):", str.replace("l", "x")); // "Hexlo"
+
+      // search(regex)
+      console.log("search(/[A-Z]/):", str.search(/[A-Z]/)); // 0
+
+      // slice(beginIndex, endIndex)
+      console.log("slice(1, 4):", str.slice(1, 4)); // "ell"
+
+      // split(separator, limit)
+      console.log("split(''):", str.split("")); // ["H", "e", "l", "l", "o"]
+
+      // startsWith(searchString, position)
+      console.log("startsWith('He'):", str.startsWith("He")); // true
+
+      // substring(startIndex, endIndex)
+      console.log("substring(1, 4):", str.substring(1, 4)); // "ell"
+
+      // toLowerCase()
+      console.log("toLowerCase():", str.toLowerCase()); // "hello"
+
+      // toUpperCase()
+      console.log("toUpperCase():", str.toUpperCase()); // "HELLO"
+
+      // trim()
+      const strWithSpaces = "  Hello  ";
+      console.log("trim():", strWithSpaces.trim()); // "Hello"
+
+      // trimStart() or trimLeft()
+      console.log("trimStart():", strWithSpaces.trimStart()); // "Hello  "
+
+      // trimEnd() or trimRight()
+      console.log("trimEnd():", strWithSpaces.trimEnd()); // "  Hello"
+
+      // Toggle case function
+      function toggleCase(char) {
+        const ascii = char.charCodeAt(0);
+
+        // Chuyển từ chữ hoa sang chữ thường
+        if (ascii >= 65 && ascii <= 90) {
+          return String.fromCharCode(ascii + 32);
+        }
+
+        // Chuyển từ chữ thường sang chữ hoa
+        if (ascii >= 97 && ascii <= 122) {
+          return String.fromCharCode(ascii - 32);
+        }
+
+        // Nếu không phải chữ cái, trả về ký tự gốc
+        return char;
+      }
+
+      // Ví dụ sử dụng
+      console.log("toggleCase('A'):", toggleCase("A")); // 'a'
+      console.log("toggleCase('a'):", toggleCase("a")); // 'A'
+      console.log("toggleCase('Z'):", toggleCase("Z")); // 'z'
+      console.log("toggleCase('z'):", toggleCase("z")); // 'Z'
+      console.log("toggleCase('1'):", toggleCase("1")); // '1' (không phải chữ cái, trả về ký tự gốc)
+    </script>
+  </body>
+</html>
