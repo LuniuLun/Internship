@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main"></div>
+  </body>
+  <script>
+    function camelToTitleCase(str) {
+      str = str.replace(str[0], String.fromCharCode(str[0].charCodeAt(0) - 32));
+
+      let arr = str.split("");
+      for (let i = 0; i < arr.length - 1; i++) {
+        const ascii = arr[i + 1].charCodeAt();
+        if (ascii >= 65 && ascii <= 90) {
+          arr.splice(i + 1, 0, " ");
+          i++;
+        }
+      }
+
+      return arr.join("");
+    }
+
+    function createTable(arr, element) {
+      const keys = Object.keys(arr[0]);
+      const tableEle = document.createElement("table");
+      tableEle.border = 1;
+      const theadEle = document.createElement("thead");
+      for (const key of keys) {
+        const tdEle = document.createElement("td");
+        tdEle.append(camelToTitleCase(key));
+        theadEle.appendChild(tdEle);
+      }
+
+      const tbodyEle = document.createElement("tbody");
+      for (const item of arr) {
+        const trEle = document.createElement("tr");
+        for (const key of keys) {
+          const tdEle = document.createElement("td");
+          tdEle.append(item[key]);
+          trEle.appendChild(tdEle);
+        }
+        tbodyEle.appendChild(trEle);
+      }
+
+      tableEle.appendChild(theadEle);
+      tableEle.appendChild(tbodyEle);
+      element.appendChild(tableEle);
+    }
+
+    const languages = [
+      { name: "JavaScript", releaseDate: 1995, fileExtension: ".js", creator: "Brendan Eich" },
+      { name: "Java", releaseDate: 1995, fileExtension: ".java", creator: "James Gosling" },
+      { name: "PHP", releaseDate: 1995, fileExtension: ".php", creator: "Rasmus Lerdorf" },
+      { name: "C++", releaseDate: 1985, fileExtension: ".cpp", creator: "Bjarne Stroustrup" },
+    ];
+
+    const mainElement = document.getElementById("main");
+    createTable(languages, mainElement);
+  </script>
+</html>
