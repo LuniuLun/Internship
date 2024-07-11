@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const note = {
+      id: 1,
+      title: "My first note",
+      date: "01/01/1970",
+      author: {
+        firstName: "Sherlock",
+        lastName: "Holmes",
+      },
+    };
+    // Destructure nested properties
+    const {
+      id,
+      title,
+      date,
+      author: { firstName, lastName },
+    } = note;
+    console.log(`${firstName} ${lastName}`); // Sherlock Holmes
+    // Access object and nested values
+    const {
+      author,
+      author: { firstName_1, lastName_1 },
+    } = note;
+    console.log(author); // {firstName: 'Sherlock', lastName: 'Holmes'}
+
+    // Get length of string
+    const { length } = "A string";
+    console.log({ length }); // {length: 8}
+
+    // Create a nested array
+    const nestedArray = [1, 2, [3, 4], 5];
+    // Destructure nested items
+    const [one, two, [three, four], five] = nestedArray;
+    console.log(one, two, three, four, five); // 1 2 3 4 5
+
+    console.log(Object.entries(note));
+    // Using forEach
+    Object.entries(note).forEach(([key, value]) => {
+      console.log(`${key}: ${value}`);
+    });
+    // Using a for loop
+    for (let [key, value] of Object.entries(note)) {
+      console.log(`${key}: ${value}`);
+    }
+    // id: 1
+    // index.html:84 title: My first note
+    // index.html:84 date: 01/01/1970
+    // index.html:84 author: [object Object]
+  </script>
+</html>

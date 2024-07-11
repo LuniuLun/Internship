@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function restTest(one, two, ...args) {
+      console.log(one); // 1
+      console.log(two); // 2
+      console.log(args); // [3, 4, 5, 6]
+    }
+    restTest(1, 2, 3, 4, 5, 6);
+
+    const { isLoggedIn, ...rest } = { id: 1, name: "Ben", isLoggedIn: true };
+    console.log(isLoggedIn); // true
+    console.log(rest); // {id: 1, name: "Ben"}
+  </script>
+</html>

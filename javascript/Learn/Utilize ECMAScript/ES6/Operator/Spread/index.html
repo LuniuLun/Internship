@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+        // Create an Array
+        const tools = ["hammer", "screwdriver"];
+        const otherTools = ["wrench", "saw"];
+        // Unpack the tools Array into the allTools Array
+        const allTools = [...tools, ...otherTools];
+        console.log(allTools); // ["hammer", "screwdriver", "wrench", "saw"]
+
+        // Array of users
+        const users = [
+          { id: 1, name: "Ben" },
+          { id: 2, name: "Leslie" },
+        ];
+        const updatedUsers = [...users, newUser];
+        console.log(users);
+        // [{id: 1, name: "Ben"}
+        // {id: 2, name: "Leslie"}]
+        console.log(updatedUsers);
+        // [{id: 1, name: "Ben"}
+        // {id: 2, name: "Leslie"}
+        // {id: 3, name: "Ron"}]
+
+        // String
+        const string = "hello";
+        const stringArray = [...string];
+        console.log(stringArray); // ["h", "e", "l", "l", "o"]
+
+        // Object
+        const user = {
+          id: 3,
+          name: "Ron",
+          organization: {
+            name: "Parks & Recreation",
+            city: "Pawnee",
+          },
+        };
+        const updatedUser = {
+          ...user,
+          organization: {
+            ...user.organization,
+            position: "Director",
+          },
+        };
+        console.log(updatedUser);
+        // id: 3
+        // name: "Ron"
+        // organization: {name: "Parks & Recreation", city: "Pawnee", position: "Director"}
+  </script>
+</html>
