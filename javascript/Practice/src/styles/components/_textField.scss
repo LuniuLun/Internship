@@ -1,0 +1,8 @@
+.textField {
+  @extend %small-text;
+  outline: none;
+  border: 0;
+  width: 100%;
+  padding: 0;
+  background-color: transparent;
+}

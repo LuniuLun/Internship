@@ -1,0 +1,7 @@
+%small-text {
+  @include text-styles(convertToRem(14), convertToRem(19.6), 400, $white-text-2);
+}
+
+%medium-text {
+  @include text-styles(convertToRem(20), convertToRem(28), 600);
+}

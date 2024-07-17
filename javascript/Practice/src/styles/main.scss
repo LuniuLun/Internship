@@ -1,4 +1,13 @@
 @import 'utilities/mixins';
+@import 'utilities/variables';
+@import 'utilities/functions';
+@import 'utilities/placeholders';
 
 @import 'base/normalize';
 @import 'base/typography';
+
+@import 'components/textField';
+
+@import 'layout/header';
+
+@import 'pages/homePage';

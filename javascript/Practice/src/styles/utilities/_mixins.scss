@@ -35,8 +35,9 @@ $breakpoints: (
   }
 }
 
-@mixin text-styles($font-size, $line-height, $font-weight: 500) {
+@mixin text-styles($font-size, $line-height, $font-weight: 500, $color: #FFF) {
   font-size: $font-size;
   line-height: $line-height;
   font-weight: $font-weight;
+  color: $color;
 }

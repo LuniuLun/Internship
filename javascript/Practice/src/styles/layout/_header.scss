@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid $dark-border-1;
+  width: 100%;
+}
+
+.title {
+  @extend %medium-text;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  border: 1px solid $dark-border-1;
+  border-radius: 8px;
+  width: 342px;
+  height: 48px;
+  padding: 14px;
+  background-color: $dark-form-bg-1;
+
+  &__icon {}
+
+  &__text-field {
+    margin-left: 12px;
+  }
+}
