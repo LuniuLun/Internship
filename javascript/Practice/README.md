@@ -3,7 +3,7 @@
 
 ## Overview
  - Design: [Food management](https://www.figma.com/design/jxChNg9bwxv11ihSG9h28C/Foods-Mangement-(Copy)?node-id=512-5279&t=rCCA3PgjHdeiqfVL-0)
- - Timeline: 40 hours (2024/07/17 - 2024/07/25)
+ - Timeline: 56 hours (2024/07/17 - 2024/07/25)
 
 ## Team size:
  - One developer
