@@ -1,5 +1,4 @@
 .wrapper-page {
-  height: 100vh;
   background-color: $dark-bg-1;
   padding: 40px;
 }
@@ -9,4 +8,15 @@
   height: 100%;
   padding: 75px 0;
   background-color: $dark-bg-2;
+}
+
+.body {
+  margin: 16px 0;
+  padding: 0 40px;
+}
+
+.wrapper-products {
+  @include flex-layout(row-reverse, center, start);
+  flex-wrap: wrap;
+  gap: 16px;
 }
