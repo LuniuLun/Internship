@@ -1,0 +1,46 @@
+.product {
+  align-self: flex-start;
+  @include flex-layout(column);
+  gap: 16px;
+  border: 1px solid $dark-border-1;
+  border-radius: 8px;
+  height: 100%;
+  width: 220px;
+
+  &__img {
+    margin-top: 20px;
+    width: 127px;
+    aspect-ratio: 1;
+  }
+
+  &__description {
+    @include flex-layout(column);
+    gap: 8px;
+    margin: 0 40px;
+
+    .item {
+      text-align: center;
+      margin: 0;
+      @extend %bold-normal-text;
+
+      &--thin {
+        @include flex-layout;
+        gap: 6px;
+        @extend %normal-text;
+      }
+    }
+  }
+
+  &__btn {
+    @include flex-layout;
+    gap: 8px;
+    border: 0;
+    width: 100%;
+    padding: 16px 0;
+    @extend %semi-normal-text;
+    color: $orange-color-1;
+    background-color: rgba(234, 124, 105, 0.24);
+  }
+}
+
+.product--dashed {}
