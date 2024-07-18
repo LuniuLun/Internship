@@ -10,11 +10,10 @@
   @include flex-layout(row, start, center);
   gap: 10px;
   border: none;
-  border-radius: none;
   width: 100%;
   height: 100%;
   padding: 0;
-  @extend %bold-small-text;
+  @extend %bold-normal-text;
   background-color: transparent;
 }
 
