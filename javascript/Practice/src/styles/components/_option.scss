@@ -1,0 +1,25 @@
+.wrapper-options {
+  border: 1px solid $dark-border-1;
+  border-radius: 8px;
+  width: 162px;
+  height: 49px;
+  padding: 14px;
+}
+
+.btn-toggle {
+  @include flex-layout(row, start, center);
+  gap: 10px;
+  border: none;
+  border-radius: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  @extend %bold-small-text;
+  background-color: transparent;
+}
+
+.option {
+  display: none;
+
+  &__item {}
+}

@@ -3,10 +3,16 @@
   justify-content: space-between;
   border-bottom: 1px solid $dark-border-1;
   width: 100%;
+  padding: 0 40px 20px;
 }
 
 .title {
   @extend %medium-text;
+}
+
+.filter {
+  @include flex-layout(column, center, end);
+  gap: 38px;
 }
 
 .search-form {
@@ -19,9 +25,11 @@
   padding: 14px;
   background-color: $dark-form-bg-1;
 
-  &__icon {}
-
   &__text-field {
     margin-left: 12px;
   }
+}
+
+.wrapper-option {
+  
 }

@@ -2,6 +2,10 @@
   @include text-styles(convertToRem(14), convertToRem(19.6), 400, $white-text-2);
 }
 
+%bold-small-text {
+  @include text-styles(convertToRem(14), convertToRem(18.2), 500, $white-text-1);
+}
+
 %medium-text {
   @include text-styles(convertToRem(20), convertToRem(28), 600);
 }
