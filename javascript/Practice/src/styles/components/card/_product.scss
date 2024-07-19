@@ -40,10 +40,13 @@
     padding: 16px 0;
     color: $orange-color-1;
     background-color: rgba(234, 124, 105, 0.24);
+    caret-color: transparent;
   }
 
   &--dashed {
     border: 1px dashed $orange-color-1;
+    caret-color: transparent;
+    cursor: pointer;
 
     .icon {
       &--padded {
