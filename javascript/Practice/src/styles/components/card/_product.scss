@@ -1,11 +1,10 @@
 .product {
-  align-self: flex-start;
   @include flex-layout(column);
   gap: 16px;
   border: 1px solid $dark-border-1;
   border-radius: 8px;
-  height: 100%;
   width: 220px;
+  background-color: $dark-bg-2;
 
   &__img {
     margin-top: 20px;
@@ -19,28 +18,42 @@
     margin: 0 40px;
 
     .item {
+      @extend %bold-normal-text;
       text-align: center;
       margin: 0;
-      @extend %bold-normal-text;
 
       &--thin {
         @include flex-layout;
-        gap: 6px;
         @extend %normal-text;
+        gap: 6px;
       }
     }
   }
 
   &__btn {
     @include flex-layout;
+    @extend %semi-normal-text;
     gap: 8px;
     border: 0;
+    border-radius: 0 0 8px 8px;
     width: 100%;
     padding: 16px 0;
-    @extend %semi-normal-text;
     color: $orange-color-1;
     background-color: rgba(234, 124, 105, 0.24);
   }
-}
 
-.product--dashed {}
+  &--dashed {
+    border: 1px dashed $orange-color-1;
+
+    .icon {
+      &--padded {
+        padding: 14px;
+      }
+    }
+
+    .highlight {
+      @extend %semi-bold-text;
+      color: $orange-color-1;
+    }
+  }
+}
