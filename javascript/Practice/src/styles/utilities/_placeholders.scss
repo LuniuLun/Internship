@@ -10,6 +10,10 @@
   @include text-styles(convertToRem(14), convertToRem(19.6), 400, $white-text-2);
 }
 
-%medium-text {
+%semi-bold-text {
+  @include text-styles(convertToRem(16), convertToRem(22.4), 600);
+}
+
+%large-text {
   @include text-styles(convertToRem(20), convertToRem(28), 600);
 }

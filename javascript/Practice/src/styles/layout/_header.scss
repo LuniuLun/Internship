@@ -7,7 +7,7 @@
 }
 
 .title {
-  @extend %medium-text;
+  @extend %large-text;
 }
 
 .filter {
@@ -30,6 +30,4 @@
   }
 }
 
-.wrapper-option {
-  
-}
+.wrapper-option {}
