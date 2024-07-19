@@ -18,13 +18,13 @@
     margin: 0 40px;
 
     .item {
-      @extend %bold-normal-text;
+      @extend %normal-medium-text;
       text-align: center;
       margin: 0;
 
       &--thin {
         @include flex-layout;
-        @extend %normal-text;
+        @extend %normal-thin-text;
         gap: 6px;
       }
     }
@@ -32,7 +32,7 @@
 
   &__btn {
     @include flex-layout;
-    @extend %semi-normal-text;
+    @extend %normal-semiBold-txtBtn;
     gap: 8px;
     border: 0;
     border-radius: 0 0 8px 8px;
@@ -52,7 +52,7 @@
     }
 
     .highlight {
-      @extend %semi-bold-text;
+      @extend %large-semiBold-text;
       color: $orange-color-1;
     }
   }
