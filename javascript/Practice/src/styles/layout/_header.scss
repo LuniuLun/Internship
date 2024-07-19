@@ -4,6 +4,11 @@
   border-bottom: $dark-thin-border;
   width: 100%;
   padding: 0 78px 20px 42px;
+
+  @include respond-to("medium") {
+    flex-direction: column;
+    padding: 0 42px 20px;
+  }
 }
 
 .title {
@@ -21,6 +26,10 @@
   display: flex;
   align-items: center;
   width: 342px;
+
+  @include respond-to("medium") {
+    width: unset;
+  }
 
   &__icon {
     position: absolute;
