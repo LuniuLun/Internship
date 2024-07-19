@@ -12,7 +12,7 @@
     &:hover {
       background-color: $orange-color-1;
       color: $white-text-1;
-      box-shadow: 0 8 24 0 rgba(234, 124, 137, 0.4);
+      box-shadow: $shadow-hover-btn;
     }
   }
 
@@ -21,7 +21,7 @@
     color: $white-text-2;
 
     &:hover {
-      box-shadow: 0 8 24 0 rgba(234, 124, 137, 0.4);
+      box-shadow: $shadow-hover-btn;
     }
   }
 }
