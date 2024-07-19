@@ -1,7 +1,7 @@
 .product {
   @include flex-layout(column);
   gap: 16px;
-  border: 1px solid $dark-border-1;
+  border: $dark-thin-border;
   border-radius: 8px;
   width: 220px;
   background-color: $dark-bg-2;

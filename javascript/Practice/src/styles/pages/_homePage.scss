@@ -6,13 +6,15 @@
 .content-page {
   border-radius: 8px;
   height: 100%;
-  padding: 75px 0;
+  padding: 75px 0 26px;
   background-color: $dark-bg-2;
 }
 
 .body {
-  margin: 16px 0;
+  margin: 26px 0 0;
   padding: 0 40px;
+  border-bottom: $dark-thin-border;
+  padding-bottom: 94px;
 }
 
 .wrapper-products {
