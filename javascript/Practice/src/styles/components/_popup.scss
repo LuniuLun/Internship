@@ -1,0 +1,19 @@
+.popup {
+  @include flex-layout(column);
+  gap: 30px;
+  border-radius: 16px;
+  width: 478px;
+  padding: 20px 30px;
+  box-shadow: $shadow-hover-btn;
+  background-color: $dark-bg-2;
+
+  &__content {
+    @extend %heading-h1-text;
+    text-align: center;
+  }
+
+  &__action {
+    width: 100%;
+    @include flex-layout(row, space-between, center)
+  }
+}

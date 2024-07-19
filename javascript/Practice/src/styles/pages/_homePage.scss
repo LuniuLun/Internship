@@ -16,16 +16,23 @@
   padding: 0 40px;
   border-bottom: $dark-thin-border;
   padding-bottom: 94px;
+
+  .wrapper-products {
+    @include flex-layout(row, flex-start, stretch);
+    margin-left: 36px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .wrapper-btn {
+    @include flex-layout;
+    margin-top: 40px;
+  }
 }
 
-.wrapper-products {
-  @include flex-layout(row, flex-start, stretch);
-  margin-left: 36px;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.wrapper-btn {
+.wrapper-popup {
   @include flex-layout;
-  margin-top: 40px;
+  position: absolute;
+  inset: 0;
+  background-color: rgba(31, 29, 43, .7);
 }

@@ -18,6 +18,10 @@
   @include text-styles(convertToRem(20), convertToRem(28), 600);
 }
 
+%heading-h1-text {
+  @include text-styles(convertToRem(28), convertToRem(39.2), 600);
+}
+
 %normal-semiBold-txtBtn {
   @include text-styles(convertToRem(14), convertToRem(19.6), 600);
 }
