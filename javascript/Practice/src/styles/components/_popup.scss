@@ -1,10 +1,10 @@
 .popup {
   @include flex-layout(column);
   gap: 30px;
+  box-shadow: $shadow-hover-btn;
   border-radius: 16px;
   width: 478px;
   padding: 20px 30px;
-  box-shadow: $shadow-hover-btn;
   background-color: $dark-bg-2;
 
   &__content {

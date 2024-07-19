@@ -1,8 +1,13 @@
 .text-field {
   @extend %normal-thin-text;
   outline: none;
-  border: 0;
+  border: $dark-thin-border;
+  border-radius: 8px;
   width: 100%;
-  padding: 0;
-  background-color: transparent;
+  padding: 14px;
+  background-color: $dark-form-bg-1;
+
+  &--short {
+    width: 50%;
+  }
 }

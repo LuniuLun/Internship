@@ -30,9 +30,14 @@
   }
 }
 
-.wrapper-popup {
+.wrapper-modal {
   @include flex-layout;
+  display: none;
   position: absolute;
   inset: 0;
   background-color: rgba(31, 29, 43, .7);
+}
+
+.show {
+  display: flex;
 }

@@ -17,17 +17,18 @@
 }
 
 .search-form {
+  position: relative;
   display: flex;
   align-items: center;
-  border: $dark-thin-border;
-  border-radius: 8px;
   width: 342px;
-  height: 48px;
-  padding: 14px;
-  background-color: $dark-form-bg-1;
+
+  &__icon {
+    position: absolute;
+    left: 4%;
+  }
 
   &__text-field {
-    margin-left: 12px;
+    padding-left: 40px;
   }
 }
 
