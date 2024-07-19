@@ -1,0 +1,17 @@
+.message {
+  @include flex-layout;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  display: none;
+  gap: 8px;
+  border-radius: 8px;
+  transform: translateX(-50%);
+  padding: 12px;
+  padding-right: 40;
+  background-color: $green-bg-1;
+
+  &__content {
+    @extend %normal-semiBold-text;
+  }
+}
