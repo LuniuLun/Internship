@@ -64,6 +64,10 @@
     border: 1px dashed $orange-color-1;
     cursor: pointer;
 
+    @include respond-to("small") {
+      height: 315px;
+    }
+
     .icon {
       &--padded {
         padding: 14px;
