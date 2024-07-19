@@ -3,7 +3,7 @@
   gap: 30px;
   box-shadow: $shadow-hover-btn;
   border-radius: 16px;
-  width: 478px;
+  max-width: 478px;
   padding: 20px 30px;
   background-color: $dark-bg-2;
 
@@ -14,6 +14,11 @@
 
   &__action {
     width: 100%;
-    @include flex-layout(row, space-between, center)
+    @include flex-layout(row, space-between, center);
+
+    @include respond-to("small") {
+      flex-direction: column;
+      gap: 20px;
+    }
   }
 }
