@@ -26,5 +26,10 @@
     @include flex-layout(row, space-between);
     width: 100%;
     margin-top: 70px;
+
+    @include respond-to("small") {
+      flex-direction: column;
+      gap: 20px;
+    }
   }
 }
