@@ -1,4 +1,5 @@
 .wrapper-options {
+  position: relative;
   border: $dark-thin-border;
   border-radius: 8px;
   width: 162px;
@@ -15,10 +16,61 @@
   padding: 14px;
   background-color: $dark-bg-2;
   caret-color: transparent;
+
+  &:hover {
+    background-color: $orange-color-1;
+  }
 }
 
-.option {
+.sort-option {
+  @include flex-layout(column);
+  position: absolute;
+  right: 0;
+  top: 124%;
   display: none;
+  width: 200px;
 
-  &__item {}
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: -22px;
+    right: 16px;
+    border-width: 12px;
+    border-style: solid;
+    border-color: transparent transparent $dark-bg-1 transparent;
+  }
+
+  &__item {
+    @extend %normal-medium-text;
+    z-index: 2;
+    width: 100%;
+    padding: 8px 16px;
+    background-color: $dark-bg-1;
+    color: $orange-color-1;
+    caret-color: transparent;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      border-bottom: $dark-thin-border;
+    }
+
+    &:first-child {
+      border-radius: 4px 4px 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 4px 4px;
+    }
+
+    &:hover {
+      background-color: $orange-color-1;
+      color: $white-text-1;
+    }
+  }
+}
+
+
+.show {
+  display: flex;
 }
