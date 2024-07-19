@@ -7,7 +7,7 @@
 }
 
 %normal-thin-text {
-  @include text-styles(convertToRem(14), convertToRem(19.6), 400, $white-text-2);
+  @include text-styles(convertToRem(14), convertToRem(19.6), 400, $white-text-3);
 }
 
 %large-semiBold-text {

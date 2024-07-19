@@ -21,3 +21,8 @@
   flex-wrap: wrap;
   gap: 16px;
 }
+
+.wrapper-btn {
+  @include flex-layout;
+  margin-top: 40px;
+}
