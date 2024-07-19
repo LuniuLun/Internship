@@ -1,6 +1,6 @@
 .wrapper-page {
   background-color: $dark-bg-1;
-  padding: 40px;
+  padding: 20px 18px;
 }
 
 .content-page {
@@ -16,7 +16,8 @@
 }
 
 .wrapper-products {
-  @include flex-layout(row-reverse, center, start);
+  @include flex-layout(row, flex-start, stretch);
+  margin-left: 36px;
   flex-wrap: wrap;
   gap: 16px;
 }
