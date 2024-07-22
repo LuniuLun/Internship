@@ -14,10 +14,10 @@
   </head>
   <body>
     <div class="wrapper-page container-fluid">
-      <div class="content-page container-md">
-        <header class="header">
-          <h1 class="title">Foods Management</h1>
-          <section class="filter">
+      <div class="content-page container-fluid">
+        <header class="header container">
+          <section class="heading">
+            <h1 class="title">Foods Management</h1>
             <form class="search-form">
               <img
                 class="icon search-form__icon"
@@ -30,22 +30,22 @@
                 placeholder="Search for food, coffee, etc.."
               />
             </form>
-            <div class="wrapper-options">
-              <button class="btn-toggle js-btn-toggle">
-                <img
-                  class="icon"
-                  src="./assets/icons/down-arrow.svg"
-                  alt="find-image"
-                />Sort by
-              </button>
-              <div class="sort-option js-sort-option">
-                <span class="sort-option__item">From A to Z</span>
-                <span class="sort-option__item">From Z to A</span>
-              </div>
+          </section>
+          <section class="filter">
+            <button class="btn-toggle js-btn-toggle">
+              <img
+                class="icon"
+                src="./assets/icons/down-arrow.svg"
+                alt="find-image"
+              />Sort by
+            </button>
+            <div class="sort-option js-sort-option">
+              <span class="sort-option__item">From A to Z</span>
+              <span class="sort-option__item">From Z to A</span>
             </div>
           </section>
         </header>
-        <main class="body container-md">
+        <main class="body container">
           <section class="wrapper-products">
             <div class="product product--dashed">
               <img

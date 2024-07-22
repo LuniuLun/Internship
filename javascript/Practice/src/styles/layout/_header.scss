@@ -1,13 +1,26 @@
 .header {
-  display: flex;
-  justify-content: space-between;
+  @include flex-layout(column);
+  gap: 32px;
   border-bottom: $dark-thin-border;
-  width: 100%;
-  padding: 0 78px 20px 42px;
+  width: 1190px;
+  padding-bottom: 26px;
 
   @include respond-to("medium") {
     flex-direction: column;
-    padding: 0 42px 20px;
+  }
+
+  @include respond-to("large") {
+    width: 100%;
+  }
+}
+
+.heading {
+  @include flex-layout(row, space-between);
+  width: 100%;
+
+  @include respond-to("medium") {
+    flex-direction: column;
+    align-items: unset
   }
 }
 
@@ -18,6 +31,7 @@
 
 .filter {
   @include flex-layout(column, center, end);
+  width: 100%;
   gap: 38px;
 }
 
