@@ -1,6 +1,5 @@
-.wrapper-options {
+.filter {
   position: relative;
-  border: $dark-thin-border;
   border-radius: 8px;
   width: 162px;
 }
@@ -9,9 +8,9 @@
   @include flex-layout(row, start, center);
   @extend %normal-medium-text;
   gap: 10px;
-  border: none;
+  border: $dark-thin-border;
   border-radius: 8px;
-  width: 100%;
+  width: 160px;
   padding: 14px;
   background-color: $dark-bg-2;
   caret-color: transparent;
@@ -25,7 +24,7 @@
   @include flex-layout(column);
   position: absolute;
   right: 0;
-  top: 124%;
+  bottom: -166%;
   display: none;
   width: 200px;
 
@@ -67,9 +66,4 @@
       color: $white-text-1;
     }
   }
-}
-
-
-.show {
-  display: flex;
 }
