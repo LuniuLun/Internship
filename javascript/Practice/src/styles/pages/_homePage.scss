@@ -4,6 +4,7 @@
 }
 
 .content-page {
+  @include flex-layout(column);
   position: relative;
   border-radius: 8px;
   height: 100%;
@@ -12,16 +13,17 @@
 }
 
 .body {
+  @include flex-layout(column);
   margin: 26px 0 0;
-  padding: 0 40px;
   border-bottom: $dark-thin-border;
   padding-bottom: 94px;
 
   .wrapper-products {
     @include flex-layout(row, flex-start, stretch);
-    margin-left: 36px;
-    flex-wrap: wrap;
     gap: 16px;
+    flex-wrap: wrap;
+    max-width: 1190px;
+    margin-left: 36px;
 
     @include respond-to("extra-large") {
       justify-content: center;
