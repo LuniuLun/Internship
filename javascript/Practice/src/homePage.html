@@ -46,40 +46,7 @@
           </section>
         </header>
         <main class="body container">
-          <section class="wrapper-products">
-            <div class="product product--dashed">
-              <img
-                class="icon icon--padded"
-                src="./assets/icons/plus.svg"
-                alt="plus icon"
-              />
-              <span class="highlight">Add new dish</span>
-            </div>
-            <div class="product">
-              <img
-                class="product__icon"
-                src="./assets/icons/close.svg"
-                alt="delete food"
-              />
-              <img
-                class="product__img"
-                src="./assets/images/spicy-seasoned-seafood-noodles.svg"
-                alt="Spicy seasoned seafood noodles"
-              />
-              <div class="product__description">
-                <h4 class="item">Spicy seasoned seafood noodles</h4>
-                <p class="item item--thin">
-                  $ 2.29
-                  <img src="./assets/icons/ellipse.svg" alt="space" />
-                  20 Bowls
-                </p>
-              </div>
-              <button class="product__btn">
-                <img src="./assets/icons/edit.svg" alt="edit food" />
-                Edit dish
-              </button>
-            </div>
-          </section>
+          <section class="wrapper-products js-get-products"></section>
           <div class="wrapper-btn">
             <button class="btn btn--line">SHOW MORE</button>
           </div>
@@ -88,7 +55,7 @@
           <img class="icon" src="./assets/icons/check.svg" alt="success" />
           <p class="message__content">Remove successfully</p>
         </div>
-        <div class="wrapper-modal">
+        <!-- <div class="wrapper-modal">
           <div class="popup">
             <h2 class="popup__content">
               Are you sure you want to delete this food?
@@ -98,8 +65,8 @@
               <button class="btn btn--fill">Yes</button>
             </div>
           </div>
-        </div>
-        <div class="wrapper-modal">
+        </div> -->
+        <div class="wrapper-modal js-show-form">
           <form action="" class="form">
             <h2 class="form__title">Edit</h2>
             <label for="name" class="form__label">Name</label>
@@ -124,5 +91,5 @@
       </div>
     </div>
   </body>
-  <script src="./scripts/events/index.js"></script>
+  <script type="module" src="./scripts/index.js"></script>
 </html>
