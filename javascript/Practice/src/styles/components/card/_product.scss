@@ -38,11 +38,13 @@
       @extend %normal-medium-text;
       text-align: center;
       margin: 0;
+      height: 40px;
 
       &--thin {
         @include flex-layout;
         @extend %normal-thin-text;
         gap: 6px;
+        height: 20px
       }
     }
   }
@@ -62,6 +64,7 @@
 
   &--dashed {
     border: 1px dashed $orange-color-1;
+    min-height: 290px;
     cursor: pointer;
 
     @include respond-to("small") {
