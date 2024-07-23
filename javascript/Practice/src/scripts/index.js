@@ -11,7 +11,7 @@ class Main {
   init() {
     this.products.renderProduct()
     HomePage.dropdownToggle()
-    HomePage.getForm()
+    HomePage.showForm()
   }
 
   static getInstance() {

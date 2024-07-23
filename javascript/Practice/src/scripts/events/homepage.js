@@ -21,9 +21,10 @@ class HomePage {
     })
   }
 
-  static getForm() {
+  static showForm() {
     const getFormEle = document.querySelector('.js-get-form')
     const showFormEle = document.querySelector('.js-show-form')
+
     getFormEle.addEventListener('click', () => {
       showFormEle.classList.add('show')
       const formHTML = ProductTemplate.renderForm()
