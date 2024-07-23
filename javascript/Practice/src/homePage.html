@@ -36,7 +36,7 @@
           </section>
           <section class="filter">
             <button class="btn-toggle js-btn-toggle">
-              <svg class="icon" width="16" height="16">
+              <svg class="icon" width="12" height="6" viewBox="0 0 12 6">
                 <use xlink:href="./assets/icons/icons.svg#down-arrow" />
               </svg>
               Sort by
@@ -48,7 +48,19 @@
           </section>
         </header>
         <main class="body container">
-          <section class="wrapper-products js-get-products"></section>
+          <section class="wrapper-products js-get-products">
+            <div class="product product--dashed js-get-form">
+              <svg
+                class="icon icon--padded"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+              >
+                <use xlink:href="./assets/icons/icons.svg#plus" />
+              </svg>
+              <span class="highlight">Add new dish</span>
+            </div>
+          </section>
           <div class="wrapper-btn">
             <button class="btn btn--line">SHOW MORE</button>
           </div>
@@ -70,28 +82,7 @@
             </div>
           </div>
         </div> -->
-        <div class="wrapper-modal js-show-form">
-          <form action="" class="form">
-            <h2 class="form__title">Edit</h2>
-            <label for="name" class="form__label">Name</label>
-            <input type="text" name="name" class="text-field" />
-            <label for="price" class="form__label">Price</label>
-            <input type="text" name="price" class="text-field" />
-            <label for="imageURL" class="form__label">Image URL</label>
-            <input type="text" name="imageURL" class="text-field" />
-            <label for="quantity" class="form__label">Quantity</label>
-            <input
-              type="text"
-              name="quantity"
-              class="text-field text-field--short"
-              value="1"
-            />
-            <div class="form__action">
-              <button class="btn btn--line">Cancel</button>
-              <button class="btn btn--fill">Save</button>
-            </div>
-          </form>
-        </div>
+        <div class="wrapper-modal js-show-form"></div>
       </div>
     </div>
   </body>
