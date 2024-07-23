@@ -1,11 +1,8 @@
-import Template from '../template/product'
-import ProductService from '../services/product'
+import ProductTemplate from '../template/product'
 
 class HomePage {
   constructor() {
     this.instance = this
-    this.productTemplate = Template.getInstance()
-    this.productService = ProductService.getInstance()
   }
 
   static getInstance() {
@@ -27,15 +24,12 @@ class HomePage {
   static getForm() {
     const getFormEle = document.querySelector('.js-get-form')
     const showFormEle = document.querySelector('.js-show-form')
-
-    if (getFormEle && !getFormEle.eventListenerAdded) {
-      getFormEle.addEventListener('click', () => {
-        showFormEle.classList.add('show')
-        const formHTML = this.productTemplate.renderForm()
-        showFormEle.innerHTML = formHTML
-        HomePage.hiddenForm()
-      })
-    }
+    getFormEle.addEventListener('click', () => {
+      showFormEle.classList.add('show')
+      const formHTML = ProductTemplate.renderForm()
+      showFormEle.innerHTML = formHTML
+      HomePage.hiddenForm()
+    })
   }
 
   static hiddenForm() {
@@ -46,34 +40,6 @@ class HomePage {
       e.preventDefault()
       showFormEle.classList.remove('show')
     })
-  }
-
-  async renderProduct() {
-    const renderProductEle = document.querySelector('.js-get-products')
-    let html = `            
-            <div class="product product--dashed js-get-form">
-              <img
-                class="icon icon--padded"
-                src="./assets/icons/plus.svg"
-                alt="plus icon"
-              />
-              <span class="highlight">Add new dish</span>
-            </div>`
-    try {
-      const products = await this.productService.getProduct()
-      products.forEach((item) => {
-        html += this.productTemplate.renderProductCard(
-          item.id,
-          item.name,
-          item.imageURl,
-          item.price,
-          item.quantity,
-        )
-      })
-      renderProductEle.innerHTML = html
-    } catch (error) {
-      console.error('Error rendering product:', error)
-    }
   }
 }
 
