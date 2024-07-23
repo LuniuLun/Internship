@@ -1,16 +1,17 @@
 import HomePage from './events/homepage'
-import Products from './products/products'
+import Foods from './products/foods'
 
 class Main {
   constructor() {
     this.instance = this
+    this.products = Foods.getInstance()
+    this.homePage = HomePage.getInstance()
   }
 
-  static init() {
-    const products = Products.getInstance()
+  init() {
+    this.products.renderProduct()
     HomePage.dropdownToggle()
     HomePage.getForm()
-    products.renderProduct()
   }
 
   static getInstance() {
@@ -21,4 +22,5 @@ class Main {
   }
 }
 
-Main.init()
+const instance = Main.getInstance()
+instance.init()
