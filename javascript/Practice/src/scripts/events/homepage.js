@@ -8,13 +8,6 @@ class HomePage {
     this.productService = ProductService.getInstance()
   }
 
-  static init() {
-    const instance = HomePage.getInstance()
-    HomePage.dropdownToggle()
-    HomePage.getForm()
-    instance.renderProduct()
-  }
-
   static getInstance() {
     if (!HomePage.instance) {
       HomePage.instance = new HomePage()
@@ -57,7 +50,6 @@ class HomePage {
 
   async renderProduct() {
     const renderProductEle = document.querySelector('.js-get-products')
-    console.log(renderProductEle)
     let html = `            
             <div class="product product--dashed js-get-form">
               <img
@@ -69,7 +61,6 @@ class HomePage {
             </div>`
     try {
       const products = await this.productService.getProduct()
-      console.log(products)
       products.forEach((item) => {
         html += this.productTemplate.renderProductCard(
           item.id,
@@ -79,7 +70,6 @@ class HomePage {
           item.quantity,
         )
       })
-      console.log(html)
       renderProductEle.innerHTML = html
     } catch (error) {
       console.error('Error rendering product:', error)
