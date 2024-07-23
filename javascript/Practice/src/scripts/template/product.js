@@ -1,13 +1,13 @@
-class Template {
+class ProductTemplate {
   constructor() {
     this.instance = this
   }
 
   static getInstance() {
-    if (!Template.instance) {
-      Template.instance = new Template()
+    if (!ProductTemplate.instance) {
+      ProductTemplate.instance = new ProductTemplate()
     }
-    return Template.instance
+    return ProductTemplate.instance
   }
 
   static renderForm() {
@@ -35,14 +35,24 @@ class Template {
           </form>`
   }
 
+  // static renderProductDash() {
+  //   return `
+  //         <div class="product product--dashed js-get-form">
+  //           <img
+  //             class="icon icon--padded"
+  //             src="./assets/icons/plus.svg"
+  //             alt="plus icon"
+  //           />
+  //           <span class="highlight">Add new dish</span>
+  //         </div>`
+  // }
+
   renderProductCard({ id, name, imageURL, price, quantity }) {
     return `
             <div class="product" id="${id}">
-              <img
-                class="product__icon"
-                src="./assets/icons/close.svg"
-                alt="delete food"
-              />
+              <svg class="icon product__icon" width="21" height="21">
+                <use xlink:href="./assets/icons/icons.svg#close" />
+              </svg>
               <img
                 class="product__img"
                 src="${imageURL}"
@@ -52,16 +62,20 @@ class Template {
                 <h4 class="item">${name}</h4>
                 <p class="item item--thin">
                   $ ${price}
-                  <img src="./assets/icons/ellipse.svg" alt="space" />
+                  <svg class="icon" width="4" height="4" >
+                    <use xlink:href="./assets/icons/icons.svg#ellipse" />
+                  </svg>
                   ${quantity} Bowls
                 </p>
               </div>
               <button class="product__btn">
-                <img src="./assets/icons/edit.svg" alt="edit food" />
+                <svg class="icon" width="16" height="16" >
+                  <use xlink:href="./assets/icons/icons.svg#edit" />
+                </svg>
                 Edit dish
               </button>
             </div>`
   }
 }
 
-export default Template
+export default ProductTemplate

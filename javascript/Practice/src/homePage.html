@@ -19,11 +19,14 @@
           <section class="heading">
             <h1 class="title">Foods Management</h1>
             <form class="search-form">
-              <img
+              <svg
                 class="icon search-form__icon"
-                src="./assets/icons/find.svg"
-                alt="find-image"
-              />
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+              >
+                <use xlink:href="./assets/icons/icons.svg#find" />
+              </svg>
               <input
                 class="text-field search-form__text-field"
                 type="text"
@@ -33,11 +36,10 @@
           </section>
           <section class="filter">
             <button class="btn-toggle js-btn-toggle">
-              <img
-                class="icon"
-                src="./assets/icons/down-arrow.svg"
-                alt="find-image"
-              />Sort by
+              <svg class="icon" width="16" height="16">
+                <use xlink:href="./assets/icons/icons.svg#down-arrow" />
+              </svg>
+              Sort by
             </button>
             <div class="sort-option js-sort-option">
               <span class="sort-option__item">From A to Z</span>
@@ -52,7 +54,9 @@
           </div>
         </main>
         <div class="message">
-          <img class="icon" src="./assets/icons/check.svg" alt="success" />
+          <svg class="icon" width="20" height="20" viewBox="0 0 20 20">
+            <use xlink:href="./assets/icons/icons.svg#check" />
+          </svg>
           <p class="message__content">Remove successfully</p>
         </div>
         <!-- <div class="wrapper-modal">
