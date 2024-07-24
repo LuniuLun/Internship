@@ -1,10 +1,12 @@
 import ProductTemplate from '../template/product'
 import Foods from '../products/foods'
+import ValidationForm from './validationForm'
 
 class HomePage {
   constructor() {
     this.instance = this
     this.foodInstance = Foods.getInstance()
+    this.validationFormInstance = ValidationForm.getInstance()
   }
 
   static getInstance() {
@@ -50,20 +52,46 @@ class HomePage {
     const formEle = document.getElementById('js-product-form')
     const homePageInstance = HomePage.getInstance()
     const newProduct = {}
+
     formEle.addEventListener('submit', async (e) => {
       e.preventDefault()
       for (let i = 0; i < formEle.length; i += 1) {
-        if (
-          formEle.elements[i].value !== 'Save' ||
-          formEle.elements[i].value !== 'Cancel'
-        ) {
-          newProduct[formEle.elements[i].name] = formEle.elements[i].value
+        const element = formEle.elements[i]
+        if (element && element.value !== 'Save' && element.value !== 'Cancel') {
+          newProduct[element.name] = element.value
         }
       }
-      if (Object.keys(newProduct).length > 0) {
+      if (HomePage.validationForm(newProduct)) {
         await homePageInstance.foodInstance.submitProduct(newProduct)
       }
     })
+  }
+
+  static validationForm(newProduct) {
+    const messageArr = {
+      'name-error': ValidationForm.checkName('name', newProduct.name),
+      'price-error': ValidationForm.checkPrice('price', newProduct.price),
+      'quantity-error': ValidationForm.checkQuantity(
+        'quantity',
+        newProduct.quantity,
+      ),
+      'imageURL-error': ValidationForm.checkImageURL(
+        'imageURL',
+        newProduct.imageURL,
+      ),
+    }
+    let flag = true
+    Object.keys(messageArr).forEach((key) => {
+      const errorEle = document.querySelector(`.js-${key}`)
+      if (messageArr[key] !== true) {
+        errorEle.classList.add('show')
+        errorEle.innerHTML = messageArr[key]
+        flag = false
+      } else {
+        errorEle.classList.remove('show')
+      }
+    })
+    return flag
   }
 }
 
