@@ -1,4 +1,4 @@
-import HomePage from './events/homepage'
+import HomePage from './events/home'
 import Foods from './products/foods'
 
 class Main {
