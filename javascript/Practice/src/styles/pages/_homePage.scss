@@ -41,7 +41,7 @@
 }
 
 .wrapper-modal {
-  @include flex-layout;
+  @include flex-layout(row, center, flex-start);
   display: none;
   position: absolute;
   inset: 0;
