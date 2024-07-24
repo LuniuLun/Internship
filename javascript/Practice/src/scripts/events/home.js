@@ -1,6 +1,6 @@
 import ProductTemplate from '../template/product'
 import Product from '../objects/product'
-import ValidationForm from './validationForm'
+import ValidationForm from '../utilities/validationForm'
 import PopupTemplate from '../template/popup'
 
 class HomePage {
