@@ -8,8 +8,8 @@ class Main {
     this.homePage = HomePage.getInstance()
   }
 
-  init() {
-    this.products.renderProduct()
+  async init() {
+    await this.products.renderProduct()
     HomePage.dropdownToggle()
     HomePage.showForm()
   }
