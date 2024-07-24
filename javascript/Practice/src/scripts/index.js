@@ -1,10 +1,11 @@
 import HomePage from './events/home'
-import Foods from './products/foods'
+import Product from './objects/product'
+import Notification from './objects/notification'
 
 class Main {
   constructor() {
     this.instance = this
-    this.products = Foods.getInstance()
+    this.products = Product.getInstance()
     this.homePage = HomePage.getInstance()
   }
 
@@ -12,6 +13,8 @@ class Main {
     await this.products.renderProduct()
     HomePage.dropdownToggle()
     HomePage.showForm()
+    this.homePage.showEditForm()
+    Notification.renderNotification()
   }
 
   static getInstance() {
