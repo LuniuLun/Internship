@@ -1,16 +1,13 @@
-import Message from '../constants/message'
-
 class Notification {
   constructor() {
     this.instance = this
-    this.message = Message.getInstance()
   }
 
   static getInstance() {
-    if (!Message.instance) {
-      Message.instance = new Message()
+    if (!Notification.instance) {
+      Notification.instance = new Notification()
     }
-    return Message.instance
+    return Notification.instance
   }
 
   static renderNotification() {

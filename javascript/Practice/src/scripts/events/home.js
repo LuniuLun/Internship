@@ -1,7 +1,7 @@
 import ProductTemplate from '../template/product'
+import PopupTemplate from '../template/popup'
 import Product from '../objects/product'
 import ValidationForm from '../utilities/validationForm'
-import PopupTemplate from '../template/popup'
 
 class HomePage {
   constructor() {
