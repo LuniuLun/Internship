@@ -14,27 +14,34 @@ class ProductTemplate {
     return ProductTemplate.instance
   }
 
-  static renderForm() {
+  static renderForm({
+    id = '',
+    name = '',
+    imageURL = '',
+    price = '1',
+    quantity = '1',
+  }) {
     return `
-          <form action="" class="form">
-            <h2 class="form__title">Edit</h2>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" class="text-field" />
-            <label for="price">Price</label>
-            <input type="text" id="price" name="price" class="text-field" />
-            <label for="imageURL">Image URL</label>
-            <input type="text" id="imageURL" name="imageURL" class="text-field" />
-            <label for="quantity">Quantity</label>
+          <form action="" class="form" id="js-product-form">
+            <input type="hidden" name="id" value=${id} />
+            <h2 class="form__title">${id !== '' ? 'Edit' : 'Add'}</h2>
+            <label for="name" class="form__label">Name</label>
+            <input type="text" id="name" name="name" class="text-field" value="${name}"/>
+            <label for="price" class="form__label">Price</label>
+            <input type="text" id="price" name="price" class="text-field" value="${price}"/>
+            <label for="imageURL" class="form__label">Image URL</label>
+            <input type="text" id="imageURL" name="imageURL" class="text-field"  value="${imageURL}"/>
+            <label for="quantity" class="form__label">Quantity</label>
             <input
               type="text"
               id="quantity"
               name="quantity"
               class="text-field text-field--short"
-              value="1"
+              value="${quantity}"
             />
             <div class="form__action">
-              <button class="btn btn--line js-hidden-form">Cancel</button>
-              <button class="btn btn--fill">Save</button>
+              <input class="btn btn--line js-hidden-form" value="Cancel"/>
+              <input type="submit" class="btn btn--fill" value="Save"/>
             </div>
           </form>`
   }
