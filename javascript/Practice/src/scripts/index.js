@@ -13,6 +13,7 @@ class Main {
     await this.products.renderProduct()
     HomePage.dropdownToggle()
     HomePage.showForm()
+    HomePage.showPopup()
     this.homePage.showEditForm()
     Notification.renderNotification()
   }

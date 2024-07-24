@@ -1,6 +1,7 @@
 import ProductTemplate from '../template/product'
 import Product from '../objects/product'
 import ValidationForm from './validationForm'
+import PopupTemplate from '../template/popup'
 
 class HomePage {
   constructor() {
@@ -112,6 +113,34 @@ class HomePage {
       }
     })
     return flag
+  }
+
+  static showPopup() {
+    const getPopupEle = document.querySelectorAll('.js-get-popup')
+    const wrapperPopupEle = document.querySelector('.js-wrapper-popup')
+
+    getPopupEle.forEach((ele) => {
+      ele.addEventListener('click', async (event) => {
+        const popupHTML = await PopupTemplate.renderPopup(event.target.id)
+        wrapperPopupEle.innerHTML = popupHTML
+        wrapperPopupEle.classList.add('show')
+        HomePage.hiddenForm()
+        HomePage.acceptPopup()
+
+        const popupEle = document.querySelector('.popup')
+        const rect = event.target.getBoundingClientRect()
+        const popupTop = rect.top + window.scrollY
+        popupEle.style.marginTop = `${popupTop}px`
+      })
+    })
+  }
+
+  static acceptPopup() {
+    const getAcceptPopupEle = document.querySelector('.js-accept')
+    const homePageInstance = HomePage.getInstance()
+    getAcceptPopupEle.addEventListener('click', async (event) => {
+      await homePageInstance.productInstance.deleteProduct(event.target.id)
+    })
   }
 }
 
