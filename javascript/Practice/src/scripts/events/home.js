@@ -1,11 +1,11 @@
 import ProductTemplate from '../template/product'
-import Foods from '../products/foods'
+import Product from '../objects/product'
 import ValidationForm from './validationForm'
 
 class HomePage {
   constructor() {
     this.instance = this
-    this.foodInstance = Foods.getInstance()
+    this.productInstance = Product.getInstance()
     this.validationFormInstance = ValidationForm.getInstance()
   }
 
@@ -30,11 +30,31 @@ class HomePage {
     const wrapperFormEle = document.querySelector('.js-wrapper-form')
 
     getFormEle.addEventListener('click', () => {
-      wrapperFormEle.classList.add('show')
       const formHTML = ProductTemplate.renderForm({})
       wrapperFormEle.innerHTML = formHTML
+      wrapperFormEle.classList.add('show')
       HomePage.hiddenForm()
       HomePage.submitForm()
+    })
+  }
+
+  showEditForm() {
+    const getEditFormEle = document.querySelectorAll('.js-edit-form')
+    const wrapperFormEle = document.querySelector('.js-wrapper-form')
+
+    getEditFormEle.forEach((ele) => {
+      ele.addEventListener('click', async (event) => {
+        const currentProduct = await this.productInstance.getProductById(
+          event.target.id,
+        )
+        if (currentProduct !== null) {
+          const formHTML = ProductTemplate.renderForm(currentProduct)
+          wrapperFormEle.innerHTML = formHTML
+          wrapperFormEle.classList.add('show')
+          HomePage.hiddenForm()
+          HomePage.submitForm()
+        }
+      })
     })
   }
 
@@ -62,7 +82,7 @@ class HomePage {
         }
       }
       if (HomePage.validationForm(newProduct)) {
-        await homePageInstance.foodInstance.submitProduct(newProduct)
+        await homePageInstance.productInstance.submitProduct(newProduct)
       }
     })
   }
