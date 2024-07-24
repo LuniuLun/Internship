@@ -61,6 +61,18 @@ class ProductService {
     }
     return null
   }
+
+  async deleteProduct(id) {
+    try {
+      const response = await fetch(`${this.url}/${id}`, {
+        method: 'DELETE',
+      })
+      return response.json()
+    } catch (error) {
+      console.log(error)
+    }
+    return null
+  }
 }
 
 export default ProductService
