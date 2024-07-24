@@ -1,6 +1,7 @@
 import ProductService from '../services/product'
 import ProductTemplate from '../template/product'
 import Message from '../constants/message'
+
 class Foods {
   constructor() {
     this.instance = this
@@ -38,7 +39,7 @@ class Foods {
   }
 
   async submitProduct(newProduct) {
-    if (newProduct.id !== '/') {
+    if (newProduct.id !== '') {
       await this.editProduct(newProduct)
     } else {
       await this.addProduct(newProduct)
