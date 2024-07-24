@@ -85,8 +85,8 @@ class ProductTemplate {
                   ${quantity} Bowls
                 </p>
               </div>
-              <button class="product__btn">
-                  <img class="icon" src="${editIcon}" />
+              <button class="product__btn js-edit-form" id="${id}">
+                <img class="icon" src="${editIcon}" />
                 Edit dish
               </button>
             </div>`

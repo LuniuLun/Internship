@@ -2,7 +2,7 @@ import ProductService from '../services/product'
 import ProductTemplate from '../template/product'
 import Message from '../constants/message'
 
-class Foods {
+class Product {
   constructor() {
     this.instance = this
     this.productTemplate = ProductTemplate.getInstance()
@@ -11,15 +11,14 @@ class Foods {
   }
 
   static getInstance() {
-    if (!Foods.instance) {
-      Foods.instance = new Foods()
+    if (!Product.instance) {
+      Product.instance = new Product()
     }
-    return Foods.instance
+    return Product.instance
   }
 
   async renderProduct() {
     const renderProductEle = document.querySelector('.js-get-products')
-    const message = localStorage.getItem('productAddMessage')
 
     let html = ``
     const products = await this.productService.getProduct()
@@ -27,15 +26,11 @@ class Foods {
       html += ProductTemplate.renderProductCard(item)
     })
     renderProductEle.innerHTML += html
+  }
 
-    if (message) {
-      const messageEle = document.querySelector('.message')
-      const contentMessageEle = document.querySelector('.message__content')
-      contentMessageEle.textContent = message
-      messageEle.classList.add('show')
-
-      localStorage.removeItem('productAddMessage')
-    }
+  async getProductById(id) {
+    const currentProduct = await this.productService.getProductById(id)
+    return currentProduct
   }
 
   async submitProduct(newProduct) {
@@ -49,18 +44,18 @@ class Foods {
   async addProduct(newProduct) {
     const response = await this.productService.addProduct(newProduct)
     if (response) {
-      localStorage.setItem(
-        'productAddMessage',
-        this.message.ADD_PRODUCT_SUCCESS,
-      )
+      localStorage.setItem('Message', this.message.ADD_PRODUCT_SUCCESS)
       window.location.reload()
     }
   }
 
-  static async editProduct(newProduct) {
-    const response = await this.productService.addProduct(newProduct)
-    console.log(response)
+  async editProduct(newProduct) {
+    const response = await this.productService.editProduct(newProduct)
+    if (response) {
+      localStorage.setItem('Message', this.message.EDIT_PRODUCT_SUCCESS)
+      window.location.reload()
+    }
   }
 }
 
-export default Foods
+export default Product
