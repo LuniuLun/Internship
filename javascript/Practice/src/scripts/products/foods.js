@@ -53,10 +53,6 @@ class Foods {
         this.message.ADD_PRODUCT_SUCCESS,
       )
       window.location.reload()
-      const messageEle = document.querySelector('.message')
-      const contentMessageEle = document.querySelector('.message')
-      contentMessageEle.append('Add successfully')
-      messageEle.classList.add('show')
     }
   }
 
