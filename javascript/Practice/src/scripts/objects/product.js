@@ -56,6 +56,14 @@ class Product {
       window.location.reload()
     }
   }
+
+  async deleteProduct(id) {
+    const response = await this.productService.deleteProduct(id)
+    if (response) {
+      localStorage.setItem('Message', this.message.DELETE_PRODUCT_SUCCESS)
+      window.location.reload()
+    }
+  }
 }
 
 export default Product
