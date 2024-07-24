@@ -24,15 +24,16 @@ class ValidationForm {
 
   static isFloat(key, value) {
     const floatValue = parseFloat(value)
-    return Number.isNaN(floatValue)
-      ? `${key} must be a valid floating-point number`
-      : undefined
+    return !Number.isNaN(floatValue)
+      ? undefined
+      : `${key} must be a real number`
   }
 
   static isInteger(key, value) {
-    return Number.isInteger(value)
-      ? `${key} must be a valid integer`
-      : undefined
+    const numberValue = Number(value)
+    return Number.isInteger(numberValue)
+      ? undefined
+      : `${key} must be a integer number`
   }
 
   static isWithSpecialChars(key, value) {
@@ -51,10 +52,27 @@ class ValidationForm {
     const isValidExtension = RegExpClass.getInstance().imageExtensions.some(
       (ext) => value.endsWith(ext),
     )
-    return isValidExtension
-      ? undefined
-      : `${key} must be a valid image URL with extensions: ${RegExpClass.getInstance().imageExtensions.join(', ')}`
+    const isValidProtocol =
+      value.startsWith('http://') || value.startsWith('https://')
+
+    if (isValidProtocol || isValidExtension) {
+      return undefined
+    }
+
+    return `${key} must be a valid image URL starting with http://, https:// or with extensions: ${RegExpClass.getInstance().imageExtensions.join(', ')}`
   }
+
+  // static async isAliveImageUrl(key, value) {
+  //   try {
+  //     const response = await fetch(value, { method: 'HEAD' })
+  //     if (!response.ok) {
+  //       return `${key} URL does not point to a valid image resource`
+  //     }
+  //     return undefined
+  //   } catch (error) {
+  //     return `${key} URL does not point to a valid image resource`
+  //   }
+  // }
 
   static checkName(key, value) {
     return (
@@ -85,6 +103,9 @@ class ValidationForm {
     return (
       ValidationForm.isNotEmpty(key, value) ||
       ValidationForm.isValidImageUrl(key, value) ||
+      // (ValidationForm.isAliveImageUrl(key, value)
+      //   ? undefined
+      //   : ValidationForm.isAliveImageUrl(key, value)) ||
       true
     )
   }
