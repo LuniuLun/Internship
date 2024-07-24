@@ -71,7 +71,7 @@ class ProductTemplate {
   static renderProductCard({ id, name, imageURL, price, quantity }) {
     return `
             <div class="product" id="${id}">
-              <img class="icon product__icon" src="${closeIcon}" />
+              <img class="icon product__icon js-get-popup" src="${closeIcon}" id="${id}"/>
               <img
                 class="product__img"
                 src="${imageURL}"
