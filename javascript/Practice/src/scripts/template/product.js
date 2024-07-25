@@ -1,6 +1,7 @@
 import editIcon from '../../assets/icons/edit.svg'
 import closeIcon from '../../assets/icons/close.svg'
 import ellipseIcon from '../../assets/icons/ellipse.svg'
+import plus from '../../assets/icons/plus.svg'
 
 class ProductTemplate {
   constructor() {
@@ -89,6 +90,18 @@ class ProductTemplate {
                 <img class="icon" src="${editIcon}" />
                 Edit dish
               </button>
+            </div>`
+  }
+
+  static renderAdditionCard() {
+    return `            
+            <div class="product product--dashed js-get-form">
+              <img
+                class="icon icon--padded"
+                src="${plus}"
+                alt="add food"
+              />
+              <span class="highlight">Add new dish</span>
             </div>`
   }
 }

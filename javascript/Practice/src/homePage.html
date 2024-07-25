@@ -41,22 +41,17 @@
               Sort by
             </button>
             <div class="sort-option js-sort-option">
-              <span class="sort-option__item">From A to Z</span>
-              <span class="sort-option__item">From Z to A</span>
+              <span class="sort-option__item" data-value="AToZ"
+                >From A to Z</span
+              >
+              <span class="sort-option__item" data-value="ZToA"
+                >From Z to A</span
+              >
             </div>
           </section>
         </header>
         <main class="body container">
-          <section class="wrapper-products js-get-products">
-            <div class="product product--dashed js-get-form">
-              <img
-                class="icon icon--padded"
-                src="./assets/icons/plus.svg"
-                alt="add food"
-              />
-              <span class="highlight">Add new dish</span>
-            </div>
-          </section>
+          <section class="wrapper-products js-get-products"></section>
           <div class="wrapper-btn">
             <button class="btn btn--line">SHOW MORE</button>
           </div>
@@ -65,17 +60,6 @@
           <img class="icon" src="./assets/icons/check.svg" alt="check" />
           <p class="message__content"></p>
         </div>
-        <!-- <div class="wrapper-modal">
-          <div class="popup">
-            <h2 class="popup__content">
-              Are you sure you want to delete this food?
-            </h2>
-            <div class="popup__action">
-              <button class="btn btn--line">Cancel</button>
-              <button class="btn btn--fill">Yes</button>
-            </div>
-          </div>
-        </div> -->
         <div class="wrapper-modal js-wrapper-form js-wrapper-popup"></div>
       </div>
     </div>
