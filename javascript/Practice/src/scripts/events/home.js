@@ -26,6 +26,24 @@ class HomePage {
     })
   }
 
+  static sortProduct() {
+    const sortOptionEle = document.querySelectorAll('.sort-option__item')
+    const sortOption = document.querySelector('.js-sort-option')
+    const productInstance = Product.getInstance()
+    const homeInstance = HomePage.getInstance()
+
+    sortOptionEle.forEach((ele) => {
+      ele.addEventListener('click', async (event) => {
+        sortOption.classList.remove('show')
+        const typeOfSort = event.target.getAttribute('data-value')
+        await productInstance.renderProduct(typeOfSort)
+        HomePage.showPopup()
+        HomePage.showForm()
+        homeInstance.showEditForm()
+      })
+    })
+  }
+
   static showForm() {
     const getFormEle = document.querySelector('.js-get-form')
     const wrapperFormEle = document.querySelector('.js-wrapper-form')
@@ -120,8 +138,8 @@ class HomePage {
     const wrapperPopupEle = document.querySelector('.js-wrapper-popup')
 
     getPopupEle.forEach((ele) => {
-      ele.addEventListener('click', async (event) => {
-        const popupHTML = await PopupTemplate.renderPopup(event.target.id)
+      ele.addEventListener('click', (event) => {
+        const popupHTML = PopupTemplate.renderPopup(event.target.id)
         wrapperPopupEle.innerHTML = popupHTML
         wrapperPopupEle.classList.add('show')
         HomePage.hiddenForm()
@@ -138,6 +156,7 @@ class HomePage {
   static acceptPopup() {
     const getAcceptPopupEle = document.querySelector('.js-accept')
     const homePageInstance = HomePage.getInstance()
+
     getAcceptPopupEle.addEventListener('click', async (event) => {
       await homePageInstance.productInstance.deleteProduct(event.target.id)
     })
