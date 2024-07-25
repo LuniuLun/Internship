@@ -5,12 +5,17 @@
   left: 50%;
   display: none;
   gap: 8px;
+  z-index: 3;
   transform: translateX(-50%);
-  animation: fadeInOut 4s ease-in-out forwards;
+  animation: fadeInOut 2s ease-in-out forwards;
   border-radius: 8px;
   padding: 12px;
   padding-right: 40;
   background-color: $green-bg-1;
+
+  &--error {
+    background-color: $orange-color-1
+  }
 
   &__content {
     @extend %normal-semiBold-text;
