@@ -4,10 +4,11 @@
 }
 
 .content-page {
-  @include flex-layout(column);
+  @include flex-layout(column, flex-start, center);
   position: relative;
   border-radius: 8px;
   height: 100%;
+  min-height: 100vh;
   padding: 75px 0 26px;
   background-color: $dark-bg-2;
 }
