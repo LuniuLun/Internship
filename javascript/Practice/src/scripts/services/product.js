@@ -14,9 +14,12 @@ class ProductService {
     return ProductService.instance
   }
 
-  async getProduct() {
+  async getProduct(limit = 9) {
     try {
-      const response = await fetch(this.url)
+      const calledUrl = new URL(this.url)
+      calledUrl.searchParams.append('page', 1)
+      calledUrl.searchParams.append('limit', limit)
+      const response = await fetch(calledUrl)
       return response.json()
     } catch (error) {
       console.error('Error fetching product:', error)
@@ -24,9 +27,11 @@ class ProductService {
     return null
   }
 
-  async filterProduct(property = '', value = '') {
+  async filterProduct(property = '', value = '', limit = 9) {
     try {
       const calledUrl = new URL(this.url)
+      calledUrl.searchParams.append('page', 1)
+      calledUrl.searchParams.append('limit', limit)
       if (property !== '' && value !== '') {
         calledUrl.searchParams.append(property, value)
       }

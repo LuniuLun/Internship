@@ -15,6 +15,7 @@ class Main {
     HomePage.showForm()
     HomePage.showPopup()
     HomePage.filterProduct()
+    HomePage.getMoreProduct()
     this.homePage.showEditForm()
     Notification.renderNotification()
   }

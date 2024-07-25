@@ -18,12 +18,12 @@ class Product {
     return Product.instance
   }
 
-  async renderProduct() {
+  async renderProduct(limit = 9) {
     const renderProductEle = document.querySelector('.js-get-products')
     renderProductEle.innerHTML = ''
     let html = ProductTemplate.renderAdditionCard()
 
-    let products = await this.productService.getProduct()
+    let products = await this.productService.getProduct(limit)
     products = products.reverse()
 
     products.forEach((item) => {
@@ -32,17 +32,26 @@ class Product {
     renderProductEle.innerHTML += html
   }
 
-  async filterProduct(sortByName = '', property = '', value = '') {
+  async filterProduct({
+    typeOfSort = '',
+    property = '',
+    value = '',
+    limit = 9,
+  }) {
     const renderProductEle = document.querySelector('.js-get-products')
     renderProductEle.innerHTML = ''
     let html = ProductTemplate.renderAdditionCard()
 
-    let products = await this.productService.filterProduct(property, value)
+    let products = await this.productService.filterProduct(
+      property,
+      value,
+      limit,
+    )
     products = products.reverse()
-    if (sortByName === 'AToZ') {
+    if (typeOfSort === 'AToZ') {
       products = Sort.sortObjectsByPropertyAZ(products, 'name')
     }
-    if (sortByName === 'ZToA') {
+    if (typeOfSort === 'ZToA') {
       products = Sort.sortObjectsByPropertyAZ(products, 'name').reverse()
     }
 
