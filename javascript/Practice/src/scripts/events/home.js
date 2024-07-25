@@ -2,6 +2,7 @@ import ProductTemplate from '../template/product'
 import PopupTemplate from '../template/popup'
 import Product from '../objects/product'
 import ValidationForm from '../utilities/validationForm'
+import RuleFilter from '../utilities/filterRule'
 
 class HomePage {
   constructor() {
@@ -32,9 +33,11 @@ class HomePage {
     const sortOption = document.querySelector('.js-sort-option')
     const productInstance = Product.getInstance()
     const homeInstance = HomePage.getInstance()
+    const ruleFilter = RuleFilter.getInstance()
 
     inputEle.addEventListener('change', async (event) => {
-      await productInstance.filterProduct('', 'name', event.target.value)
+      ruleFilter.setFilter({ value: event.target.value })
+      await productInstance.filterProduct(ruleFilter)
       HomePage.showPopup()
       HomePage.showForm()
       homeInstance.showEditForm()
@@ -44,8 +47,8 @@ class HomePage {
       ele.addEventListener('click', async (event) => {
         sortOption.classList.remove('show')
         const typeOfSort = event.target.getAttribute('data-value')
-        const input = document.querySelector('.js-filter-input')
-        await productInstance.filterProduct(typeOfSort, 'name', input.value)
+        ruleFilter.setFilter({ typeOfSort, value: inputEle.value })
+        await productInstance.filterProduct(ruleFilter)
         HomePage.showPopup()
         HomePage.showForm()
         homeInstance.showEditForm()
@@ -101,7 +104,7 @@ class HomePage {
     const homePageInstance = HomePage.getInstance()
     const newProduct = {}
 
-    formEle.addEventListener('submit', async (e) => {
+    formEle.addEventListener('submit', (e) => {
       e.preventDefault()
       for (let i = 0; i < formEle.length; i += 1) {
         const element = formEle.elements[i]
@@ -110,7 +113,7 @@ class HomePage {
         }
       }
       if (HomePage.validationForm(newProduct)) {
-        await homePageInstance.productInstance.submitProduct(newProduct)
+        homePageInstance.productInstance.submitProduct(newProduct)
       }
     })
   }
@@ -168,6 +171,27 @@ class HomePage {
 
     getAcceptPopupEle.addEventListener('click', async (event) => {
       await homePageInstance.productInstance.deleteProduct(event.target.id)
+    })
+  }
+
+  static getMoreProduct() {
+    const getMoreProductEle = document.querySelector('.js-show-more-product')
+    const inputEle = document.querySelector('.js-filter-input')
+    const productInstance = Product.getInstance()
+    const homeInstance = HomePage.getInstance()
+    const ruleFilter = RuleFilter.getInstance()
+
+    getMoreProductEle.addEventListener('click', async (event) => {
+      const limit = event.target.getAttribute('data-value')
+      event.target.setAttribute('data-value', Number(limit) + 10)
+      ruleFilter.setFilter({
+        value: inputEle.value,
+        limit,
+      })
+      await productInstance.filterProduct(ruleFilter)
+      HomePage.showPopup()
+      HomePage.showForm()
+      homeInstance.showEditForm()
     })
   }
 }
