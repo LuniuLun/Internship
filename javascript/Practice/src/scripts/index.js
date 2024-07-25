@@ -14,7 +14,7 @@ class Main {
     HomePage.dropdownToggle()
     HomePage.showForm()
     HomePage.showPopup()
-    HomePage.sortProduct()
+    HomePage.filterProduct()
     this.homePage.showEditForm()
     Notification.renderNotification()
   }

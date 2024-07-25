@@ -26,17 +26,26 @@ class HomePage {
     })
   }
 
-  static sortProduct() {
+  static filterProduct() {
+    const inputEle = document.querySelector('.js-filter-input')
     const sortOptionEle = document.querySelectorAll('.sort-option__item')
     const sortOption = document.querySelector('.js-sort-option')
     const productInstance = Product.getInstance()
     const homeInstance = HomePage.getInstance()
 
+    inputEle.addEventListener('change', async (event) => {
+      await productInstance.filterProduct('', 'name', event.target.value)
+      HomePage.showPopup()
+      HomePage.showForm()
+      homeInstance.showEditForm()
+    })
+
     sortOptionEle.forEach((ele) => {
       ele.addEventListener('click', async (event) => {
         sortOption.classList.remove('show')
         const typeOfSort = event.target.getAttribute('data-value')
-        await productInstance.renderProduct(typeOfSort)
+        const input = document.querySelector('.js-filter-input')
+        await productInstance.filterProduct(typeOfSort, 'name', input.value)
         HomePage.showPopup()
         HomePage.showForm()
         homeInstance.showEditForm()
