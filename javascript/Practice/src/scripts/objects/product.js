@@ -1,6 +1,7 @@
 import ProductService from '../services/product'
 import ProductTemplate from '../template/product'
 import Message from '../constants/message'
+import Sort from '../utilities/sort'
 
 class Product {
   constructor() {
@@ -17,11 +18,20 @@ class Product {
     return Product.instance
   }
 
-  async renderProduct() {
+  async renderProduct(sortByName = '') {
     const renderProductEle = document.querySelector('.js-get-products')
+    renderProductEle.innerHTML = ''
+    let html = ProductTemplate.renderAdditionCard()
 
-    let html = ``
-    const products = await this.productService.getProduct()
+    let products = await this.productService.getProduct()
+    products = products.reverse()
+    if (sortByName === 'AToZ') {
+      products = Sort.sortObjectsByPropertyAZ(products, 'name')
+    }
+    if (sortByName === 'ZToA') {
+      products = Sort.sortObjectsByPropertyAZ(products, 'name').reverse()
+    }
+
     products.forEach((item) => {
       html += ProductTemplate.renderProductCard(item)
     })
