@@ -18,12 +18,26 @@ class Product {
     return Product.instance
   }
 
-  async renderProduct(sortByName = '') {
+  async renderProduct() {
     const renderProductEle = document.querySelector('.js-get-products')
     renderProductEle.innerHTML = ''
     let html = ProductTemplate.renderAdditionCard()
 
     let products = await this.productService.getProduct()
+    products = products.reverse()
+
+    products.forEach((item) => {
+      html += ProductTemplate.renderProductCard(item)
+    })
+    renderProductEle.innerHTML += html
+  }
+
+  async filterProduct(sortByName = '', property = '', value = '') {
+    const renderProductEle = document.querySelector('.js-get-products')
+    renderProductEle.innerHTML = ''
+    let html = ProductTemplate.renderAdditionCard()
+
+    let products = await this.productService.filterProduct(property, value)
     products = products.reverse()
     if (sortByName === 'AToZ') {
       products = Sort.sortObjectsByPropertyAZ(products, 'name')
