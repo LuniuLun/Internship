@@ -35,7 +35,7 @@
     <meta http-equiv="refresh" content="3600" />
     <!-- Set up Open Graph to optimize social sharing -->
     <meta property="og:site_name" content="Food Management" />
-    <meta property="og:title" content="food management system" />
+    <meta property="og:title" content="Food management system" />
     <meta property="og:type" content="Business" />
     <meta
       property="og:description"
@@ -113,9 +113,21 @@
             </button>
           </div>
         </main>
-        <div class="message">
-          <img class="icon" src="./assets/icons/check.svg" alt="check" />
-          <p class="message__content"></p>
+        <div class="message js-success-message">
+          <img
+            class="message__icon"
+            src="./assets/icons/check.svg"
+            alt="success"
+          />
+          <p class="message__content js-success-content-message"></p>
+        </div>
+        <div class="message message--error js-failed-message">
+          <img
+            class="message__icon"
+            src="./assets/icons/close.svg"
+            alt="error"
+          />
+          <p class="message__content js-failed-content-message"></p>
         </div>
         <div class="wrapper-modal js-wrapper-form js-wrapper-popup"></div>
       </div>

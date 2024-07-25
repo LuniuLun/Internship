@@ -106,12 +106,12 @@ class HomePage {
 
     formEle.addEventListener('submit', (e) => {
       e.preventDefault()
-      for (let i = 0; i < formEle.length; i += 1) {
-        const element = formEle.elements[i]
+      Array.from(formEle.elements).forEach((element) => {
         if (element && element.value !== 'Save' && element.value !== 'Cancel') {
           newProduct[element.name] = element.value
         }
-      }
+      })
+
       if (HomePage.validationForm(newProduct)) {
         homePageInstance.productInstance.submitProduct(newProduct)
       }
