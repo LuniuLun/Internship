@@ -8,7 +8,6 @@ class Product {
     this.instance = this
     this.productTemplate = ProductTemplate.getInstance()
     this.productService = ProductService.getInstance()
-    this.message = Message.getInstance()
   }
 
   static getInstance() {
@@ -24,11 +23,14 @@ class Product {
     let html = ProductTemplate.renderAdditionCard()
 
     let products = await this.productService.getProduct(limit)
-    products = products.reverse()
+    if (Array.isArray(products) && products.length > 0) {
+      products = products.reverse()
 
-    products.forEach((item) => {
-      html += ProductTemplate.renderProductCard(item)
-    })
+      products.forEach((item) => {
+        html += ProductTemplate.renderProductCard(item)
+      })
+    }
+
     renderProductEle.innerHTML += html
   }
 
@@ -47,17 +49,19 @@ class Product {
       value,
       limit,
     )
-    products = products.reverse()
-    if (typeOfSort === 'AToZ') {
-      products = Sort.sortObjectsByPropertyAZ(products, 'name')
-    }
-    if (typeOfSort === 'ZToA') {
-      products = Sort.sortObjectsByPropertyAZ(products, 'name').reverse()
-    }
+    if (Array.isArray(products) && products.length > 0) {
+      products = products.reverse()
+      if (typeOfSort === 'AToZ') {
+        products = Sort.sortObjectsByPropertyAZ(products, 'name')
+      }
+      if (typeOfSort === 'ZToA') {
+        products = Sort.sortObjectsByPropertyAZ(products, 'name').reverse()
+      }
 
-    products.forEach((item) => {
-      html += ProductTemplate.renderProductCard(item)
-    })
+      products.forEach((item) => {
+        html += ProductTemplate.renderProductCard(item)
+      })
+    }
     renderProductEle.innerHTML += html
   }
 
@@ -67,17 +71,17 @@ class Product {
   }
 
   async submitProduct(newProduct) {
-    if (newProduct.id !== '') {
+    if (newProduct.id) {
       await this.editProduct(newProduct)
-    } else {
-      await this.addProduct(newProduct)
+      return
     }
+    await this.addProduct(newProduct)
   }
 
   async addProduct(newProduct) {
     const response = await this.productService.addProduct(newProduct)
     if (response) {
-      localStorage.setItem('Message', this.message.ADD_PRODUCT_SUCCESS)
+      localStorage.setItem('Message', Message.getInstance().ADD_PRODUCT_SUCCESS)
       window.location.reload()
     }
   }
@@ -85,7 +89,10 @@ class Product {
   async editProduct(newProduct) {
     const response = await this.productService.editProduct(newProduct)
     if (response) {
-      localStorage.setItem('Message', this.message.EDIT_PRODUCT_SUCCESS)
+      localStorage.setItem(
+        'Message',
+        Message.getInstance().EDIT_PRODUCT_SUCCESS,
+      )
       window.location.reload()
     }
   }
@@ -93,7 +100,10 @@ class Product {
   async deleteProduct(id) {
     const response = await this.productService.deleteProduct(id)
     if (response) {
-      localStorage.setItem('Message', this.message.DELETE_PRODUCT_SUCCESS)
+      localStorage.setItem(
+        'Message',
+        Message.getInstance().DELETE_PRODUCT_SUCCESS,
+      )
       window.location.reload()
     }
   }

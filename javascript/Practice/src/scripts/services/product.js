@@ -1,4 +1,6 @@
 import Api from '../constants/api'
+import Message from '../constants/message'
+import Notification from '../objects/notification'
 
 class ProductService {
   constructor() {
@@ -20,11 +22,16 @@ class ProductService {
       calledUrl.searchParams.append('page', 1)
       calledUrl.searchParams.append('limit', limit)
       const response = await fetch(calledUrl)
+      if (!response.ok) {
+        Notification.renderErrorNotification(
+          Message.getInstance().GET_PRODUCT_FAILED,
+        )
+        return null
+      }
       return response.json()
     } catch (error) {
-      console.error('Error fetching product:', error)
+      return null
     }
-    return null
   }
 
   async filterProduct(property = '', value = '', limit = 9) {
@@ -36,21 +43,31 @@ class ProductService {
         calledUrl.searchParams.append(property, value)
       }
       const response = await fetch(calledUrl)
+      if (!response.ok) {
+        Notification.renderErrorNotification(
+          Message.getInstance().GET_PRODUCT_FAILED,
+        )
+        return null
+      }
       return response.json()
     } catch (error) {
-      console.error('Error fetching product:', error)
+      return null
     }
-    return null
   }
 
   async getProductById(id) {
     try {
       const response = await fetch(`${this.url}/${id}`)
+      if (!response.ok) {
+        Notification.renderErrorNotification(
+          Message.getInstance().GET_PRODUCT_FAILED,
+        )
+        return null
+      }
       return response.json()
     } catch (error) {
-      console.error('Error fetching product:', error)
+      return null
     }
-    return null
   }
 
   async addProduct(newProduct) {
@@ -60,11 +77,16 @@ class ProductService {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(newProduct),
       })
+      if (!response.ok) {
+        Notification.renderErrorNotification(
+          Message.getInstance().ADD_PRODUCT_FAILED,
+        )
+        return null
+      }
       return response.json()
     } catch (error) {
-      console.log(error)
+      return null
     }
-    return null
   }
 
   async editProduct(newProduct) {
@@ -74,11 +96,16 @@ class ProductService {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(newProduct),
       })
+      if (!response.ok) {
+        Notification.renderErrorNotification(
+          Message.getInstance().EDIT_PRODUCT_FAILED,
+        )
+        return null
+      }
       return response.json()
     } catch (error) {
-      console.log(error)
+      return null
     }
-    return null
   }
 
   async deleteProduct(id) {
@@ -86,11 +113,16 @@ class ProductService {
       const response = await fetch(`${this.url}/${id}`, {
         method: 'DELETE',
       })
+      if (!response.ok) {
+        Notification.renderErrorNotification(
+          Message.getInstance().DELETE_PRODUCT_FAILED,
+        )
+        return null
+      }
       return response.json()
     } catch (error) {
-      console.log(error)
+      return null
     }
-    return null
   }
 }
 
