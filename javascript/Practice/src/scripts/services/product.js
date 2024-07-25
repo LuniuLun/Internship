@@ -24,6 +24,20 @@ class ProductService {
     return null
   }
 
+  async filterProduct(property = '', value = '') {
+    try {
+      const calledUrl = new URL(this.url)
+      if (property !== '' && value !== '') {
+        calledUrl.searchParams.append(property, value)
+      }
+      const response = await fetch(calledUrl)
+      return response.json()
+    } catch (error) {
+      console.error('Error fetching product:', error)
+    }
+    return null
+  }
+
   async getProductById(id) {
     try {
       const response = await fetch(`${this.url}/${id}`)
