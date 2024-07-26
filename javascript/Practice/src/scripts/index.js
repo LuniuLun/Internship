@@ -1,6 +1,6 @@
 import HomePage from './events/home'
 import Product from './objects/product'
-import Notification from './objects/notification'
+import Notification from './utilities/notification'
 
 class Main {
   constructor() {
@@ -10,7 +10,7 @@ class Main {
   }
 
   async init() {
-    await this.products.renderProduct()
+    await this.homePage.renderProduct()
     HomePage.dropdownToggle()
     HomePage.showForm()
     HomePage.showPopup()

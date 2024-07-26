@@ -1,6 +1,6 @@
 import Api from '../constants/api'
 import Message from '../constants/message'
-import Notification from '../objects/notification'
+import Notification from '../utilities/notification'
 
 class ProductService {
   constructor() {
