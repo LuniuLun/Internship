@@ -24,12 +24,6 @@ class Form {
     formInstance.showEditForm()
   }
 
-  registerEventAfterLoadForm() {
-    Form.hiddenForm()
-    Form.submitForm()
-    Form.validationImage()
-  }
-
   /**
    * Displays the form for adding a new product.
    */
@@ -41,8 +35,10 @@ class Form {
       const formHTML = ProductTemplate.renderForm({})
       wrapperFormEle.innerHTML = formHTML
       wrapperFormEle.classList.add('show')
-
       formInstance.registerEventAfterLoadForm()
+      Form.hiddenForm()
+      Form.submitForm()
+      Form.validationImage()
     })
   }
 
@@ -52,7 +48,6 @@ class Form {
   showEditForm() {
     const getEditFormEle = document.querySelectorAll('.js-edit-form')
     const wrapperFormEle = document.querySelector('.js-wrapper-form')
-    const formInstance = Form.getInstance()
 
     getEditFormEle.forEach((ele) => {
       ele.addEventListener('click', async (event) => {
@@ -63,7 +58,9 @@ class Form {
           const formHTML = ProductTemplate.renderForm(currentProduct)
           wrapperFormEle.innerHTML = formHTML
           wrapperFormEle.classList.add('show')
-          formInstance.registerEventAfterLoadForm()
+          Form.hiddenForm()
+          Form.submitForm()
+          Form.validationImage()
         }
       })
     })
