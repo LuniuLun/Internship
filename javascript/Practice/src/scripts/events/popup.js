@@ -3,42 +3,40 @@ import PopupTemplate from '../template/popup'
 import Product from '../product'
 import ValidationForm from '../utilities/validationForm'
 
-class Form {
+class Popup {
   constructor() {
     this.instance = this
     this.productInstance = Product.getInstance()
-    this.validationImageResult = false
+    this.validationImageResult = true
   }
 
   static getInstance() {
-    if (!Form.instance) {
-      Form.instance = new Form()
+    if (!Popup.instance) {
+      Popup.instance = new Popup()
     }
-    return Form.instance
+    return Popup.instance
   }
 
-  static create() {
-    const formInstance = Form.getInstance()
-    Form.showForm()
-    Form.showPopup()
-    formInstance.showEditForm()
+  create() {
+    const popupInstance = Popup.getInstance()
+    this.showForm()
+    this.showWarningForm()
+    popupInstance.showEditForm()
   }
 
   /**
    * Displays the form for adding a new product.
    */
-  static showForm() {
+  showForm() {
     const getFormEle = document.querySelector('.js-get-form')
     const wrapperFormEle = document.querySelector('.js-wrapper-form')
-    const formInstance = Form.getInstance()
     getFormEle.addEventListener('click', () => {
       const formHTML = ProductTemplate.renderForm({})
       wrapperFormEle.innerHTML = formHTML
       wrapperFormEle.classList.add('show')
-      formInstance.registerEventAfterLoadForm()
-      Form.hiddenForm()
-      Form.submitForm()
-      Form.validationImage()
+      this.hiddenForm()
+      this.submitForm()
+      this.validationImage()
     })
   }
 
@@ -58,9 +56,9 @@ class Form {
           const formHTML = ProductTemplate.renderForm(currentProduct)
           wrapperFormEle.innerHTML = formHTML
           wrapperFormEle.classList.add('show')
-          Form.hiddenForm()
-          Form.submitForm()
-          Form.validationImage()
+          this.hiddenForm()
+          this.submitForm()
+          this.validationImage()
         }
       })
     })
@@ -69,7 +67,7 @@ class Form {
   /**
    * Hides the form for adding or editing a product.
    */
-  static hiddenForm() {
+  hiddenForm() {
     const hiddenFormBtn = document.querySelector('.js-hidden-form')
     const wrapperFormEle = document.querySelector('.js-wrapper-form')
 
@@ -82,11 +80,10 @@ class Form {
   /**
    * Handles the form submission for adding or editing a product.
    */
-  static submitForm() {
+  submitForm() {
     const formEle = document.getElementById('js-product-form')
-    const formInstanceInstance = Form.getInstance()
+    const formInstanceInstance = Popup.getInstance()
     const newProduct = {}
-
     formEle.addEventListener('submit', async (e) => {
       e.preventDefault()
       Array.from(formEle.elements).forEach((element) => {
@@ -94,7 +91,9 @@ class Form {
           newProduct[element.name] = element.value
         }
       })
-      if (Form.validationForm(newProduct) && this.validationImageResult) {
+      console.log(this.validationForm(newProduct))
+      console.log(this.validationImageResult)
+      if (this.validationForm(newProduct) && this.validationImageResult) {
         formInstanceInstance.productInstance.submitProduct(newProduct)
         this.validationImageResult = false
       }
@@ -106,7 +105,7 @@ class Form {
    * This method listens for changes in the image URL input field,
    * performs validation, and updates the error message accordingly.
    */
-  static async validationImage() {
+  async validationImage() {
     const imageURLEle = document.querySelector('.js-check-imageURL')
     imageURLEle.addEventListener('change', async (event) => {
       const imageURL = event.target.value
@@ -133,7 +132,8 @@ class Form {
    * @param {Object} newProduct - The product data to be validated.
    * @returns {boolean} True if the form is valid, otherwise false.
    */
-  static validationForm(newProduct) {
+  validationForm(newProduct) {
+    let check = true
     const messageArr = {
       'name-error': ValidationForm.checkName('name', newProduct.name),
       'price-error': ValidationForm.checkPrice('price', newProduct.price),
@@ -151,17 +151,17 @@ class Form {
       if (messageArr[key] !== true) {
         errorEle.classList.add('show')
         errorEle.innerHTML = messageArr[key]
-        return false
+        check = false
       }
       errorEle.classList.remove('show')
-      return true
     })
+    return check
   }
 
   /**
    * Displays the popup for confirming product deletion.
    */
-  static showPopup() {
+  showWarningForm() {
     const getPopupEle = document.querySelectorAll('.js-get-popup')
     const wrapperPopupEle = document.querySelector('.js-wrapper-popup')
 
@@ -170,8 +170,8 @@ class Form {
         const popupHTML = PopupTemplate.renderPopup(event.target.id)
         wrapperPopupEle.innerHTML = popupHTML
         wrapperPopupEle.classList.add('show')
-        Form.hiddenForm()
-        Form.acceptPopup()
+        this.hiddenForm()
+        this.acceptPopup()
 
         const popupEle = document.querySelector('.popup')
         const rect = event.target.getBoundingClientRect()
@@ -184,14 +184,14 @@ class Form {
   /**
    * Handles the confirmation of product deletion.
    */
-  static acceptPopup() {
-    const getAcceptPopupEle = document.querySelector('.js-accept')
-    const formInstanceInstance = Form.getInstance()
+  acceptWarningForm() {
+    const getAcceptWarningFormEle = document.querySelector('.js-accept')
+    const formInstanceInstance = this.getInstance()
 
-    getAcceptPopupEle.addEventListener('click', async (event) => {
+    getAcceptWarningFormEle.addEventListener('click', async (event) => {
       await formInstanceInstance.productInstance.deleteProduct(event.target.id)
     })
   }
 }
 
-export default Form
+export default Popup

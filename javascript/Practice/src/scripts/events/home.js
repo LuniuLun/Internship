@@ -1,11 +1,12 @@
 import ProductTemplate from '../template/product'
 import Product from '../product'
 import RuleFilter from '../utilities/filterRule'
-import Form from './form'
+import Popup from './popup'
 
 class HomePage {
   constructor() {
     this.instance = this
+    this.popup = Popup.getInstance()
     this.productInstance = Product.getInstance()
   }
 
@@ -20,19 +21,19 @@ class HomePage {
     return HomePage.instance
   }
 
-  static async create() {
+  async create() {
     const homePage = HomePage.getInstance()
     await homePage.renderProduct()
-    Form.create()
-    HomePage.dropdownToggle()
-    HomePage.filterProduct()
-    HomePage.getMoreProduct()
+    this.popup.create()
+    this.dropdownToggle()
+    this.filterProduct()
+    this.getMoreProduct()
   }
 
   /**
    * Toggles the visibility of the dropdown menu for sorting options.
    */
-  static dropdownToggle() {
+  dropdownToggle() {
     const toggleBtn = document.querySelector('.js-btn-toggle')
     const sortOption = document.querySelector('.js-sort-option')
 
@@ -63,7 +64,7 @@ class HomePage {
   /**
    * Filters the products based on user input and sorting options.
    */
-  static filterProduct() {
+  filterProduct() {
     const inputEle = document.querySelector('.js-filter-input')
     const sortOptionEle = document.querySelectorAll('.sort-option__item')
     const sortOption = document.querySelector('.js-sort-option')
@@ -72,8 +73,7 @@ class HomePage {
 
     inputEle.addEventListener('change', async (event) => {
       ruleFilter.setFilter({ value: event.target.value })
-      await productInstance.filterProduct(ruleFilter)
-      Form.create()
+      await productInstance.filterProduct(ruleFilter).create()
     })
 
     sortOptionEle.forEach((ele) => {
@@ -82,7 +82,7 @@ class HomePage {
         const typeOfSort = event.target.getAttribute('data-value')
         ruleFilter.setFilter({ typeOfSort, value: inputEle.value })
         await productInstance.filterProduct(ruleFilter)
-        Form.create()
+        this.popup.create()
       })
     })
   }
@@ -90,7 +90,7 @@ class HomePage {
   /**
    * Loads more products when the "show more" button is clicked.
    */
-  static getMoreProduct() {
+  getMoreProduct() {
     const getMoreProductEle = document.querySelector('.js-show-more-product')
     const inputEle = document.querySelector('.js-filter-input')
     const productInstance = Product.getInstance()
@@ -104,7 +104,7 @@ class HomePage {
         limit,
       })
       await productInstance.filterProduct(ruleFilter)
-      Form.create()
+      this.popup.create()
     })
   }
 }

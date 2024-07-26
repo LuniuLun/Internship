@@ -4,10 +4,11 @@ import Notification from './events/notification'
 class Main {
   constructor() {
     this.instance = this
+    this.homePage = HomePage.getInstance()
   }
 
-  static async init() {
-    await HomePage.create()
+  async init() {
+    await this.homePage.create()
     Notification.renderNotification()
   }
 
@@ -19,4 +20,5 @@ class Main {
   }
 }
 
-Main.init()
+const main = Main.getInstance()
+main.init()
