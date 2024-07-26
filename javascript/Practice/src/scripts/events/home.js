@@ -11,6 +11,10 @@ class HomePage {
     this.validationFormInstance = ValidationForm.getInstance()
   }
 
+  /**
+   * Singleton pattern to ensure only one instance of HomePage exists.
+   * @returns {HomePage} The instance of HomePage.
+   */
   static getInstance() {
     if (!HomePage.instance) {
       HomePage.instance = new HomePage()
@@ -18,6 +22,9 @@ class HomePage {
     return HomePage.instance
   }
 
+  /**
+   * Toggles the visibility of the dropdown menu for sorting options.
+   */
   static dropdownToggle() {
     const toggleBtn = document.querySelector('.js-btn-toggle')
     const sortOption = document.querySelector('.js-sort-option')
@@ -27,6 +34,10 @@ class HomePage {
     })
   }
 
+  /**
+   * Renders the list of products on the home page.
+   * @param {number} limit - The number of products to render.
+   */
   async renderProduct(limit = 9) {
     const renderProductEle = document.querySelector('.js-get-products')
     renderProductEle.innerHTML = ''
@@ -42,6 +53,9 @@ class HomePage {
     renderProductEle.innerHTML += html
   }
 
+  /**
+   * Filters the products based on user input and sorting options.
+   */
   static filterProduct() {
     const inputEle = document.querySelector('.js-filter-input')
     const sortOptionEle = document.querySelectorAll('.sort-option__item')
@@ -71,6 +85,9 @@ class HomePage {
     })
   }
 
+  /**
+   * Displays the form for adding a new product.
+   */
   static showForm() {
     const getFormEle = document.querySelector('.js-get-form')
     const wrapperFormEle = document.querySelector('.js-wrapper-form')
@@ -84,6 +101,9 @@ class HomePage {
     })
   }
 
+  /**
+   * Displays the form for editing an existing product.
+   */
   showEditForm() {
     const getEditFormEle = document.querySelectorAll('.js-edit-form')
     const wrapperFormEle = document.querySelector('.js-wrapper-form')
@@ -104,6 +124,9 @@ class HomePage {
     })
   }
 
+  /**
+   * Hides the form for adding or editing a product.
+   */
   static hiddenForm() {
     const hiddenFormBtn = document.querySelector('.js-hidden-form')
     const wrapperFormEle = document.querySelector('.js-wrapper-form')
@@ -114,6 +137,9 @@ class HomePage {
     })
   }
 
+  /**
+   * Handles the form submission for adding or editing a product.
+   */
   static submitForm() {
     const formEle = document.getElementById('js-product-form')
     const homePageInstance = HomePage.getInstance()
@@ -133,6 +159,11 @@ class HomePage {
     })
   }
 
+  /**
+   * Validates the product form fields.
+   * @param {Object} newProduct - The product data to be validated.
+   * @returns {boolean} True if the form is valid, otherwise false.
+   */
   static validationForm(newProduct) {
     const messageArr = {
       'name-error': ValidationForm.checkName('name', newProduct.name),
@@ -160,6 +191,9 @@ class HomePage {
     return flag
   }
 
+  /**
+   * Displays the popup for confirming product deletion.
+   */
   static showPopup() {
     const getPopupEle = document.querySelectorAll('.js-get-popup')
     const wrapperPopupEle = document.querySelector('.js-wrapper-popup')
@@ -180,6 +214,9 @@ class HomePage {
     })
   }
 
+  /**
+   * Handles the confirmation of product deletion.
+   */
   static acceptPopup() {
     const getAcceptPopupEle = document.querySelector('.js-accept')
     const homePageInstance = HomePage.getInstance()
@@ -189,6 +226,9 @@ class HomePage {
     })
   }
 
+  /**
+   * Loads more products when the "show more" button is clicked.
+   */
   static getMoreProduct() {
     const getMoreProductEle = document.querySelector('.js-show-more-product')
     const inputEle = document.querySelector('.js-filter-input')

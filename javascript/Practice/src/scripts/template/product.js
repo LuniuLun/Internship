@@ -25,7 +25,7 @@ class ProductTemplate {
     return `
         <form action="" class="form form--center" id="js-product-form">
           <input type="hidden" name="id" value="${id}" />
-          <h2 class="form__title">${id !== '' ? 'Edit' : 'Add'}</h2>
+          <h2 class="form__title">${id !== '' ? 'Edit' : 'Create a new food'}</h2>
           <label for="name" class="form__label">Name</label>
           <input
             type="text"

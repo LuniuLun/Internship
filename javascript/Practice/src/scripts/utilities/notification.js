@@ -3,6 +3,10 @@ class Notification {
     this.instance = this
   }
 
+  /**
+   * Singleton pattern to ensure only one instance of Notification exists.
+   * @returns {Notification} The instance of the Notification class.
+   */
   static getInstance() {
     if (!Notification.instance) {
       Notification.instance = new Notification()
@@ -10,6 +14,9 @@ class Notification {
     return Notification.instance
   }
 
+  /**
+   * Renders a success notification if a message exists in localStorage.
+   */
   static renderNotification() {
     const message = localStorage.getItem('Message')
     if (message) {
@@ -26,6 +33,10 @@ class Notification {
     }
   }
 
+  /**
+   * Renders an error notification with the provided message.
+   * @param {string} message - The error message to display.
+   */
   static renderErrorNotification(message) {
     if (message) {
       const messageEle = document.querySelector('.js-failed-message')

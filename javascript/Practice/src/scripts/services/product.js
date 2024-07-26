@@ -9,6 +9,10 @@ class ProductService {
     this.instance = this
   }
 
+  /**
+   * Singleton pattern to ensure only one instance of ProductService exists.
+   * @returns {ProductService} The instance of ProductService.
+   */
   static getInstance() {
     if (!ProductService.instance) {
       ProductService.instance = new ProductService()
@@ -16,6 +20,11 @@ class ProductService {
     return ProductService.instance
   }
 
+  /**
+   * Fetches a list of products with a specified limit.
+   * @param {number} limit - The number of products to fetch.
+   * @returns {Promise<Object[]> | null} A promise that resolves to the list of products or null if an error occurs.
+   */
   async getProduct(limit = 9) {
     try {
       const calledUrl = new URL(this.url)
@@ -34,6 +43,13 @@ class ProductService {
     }
   }
 
+  /**
+   * Filters products based on a specified property and value with a limit.
+   * @param {string} property - The property to filter by.
+   * @param {string} value - The value of the property to filter by.
+   * @param {number} limit - The number of products to fetch.
+   * @returns {Promise<Object[]> | null} A promise that resolves to the filtered list of products or null if an error occurs.
+   */
   async filterProduct(property = '', value = '', limit = 9) {
     try {
       const calledUrl = new URL(this.url)
@@ -55,6 +71,11 @@ class ProductService {
     }
   }
 
+  /**
+   * Fetches a product by its ID.
+   * @param {string} id - The ID of the product to fetch.
+   * @returns {Promise<Object | null>} A promise that resolves to the product data or null if an error occurs.
+   */
   async getProductById(id) {
     try {
       const response = await fetch(`${this.url}/${id}`)
@@ -70,6 +91,11 @@ class ProductService {
     }
   }
 
+  /**
+   * Adds a new product.
+   * @param {Object} newProduct - The new product data to be added.
+   * @returns {Promise<Object | null>} A promise that resolves to the added product data or null if an error occurs.
+   */
   async addProduct(newProduct) {
     try {
       const response = await fetch(this.url, {
@@ -89,6 +115,11 @@ class ProductService {
     }
   }
 
+  /**
+   * Edits an existing product.
+   * @param {Object} newProduct - The updated product data.
+   * @returns {Promise<Object | null>} A promise that resolves to the updated product data or null if an error occurs.
+   */
   async editProduct(newProduct) {
     try {
       const response = await fetch(`${this.url}/${newProduct.id}`, {
@@ -108,6 +139,11 @@ class ProductService {
     }
   }
 
+  /**
+   * Deletes a product by its ID.
+   * @param {string} id - The ID of the product to delete.
+   * @returns {Promise<Object | null>} A promise that resolves to the deleted product data or null if an error occurs.
+   */
   async deleteProduct(id) {
     try {
       const response = await fetch(`${this.url}/${id}`, {
