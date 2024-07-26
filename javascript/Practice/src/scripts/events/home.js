@@ -69,6 +69,7 @@ class HomePage {
       await productInstance.filterProduct(ruleFilter)
       HomePage.showPopup()
       HomePage.showForm()
+      HomePage.validationImage()
       homeInstance.showEditForm()
     })
 
@@ -80,6 +81,7 @@ class HomePage {
         await productInstance.filterProduct(ruleFilter)
         HomePage.showPopup()
         HomePage.showForm()
+        HomePage.validationImage()
         homeInstance.showEditForm()
       })
     })
@@ -98,6 +100,7 @@ class HomePage {
       wrapperFormEle.classList.add('show')
       HomePage.hiddenForm()
       HomePage.submitForm()
+      HomePage.validationImage()
     })
   }
 
@@ -119,6 +122,7 @@ class HomePage {
           wrapperFormEle.classList.add('show')
           HomePage.hiddenForm()
           HomePage.submitForm()
+          HomePage.validationImage()
         }
       })
     })
@@ -145,17 +149,37 @@ class HomePage {
     const homePageInstance = HomePage.getInstance()
     const newProduct = {}
 
-    formEle.addEventListener('submit', (e) => {
+    formEle.addEventListener('submit', async (e) => {
       e.preventDefault()
       Array.from(formEle.elements).forEach((element) => {
         if (element && element.value !== 'Save' && element.value !== 'Cancel') {
           newProduct[element.name] = element.value
         }
       })
-
-      if (HomePage.validationForm(newProduct)) {
+      if (await HomePage.validationForm(newProduct)) {
         homePageInstance.productInstance.submitProduct(newProduct)
       }
+    })
+  }
+
+  static async validationImage() {
+    const imageURLEle = document.querySelector('.js-check-imageURL')
+
+    imageURLEle.addEventListener('change', async (event) => {
+      const imageURL = event.target.value
+      const validationResult = await ValidationForm.checkImageURL(
+        'imageURL',
+        imageURL,
+      )
+      const errorEle = document.querySelector('.js-imageURL-error')
+
+      if (validationResult !== true) {
+        errorEle.textContent = validationResult
+        errorEle.classList.add('show')
+        return
+      }
+      errorEle.textContent = ''
+      errorEle.classList.remove('show')
     })
   }
 
@@ -164,7 +188,7 @@ class HomePage {
    * @param {Object} newProduct - The product data to be validated.
    * @returns {boolean} True if the form is valid, otherwise false.
    */
-  static validationForm(newProduct) {
+  static async validationForm(newProduct) {
     const messageArr = {
       'name-error': ValidationForm.checkName('name', newProduct.name),
       'price-error': ValidationForm.checkPrice('price', newProduct.price),
@@ -172,23 +196,21 @@ class HomePage {
         'quantity',
         newProduct.quantity,
       ),
-      'imageURL-error': ValidationForm.checkImageURL(
+      'imageURL-error': await ValidationForm.checkImageURL(
         'imageURL',
         newProduct.imageURL,
       ),
     }
-    let flag = true
     Object.keys(messageArr).forEach((key) => {
       const errorEle = document.querySelector(`.js-${key}`)
       if (messageArr[key] !== true) {
         errorEle.classList.add('show')
         errorEle.innerHTML = messageArr[key]
-        flag = false
-      } else {
-        errorEle.classList.remove('show')
+        return false
       }
+      errorEle.classList.remove('show')
+      return true
     })
-    return flag
   }
 
   /**

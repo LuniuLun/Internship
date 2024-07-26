@@ -49,7 +49,7 @@ class ProductTemplate {
             type="text"
             id="imageURL"
             name="imageURL"
-            class="text-field"
+            class="text-field js-check-imageURL"
             value="${imageURL}"
           />
           <span class="form__error js-imageURL-error"></span>

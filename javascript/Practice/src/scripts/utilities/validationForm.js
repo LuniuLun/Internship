@@ -89,36 +89,37 @@ class ValidationForm {
   }
 
   /**
-   * Checks if a value is a valid image URL.
+   * Checks if a URL points to a valid image resource.
    * @param {string} key - The name of the field.
-   * @param {string} value - The value to check.
-   * @returns {string|undefined} An error message if the value is not a valid image URL, otherwise undefined.
+   * @param {string} value - The URL to check.
+   * @returns {Promise<string|undefined>} An error message if the URL is not valid, otherwise undefined.
    */
-  static isValidImageUrl(key, value) {
-    const isValidExtension = RegExpClass.getInstance().imageExtensions.some(
-      (ext) => value.endsWith(ext),
-    )
-    const isValidProtocol =
-      value.startsWith('http://') || value.startsWith('https://')
-
-    if (isValidProtocol || isValidExtension) {
-      return undefined
+  static async isValidImageUrl(key, value) {
+    // Check if the URL starts with http:// or https://
+    if (!value.startsWith('http://') && !value.startsWith('https://')) {
+      return `${key} must start with http:// or https://`
     }
+    try {
+      const response = await fetch(value, { method: 'HEAD' })
 
-    return `${key} must be a valid image URL starting with http://, https:// or with extensions: ${RegExpClass.getInstance().imageExtensions.join(', ')}`
+      // Check if the response hasn't 200 status
+      if (!response.ok) {
+        return `${key} does not point to a valid image resource`
+      }
+
+      // Check if the Content-Type is one of the allowed image types
+      const contentType = response.headers.get('Content-Type')
+      const allowedExtensions = RegExpClass.getInstance().imageExtensions
+
+      if (!allowedExtensions.some((ext) => contentType.includes(ext))) {
+        return `${key} does not point to a valid image resource. Allowed types are: ${allowedExtensions.join(', ')}`
+      }
+
+      return undefined
+    } catch (error) {
+      return `${key} does not point to a valid image resource`
+    }
   }
-
-  // static async isAliveImageUrl(key, value) {
-  //   try {
-  //     const response = await fetch(value, { method: 'HEAD' })
-  //     if (!response.ok) {
-  //       return `${key} URL does not point to a valid image resource`
-  //     }
-  //     return undefined
-  //   } catch (error) {
-  //     return `${key} URL does not point to a valid image resource`
-  //   }
-  // }
 
   /**
    * Validates the name field.
@@ -169,10 +170,10 @@ class ValidationForm {
    * @param {string} value - The value to check.
    * @returns {string|true} An error message if validation fails, otherwise true.
    */
-  static checkImageURL(key, value) {
+  static async checkImageURL(key, value) {
     return (
       ValidationForm.isNotEmpty(key, value) ||
-      ValidationForm.isValidImageUrl(key, value) ||
+      (await ValidationForm.isValidImageUrl(key, value)) ||
       true
     )
   }
