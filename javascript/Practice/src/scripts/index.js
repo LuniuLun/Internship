@@ -1,22 +1,13 @@
 import HomePage from './events/home'
-import Product from './objects/product'
-import Notification from './utilities/notification'
+import Notification from './events/notification'
 
 class Main {
   constructor() {
     this.instance = this
-    this.products = Product.getInstance()
-    this.homePage = HomePage.getInstance()
   }
 
-  async init() {
-    await this.homePage.renderProduct()
-    HomePage.dropdownToggle()
-    HomePage.showForm()
-    HomePage.showPopup()
-    HomePage.filterProduct()
-    HomePage.getMoreProduct()
-    this.homePage.showEditForm()
+  static async init() {
+    await HomePage.create()
     Notification.renderNotification()
   }
 
@@ -28,5 +19,4 @@ class Main {
   }
 }
 
-const instance = Main.getInstance()
-instance.init()
+Main.init()

@@ -31,6 +31,7 @@ class Product {
     if (Array.isArray(products) && products.length > 0) {
       products = products.reverse()
     }
+    console.log(products)
     return products
   }
 
