@@ -3,6 +3,10 @@ class PopupTemplate {
     this.instance = this
   }
 
+  /**
+   * Singleton pattern to ensure only one instance of PopupTemplate exists.
+   * @returns {PopupTemplate} The instance of PopupTemplate.
+   */
   static getInstance() {
     if (!PopupTemplate.instance) {
       PopupTemplate.instance = new PopupTemplate()
@@ -10,6 +14,11 @@ class PopupTemplate {
     return PopupTemplate.instance
   }
 
+  /**
+   * Renders a popup HTML template for confirming a deletion action.
+   * @param {string} id - The ID of the item to be deleted.
+   * @returns {string} The HTML string for the popup.
+   */
   static renderPopup(id) {
     return `          
           <div class="popup">

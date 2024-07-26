@@ -8,6 +8,10 @@ class ProductTemplate {
     this.instance = this
   }
 
+  /**
+   * Singleton pattern to ensure only one instance of ProductTemplate exists.
+   * @returns {ProductTemplate} The instance of ProductTemplate.
+   */
   static getInstance() {
     if (!ProductTemplate.instance) {
       ProductTemplate.instance = new ProductTemplate()
@@ -15,6 +19,16 @@ class ProductTemplate {
     return ProductTemplate.instance
   }
 
+  /**
+   * Renders an HTML form for creating or editing a product.
+   * @param {Object} params - The product details for the form.
+   * @param {string} [params.id=''] - The ID of the product (for editing).
+   * @param {string} [params.name=''] - The name of the product.
+   * @param {string} [params.imageURL=''] - The image URL of the product.
+   * @param {string} [params.price='1'] - The price of the product.
+   * @param {string} [params.quantity='1'] - The quantity of the product.
+   * @returns {string} The HTML string for the form.
+   */
   static renderForm({
     id = '',
     name = '',
@@ -69,6 +83,16 @@ class ProductTemplate {
         </form>`
   }
 
+  /**
+   * Renders an HTML card for displaying a product.
+   * @param {Object} params - The product details for the card.
+   * @param {string} params.id - The ID of the product.
+   * @param {string} params.name - The name of the product.
+   * @param {string} params.imageURL - The image URL of the product.
+   * @param {string} params.price - The price of the product.
+   * @param {string} params.quantity - The quantity of the product.
+   * @returns {string} The HTML string for the product card.
+   */
   static renderProductCard({ id, name, imageURL, price, quantity }) {
     return `
             <div class="product" id="${id}">
@@ -93,6 +117,10 @@ class ProductTemplate {
             </div>`
   }
 
+  /**
+   * Renders an HTML card for adding a new product.
+   * @returns {string} The HTML string for the addition card.
+   */
   static renderAdditionCard() {
     return `            
             <div class="product product--dashed js-get-form">

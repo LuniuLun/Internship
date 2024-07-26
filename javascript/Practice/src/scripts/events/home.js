@@ -162,6 +162,11 @@ class HomePage {
     })
   }
 
+  /**
+   * Validates the image URL field when the input value changes.
+   * This method listens for changes in the image URL input field,
+   * performs validation, and updates the error message accordingly.
+   */
   static async validationImage() {
     const imageURLEle = document.querySelector('.js-check-imageURL')
 
