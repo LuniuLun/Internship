@@ -17,21 +17,12 @@ class Product {
     return Product.instance
   }
 
-  async renderProduct(limit = 9) {
-    const renderProductEle = document.querySelector('.js-get-products')
-    renderProductEle.innerHTML = ''
-    let html = ProductTemplate.renderAdditionCard()
-
+  async getProduct(limit = 9) {
     let products = await this.productService.getProduct(limit)
     if (Array.isArray(products) && products.length > 0) {
       products = products.reverse()
-
-      products.forEach((item) => {
-        html += ProductTemplate.renderProductCard(item)
-      })
     }
-
-    renderProductEle.innerHTML += html
+    return products
   }
 
   async filterProduct({
