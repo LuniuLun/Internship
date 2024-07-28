@@ -1,67 +1,40 @@
 import ProductTemplate from '../template/product'
 import PopupTemplate from '../template/popup'
-import Product from '../product'
 import ValidationForm from '../utilities/validationForm'
+import Product from '../product'
 
 class Popup {
-  constructor() {
+  constructor(currentProduct) {
     this.instance = this
-    this.productInstance = Product.getInstance()
+    this.currentProduct = currentProduct
     this.validationImageResult = true
   }
 
-  static getInstance() {
+  /**
+   * Singleton pattern to ensure only one instance of Popup exists.
+   * @param {Object} currentProduct - The current product data.
+   * @returns {Popup} The instance of Popup.
+   */
+  static getInstance(currentProduct = {}) {
     if (!Popup.instance) {
-      Popup.instance = new Popup()
+      Popup.instance = new Popup(currentProduct)
+    } else {
+      Popup.instance.currentProduct = currentProduct
     }
     return Popup.instance
   }
 
-  create() {
-    const popupInstance = Popup.getInstance()
-    this.showForm()
-    this.showWarningForm()
-    popupInstance.showEditForm()
-  }
-
   /**
-   * Displays the form for adding a new product.
+   * Displays the form for adding or editing a product.
    */
   showForm() {
-    const getFormEle = document.querySelector('.js-get-form')
     const wrapperFormEle = document.querySelector('.js-wrapper-form')
-    getFormEle.addEventListener('click', () => {
-      const formHTML = ProductTemplate.renderForm({})
-      wrapperFormEle.innerHTML = formHTML
-      wrapperFormEle.classList.add('show')
-      this.hiddenForm()
-      this.submitForm()
-      this.validationImage()
-    })
-  }
-
-  /**
-   * Displays the form for editing an existing product.
-   */
-  showEditForm() {
-    const getEditFormEle = document.querySelectorAll('.js-edit-form')
-    const wrapperFormEle = document.querySelector('.js-wrapper-form')
-
-    getEditFormEle.forEach((ele) => {
-      ele.addEventListener('click', async (event) => {
-        const currentProduct = await this.productInstance.getProductById(
-          event.target.id,
-        )
-        if (currentProduct !== null) {
-          const formHTML = ProductTemplate.renderForm(currentProduct)
-          wrapperFormEle.innerHTML = formHTML
-          wrapperFormEle.classList.add('show')
-          this.hiddenForm()
-          this.submitForm()
-          this.validationImage()
-        }
-      })
-    })
+    const formHTML = ProductTemplate.renderForm(this.currentProduct)
+    wrapperFormEle.innerHTML = formHTML
+    wrapperFormEle.classList.add('show')
+    this.hiddenForm()
+    this.submitForm()
+    this.validationImage()
   }
 
   /**
@@ -82,7 +55,7 @@ class Popup {
    */
   submitForm() {
     const formEle = document.getElementById('js-product-form')
-    const formInstanceInstance = Popup.getInstance()
+    const productInstance = Product.getInstance()
     const newProduct = {}
     formEle.addEventListener('submit', async (e) => {
       e.preventDefault()
@@ -91,10 +64,8 @@ class Popup {
           newProduct[element.name] = element.value
         }
       })
-      console.log(this.validationForm(newProduct))
-      console.log(this.validationImageResult)
       if (this.validationForm(newProduct) && this.validationImageResult) {
-        formInstanceInstance.productInstance.submitProduct(newProduct)
+        productInstance.submitProduct(newProduct)
         this.validationImageResult = false
       }
     })
@@ -160,25 +131,18 @@ class Popup {
 
   /**
    * Displays the popup for confirming product deletion.
+   * @param {string} id - The ID of the product to be deleted.
+   * @param {number} popupTop - The top position of the popup.
    */
-  showWarningForm() {
-    const getPopupEle = document.querySelectorAll('.js-get-popup')
+  showWarningForm(id, popupTop) {
     const wrapperPopupEle = document.querySelector('.js-wrapper-popup')
+    wrapperPopupEle.innerHTML = PopupTemplate.renderPopup(id)
+    wrapperPopupEle.classList.add('show')
+    const popupEle = document.querySelector('.popup')
+    popupEle.style.marginTop = `${popupTop}px`
 
-    getPopupEle.forEach((ele) => {
-      ele.addEventListener('click', (event) => {
-        const popupHTML = PopupTemplate.renderPopup(event.target.id)
-        wrapperPopupEle.innerHTML = popupHTML
-        wrapperPopupEle.classList.add('show')
-        this.hiddenForm()
-        this.acceptPopup()
-
-        const popupEle = document.querySelector('.popup')
-        const rect = event.target.getBoundingClientRect()
-        const popupTop = rect.top + window.scrollY
-        popupEle.style.marginTop = `${popupTop}px`
-      })
-    })
+    this.hiddenForm()
+    this.acceptWarningForm()
   }
 
   /**
@@ -186,10 +150,10 @@ class Popup {
    */
   acceptWarningForm() {
     const getAcceptWarningFormEle = document.querySelector('.js-accept')
-    const formInstanceInstance = this.getInstance()
+    const productInstance = Product.getInstance()
 
     getAcceptWarningFormEle.addEventListener('click', async (event) => {
-      await formInstanceInstance.productInstance.deleteProduct(event.target.id)
+      await productInstance.deleteProduct(event.target.id)
     })
   }
 }

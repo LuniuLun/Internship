@@ -95,22 +95,24 @@ class ProductTemplate {
    */
   static renderProductCard({ id, name, imageURL, price, quantity }) {
     return `
-            <div class="product" id="${id}">
-              <img class="icon product__icon js-get-popup" src="${closeIcon}" id="${id}"/>
+            <div class="product" data-id="${id}">
+              <img class="icon product__icon js-get-warning" src="${closeIcon}" id="${id}"/>
               <img
                 class="product__img"
                 src="${imageURL}"
                 alt="${name}"
               />
               <div class="product__description">
-                <h4 class="item">${name}</h4>
+                <h4 class="item js-get-name">${name}</h4>
                 <p class="item item--thin">
-                  $ ${price}
-                  <img class="icon" src="${ellipseIcon}" />
-                  ${quantity} Bowls
+                  $ 
+                  <span class="js-get-price">${price}</span>
+                  <img class="icon js-get-imageURL" src="${ellipseIcon}" />
+                  <span class="js-get-quantity">${quantity}</span>
+                  Bowls
                 </p>
               </div>
-              <button class="product__btn js-edit-form" id="${id}">
+              <button class="product__btn js-edit-product">
                 <img class="icon" src="${editIcon}" />
                 Edit dish
               </button>
@@ -123,7 +125,7 @@ class ProductTemplate {
    */
   static renderAdditionCard() {
     return `            
-            <div class="product product--dashed js-get-form">
+            <div class="product product--dashed js-add-product">
               <img
                 class="icon icon--padded"
                 src="${plus}"

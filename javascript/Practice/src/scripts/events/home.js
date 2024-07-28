@@ -21,10 +21,12 @@ class HomePage {
     return HomePage.instance
   }
 
+  /**
+   * Initializes the HomePage by rendering products, setting up event listeners, and handling functionalities.
+   */
   async create() {
-    const homePage = HomePage.getInstance()
-    await homePage.renderProduct()
-    this.popup.create()
+    await this.renderProduct()
+    this.showPopup()
     this.dropdownToggle()
     this.filterProduct()
     this.getMoreProduct()
@@ -84,6 +86,58 @@ class HomePage {
         await productInstance.filterProduct(ruleFilter)
         this.popup.create()
       })
+    })
+  }
+
+  /**
+   * Sets up event listeners for showing popup forms when user interacts with product elements.
+   */
+  showPopup() {
+    const getFormEle = document.querySelector('.js-get-popup')
+
+    getFormEle.addEventListener('click', (event) => {
+      const targetElement = event.target
+
+      // TODO: Handle when the user presses the product edit button
+      if (targetElement.closest('.js-edit-product')) {
+        const productElement = targetElement.closest('.product')
+        const id = productElement.getAttribute('data-id')
+        const name = productElement
+          .querySelector('.js-get-name')
+          .textContent.trim()
+        const imageURL = productElement
+          .querySelector('.js-get-imageURL')
+          .src.trim()
+        const price = productElement
+          .querySelector('.js-get-price')
+          .textContent.trim()
+        const quantity = productElement
+          .querySelector('.js-get-quantity')
+          .textContent.trim()
+        const popupInstance = new Popup({
+          id,
+          name,
+          imageURL,
+          price,
+          quantity,
+        })
+        popupInstance.showForm()
+        return
+      }
+
+      // TODO: Handle when the user presses the product warning button
+      if (targetElement.closest('.js-get-warning')) {
+        const id = targetElement.closest('.product').getAttribute('data-id')
+        const rect = event.target.getBoundingClientRect()
+        const popupTop = rect.top + window.scrollY
+        this.popup.showWarningForm(id, popupTop)
+        return
+      }
+
+      // TODO: Handle when the user presses the button to add a new product
+      if (targetElement.closest('.js-add-product')) {
+        this.popup.showForm()
+      }
     })
   }
 
