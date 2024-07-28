@@ -1,4 +1,3 @@
-import ProductTemplate from '../template/product'
 import PopupTemplate from '../template/popup'
 import ValidationForm from '../utilities/validationForm'
 import Product from '../product'
@@ -29,7 +28,7 @@ class Popup {
    */
   showForm() {
     const wrapperFormEle = document.querySelector('.js-wrapper-form')
-    const formHTML = ProductTemplate.renderForm(this.currentProduct)
+    const formHTML = PopupTemplate.renderProductForm(this.currentProduct)
     wrapperFormEle.innerHTML = formHTML
     wrapperFormEle.classList.add('show')
     this.hiddenForm()
@@ -136,7 +135,7 @@ class Popup {
    */
   showWarningForm(id, popupTop) {
     const wrapperPopupEle = document.querySelector('.js-wrapper-popup')
-    wrapperPopupEle.innerHTML = PopupTemplate.renderPopup(id)
+    wrapperPopupEle.innerHTML = PopupTemplate.renderWarning(id)
     wrapperPopupEle.classList.add('show')
     const popupEle = document.querySelector('.popup')
     popupEle.style.marginTop = `${popupTop}px`
