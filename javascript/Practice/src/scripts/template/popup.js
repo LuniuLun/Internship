@@ -67,7 +67,7 @@ class PopupTemplate {
             type="text"
             id="price"
             name="price"
-            class="text-field"
+            class="text-field js-check-number"
             value="${price}"
           />
           <span class="form__error js-price-error"></span>
@@ -85,7 +85,7 @@ class PopupTemplate {
             type="text"
             id="quantity"
             name="quantity"
-            class="text-field text-field--short"
+            class="text-field text-field--short js-check-number"
             value="${quantity}"
           />
           <span class="form__error js-quantity-error"></span>

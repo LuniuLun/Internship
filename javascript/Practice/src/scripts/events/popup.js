@@ -34,6 +34,7 @@ class Popup {
     this.hiddenForm()
     this.submitForm()
     this.validationImage()
+    this.pressOnlyNumber()
   }
 
   /**
@@ -67,6 +68,30 @@ class Popup {
         productInstance.submitProduct(newProduct)
         this.validationImageResult = false
       }
+    })
+  }
+
+  pressOnlyNumber() {
+    const numInputEle = document.querySelectorAll('.js-check-number')
+    numInputEle.forEach((ele) => {
+      ele.addEventListener('keypress', (event) => {
+        const { charCode } = event
+        const currentValue = ele.value
+        // Check if the user entered a number starting with a period
+        if (charCode === 46 && ele.selectionStart === 0) {
+          event.preventDefault()
+          return
+        }
+        // Check if there is already a period and the user re-enters the period
+        if (currentValue.includes('.') && charCode === 46) {
+          event.preventDefault()
+          return
+        }
+        // Check if not a number or a dot
+        if ((charCode < 48 || charCode > 57) && charCode !== 46) {
+          event.preventDefault()
+        }
+      })
     })
   }
 
