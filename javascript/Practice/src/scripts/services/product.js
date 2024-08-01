@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import Api from '../constants/api'
 import Message from '../constants/message'
 import Notification from '../events/notification'

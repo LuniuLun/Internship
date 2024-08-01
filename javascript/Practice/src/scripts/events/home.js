@@ -1,12 +1,15 @@
+/* eslint-disable class-methods-use-this */
 import ProductTemplate from '../template/product'
 import Product from '../product'
 import RuleFilter from '../utilities/filterRule'
 import Popup from './popup'
+import Loader from '../utilities/loader'
 
 class HomePage {
   constructor() {
     this.instance = this
     this.popup = Popup.getInstance()
+    this.loader = Loader.getInstance()
     this.productInstance = Product.getInstance()
   }
 
@@ -25,11 +28,16 @@ class HomePage {
    * Initializes the HomePage by rendering products, setting up event listeners, and handling functionalities.
    */
   async create() {
-    await this.renderProduct()
-    this.showPopup()
-    this.dropdownToggle()
-    this.filterProduct()
-    this.getMoreProduct()
+    this.loader.showLoader()
+    try {
+      await this.renderProduct()
+      this.showPopup()
+      this.dropdownToggle()
+      this.filterProduct()
+      this.getMoreProduct()
+    } finally {
+      this.loader.hideLoader()
+    }
   }
 
   /**
@@ -157,7 +165,6 @@ class HomePage {
         limit,
       })
       await productInstance.filterProduct(ruleFilter)
-      this.popup.create()
     })
   }
 }

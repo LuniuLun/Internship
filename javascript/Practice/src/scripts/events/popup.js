@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import PopupTemplate from '../template/popup'
 import ValidationForm from '../utilities/validationForm'
 import Product from '../product'
@@ -27,11 +28,11 @@ class Popup {
    * Displays the form for adding or editing a product.
    */
   showForm() {
-    const wrapperFormEle = document.querySelector('.js-wrapper-form')
+    const wrapperFormEle = document.querySelector('.js-wrapper-popup')
     const formHTML = PopupTemplate.renderProductForm(this.currentProduct)
     wrapperFormEle.innerHTML = formHTML
     wrapperFormEle.classList.add('show')
-    this.hiddenForm()
+    this.hideForm()
     this.submitForm()
     this.validationImage()
     this.pressOnlyNumber()
@@ -40,9 +41,9 @@ class Popup {
   /**
    * Hides the form for adding or editing a product.
    */
-  hiddenForm() {
+  hideForm() {
     const hiddenFormBtn = document.querySelector('.js-hidden-form')
-    const wrapperFormEle = document.querySelector('.js-wrapper-form')
+    const wrapperFormEle = document.querySelector('.js-wrapper-popup')
 
     hiddenFormBtn.addEventListener('click', (e) => {
       e.preventDefault()
@@ -166,7 +167,7 @@ class Popup {
     const popupEle = document.querySelector('.popup')
     popupEle.style.marginTop = `${popupTop}px`
 
-    this.hiddenForm()
+    this.hideForm()
     this.acceptWarningForm()
   }
 
