@@ -63,7 +63,7 @@ class Popup {
           newProduct[element.name] = element.value
         }
       })
-      if (this.validationForm(newProduct) && this.validationImageResult) {
+      if (this.validationForm(newProduct) && !this.validationImageResult) {
         productInstance.submitProduct(newProduct)
         this.validationImageResult = false
       }
@@ -93,7 +93,7 @@ class Popup {
       }
       errorEle.textContent = ''
       errorEle.classList.remove('show')
-      this.validationImageResult = true
+      this.validationImageResult = false
     })
   }
 
