@@ -45,8 +45,9 @@ class ValidationForm {
    * @returns {string|undefined} An error message if the value is not a float, otherwise undefined.
    */
   static isFloat(key, value) {
-    const floatValue = parseFloat(value)
-    return !Number.isNaN(floatValue)
+    // Check if the value contains invalid characters (not a number or a dot)
+    return RegExpClass.getInstance().realNumber.test(value) &&
+      (value.match(/\./g) || []).length <= 1
       ? undefined
       : `${key} must be a real number`
   }
