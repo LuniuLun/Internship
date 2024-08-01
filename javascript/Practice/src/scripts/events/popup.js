@@ -85,7 +85,7 @@ class Popup {
       )
       const errorEle = document.querySelector('.js-imageURL-error')
 
-      if (validationResult !== true) {
+      if (validationResult) {
         errorEle.textContent = validationResult
         errorEle.classList.add('show')
         this.validationImageResult = validationResult
@@ -114,14 +114,15 @@ class Popup {
       'imageURL-error':
         ValidationForm.isNotEmpty('imageURL', newProduct.imageURL) ||
         this.validationImageResult ||
-        true,
+        false,
     }
     Object.keys(messageArr).forEach((key) => {
       const errorEle = document.querySelector(`.js-${key}`)
-      if (messageArr[key] !== true) {
+      if (messageArr[key]) {
         errorEle.classList.add('show')
         errorEle.innerHTML = messageArr[key]
         check = false
+        return
       }
       errorEle.classList.remove('show')
     })

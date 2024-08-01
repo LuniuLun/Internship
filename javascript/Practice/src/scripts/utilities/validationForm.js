@@ -125,14 +125,14 @@ class ValidationForm {
    * Validates the name field.
    * @param {string} key - The name of the field.
    * @param {string} value - The value to check.
-   * @returns {string|true} An error message if validation fails, otherwise true.
+   * @returns {string|false} An error message if validation fails, otherwise true.
    */
   static checkName(key, value) {
     return (
       ValidationForm.isNotEmpty(key, value) ||
       ValidationForm.checkLenOfString(key, value) ||
       ValidationForm.isValidString(key, value) ||
-      true
+      false
     )
   }
 
@@ -140,13 +140,13 @@ class ValidationForm {
    * Validates the quantity field.
    * @param {string} key - The name of the field.
    * @param {string} value - The value to check.
-   * @returns {string|true} An error message if validation fails, otherwise true.
+   * @returns {string|false} An error message if validation fails, otherwise true.
    */
   static checkQuantity(key, value) {
     return (
       ValidationForm.isNotEmpty(key, value) ||
       ValidationForm.isInteger(key, value) ||
-      true
+      false
     )
   }
 
@@ -154,13 +154,13 @@ class ValidationForm {
    * Validates the price field.
    * @param {string} key - The name of the field.
    * @param {string} value - The value to check.
-   * @returns {string|true} An error message if validation fails, otherwise true.
+   * @returns {string|false} An error message if validation fails, otherwise true.
    */
   static checkPrice(key, value) {
     return (
       ValidationForm.isNotEmpty(key, value) ||
       ValidationForm.isFloat(key, value) ||
-      true
+      false
     )
   }
 
@@ -168,13 +168,13 @@ class ValidationForm {
    * Validates the image URL field.
    * @param {string} key - The name of the field.
    * @param {string} value - The value to check.
-   * @returns {string|true} An error message if validation fails, otherwise true.
+   * @returns {string|false} An error message if validation fails, otherwise true.
    */
   static async checkImageURL(key, value) {
     return (
       ValidationForm.isNotEmpty(key, value) ||
       (await ValidationForm.isValidImageUrl(key, value)) ||
-      true
+      false
     )
   }
 }

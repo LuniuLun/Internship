@@ -32,9 +32,7 @@ class ProductService {
       calledUrl.searchParams.append('limit', limit)
       const response = await fetch(calledUrl)
       if (!response.ok) {
-        Notification.renderErrorNotification(
-          Message.getInstance().GET_PRODUCT_FAILED,
-        )
+        Notification.renderErrorNotification(Message.getInstance().NOT_FOUND)
         return null
       }
       return response.json()
@@ -60,9 +58,7 @@ class ProductService {
       }
       const response = await fetch(calledUrl)
       if (!response.ok) {
-        Notification.renderErrorNotification(
-          Message.getInstance().GET_PRODUCT_FAILED,
-        )
+        Notification.renderErrorNotification(Message.getInstance().NOT_FOUND)
         return null
       }
       return response.json()
@@ -80,9 +76,7 @@ class ProductService {
     try {
       const response = await fetch(`${this.url}/${id}`)
       if (!response.ok) {
-        Notification.renderErrorNotification(
-          Message.getInstance().GET_PRODUCT_FAILED,
-        )
+        Notification.renderErrorNotification(Message.getInstance().NOT_FOUND)
         return null
       }
       return response.json()

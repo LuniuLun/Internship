@@ -46,8 +46,8 @@ class PopupTemplate {
     id = '',
     name = '',
     imageURL = '',
-    price = '1',
-    quantity = '1',
+    price = '',
+    quantity = '',
   }) {
     return `
         <form action="" class="form form--center" id="js-product-form">

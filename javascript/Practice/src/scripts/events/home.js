@@ -75,7 +75,7 @@ class HomePage {
 
     inputEle.addEventListener('change', async (event) => {
       ruleFilter.setFilter({ value: event.target.value })
-      await productInstance.filterProduct(ruleFilter).create()
+      await productInstance.filterProduct(ruleFilter)
     })
 
     sortOptionEle.forEach((ele) => {
@@ -84,7 +84,6 @@ class HomePage {
         const typeOfSort = event.target.getAttribute('data-value')
         ruleFilter.setFilter({ typeOfSort, value: inputEle.value })
         await productInstance.filterProduct(ruleFilter)
-        this.popup.create()
       })
     })
   }
