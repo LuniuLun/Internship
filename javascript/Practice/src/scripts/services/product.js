@@ -37,7 +37,7 @@ class ProductService {
       }
       return response.json()
     } catch (error) {
-      return null
+      Notification.renderErrorNotification(Message.getInstance().ERROR_NETWORK)
     }
   }
 
@@ -63,7 +63,7 @@ class ProductService {
       }
       return response.json()
     } catch (error) {
-      return null
+      Notification.renderErrorNotification(Message.getInstance().ERROR_NETWORK)
     }
   }
 
@@ -81,7 +81,7 @@ class ProductService {
       }
       return response.json()
     } catch (error) {
-      return null
+      Notification.renderErrorNotification(Message.getInstance().ERROR_NETWORK)
     }
   }
 
@@ -105,7 +105,7 @@ class ProductService {
       }
       return response.json()
     } catch (error) {
-      return null
+      Notification.renderErrorNotification(Message.getInstance().ERROR_NETWORK)
     }
   }
 
@@ -129,7 +129,7 @@ class ProductService {
       }
       return response.json()
     } catch (error) {
-      return null
+      Notification.renderErrorNotification(Message.getInstance().ERROR_NETWORK)
     }
   }
 
@@ -151,7 +151,7 @@ class ProductService {
       }
       return response.json()
     } catch (error) {
-      return null
+      Notification.renderErrorNotification(Message.getInstance().ERROR_NETWORK)
     }
   }
 }

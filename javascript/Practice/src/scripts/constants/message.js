@@ -7,8 +7,9 @@ class Message {
     this.DELETE_PRODUCT_FAILED = 'Failed to delete the product'
     this.EDIT_PRODUCT_SUCCESS = 'Update product successfully'
     this.EDIT_PRODUCT_FAILED = 'Failed to update the product'
-    this.GET_PRODUCT_FAILED = 'Failed to load products!'
-    this.NOT_FOUND = 'No Results Found!'
+    this.GET_PRODUCT_FAILED = 'Failed to load products'
+    this.NOT_FOUND = 'No Results Found'
+    this.ERROR_NETWORK = 'Error network'
   }
 
   static getInstance() {

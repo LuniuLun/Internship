@@ -6,7 +6,7 @@ class Popup {
   constructor(currentProduct) {
     this.instance = this
     this.currentProduct = currentProduct
-    this.validationImageResult = true
+    this.validationImageResult = undefined
   }
 
   /**
