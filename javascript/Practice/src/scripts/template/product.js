@@ -34,7 +34,7 @@ class ProductTemplate {
             <div class="product" data-id="${id}">
               <img class="icon product__icon js-get-warning" src="${closeIcon}" id="${id}"/>
               <img
-                class="product__img"
+                class="product__img js-get-imageURL"
                 src="${imageURL}"
                 alt="${name}"
               />
@@ -43,7 +43,7 @@ class ProductTemplate {
                 <p class="item item--thin">
                   $ 
                   <span class="js-get-price">${price}</span>
-                  <img class="icon js-get-imageURL" src="${ellipseIcon}" />
+                  <img class="icon" src="${ellipseIcon}" />
                   <span class="js-get-quantity">${quantity}</span>
                   Bowls
                 </p>
