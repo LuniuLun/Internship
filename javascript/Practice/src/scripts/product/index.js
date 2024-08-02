@@ -137,7 +137,7 @@ class Product {
         message: Message.getInstance().ADD_PRODUCT_SUCCESS,
       })
       // Add the new product to the beginning of the products array
-      this.products.unshift(newProduct)
+      this.products.unshift(response)
 
       return { success: true, data: response }
     }
