@@ -49,6 +49,7 @@ class Popup {
     hiddenFormBtn.addEventListener('click', (e) => {
       e.preventDefault()
       wrapperFormEle.classList.remove('show')
+      wrapperFormEle.innerHTML = ''
     })
   }
 
@@ -69,11 +70,11 @@ class Popup {
       if (this.validationForm(newProduct) && !this.validationImageResult) {
         const response = await productInstance.submitProduct(newProduct)
         this.validationImageResult = false
+        const wrapperFormEle = document.querySelector('.js-wrapper-popup')
+        wrapperFormEle.classList.remove('show')
         if (response.success) {
           eventBus.emit('reloadProduct')
         }
-        const wrapperFormEle = document.querySelector('.js-wrapper-popup')
-        wrapperFormEle.classList.remove('show')
       }
     })
   }
@@ -185,7 +186,12 @@ class Popup {
     const productInstance = Product.getInstance()
 
     getAcceptWarningFormEle.addEventListener('click', async (event) => {
-      await productInstance.deleteProduct(event.target.id)
+      const response = await productInstance.deleteProduct(event.target.id)
+      const wrapperPopupEle = document.querySelector('.js-wrapper-popup')
+      wrapperPopupEle.classList.remove('show')
+      if (response.success) {
+        eventBus.emit('reloadProduct')
+      }
     })
   }
 }

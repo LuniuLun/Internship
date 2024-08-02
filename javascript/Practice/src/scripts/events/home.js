@@ -8,10 +8,6 @@ import eventBus from '../utilities/eventBus'
 
 class HomePage {
   constructor() {
-    if (HomePage.instance) {
-      // eslint-disable-next-line no-constructor-return
-      return HomePage.instance
-    }
     this.instance = this
     this.popupInstance = Popup.getInstance()
     this.loaderInstance = Loader.getInstance()
