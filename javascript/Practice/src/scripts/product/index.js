@@ -33,11 +33,10 @@ class Product {
    * @param {number} limit - The number of products to fetch.
    * @returns {Promise<Object[]>} A promise that resolves to the list of products.
    */
-  async getProduct(limit = 9) {
-    // Fetch products only if the products array is empty or the limit has changed
-    if (!this.products.length || this.limit !== limit) {
-      this.limit = limit
-      this.products = await this.productService.getProduct(limit)
+  async getProduct() {
+    // Fetch products only if the products array is empty
+    if (!this.products.length) {
+      this.products = await this.productService.getProduct(this.limit)
       if (Array.isArray(this.products) && this.products.length > 0) {
         this.products = this.products.reverse() // Reverse the order of products
       }
@@ -61,27 +60,31 @@ class Product {
     limit = 9,
   }) {
     this.loaderInstance.showLoader()
+    this.limit = limit
     const renderProductEle = document.querySelector('.js-get-products')
     renderProductEle.innerHTML = ''
     let html = ProductTemplate.renderAdditionCard()
 
     // Fetch filtered products from the product service
-    let products = await this.productService.filterProduct(
+    this.products = await this.productService.filterProduct(
       property,
       value,
       limit,
     )
-    if (Array.isArray(products) && products.length > 0) {
-      products = products.reverse() // Reverse the order of products
+    if (Array.isArray(this.products) && this.products.length > 0) {
+      this.products = this.products.reverse() // Reverse the order of products
       if (typeOfSort === 'AToZ') {
-        products = Sort.sortObjectsByPropertyAZ(products, 'name')
+        this.products = Sort.sortObjectsByPropertyAZ(this.products, 'name')
       }
       if (typeOfSort === 'ZToA') {
-        products = Sort.sortObjectsByPropertyAZ(products, 'name').reverse()
+        this.products = Sort.sortObjectsByPropertyAZ(
+          this.products,
+          'name',
+        ).reverse()
       }
 
       // Render each product card
-      products.forEach((item) => {
+      this.products.forEach((item) => {
         html += ProductTemplate.renderProductCard(item)
       })
     }
