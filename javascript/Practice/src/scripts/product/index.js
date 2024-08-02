@@ -8,10 +8,6 @@ import Loader from '../utilities/loader'
 
 class Product {
   constructor() {
-    if (Product.instance) {
-      // eslint-disable-next-line no-constructor-return
-      return Product.instance
-    }
     this.instance = this
     this.loaderInstance = Loader.getInstance()
     this.productTemplate = ProductTemplate.getInstance()
@@ -146,8 +142,9 @@ class Product {
   }
 
   /**
-   * Deletes a product by its ID and reloads the page if successful.
+   * Deletes a product by its ID and removes it from the product list.
    * @param {string} id - The ID of the product to delete.
+   * @returns {Promise<Object>} A promise that resolves to the result of the operation.
    */
   async deleteProduct(id) {
     const response = await this.productService.deleteProduct(id)
@@ -156,8 +153,13 @@ class Product {
         status: 'ok',
         message: Message.getInstance().DELETE_PRODUCT_SUCCESS,
       })
-      window.location.reload()
+
+      // Remove product with the given id from the products array
+      this.products = this.products.filter((product) => product.id !== id)
+
+      return { success: true, data: response }
     }
+    return { success: false, data: response }
   }
 }
 

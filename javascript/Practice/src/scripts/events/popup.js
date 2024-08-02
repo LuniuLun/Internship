@@ -189,6 +189,7 @@ class Popup {
       const response = await productInstance.deleteProduct(event.target.id)
       const wrapperPopupEle = document.querySelector('.js-wrapper-popup')
       wrapperPopupEle.classList.remove('show')
+      wrapperPopupEle.innerHTML = ''
       if (response.success) {
         eventBus.emit('reloadProduct')
       }
