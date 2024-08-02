@@ -2,6 +2,7 @@
 import PopupTemplate from '../template/popup'
 import ValidationForm from '../utilities/validationForm'
 import Product from '../product'
+import eventBus from '../utilities/eventBus'
 
 class Popup {
   constructor(currentProduct) {
@@ -66,8 +67,13 @@ class Popup {
         }
       })
       if (this.validationForm(newProduct) && !this.validationImageResult) {
-        productInstance.submitProduct(newProduct)
+        const response = await productInstance.submitProduct(newProduct)
         this.validationImageResult = false
+        if (response.success) {
+          eventBus.emit('reloadProduct')
+        }
+        const wrapperFormEle = document.querySelector('.js-wrapper-popup')
+        wrapperFormEle.classList.remove('show')
       }
     })
   }
