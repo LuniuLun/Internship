@@ -21,7 +21,11 @@ class Loader {
 
   hideLoader() {
     const popupEle = document.querySelector('.js-wrapper-popup')
+    const loaderEle = popupEle.querySelector('.loader')
     popupEle.classList.remove('show')
+    if (loaderEle) {
+      popupEle.removeChild(loaderEle)
+    }
   }
 }
 
