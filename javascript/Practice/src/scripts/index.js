@@ -1,5 +1,4 @@
 import HomePage from './events/home'
-import Notification from './events/notification'
 
 class Main {
   constructor() {
@@ -9,7 +8,6 @@ class Main {
 
   async init() {
     await this.homePage.create()
-    Notification.renderNotification()
   }
 
   static getInstance() {

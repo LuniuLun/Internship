@@ -1,12 +1,13 @@
 /* eslint-disable consistent-return */
 import Api from '../constants/api'
 import Message from '../constants/message'
-import Notification from '../events/notification'
+import Notification from '../utilities/notification'
 
 class ProductService {
   constructor() {
     this.api = Api.getInstance()
     this.url = `${this.api.BASE_URL}${this.api.PRODUCTS_ENDPOINT}`
+    this.notificationInstance = Notification.getInstance()
     this.instance = this
   }
 
@@ -33,12 +34,18 @@ class ProductService {
       calledUrl.searchParams.append('limit', limit)
       const response = await fetch(calledUrl)
       if (!response.ok) {
-        Notification.renderErrorNotification(Message.getInstance().NOT_FOUND)
+        this.notificationInstance.renderNotification({
+          status: 'error',
+          message: Message.getInstance().NOT_FOUND,
+        })
         return null
       }
       return response.json()
     } catch (error) {
-      Notification.renderErrorNotification(Message.getInstance().ERROR_NETWORK)
+      this.notificationInstance.renderNotification({
+        status: 'error',
+        message: Message.getInstance().ERROR_NETWORK,
+      })
     }
   }
 
@@ -59,12 +66,18 @@ class ProductService {
       }
       const response = await fetch(calledUrl)
       if (!response.ok) {
-        Notification.renderErrorNotification(Message.getInstance().NOT_FOUND)
+        this.notificationInstance.renderNotification({
+          status: 'error',
+          message: Message.getInstance().NOT_FOUND,
+        })
         return null
       }
       return response.json()
     } catch (error) {
-      Notification.renderErrorNotification(Message.getInstance().ERROR_NETWORK)
+      this.notificationInstance.renderNotification({
+        status: 'error',
+        message: Message.getInstance().ERROR_NETWORK,
+      })
     }
   }
 
@@ -77,12 +90,18 @@ class ProductService {
     try {
       const response = await fetch(`${this.url}/${id}`)
       if (!response.ok) {
-        Notification.renderErrorNotification(Message.getInstance().NOT_FOUND)
+        this.notificationInstance.renderNotification({
+          status: 'error',
+          message: Message.getInstance().NOT_FOUND,
+        })
         return null
       }
       return response.json()
     } catch (error) {
-      Notification.renderErrorNotification(Message.getInstance().ERROR_NETWORK)
+      this.notificationInstance.renderNotification({
+        status: 'error',
+        message: Message.getInstance().ERROR_NETWORK,
+      })
     }
   }
 
@@ -99,14 +118,18 @@ class ProductService {
         body: JSON.stringify(newProduct),
       })
       if (!response.ok) {
-        Notification.renderErrorNotification(
-          Message.getInstance().ADD_PRODUCT_FAILED,
-        )
+        this.notificationInstance.renderNotification({
+          status: 'error',
+          message: Message.getInstance().ADD_PRODUCT_FAILED,
+        })
         return null
       }
       return response.json()
     } catch (error) {
-      Notification.renderErrorNotification(Message.getInstance().ERROR_NETWORK)
+      this.notificationInstance.renderNotification({
+        status: 'error',
+        message: Message.getInstance().ERROR_NETWORK,
+      })
     }
   }
 
@@ -123,14 +146,18 @@ class ProductService {
         body: JSON.stringify(newProduct),
       })
       if (!response.ok) {
-        Notification.renderErrorNotification(
-          Message.getInstance().EDIT_PRODUCT_FAILED,
-        )
+        this.notificationInstance.renderNotification({
+          status: 'error',
+          message: Message.getInstance().EDIT_PRODUCT_FAILED,
+        })
         return null
       }
       return response.json()
     } catch (error) {
-      Notification.renderErrorNotification(Message.getInstance().ERROR_NETWORK)
+      this.notificationInstance.renderNotification({
+        status: 'error',
+        message: Message.getInstance().ERROR_NETWORK,
+      })
     }
   }
 
@@ -145,14 +172,17 @@ class ProductService {
         method: 'DELETE',
       })
       if (!response.ok) {
-        Notification.renderErrorNotification(
+        this.notificationInstance.renderErrorNotification(
           Message.getInstance().DELETE_PRODUCT_FAILED,
         )
         return null
       }
       return response.json()
     } catch (error) {
-      Notification.renderErrorNotification(Message.getInstance().ERROR_NETWORK)
+      this.notificationInstance.renderNotification({
+        status: 'error',
+        message: Message.getInstance().ERROR_NETWORK,
+      })
     }
   }
 }
