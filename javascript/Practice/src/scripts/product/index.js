@@ -4,6 +4,7 @@ import ProductTemplate from '../template/product'
 import Message from '../constants/message'
 import Sort from '../utilities/sort'
 import Notification from '../utilities/notification'
+import Loader from '../utilities/loader'
 
 class Product {
   constructor() {
@@ -12,6 +13,7 @@ class Product {
       return Product.instance
     }
     this.instance = this
+    this.loaderInstance = Loader.getInstance()
     this.productTemplate = ProductTemplate.getInstance()
     this.productService = ProductService.getInstance()
     this.notificationInstance = Notification.getInstance()
@@ -62,6 +64,7 @@ class Product {
     value = '',
     limit = 9,
   }) {
+    this.loaderInstance.showLoader()
     const renderProductEle = document.querySelector('.js-get-products')
     renderProductEle.innerHTML = ''
     let html = ProductTemplate.renderAdditionCard()
@@ -87,6 +90,7 @@ class Product {
       })
     }
     renderProductEle.innerHTML += html
+    this.loaderInstance.hideLoader()
   }
 
   /**
