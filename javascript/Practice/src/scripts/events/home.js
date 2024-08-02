@@ -30,18 +30,15 @@ class HomePage {
    */
   async create() {
     this.loaderInstance.showLoader()
-    try {
-      await this.renderProduct()
-      this.showPopup()
-      this.dropdownToggle()
-      this.filterProduct()
-      this.getMoreProduct()
-      eventBus.on('reloadProduct', () => {
-        this.renderProduct()
-      })
-    } finally {
-      this.loaderInstance.hideLoader()
-    }
+    await this.renderProduct()
+    this.showPopup()
+    this.dropdownToggle()
+    this.filterProduct()
+    this.getMoreProduct()
+    eventBus.on('reloadProduct', () => {
+      this.renderProduct()
+    })
+    this.loaderInstance.hideLoader()
   }
 
   /**

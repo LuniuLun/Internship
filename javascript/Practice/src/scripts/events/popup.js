@@ -3,11 +3,13 @@ import PopupTemplate from '../template/popup'
 import ValidationForm from '../utilities/validationForm'
 import Product from '../product'
 import eventBus from '../utilities/eventBus'
+import Loader from '../utilities/loader'
 
 class Popup {
   constructor(currentProduct) {
     this.instance = this
     this.currentProduct = currentProduct
+    this.loaderInstance = Loader.getInstance()
     this.validationImageResult = undefined
   }
 
@@ -68,13 +70,15 @@ class Popup {
         }
       })
       if (this.validationForm(newProduct) && !this.validationImageResult) {
-        const response = await productInstance.submitProduct(newProduct)
-        this.validationImageResult = false
         const wrapperFormEle = document.querySelector('.js-wrapper-popup')
         wrapperFormEle.classList.remove('show')
+        this.loaderInstance.showLoader()
+        const response = await productInstance.submitProduct(newProduct)
+        this.validationImageResult = false
         if (response.success) {
           eventBus.emit('reloadProduct')
         }
+        this.loaderInstance.hideLoader()
       }
     })
   }
@@ -186,13 +190,14 @@ class Popup {
     const productInstance = Product.getInstance()
 
     getAcceptWarningFormEle.addEventListener('click', async (event) => {
-      const response = await productInstance.deleteProduct(event.target.id)
       const wrapperPopupEle = document.querySelector('.js-wrapper-popup')
       wrapperPopupEle.classList.remove('show')
-      wrapperPopupEle.innerHTML = ''
+      this.loaderInstance.showLoader()
+      const response = await productInstance.deleteProduct(event.target.id)
       if (response.success) {
         eventBus.emit('reloadProduct')
       }
+      this.loaderInstance.hideLoader()
     })
   }
 }

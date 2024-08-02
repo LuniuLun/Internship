@@ -14,6 +14,7 @@ class Loader {
   showLoader() {
     const popupEle = document.querySelector('.js-wrapper-popup')
     const loaderEle = document.createElement('div')
+    popupEle.innerHTML = ''
     loaderEle.classList.add('loader')
     popupEle.appendChild(loaderEle)
     popupEle.classList.add('show')
