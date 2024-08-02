@@ -4,12 +4,17 @@ import Product from '../product'
 import RuleFilter from '../utilities/filterRule'
 import Popup from './popup'
 import Loader from '../utilities/loader'
+import eventBus from '../utilities/eventBus'
 
 class HomePage {
   constructor() {
+    if (HomePage.instance) {
+      // eslint-disable-next-line no-constructor-return
+      return HomePage.instance
+    }
     this.instance = this
-    this.popup = Popup.getInstance()
-    this.loader = Loader.getInstance()
+    this.popupInstance = Popup.getInstance()
+    this.loaderInstance = Loader.getInstance()
     this.productInstance = Product.getInstance()
   }
 
@@ -28,15 +33,18 @@ class HomePage {
    * Initializes the HomePage by rendering products, setting up event listeners, and handling functionalities.
    */
   async create() {
-    this.loader.showLoader()
+    this.loaderInstance.showLoader()
     try {
       await this.renderProduct()
       this.showPopup()
       this.dropdownToggle()
       this.filterProduct()
       this.getMoreProduct()
+      eventBus.on('reloadProduct', () => {
+        this.renderProduct()
+      })
     } finally {
-      this.loader.hideLoader()
+      this.loaderInstance.hideLoader()
     }
   }
 
@@ -54,14 +62,14 @@ class HomePage {
 
   /**
    * Renders the list of products on the home page.
-   * @param {number} limit - The number of products to render.
+   * @param {number} [limit=9] - The number of products to render.
    */
   async renderProduct(limit = 9) {
+    const products = await this.productInstance.getProduct(limit)
     const renderProductEle = document.querySelector('.js-get-products')
     renderProductEle.innerHTML = ''
     let html = ProductTemplate.renderAdditionCard()
 
-    const products = await this.productInstance.getProduct(limit)
     if (Array.isArray(products) && products.length > 0) {
       products.forEach((item) => {
         html += ProductTemplate.renderProductCard(item)
@@ -137,13 +145,13 @@ class HomePage {
         const id = targetElement.closest('.product').getAttribute('data-id')
         const rect = event.target.getBoundingClientRect()
         const popupTop = rect.top + window.scrollY
-        this.popup.showWarningForm(id, popupTop)
+        this.popupInstance.showWarningForm(id, popupTop)
         return
       }
 
       // TODO: Handle when the user presses the button to add a new product
       if (targetElement.closest('.js-add-product')) {
-        this.popup.showForm()
+        this.popupInstance.showForm()
       }
     })
   }
