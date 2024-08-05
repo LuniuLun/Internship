@@ -1,5 +1,7 @@
+import dotenv from 'dotenv'
 import HomePage from './events/home'
 
+dotenv.config()
 class Main {
   constructor() {
     this.instance = this

@@ -6,7 +6,7 @@ import Notification from '../utilities/notification'
 class ProductService {
   constructor() {
     this.api = Api.getInstance()
-    this.url = `${this.api.BASE_URL}${this.api.PRODUCTS_ENDPOINT}`
+    this.url = `${this.api.getBaseUrl()}${this.api.getProductsEndpoint()}`
     this.notificationInstance = Notification.getInstance()
     this.instance = this
   }
