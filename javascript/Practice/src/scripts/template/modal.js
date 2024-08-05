@@ -1,17 +1,17 @@
-class PopupTemplate {
+class ModalTemplate {
   constructor() {
     this.instance = this
   }
 
   /**
-   * Singleton pattern to ensure only one instance of PopupTemplate exists.
-   * @returns {PopupTemplate} The instance of PopupTemplate.
+   * Singleton pattern to ensure only one instance of ModalTemplate exists.
+   * @returns {ModalTemplate} The instance of ModalTemplate.
    */
   static getInstance() {
-    if (!PopupTemplate.instance) {
-      PopupTemplate.instance = new PopupTemplate()
+    if (!ModalTemplate.instance) {
+      ModalTemplate.instance = new ModalTemplate()
     }
-    return PopupTemplate.instance
+    return ModalTemplate.instance
   }
 
   /**
@@ -97,4 +97,4 @@ class PopupTemplate {
   }
 }
 
-export default PopupTemplate
+export default ModalTemplate

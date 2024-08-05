@@ -2,7 +2,7 @@
 import ProductTemplate from '../template/product'
 import Product from '../product'
 import RuleFilter from '../utilities/filterRule'
-import Popup from './popup'
+import Popup from './modal'
 import Loader from '../utilities/loader'
 import eventBus from '../utilities/eventBus'
 

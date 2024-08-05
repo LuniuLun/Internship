@@ -1,11 +1,11 @@
 /* eslint-disable class-methods-use-this */
-import PopupTemplate from '../template/popup'
+import ModalTemplate from '../template/modal'
 import ValidationForm from '../utilities/validationForm'
 import Product from '../product'
 import eventBus from '../utilities/eventBus'
 import Loader from '../utilities/loader'
 
-class Popup {
+class Modal {
   constructor(currentProduct) {
     this.instance = this
     this.currentProduct = currentProduct
@@ -14,17 +14,17 @@ class Popup {
   }
 
   /**
-   * Singleton pattern to ensure only one instance of Popup exists.
+   * Singleton pattern to ensure only one instance of Modal exists.
    * @param {Object} currentProduct - The current product data.
-   * @returns {Popup} The instance of Popup.
+   * @returns {Modal} The instance of Modal.
    */
   static getInstance(currentProduct = {}) {
-    if (!Popup.instance) {
-      Popup.instance = new Popup(currentProduct)
+    if (!Modal.instance) {
+      Modal.instance = new Modal(currentProduct)
     } else {
-      Popup.instance.currentProduct = currentProduct
+      Modal.instance.currentProduct = currentProduct
     }
-    return Popup.instance
+    return Modal.instance
   }
 
   /**
@@ -32,7 +32,7 @@ class Popup {
    */
   showForm() {
     const wrapperFormEle = document.querySelector('.js-wrapper-popup')
-    const formHTML = PopupTemplate.renderProductForm(this.currentProduct)
+    const formHTML = ModalTemplate.renderProductForm(this.currentProduct)
     wrapperFormEle.innerHTML = formHTML
     wrapperFormEle.classList.add('show')
     this.hideForm()
@@ -171,9 +171,9 @@ class Popup {
    * @param {string} id - The ID of the product to be deleted.
    */
   showWarningForm(id) {
-    const wrapperPopupEle = document.querySelector('.js-wrapper-popup')
-    wrapperPopupEle.innerHTML = PopupTemplate.renderWarning(id)
-    wrapperPopupEle.classList.add('show')
+    const wrapperModalEle = document.querySelector('.js-wrapper-popup')
+    wrapperModalEle.innerHTML = ModalTemplate.renderWarning(id)
+    wrapperModalEle.classList.add('show')
 
     this.hideForm()
     this.acceptWarningForm()
@@ -187,8 +187,8 @@ class Popup {
     const productInstance = Product.getInstance()
 
     getAcceptWarningFormEle.addEventListener('click', async (event) => {
-      const wrapperPopupEle = document.querySelector('.js-wrapper-popup')
-      wrapperPopupEle.classList.remove('show')
+      const wrapperModalEle = document.querySelector('.js-wrapper-popup')
+      wrapperModalEle.classList.remove('show')
       this.loaderInstance.showLoader()
       const response = await productInstance.deleteProduct(event.target.id)
       if (response.success) {
@@ -199,4 +199,4 @@ class Popup {
   }
 }
 
-export default Popup
+export default Modal
