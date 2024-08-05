@@ -169,14 +169,11 @@ class Popup {
   /**
    * Displays the popup for confirming product deletion.
    * @param {string} id - The ID of the product to be deleted.
-   * @param {number} popupTop - The top position of the popup.
    */
-  showWarningForm(id, popupTop) {
+  showWarningForm(id) {
     const wrapperPopupEle = document.querySelector('.js-wrapper-popup')
     wrapperPopupEle.innerHTML = PopupTemplate.renderWarning(id)
     wrapperPopupEle.classList.add('show')
-    const popupEle = document.querySelector('.popup')
-    popupEle.style.marginTop = `${popupTop}px`
 
     this.hideForm()
     this.acceptWarningForm()

@@ -47,9 +47,9 @@
 }
 
 .wrapper-modal {
-  @include flex-layout(row, center, flex-start);
+  @include flex-layout(row, center, center);
   display: none;
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 2;
   background-color: rgba(31, 29, 43, .7);

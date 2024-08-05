@@ -6,10 +6,6 @@
   padding: 40px 50px;
   background-color: $dark-bg-2;
 
-  &--center {
-    transform: translateY(20%)
-  }
-
   &__title {
     @extend %heading-h1-text;
     width: 100%;

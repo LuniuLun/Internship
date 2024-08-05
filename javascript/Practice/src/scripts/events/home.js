@@ -136,9 +136,7 @@ class HomePage {
       // TODO: Handle when the user presses the product warning button
       if (targetElement.closest('.js-get-warning')) {
         const id = targetElement.closest('.product').getAttribute('data-id')
-        const rect = event.target.getBoundingClientRect()
-        const popupTop = rect.top + window.scrollY
-        this.popupInstance.showWarningForm(id, popupTop)
+        this.popupInstance.showWarningForm(id)
         return
       }
 
