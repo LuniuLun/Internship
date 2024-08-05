@@ -1,16 +1,25 @@
-class Api {
-  constructor() {
-    this.BASE_URL = 'https://669e22209a1bda368005842c.mockapi.io/api/v1/'
-    this.PRODUCTS_ENDPOINT = 'products'
-    this.instance = this
+const Api = (function api() {
+  let apiInstance
+
+  function create() {
+    return {
+      getBaseUrl() {
+        return process.env.PARCEL_REACT_APP_BASE_URL || ''
+      },
+      getProductsEndpoint() {
+        return process.env.PARCEL_REACT_APP_PRODUCTS_ENDPOINT || ''
+      },
+    }
   }
 
-  static getInstance() {
-    if (!Api.instance) {
-      Api.instance = new Api()
-    }
-    return Api.instance
+  return {
+    getInstance() {
+      if (!apiInstance) {
+        apiInstance = create()
+      }
+      return apiInstance
+    },
   }
-}
+})()
 
 export default Api

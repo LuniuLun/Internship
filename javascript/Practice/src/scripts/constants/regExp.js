@@ -1,19 +1,25 @@
-class RegExp {
-  constructor() {
-    this.instance = this
-    this.maxLen = 100
-    this.minLen = 2
-    this.specialChars = /[!@#$%^&*()+\-=[\]{};':"\\|,.<>/?]/
-    this.alphanumeric = /^[a-zA-Z0-9\s]*$/
-    this.imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp']
-    this.realNumber = /^[0-9]*\.?[0-9]*$/
+const RegExp = (function regExp() {
+  let regExpInstance
+
+  function create() {
+    return {
+      maxLen: 100,
+      minLen: 2,
+      specialChars: /[!@#$%^&*()+\-=[\]{};':"\\|,.<>/?]/,
+      alphanumeric: /^[a-zA-Z0-9\s]*$/,
+      imageExtensions: ['jpg', 'jpeg', 'png', 'gif', 'bmp'],
+      realNumber: /^[0-9]*\.?[0-9]*$/,
+    }
   }
 
-  static getInstance() {
-    if (!RegExp.instance) {
-      RegExp.instance = new RegExp()
-    }
-    return RegExp.instance
+  return {
+    getInstance() {
+      if (!regExpInstance) {
+        regExpInstance = create()
+      }
+      return regExpInstance
+    },
   }
-}
+})()
+
 export default RegExp
