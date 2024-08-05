@@ -12,9 +12,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "alias": {
-    "process": false
-  },
   "devDependencies": {
     "@parcel/transformer-css-experimental": "^2.3.2",
     "@parcel/transformer-sass": "^2.12.0",
