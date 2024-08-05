@@ -38,7 +38,8 @@ class Modal {
     this.hideForm()
     this.submitForm()
     this.validationImage()
-    this.pressOnlyNumber()
+    this.pressOnlyRealNumber()
+    this.pressOnlyIntegerNumber()
   }
 
   /**
@@ -83,8 +84,8 @@ class Modal {
     })
   }
 
-  pressOnlyNumber() {
-    const numInputEle = document.querySelectorAll('.js-check-number')
+  pressOnlyRealNumber() {
+    const numInputEle = document.querySelectorAll('.js-only-real-number')
     numInputEle.forEach((ele) => {
       ele.addEventListener('keypress', (event) => {
         const { charCode } = event
@@ -101,6 +102,21 @@ class Modal {
         }
         // Check if not a number or a dot
         if ((charCode < 48 || charCode > 57) && charCode !== 46) {
+          event.preventDefault()
+        }
+      })
+    })
+  }
+
+  pressOnlyIntegerNumber() {
+    const intInputElements = document.querySelectorAll(
+      '.js-only-integer-number',
+    )
+    intInputElements.forEach((ele) => {
+      ele.addEventListener('keypress', (event) => {
+        const { charCode } = event
+        // Check if not a number
+        if (charCode < 48 || charCode > 57) {
           event.preventDefault()
         }
       })

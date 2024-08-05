@@ -67,7 +67,7 @@ class ModalTemplate {
             type="text"
             id="price"
             name="price"
-            class="text-field js-check-number"
+            class="text-field js-only-real-number"
             value="${price}"
           />
           <span class="form__error js-price-error"></span>
@@ -85,7 +85,7 @@ class ModalTemplate {
             type="text"
             id="quantity"
             name="quantity"
-            class="text-field text-field--short js-check-number"
+            class="text-field text-field--short js-only-integer-number"
             value="${quantity}"
           />
           <span class="form__error js-quantity-error"></span>
