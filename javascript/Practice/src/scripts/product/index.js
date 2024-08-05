@@ -115,7 +115,7 @@ class Product {
       if (response) {
         this.notificationInstance.renderNotification({
           status: 'ok',
-          message: Message.getInstance().EDIT_PRODUCT_SUCCESS,
+          message: Message.EDIT_PRODUCT_SUCCESS,
         })
 
         // Update products in the products array
@@ -134,7 +134,7 @@ class Product {
     if (response) {
       this.notificationInstance.renderNotification({
         status: 'ok',
-        message: Message.getInstance().ADD_PRODUCT_SUCCESS,
+        message: Message.ADD_PRODUCT_SUCCESS,
       })
       // Add the new product to the beginning of the products array
       this.products.unshift(response)
@@ -154,7 +154,7 @@ class Product {
     if (response) {
       this.notificationInstance.renderNotification({
         status: 'ok',
-        message: Message.getInstance().DELETE_PRODUCT_SUCCESS,
+        message: Message.DELETE_PRODUCT_SUCCESS,
       })
 
       // Remove product with the given id from the products array

@@ -1,12 +1,10 @@
 /* eslint-disable consistent-return */
-import Api from '../constants/api'
 import Message from '../constants/message'
 import Notification from '../utilities/notification'
 
 class ProductService {
   constructor() {
-    this.api = Api.getInstance()
-    this.url = `${this.api.getBaseUrl()}${this.api.getProductsEndpoint()}`
+    this.url = `${process.env.PARCEL_REACT_APP_BASE_URL}${process.env.PARCEL_REACT_APP_PRODUCTS_ENDPOINT}`
     this.notificationInstance = Notification.getInstance()
     this.instance = this
   }
@@ -36,7 +34,7 @@ class ProductService {
       if (!response.ok) {
         this.notificationInstance.renderNotification({
           status: 'error',
-          message: Message.getInstance().NOT_FOUND,
+          message: Message.NOT_FOUND,
         })
         return null
       }
@@ -44,7 +42,7 @@ class ProductService {
     } catch (error) {
       this.notificationInstance.renderNotification({
         status: 'error',
-        message: Message.getInstance().ERROR_NETWORK,
+        message: Message.ERROR_NETWORK,
       })
     }
   }
@@ -68,7 +66,7 @@ class ProductService {
       if (!response.ok) {
         this.notificationInstance.renderNotification({
           status: 'error',
-          message: Message.getInstance().NOT_FOUND,
+          message: Message.NOT_FOUND,
         })
         return null
       }
@@ -76,7 +74,7 @@ class ProductService {
     } catch (error) {
       this.notificationInstance.renderNotification({
         status: 'error',
-        message: Message.getInstance().ERROR_NETWORK,
+        message: Message.ERROR_NETWORK,
       })
     }
   }
@@ -92,7 +90,7 @@ class ProductService {
       if (!response.ok) {
         this.notificationInstance.renderNotification({
           status: 'error',
-          message: Message.getInstance().NOT_FOUND,
+          message: Message.NOT_FOUND,
         })
         return null
       }
@@ -100,7 +98,7 @@ class ProductService {
     } catch (error) {
       this.notificationInstance.renderNotification({
         status: 'error',
-        message: Message.getInstance().ERROR_NETWORK,
+        message: Message.ERROR_NETWORK,
       })
     }
   }
@@ -120,7 +118,7 @@ class ProductService {
       if (!response.ok) {
         this.notificationInstance.renderNotification({
           status: 'error',
-          message: Message.getInstance().ADD_PRODUCT_FAILED,
+          message: Message.ADD_PRODUCT_FAILED,
         })
         return null
       }
@@ -128,7 +126,7 @@ class ProductService {
     } catch (error) {
       this.notificationInstance.renderNotification({
         status: 'error',
-        message: Message.getInstance().ERROR_NETWORK,
+        message: Message.ERROR_NETWORK,
       })
     }
   }
@@ -148,7 +146,7 @@ class ProductService {
       if (!response.ok) {
         this.notificationInstance.renderNotification({
           status: 'error',
-          message: Message.getInstance().EDIT_PRODUCT_FAILED,
+          message: Message.EDIT_PRODUCT_FAILED,
         })
         return null
       }
@@ -156,7 +154,7 @@ class ProductService {
     } catch (error) {
       this.notificationInstance.renderNotification({
         status: 'error',
-        message: Message.getInstance().ERROR_NETWORK,
+        message: Message.ERROR_NETWORK,
       })
     }
   }
@@ -173,7 +171,7 @@ class ProductService {
       })
       if (!response.ok) {
         this.notificationInstance.renderErrorNotification(
-          Message.getInstance().DELETE_PRODUCT_FAILED,
+          Message.DELETE_PRODUCT_FAILED,
         )
         return null
       }
@@ -181,7 +179,7 @@ class ProductService {
     } catch (error) {
       this.notificationInstance.renderNotification({
         status: 'error',
-        message: Message.getInstance().ERROR_NETWORK,
+        message: Message.ERROR_NETWORK,
       })
     }
   }

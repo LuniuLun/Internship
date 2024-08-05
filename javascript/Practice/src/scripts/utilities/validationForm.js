@@ -34,7 +34,7 @@ class ValidationForm {
    */
   static checkLenOfString(key, value) {
     return value.trim().length < 2 || value.trim().length > 100
-      ? `${key} must have between ${RegExp.getInstance().minLen} and ${RegExp.getInstance().maxLen} characters`
+      ? `${key} must have between ${RegExp.minLen} and ${RegExp.maxLen} characters`
       : undefined
   }
 
@@ -46,7 +46,7 @@ class ValidationForm {
    */
   static isFloat(key, value) {
     // Check if the value contains invalid characters (not a number or a dot)
-    return RegExp.getInstance().realNumber.test(value) &&
+    return RegExp.realNumber.test(value) &&
       (value.match(/\./g) || []).length <= 1
       ? undefined
       : `${key} must be a real number`
@@ -72,7 +72,7 @@ class ValidationForm {
    * @returns {string|undefined} An error message if the value does not contain a special character, otherwise undefined.
    */
   static isWithSpecialChars(key, value) {
-    return RegExp.getInstance().specialChars.test(value)
+    return RegExp.specialChars.test(value)
       ? undefined
       : `${key} must contain at least one special character (!@#$%^&*(),.?":{}|<>)`
   }
@@ -84,7 +84,7 @@ class ValidationForm {
    * @returns {string|undefined} An error message if the value contains invalid characters, otherwise undefined.
    */
   static isValidString(key, value) {
-    return RegExp.getInstance().alphanumeric.test(value)
+    return RegExp.alphanumeric.test(value)
       ? undefined
       : `${key} contains invalid characters. Only alphanumeric characters and spaces are allowed`
   }
@@ -110,7 +110,7 @@ class ValidationForm {
 
       // Check if the Content-Type is one of the allowed image types
       const contentType = response.headers.get('Content-Type')
-      const allowedExtensions = RegExp.getInstance().imageExtensions
+      const allowedExtensions = RegExp.imageExtensions
 
       if (!allowedExtensions.some((ext) => contentType.includes(ext))) {
         return `${key} does not point to a valid image resource. Allowed types are: ${allowedExtensions.join(', ')}`
