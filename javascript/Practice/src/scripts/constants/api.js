@@ -4,10 +4,10 @@ const Api = (function api() {
   function create() {
     return {
       getBaseUrl() {
-        return process.env.PARCEL_REACT_APP_BASE_URL || ''
+        return process.env.PARCEL_APP_BASE_URL || ''
       },
       getProductsEndpoint() {
-        return process.env.PARCEL_REACT_APP_PRODUCTS_ENDPOINT || ''
+        return process.env.PARCEL_APP_PRODUCTS_ENDPOINT || ''
       },
     }
   }
