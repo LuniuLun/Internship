@@ -15,17 +15,17 @@ class PopupTemplate {
   }
 
   /**
-   * Renders a popup HTML template for confirming a deletion action.
+   * Renders a warning HTML template for confirming a deletion action.
    * @param {string} id - The ID of the item to be deleted.
-   * @returns {string} The HTML string for the popup.
+   * @returns {string} The HTML string for the warning.
    */
   static renderWarning(id) {
     return `          
-          <div class="popup slide-down">
-            <h2 class="popup__content">
+          <div class="warning slide-down">
+            <h2 class="warning__content">
               Are you sure you want to delete this food?
             </h2>
-            <div class="popup__action">
+            <div class="warning__action">
               <button class="btn btn--line js-hidden-form">Cancel</button>
               <button class="btn btn--fill js-accept" id="${id}">Yes</button>
             </div>

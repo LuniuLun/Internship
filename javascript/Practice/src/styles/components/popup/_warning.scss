@@ -1,4 +1,4 @@
-.popup {
+.warning {
   @include flex-layout(column);
   gap: 30px;
   box-shadow: $shadow-hover-btn;
