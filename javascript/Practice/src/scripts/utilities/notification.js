@@ -31,7 +31,7 @@ class Notification {
       const iconEle = messageEle.querySelector('.message__icon')
 
       // Set appropriate class and icon based on the status
-      if (status === 'ok') {
+      if (status === 'success') {
         messageEle.classList.add('message--success')
         messageEle.classList.remove('message--error')
         iconEle.src = checkIcon
