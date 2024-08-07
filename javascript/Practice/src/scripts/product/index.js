@@ -1,7 +1,6 @@
 /* eslint-disable consistent-return */
 import ProductService from '../services/product'
 import ProductTemplate from '../template/product'
-import Message from '../constants/message'
 import Sort from '../utilities/sort'
 import Notification from '../utilities/notification'
 import Loader from '../utilities/loader'
@@ -28,17 +27,28 @@ class Product {
     return this.instance
   }
 
+  getter() {
+    return { products: this.products, limit: this.limit }
+  }
+
+  setter({ products, limit = 9 }) {
+    this.products = products
+    this.limit = limit
+  }
+
   /**
    * Fetches a list of products with a specified limit and reverses the order.
-   * @param {number} limit - The number of products to fetch.
    * @returns {Promise<Object[]>} A promise that resolves to the list of products.
    */
   async getProduct() {
     // Fetch products only if the products array is empty
     if (!this.products.length) {
-      this.products = await this.productService.getProduct(this.limit)
-      if (Array.isArray(this.products) && this.products.length > 0) {
-        this.products = this.products.reverse() // Reverse the order of products
+      const response = await this.productService.getProduct(this.limit)
+      if (response.status === 'success') {
+        this.products = response.data
+        if (this.products.length > 0) {
+          this.products = this.products.reverse()
+        }
       }
     }
     return this.products
@@ -66,13 +76,13 @@ class Product {
     let html = ProductTemplate.renderAdditionCard()
 
     // Fetch filtered products from the product service
-    this.products = await this.productService.filterProduct(
+    const response = await this.productService.filterProduct(
       property,
       value,
       limit,
     )
-    if (Array.isArray(this.products) && this.products.length > 0) {
-      this.products = this.products.reverse() // Reverse the order of products
+    if (response.status === 'success' && response.data.length > 0) {
+      this.products = response.data.reverse() // Reverse the order of products
       if (typeOfSort === 'AToZ') {
         this.products = Sort.sortObjectsByPropertyAZ(this.products, 'name')
       }
@@ -98,8 +108,10 @@ class Product {
    * @returns {Promise<Object>} A promise that resolves to the product data.
    */
   async getProductById(id) {
-    const currentProduct = await this.productService.getProductById(id)
-    return currentProduct
+    const response = await this.productService.getProductById(id)
+    if (response.status === 'success') {
+      return response.data
+    }
   }
 
   /**
@@ -112,12 +124,7 @@ class Product {
     if (newProduct.id) {
       // Edit an existing product
       response = await this.productService.editProduct(newProduct)
-      if (response) {
-        this.notificationInstance.renderNotification({
-          status: 'ok',
-          message: Message.EDIT_PRODUCT_SUCCESS,
-        })
-
+      if (response.status === 'success') {
         // Update products in the products array
         const productIndex = this.products.findIndex(
           (product) => product.id === newProduct.id,
@@ -125,23 +132,19 @@ class Product {
         if (productIndex !== -1) {
           this.products[productIndex] = newProduct
         }
-
-        return { success: true, data: response }
       }
+      this.notificationInstance.renderNotification(response)
+      return response
     }
     // Add a new product
     response = await this.productService.addProduct(newProduct)
-    if (response) {
-      this.notificationInstance.renderNotification({
-        status: 'ok',
-        message: Message.ADD_PRODUCT_SUCCESS,
-      })
+    if (response.status === 'success') {
       // Add the new product to the beginning of the products array
-      this.products.unshift(response)
-
-      return { success: true, data: response }
+      this.products.unshift(response.data)
     }
-    return { success: false, data: response }
+
+    this.notificationInstance.renderNotification(response)
+    return response
   }
 
   /**
@@ -151,18 +154,12 @@ class Product {
    */
   async deleteProduct(id) {
     const response = await this.productService.deleteProduct(id)
-    if (response) {
-      this.notificationInstance.renderNotification({
-        status: 'ok',
-        message: Message.DELETE_PRODUCT_SUCCESS,
-      })
-
+    if (response.status === 'success') {
       // Remove product with the given id from the products array
       this.products = this.products.filter((product) => product.id !== id)
-
-      return { success: true, data: response }
     }
-    return { success: false, data: response }
+    this.notificationInstance.renderNotification(response)
+    return response
   }
 }
 
