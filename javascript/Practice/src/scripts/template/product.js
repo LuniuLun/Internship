@@ -13,10 +13,10 @@ class ProductTemplate {
    * @returns {ProductTemplate} The instance of ProductTemplate.
    */
   static getInstance() {
-    if (!ProductTemplate.instance) {
-      ProductTemplate.instance = new ProductTemplate()
+    if (!this.instance) {
+      this.instance = new ProductTemplate()
     }
-    return ProductTemplate.instance
+    return this.instance
   }
 
   /**

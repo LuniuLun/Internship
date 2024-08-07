@@ -10,10 +10,10 @@ class ValidationForm {
    * @returns {ValidationForm} The instance of the ValidationForm class.
    */
   static getInstance() {
-    if (!ValidationForm.instance) {
-      ValidationForm.instance = new ValidationForm()
+    if (!this.instance) {
+      this.instance = new ValidationForm()
     }
-    return ValidationForm.instance
+    return this.instance
   }
 
   /**

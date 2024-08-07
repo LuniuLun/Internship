@@ -19,10 +19,10 @@ class HomePage {
    * @returns {HomePage} The instance of HomePage.
    */
   static getInstance() {
-    if (!HomePage.instance) {
-      HomePage.instance = new HomePage()
+    if (!this.instance) {
+      this.instance = new HomePage()
     }
-    return HomePage.instance
+    return this.instance
   }
 
   /**

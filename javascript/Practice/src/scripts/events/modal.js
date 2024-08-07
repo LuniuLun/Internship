@@ -19,12 +19,12 @@ class Modal {
    * @returns {Modal} The instance of Modal.
    */
   static getInstance(currentProduct = {}) {
-    if (!Modal.instance) {
-      Modal.instance = new Modal(currentProduct)
+    if (!this.instance) {
+      this.instance = new Modal(currentProduct)
     } else {
-      Modal.instance.currentProduct = currentProduct
+      this.instance.currentProduct = currentProduct
     }
-    return Modal.instance
+    return this.instance
   }
 
   /**

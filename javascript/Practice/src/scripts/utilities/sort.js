@@ -8,10 +8,10 @@ class Sort {
    * @returns {Sort} The instance of the Sort class.
    */
   static getInstance() {
-    if (!Sort.instance) {
-      Sort.instance = new Sort()
+    if (!this.instance) {
+      this.instance = new Sort()
     }
-    return Sort.instance
+    return this.instance
   }
 
   /**

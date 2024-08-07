@@ -5,10 +5,10 @@ class Loader {
   }
 
   static getInstance() {
-    if (!Loader.instance) {
-      Loader.instance = new Loader()
+    if (!this.instance) {
+      this.instance = new Loader()
     }
-    return Loader.instance
+    return this.instance
   }
 
   showLoader() {

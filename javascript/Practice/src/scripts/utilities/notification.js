@@ -12,10 +12,10 @@ class Notification {
    * @returns {Notification} The instance of the Notification class.
    */
   static getInstance() {
-    if (!Notification.instance) {
-      Notification.instance = new Notification()
+    if (!this.instance) {
+      this.instance = new Notification()
     }
-    return Notification.instance
+    return this.instance
   }
 
   /**

@@ -12,10 +12,10 @@ class FilterRule {
    * @returns {FilterRule} The instance of the FilterRule class.
    */
   static getInstance() {
-    if (!FilterRule.instance) {
-      FilterRule.instance = new FilterRule()
+    if (!this.instance) {
+      this.instance = new FilterRule()
     }
-    return FilterRule.instance
+    return this.instance
   }
 
   /**

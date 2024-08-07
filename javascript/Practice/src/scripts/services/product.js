@@ -14,10 +14,10 @@ class ProductService {
    * @returns {ProductService} The instance of ProductService.
    */
   static getInstance() {
-    if (!ProductService.instance) {
-      ProductService.instance = new ProductService()
+    if (!this.instance) {
+      this.instance = new ProductService()
     }
-    return ProductService.instance
+    return this.instance
   }
 
   /**

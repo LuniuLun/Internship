@@ -13,10 +13,10 @@ class Main {
   }
 
   static getInstance() {
-    if (!Main.instance) {
-      Main.instance = new Main()
+    if (!this.instance) {
+      this.instance = new Main()
     }
-    return Main.instance
+    return this.instance
   }
 }
 

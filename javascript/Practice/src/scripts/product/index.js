@@ -22,10 +22,10 @@ class Product {
    * @returns {Product} The single instance of Product.
    */
   static getInstance() {
-    if (!Product.instance) {
-      Product.instance = new Product()
+    if (!this.instance) {
+      this.instance = new Product()
     }
-    return Product.instance
+    return this.instance
   }
 
   /**

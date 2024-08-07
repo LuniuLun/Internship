@@ -8,10 +8,10 @@ class ModalTemplate {
    * @returns {ModalTemplate} The instance of ModalTemplate.
    */
   static getInstance() {
-    if (!ModalTemplate.instance) {
-      ModalTemplate.instance = new ModalTemplate()
+    if (!this.instance) {
+      this.instance = new ModalTemplate()
     }
-    return ModalTemplate.instance
+    return this.instance
   }
 
   /**
