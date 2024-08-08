@@ -101,7 +101,7 @@ class Modal {
         this.loaderInstance.showLoader()
         const response = await productInstance.submitProduct(newProduct)
         this.validationImageResult = false
-        if (response.success) {
+        if (response.status === 'success') {
           eventBus.emit('reloadProduct')
         }
         this.loaderInstance.hideLoader()
