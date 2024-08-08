@@ -52,10 +52,12 @@ class Modal {
    */
   showForm(id) {
     const wrapperFormEle = document.querySelector('.js-wrapper-popup')
-    if (id)
-      this.currentProduct = this.productInstance
-        .getter()
-        .products.find((product) => product.id === id)
+
+    this.currentProduct = id
+      ? this.productInstance
+          .getter()
+          .products.find((product) => product.id === id)
+      : {}
     const formHTML = ModalTemplate.renderProductForm(this.currentProduct)
     wrapperFormEle.innerHTML = formHTML
     wrapperFormEle.classList.add('show')
