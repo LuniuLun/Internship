@@ -90,35 +90,6 @@ class ProductService {
   }
 
   /**
-   * Fetches a product by its ID.
-   * @param {string} id - The ID of the product to fetch.
-   * @returns {Promise<{ status: string, data?: Object, message?: string }>} A promise that resolves to the product data or an error object.
-   */
-  async getProductById(id) {
-    try {
-      const response = await fetch(`${this.url}/${id}`)
-
-      if (!response.ok) {
-        return {
-          status: 'error',
-          message: Message.NOT_FOUND,
-        }
-      }
-
-      const data = await response.json()
-      return {
-        status: 'success',
-        data,
-      }
-    } catch (error) {
-      return {
-        status: 'error',
-        message: error.message,
-      }
-    }
-  }
-
-  /**
    * Adds a new product.
    * @param {Object} newProduct - The new product data to be added.
    * @returns {Promise<{ status: string, data?: Object, message?: string }>} A promise that resolves to the added product data or an error object.

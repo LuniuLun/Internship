@@ -103,18 +103,6 @@ class Product {
   }
 
   /**
-   * Fetches a product by its ID.
-   * @param {string} id - The ID of the product to fetch.
-   * @returns {Promise<Object>} A promise that resolves to the product data.
-   */
-  async getProductById(id) {
-    const response = await this.productService.getProductById(id)
-    if (response.status === 'success') {
-      return response.data
-    }
-  }
-
-  /**
    * Submits a new product or edits an existing product.
    * @param {Object} newProduct - The product data to be submitted.
    * @returns {Promise<Object>} A promise that resolves to the result of the operation.
