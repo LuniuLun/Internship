@@ -62,15 +62,18 @@ class HomePage {
     const products = await this.productInstance.getProduct(limit)
     const renderProductEle = document.querySelector('.js-get-products')
     renderProductEle.innerHTML = ''
-    let html = ProductTemplate.renderAdditionCard()
 
-    if (Array.isArray(products) && products.length > 0) {
+    if (products.length) {
+      let html = ProductTemplate.renderAdditionCard()
       products.forEach((item) => {
         html += ProductTemplate.renderProductCard(item)
       })
+      renderProductEle.innerHTML += html
+      return
     }
 
-    renderProductEle.innerHTML += html
+    const showMoreProductBtn = document.querySelector('.js-show-more-product')
+    showMoreProductBtn.style.display = 'none'
   }
 
   /**

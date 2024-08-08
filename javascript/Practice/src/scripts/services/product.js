@@ -79,6 +79,7 @@ class ProductService {
       const data = await response.json()
       return {
         status: 'success',
+        message: Message.FILTER_PRODUCT_FAILED,
         data,
       }
     } catch (error) {

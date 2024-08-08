@@ -49,6 +49,8 @@ class Product {
         if (this.products.length > 0) {
           this.products = this.products.reverse()
         }
+      } else {
+        this.notificationInstance.renderNotification(response)
       }
     }
     return this.products
@@ -73,7 +75,6 @@ class Product {
     this.limit = limit
     const renderProductEle = document.querySelector('.js-get-products')
     renderProductEle.innerHTML = ''
-    let html = ProductTemplate.renderAdditionCard()
 
     // Fetch filtered products from the product service
     const response = await this.productService.filterProduct(
@@ -82,6 +83,8 @@ class Product {
       limit,
     )
     if (response.status === 'success' && response.data.length > 0) {
+      let html = ProductTemplate.renderAdditionCard()
+
       this.products = response.data.reverse() // Reverse the order of products
       if (typeOfSort === 'AToZ') {
         this.products = Sort.sortObjectsByPropertyAZ(this.products, 'name')
@@ -97,9 +100,14 @@ class Product {
       this.products.forEach((item) => {
         html += ProductTemplate.renderProductCard(item)
       })
+      renderProductEle.innerHTML += html
+    } else {
+      const showMoreProductBtn = document.querySelector('.js-show-more-product')
+      showMoreProductBtn.style.display = 'none'
     }
-    renderProductEle.innerHTML += html
     this.loaderInstance.hideLoader()
+    this.notificationInstance.renderNotification(response)
+    console.log(response)
   }
 
   /**

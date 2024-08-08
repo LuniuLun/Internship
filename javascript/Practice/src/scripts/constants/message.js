@@ -6,6 +6,7 @@ const Message = {
   EDIT_PRODUCT_SUCCESS: 'Update product successfully',
   EDIT_PRODUCT_FAILED: 'Failed to update the product',
   GET_PRODUCT_FAILED: 'Failed to load products',
+  FILTER_PRODUCT_FAILED: 'Filter products successfully',
   NOT_FOUND: 'No Results Found',
   ERROR_NETWORK: 'Error network',
 }
