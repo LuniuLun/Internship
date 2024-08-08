@@ -74,6 +74,7 @@ class Product {
     this.loaderInstance.showLoader()
     this.limit = limit
     const renderProductEle = document.querySelector('.js-get-products')
+    const showMoreProductBtn = document.querySelector('.js-show-more-product')
     renderProductEle.innerHTML = ''
 
     // Fetch filtered products from the product service
@@ -101,13 +102,12 @@ class Product {
         html += ProductTemplate.renderProductCard(item)
       })
       renderProductEle.innerHTML += html
+      showMoreProductBtn.style.display = 'block'
     } else {
-      const showMoreProductBtn = document.querySelector('.js-show-more-product')
       showMoreProductBtn.style.display = 'none'
     }
     this.loaderInstance.hideLoader()
     this.notificationInstance.renderNotification(response)
-    console.log(response)
   }
 
   /**

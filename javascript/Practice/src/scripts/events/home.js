@@ -60,6 +60,7 @@ class HomePage {
    */
   async renderProduct(limit = 9) {
     const products = await this.productInstance.getProduct(limit)
+    const showMoreProductBtn = document.querySelector('.js-show-more-product')
     const renderProductEle = document.querySelector('.js-get-products')
     renderProductEle.innerHTML = ''
 
@@ -69,10 +70,10 @@ class HomePage {
         html += ProductTemplate.renderProductCard(item)
       })
       renderProductEle.innerHTML += html
+      showMoreProductBtn.style.display = 'block'
       return
     }
 
-    const showMoreProductBtn = document.querySelector('.js-show-more-product')
     showMoreProductBtn.style.display = 'none'
   }
 
