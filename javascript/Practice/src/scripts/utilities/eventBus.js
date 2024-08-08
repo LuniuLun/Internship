@@ -1,13 +1,18 @@
-/* eslint-disable no-constructor-return */
-
 class EventBus {
   constructor() {
-    // Singleton pattern to ensure only one instance of EventBus exists
-    if (!EventBus.instance) {
-      this.events = {} // Object to hold event listeners
-      EventBus.instance = this
+    this.events = {} // Object to hold event listeners
+    this.instance = this
+  }
+
+  /**
+   * Singleton pattern to ensure only one instance of EventBus exists.
+   * @returns {EventBus} The instance of EventBus.
+   */
+  static getInstance() {
+    if (!this.instance) {
+      this.instance = new EventBus()
     }
-    return EventBus.instance
+    return this.instance
   }
 
   /**
@@ -16,11 +21,9 @@ class EventBus {
    * @param {Function} listener - The callback function to execute when the event is emitted.
    */
   on(event, listener) {
-    // If the event does not exist, create an empty array for it
     if (!this.events[event]) {
       this.events[event] = []
     }
-    // Add the listener to the event's list of listeners
     this.events[event].push(listener)
   }
 
@@ -30,11 +33,10 @@ class EventBus {
    * @param {any} data - The data to pass to the event listeners.
    */
   emit(event, data) {
-    // If the event has listeners, call each one with the provided data
     if (this.events[event]) {
       this.events[event].forEach((listener) => listener(data))
     }
   }
 }
 
-export default new EventBus()
+export default EventBus

@@ -4,7 +4,7 @@ import Product from '../product'
 import RuleFilter from '../utilities/filterRule'
 import Popup from './modal'
 import Loader from '../utilities/loader'
-import eventBus from '../utilities/eventBus'
+import EventBus from '../utilities/eventBus'
 
 class HomePage {
   constructor() {
@@ -12,6 +12,7 @@ class HomePage {
     this.popupInstance = Popup.getInstance()
     this.loaderInstance = Loader.getInstance()
     this.productInstance = Product.getInstance()
+    this.eventBusInstance = EventBus.getInstance()
   }
 
   /**
@@ -35,7 +36,7 @@ class HomePage {
     this.dropdownToggle()
     this.filterProduct()
     this.getMoreProduct()
-    eventBus.on('reloadProduct', () => {
+    this.eventBusInstance.on('reloadProduct', () => {
       this.renderProduct()
     })
     this.loaderInstance.hideLoader()

@@ -2,7 +2,7 @@
 import ModalTemplate from '../template/modal'
 import ValidationForm from '../utilities/validationForm'
 import Product from '../product'
-import eventBus from '../utilities/eventBus'
+import EventBus from '../utilities/eventBus'
 import Loader from '../utilities/loader'
 
 class Modal {
@@ -11,6 +11,7 @@ class Modal {
     this.currentProduct = currentProduct
     this.loaderInstance = Loader.getInstance()
     this.productInstance = Product.getInstance()
+    this.eventBusInstance = EventBus.getInstance()
     this.validationImageResult = undefined
   }
 
@@ -102,7 +103,7 @@ class Modal {
         const response = await productInstance.submitProduct(newProduct)
         this.validationImageResult = false
         if (response.status === 'success') {
-          eventBus.emit('reloadProduct')
+          this.eventBusInstance.emit('reloadProduct')
         }
         this.loaderInstance.hideLoader()
       }
@@ -241,7 +242,7 @@ class Modal {
       this.loaderInstance.showLoader()
       const response = await productInstance.deleteProduct(event.target.id)
       if (response.status === 'success') {
-        eventBus.emit('reloadProduct')
+        this.eventBusInstance.emit('reloadProduct')
       }
       this.loaderInstance.hideLoader()
     })
