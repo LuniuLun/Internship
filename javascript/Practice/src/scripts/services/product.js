@@ -3,7 +3,7 @@ import Notification from '../utilities/notification'
 
 class ProductService {
   constructor() {
-    this.url = `${process.env.PARCEL_REACT_APP_BASE_URL}${process.env.PARCEL_REACT_APP_PRODUCTS_ENDPOINT}`
+    this.url = `${process.env.PARCEL_APP_BASE_URL}${process.env.PARCEL_APP_PRODUCTS_ENDPOINT}`
     this.notificationInstance = Notification.getInstance()
     this.instance = this
   }
