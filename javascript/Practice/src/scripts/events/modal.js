@@ -206,12 +206,11 @@ class Modal {
     Object.keys(messageArr).forEach((key) => {
       const errorEle = document.querySelector(`.js-${key}`)
       if (messageArr[key]) {
-        errorEle.classList.add('show')
         errorEle.innerHTML = messageArr[key]
         check = false
         return
       }
-      errorEle.classList.remove('show')
+      errorEle.innerHTML = ''
     })
     return check
   }
