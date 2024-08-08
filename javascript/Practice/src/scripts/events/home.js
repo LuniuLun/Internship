@@ -110,26 +110,7 @@ class HomePage {
       if (targetElement.closest('.js-edit-product')) {
         const productElement = targetElement.closest('.product')
         const id = productElement.getAttribute('data-id')
-        const name = productElement
-          .querySelector('.js-get-name')
-          .textContent.trim()
-        const imageURL = productElement
-          .querySelector('.js-get-imageURL')
-          .src.trim()
-        const price = productElement
-          .querySelector('.js-get-price')
-          .textContent.trim()
-        const quantity = productElement
-          .querySelector('.js-get-quantity')
-          .textContent.trim()
-        const popupInstance = new Popup({
-          id,
-          name,
-          imageURL,
-          price,
-          quantity,
-        })
-        popupInstance.showForm()
+        this.popupInstance.showForm(id)
         return
       }
 

@@ -10,6 +10,7 @@ class Modal {
     this.instance = this
     this.currentProduct = currentProduct
     this.loaderInstance = Loader.getInstance()
+    this.productInstance = Product.getInstance()
     this.validationImageResult = undefined
   }
 
@@ -28,10 +29,32 @@ class Modal {
   }
 
   /**
-   * Displays the form for adding or editing a product.
+   * Retrieves the current product data.
+   * @returns {Object} The current product data.
    */
-  showForm() {
+  getter() {
+    return { currentProduct: this.currentProduct }
+  }
+
+  /**
+   * Sets the current product data.
+   * @param {Object} currentProduct - The new product data to set.
+   */
+  setter(currentProduct) {
+    this.currentProduct = currentProduct
+  }
+
+  /**
+   * Displays the form for adding or editing a product.
+   * If an ID is provided, it loads the corresponding product data for editing.
+   * @param {string} id - The ID of the product to edit (optional).
+   */
+  showForm(id) {
     const wrapperFormEle = document.querySelector('.js-wrapper-popup')
+    if (id)
+      this.currentProduct = this.productInstance
+        .getter()
+        .products.find((product) => product.id === id)
     const formHTML = ModalTemplate.renderProductForm(this.currentProduct)
     wrapperFormEle.innerHTML = formHTML
     wrapperFormEle.classList.add('show')
@@ -44,6 +67,7 @@ class Modal {
 
   /**
    * Hides the form for adding or editing a product.
+   * Clears the form content and hides the form container.
    */
   hideForm() {
     const hiddenFormBtn = document.querySelector('.js-hidden-form')
@@ -58,6 +82,7 @@ class Modal {
 
   /**
    * Handles the form submission for adding or editing a product.
+   * Validates the form and submits the data if valid.
    */
   submitForm() {
     const formEle = document.getElementById('js-product-form')
@@ -65,7 +90,7 @@ class Modal {
     const newProduct = {}
     formEle.addEventListener('submit', async (e) => {
       e.preventDefault()
-      Array.from(formEle.elements).forEach((element) => {
+      Array.from(e.target).forEach((element) => {
         if (element && element.value !== 'Save' && element.value !== 'Cancel') {
           newProduct[element.name] = element.value
         }
@@ -84,6 +109,10 @@ class Modal {
     })
   }
 
+  /**
+   * Restricts input to real numbers (including decimals) only.
+   * Prevents invalid characters from being entered in the input fields.
+   */
   pressOnlyRealNumber() {
     const numInputEle = document.querySelectorAll('.js-only-real-number')
     numInputEle.forEach((ele) => {
@@ -108,6 +137,10 @@ class Modal {
     })
   }
 
+  /**
+   * Restricts input to integer numbers only.
+   * Prevents invalid characters from being entered in the input fields.
+   */
   pressOnlyIntegerNumber() {
     const intInputElements = document.querySelectorAll(
       '.js-only-integer-number',
@@ -207,7 +240,7 @@ class Modal {
       wrapperModalEle.classList.remove('show')
       this.loaderInstance.showLoader()
       const response = await productInstance.deleteProduct(event.target.id)
-      if (response.success) {
+      if (response.status === 'success') {
         eventBus.emit('reloadProduct')
       }
       this.loaderInstance.hideLoader()

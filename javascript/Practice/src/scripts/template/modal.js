@@ -50,7 +50,7 @@ class ModalTemplate {
     quantity = '',
   }) {
     return `
-        <form action="" class="form form--center slide-down" id="js-product-form">
+        <form action="" class="form slide-down" id="js-product-form">
           <input type="hidden" name="id" value="${id}" />
           <h2 class="form__title">${id !== '' ? 'Edit' : 'Create a new food'}</h2>
           <label for="name" class="form__label">Name</label>
