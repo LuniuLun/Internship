@@ -70,7 +70,7 @@ class HomePage {
         html += ProductTemplate.renderProductCard(item)
       })
       renderProductEle.innerHTML += html
-      showMoreProductBtn.style.display = 'block'
+      showMoreProductBtn.style.display = 'flex'
       return
     }
 
