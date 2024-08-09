@@ -6,7 +6,7 @@
   padding: 40px 50px 30px;
   background-color: $dark-bg-2;
 
-  @include respond-to("small") {
+  @include respond-to("tiny") {
     padding: 20px;
   }
 
