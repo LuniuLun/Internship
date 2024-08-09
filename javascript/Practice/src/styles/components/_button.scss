@@ -1,9 +1,14 @@
 .btn {
+  @include flex-layout;
   @extend %normal-semiBold-txtBtn;
   border-radius: 8px;
   width: 180px;
   padding: 14px;
   text-align: center;
+
+  @include respond-to("small") {
+    padding: 8px;
+  }
 
   &--line {
     border: 1px solid $orange-color-1;
