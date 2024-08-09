@@ -50,7 +50,7 @@ class Notification {
       messageEle.classList.add('show')
       setTimeout(() => {
         messageEle.classList.remove('show')
-      }, 2000)
+      }, 3000)
     }
   }
 }
