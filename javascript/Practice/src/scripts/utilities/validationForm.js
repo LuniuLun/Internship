@@ -1,4 +1,4 @@
-import RegExp from '../constants/regExp'
+import REGEXP from '../constants/regExp'
 
 class ValidationForm {
   constructor() {
@@ -33,8 +33,9 @@ class ValidationForm {
    * @returns {string|undefined} An error message if the string length is out of range, otherwise undefined.
    */
   static checkLenOfString(key, value) {
-    return value.trim().length < 2 || value.trim().length > 100
-      ? `${key} must have between ${RegExp.minLen} and ${RegExp.maxLen} characters`
+    const { length } = value.trim()
+    return length < REGEXP.MIN_LEN || length > REGEXP.MAX_LEN
+      ? `${key} must have between ${REGEXP.MIN_LEN} and ${REGEXP.MAX_LEN} characters`
       : undefined
   }
 
@@ -45,8 +46,7 @@ class ValidationForm {
    * @returns {string|undefined} An error message if the value is not a float, otherwise undefined.
    */
   static isFloat(key, value) {
-    // Check if the value contains invalid characters (not a number or a dot)
-    return RegExp.realNumber.test(value) &&
+    return REGEXP.REAL_NUMBER.test(value) &&
       (value.match(/\./g) || []).length <= 1
       ? undefined
       : `${key} must be a real number`
@@ -72,7 +72,7 @@ class ValidationForm {
    * @returns {string|undefined} An error message if the value does not contain a special character, otherwise undefined.
    */
   static isWithSpecialChars(key, value) {
-    return RegExp.specialChars.test(value)
+    return REGEXP.SPECIAL_CHARS.test(value)
       ? undefined
       : `${key} must contain at least one special character (!@#$%^&*(),.?":{}|<>)`
   }
@@ -84,7 +84,7 @@ class ValidationForm {
    * @returns {string|undefined} An error message if the value contains invalid characters, otherwise undefined.
    */
   static isValidString(key, value) {
-    return RegExp.alphanumeric.test(value)
+    return REGEXP.ALPHANUMERIC.test(value)
       ? undefined
       : `${key} contains invalid characters. Only alphanumeric characters and spaces are allowed`
   }
@@ -96,21 +96,18 @@ class ValidationForm {
    * @returns {Promise<string|undefined>} An error message if the URL is not valid, otherwise undefined.
    */
   static async isValidImageUrl(key, value) {
-    // Check if the URL starts with http:// or https://
     if (!value.startsWith('http://') && !value.startsWith('https://')) {
       return `${key} must start with http:// or https://`
     }
     try {
       const response = await fetch(value, { method: 'HEAD' })
 
-      // Check if the response hasn't 200 status
       if (!response.ok) {
         return `${key} does not point to a valid image resource`
       }
 
-      // Check if the Content-Type is one of the allowed image types
       const contentType = response.headers.get('Content-Type')
-      const allowedExtensions = RegExp.imageExtensions
+      const allowedExtensions = REGEXP.IMAGE_EXTENSIONS
 
       if (!allowedExtensions.some((ext) => contentType.includes(ext))) {
         return `${key} does not point to a valid image resource. Allowed types are: ${allowedExtensions.join(', ')}`
@@ -130,9 +127,9 @@ class ValidationForm {
    */
   static checkName(key, value) {
     return (
-      ValidationForm.isNotEmpty(key, value) ||
-      ValidationForm.checkLenOfString(key, value) ||
-      ValidationForm.isValidString(key, value) ||
+      this.isNotEmpty(key, value) ||
+      this.checkLenOfString(key, value) ||
+      this.isValidString(key, value) ||
       false
     )
   }
@@ -144,11 +141,7 @@ class ValidationForm {
    * @returns {string|false} An error message if validation fails, otherwise true.
    */
   static checkQuantity(key, value) {
-    return (
-      ValidationForm.isNotEmpty(key, value) ||
-      ValidationForm.isInteger(key, value) ||
-      false
-    )
+    return this.isNotEmpty(key, value) || this.isInteger(key, value) || false
   }
 
   /**
@@ -158,11 +151,7 @@ class ValidationForm {
    * @returns {string|false} An error message if validation fails, otherwise true.
    */
   static checkPrice(key, value) {
-    return (
-      ValidationForm.isNotEmpty(key, value) ||
-      ValidationForm.isFloat(key, value) ||
-      false
-    )
+    return this.isNotEmpty(key, value) || this.isFloat(key, value) || false
   }
 
   /**
@@ -173,8 +162,8 @@ class ValidationForm {
    */
   static async checkImageURL(key, value) {
     return (
-      ValidationForm.isNotEmpty(key, value) ||
-      (await ValidationForm.isValidImageUrl(key, value)) ||
+      this.isNotEmpty(key, value) ||
+      (await this.isValidImageUrl(key, value)) ||
       false
     )
   }

@@ -1,4 +1,4 @@
-const Message = {
+const MESSAGE = {
   ADD_PRODUCT_SUCCESS: 'Add product successfully',
   ADD_PRODUCT_FAILED: 'Failed to add product',
   DELETE_PRODUCT_SUCCESS: 'Delete product successfully',
@@ -11,4 +11,4 @@ const Message = {
   ERROR_NETWORK: 'Error network',
 }
 
-export default Message
+export default MESSAGE

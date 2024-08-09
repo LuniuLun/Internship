@@ -1,4 +1,4 @@
-import Message from '../constants/message'
+import MESSAGE from '../constants/message'
 import Notification from '../utilities/notification'
 
 class ProductService {
@@ -34,7 +34,7 @@ class ProductService {
       if (!response.ok) {
         return {
           status: 'error',
-          message: Message.NOT_FOUND,
+          message: MESSAGE.NOT_FOUND,
         }
       }
 
@@ -73,13 +73,13 @@ class ProductService {
       if (!response.ok) {
         return {
           status: 'error',
-          message: Message.NOT_FOUND,
+          message: MESSAGE.NOT_FOUND,
         }
       }
       const data = await response.json()
       return {
         status: 'success',
-        message: Message.FILTER_PRODUCT_FAILED,
+        message: MESSAGE.FILTER_PRODUCT_FAILED,
         data,
       }
     } catch (error) {
@@ -106,14 +106,14 @@ class ProductService {
       if (!response.ok) {
         return {
           status: 'error',
-          message: Message.ADD_PRODUCT_FAILED,
+          message: MESSAGE.ADD_PRODUCT_FAILED,
         }
       }
 
       const data = await response.json()
       return {
         status: 'success',
-        message: Message.ADD_PRODUCT_SUCCESS,
+        message: MESSAGE.ADD_PRODUCT_SUCCESS,
         data,
       }
     } catch (error) {
@@ -140,14 +140,14 @@ class ProductService {
       if (!response.ok) {
         return {
           status: 'error',
-          message: Message.EDIT_PRODUCT_FAILED,
+          message: MESSAGE.EDIT_PRODUCT_FAILED,
         }
       }
 
       const data = await response.json()
       return {
         status: 'success',
-        message: Message.EDIT_PRODUCT_SUCCESS,
+        message: MESSAGE.EDIT_PRODUCT_SUCCESS,
         data,
       }
     } catch (error) {
@@ -172,14 +172,14 @@ class ProductService {
       if (!response.ok) {
         return {
           status: 'error',
-          message: Message.DELETE_PRODUCT_FAILED,
+          message: MESSAGE.DELETE_PRODUCT_FAILED,
         }
       }
 
       const data = await response.json()
       return {
         status: 'success',
-        message: Message.DELETE_PRODUCT_SUCCESS,
+        message: MESSAGE.DELETE_PRODUCT_SUCCESS,
         data,
       }
     } catch (error) {

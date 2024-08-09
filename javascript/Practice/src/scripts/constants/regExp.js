@@ -1,10 +1,10 @@
-const RegExp = {
-  maxLen: 100,
-  minLen: 2,
-  specialChars: /[!@#$%^&*()+\-=[\]{};':"\\|,.<>/?]/,
-  alphanumeric: /^[a-zA-Z0-9\s]*$/,
-  imageExtensions: ['jpg', 'jpeg', 'png', 'gif', 'bmp'],
-  realNumber: /^[0-9]*\.?[0-9]*$/,
+const REGEXP = {
+  MAX_LEN: 100,
+  MIN_LEN: 2,
+  SPECIAL_CHARS: /[!@#$%^&*()+\-=[\]{};':"\\|,.<>/?]/,
+  ALPHANUMERIC: /^[a-zA-Z0-9\s]*$/,
+  IMAGE_EXTENSIONS: ['jpg', 'jpeg', 'png', 'gif', 'bmp'],
+  REAL_NUMBER: /^[0-9]*\.?[0-9]*$/,
 }
 
-export default RegExp
+export default REGEXP
