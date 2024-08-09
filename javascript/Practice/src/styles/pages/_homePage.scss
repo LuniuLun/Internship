@@ -17,8 +17,12 @@
   @include flex-layout(column);
   margin: 26px 0 0;
   border-bottom: $dark-thin-border;
-  max-width: 1190px;
+  width: 1190px;
   padding-bottom: 94px;
+
+  @include respond-to("large") {
+    width: 100%;
+  }
 
   .wrapper-products {
     @include flex-layout(row, flex-start, stretch);
