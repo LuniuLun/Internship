@@ -2,6 +2,7 @@ import editIcon from '../../assets/icons/edit.svg'
 import closeIcon from '../../assets/icons/close.svg'
 import ellipseIcon from '../../assets/icons/ellipse.svg'
 import plus from '../../assets/icons/plus.svg'
+import defaultImage from '../../assets/images/default-image.svg'
 
 class ProductTemplate {
   constructor() {
@@ -37,6 +38,7 @@ class ProductTemplate {
                 class="product__img js-get-imageURL"
                 src="${imageURL}"
                 alt="${name}"
+                onerror="this.onerror=null; this.src='${defaultImage}'"
               />
               <div class="product__description">
                 <h4 class="item js-get-name">${name}</h4>
