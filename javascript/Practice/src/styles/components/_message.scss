@@ -1,6 +1,6 @@
 .message {
   @include flex-layout;
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 50%;
   display: none;
