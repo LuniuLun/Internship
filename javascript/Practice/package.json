@@ -13,9 +13,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@parcel/optimizer-data-url": "^2.12.0",
-    "@parcel/transformer-css-experimental": "^2.3.2",
-    "@parcel/transformer-inline-string": "^2.12.0",
     "@parcel/transformer-sass": "^2.12.0",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -34,6 +31,9 @@
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
     "string_decoder": "^1.3.0",
-    "vm-browserify": "^1.1.2"
+    "vm-browserify": "^1.1.2",
+    "@parcel/optimizer-data-url": "^2.12.0",
+    "@parcel/transformer-css-experimental": "^2.3.2",
+    "@parcel/transformer-inline-string": "^2.12.0"
   }
 }
