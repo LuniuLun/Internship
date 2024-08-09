@@ -17,14 +17,14 @@
   @include flex-layout(column);
   margin: 26px 0 0;
   border-bottom: $dark-thin-border;
+  max-width: 1190px;
   padding-bottom: 94px;
 
   .wrapper-products {
     @include flex-layout(row, flex-start, stretch);
     gap: 16px;
     flex-wrap: wrap;
-    max-width: 1190px;
-    margin-left: 20px;
+    width: 100%;
 
     @include respond-to("extra-large") {
       justify-content: center;
@@ -39,9 +39,6 @@
     @include flex-layout;
     margin-top: 40px;
 
-    @include respond-to("large") {
-      margin-left: unset;
-    }
   }
 }
 
