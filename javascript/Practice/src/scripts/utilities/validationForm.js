@@ -73,7 +73,7 @@ class ValidationForm {
    */
   static isGreaterThanZero(key, value) {
     const numValue = parseFloat(value)
-    if (Math.isNaN(numValue) || numValue <= 0) {
+    if (numValue <= 0) {
       return `${key} must be a number greater than 0.`
     }
     return undefined
