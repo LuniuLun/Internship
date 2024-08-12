@@ -31,6 +31,7 @@ class ProductTemplate {
    * @returns {string} The HTML string for the product card.
    */
   static renderProductCard({ id, name, imageURL, price, quantity }) {
+    const bowlText = quantity === '1' ? 'Bowl' : 'Bowls'
     return `
             <div class="product" data-id="${id}">
               <img class="icon product__icon js-get-warning" src="${closeIcon}" id="${id}"/>
@@ -47,7 +48,7 @@ class ProductTemplate {
                   <span class="js-get-price">${price}</span>
                   <img class="icon" src="${ellipseIcon}" />
                   <span class="js-get-quantity">${quantity}</span>
-                  Bowls
+                  ${bowlText}
                 </p>
               </div>
               <button class="product__btn js-edit-product">
