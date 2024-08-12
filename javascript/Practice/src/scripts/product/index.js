@@ -118,7 +118,8 @@ class Product {
    */
   async submitProduct(newProduct) {
     const productData = { ...newProduct }
-    productData.price = Math.round(productData.price * 100) / 100
+    productData.price = parseFloat(productData.price).toFixed(2)
+
     let response
     if (productData.id) {
       // Edit an existing product
