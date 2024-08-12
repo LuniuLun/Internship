@@ -117,27 +117,24 @@ class Product {
    * @returns {Promise<Object>} A promise that resolves to the result of the operation.
    */
   async submitProduct(newProduct) {
-    const productData = { ...newProduct }
-    productData.price = parseFloat(productData.price).toFixed(2)
-
     let response
-    if (productData.id) {
+    if (newProduct.id) {
       // Edit an existing product
-      response = await this.productService.editProduct(productData)
+      response = await this.productService.editProduct(newProduct)
       if (response.status === 'success') {
         // Update products in the products array
         const productIndex = this.products.findIndex(
-          (product) => product.id === productData.id,
+          (product) => product.id === newProduct.id,
         )
         if (productIndex !== -1) {
-          this.products[productIndex] = productData
+          this.products[productIndex] = newProduct
         }
       }
       this.notificationInstance.renderNotification(response)
       return response
     }
     // Add a new product
-    response = await this.productService.addProduct(productData)
+    response = await this.productService.addProduct(newProduct)
     if (response.status === 'success') {
       // Add the new product to the beginning of the products array
       this.products.unshift(response.data)

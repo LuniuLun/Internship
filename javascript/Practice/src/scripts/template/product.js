@@ -32,6 +32,8 @@ class ProductTemplate {
    */
   static renderProductCard({ id, name, imageURL, price, quantity }) {
     const bowlText = quantity === '1' ? 'Bowl' : 'Bowls'
+    let priceData = price
+    priceData = parseFloat(price).toFixed(2)
     return `
             <div class="product" data-id="${id}">
               <img class="icon product__icon js-get-warning" src="${closeIcon}" id="${id}"/>
@@ -45,7 +47,7 @@ class ProductTemplate {
                 <h4 class="item js-get-name">${name}</h4>
                 <p class="item item--thin">
                   $ 
-                  <span class="js-get-price">${price}</span>
+                  <span class="js-get-price">${priceData}</span>
                   <img class="icon" src="${ellipseIcon}" />
                   <span class="js-get-quantity">${quantity}</span>
                   ${bowlText}
