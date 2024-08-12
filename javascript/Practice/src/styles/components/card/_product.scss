@@ -34,12 +34,19 @@
     @include flex-layout(column);
     gap: 8px;
     margin: 0 40px;
+    width: 144px;
 
     .item {
       @extend %normal-medium-text;
       text-align: center;
+      overflow: hidden;
       margin: 0;
       height: 40px;
+      width: 100%;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
 
       &--thin {
         @include flex-layout;
