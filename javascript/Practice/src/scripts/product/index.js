@@ -104,6 +104,7 @@ class Product {
       renderProductEle.innerHTML += html
       showMoreProductBtn.style.display = 'block'
     } else {
+      renderProductEle.innerHTML += `<p class='empty-state'>Not found results</p>`
       showMoreProductBtn.style.display = 'none'
     }
     this.loaderInstance.hideLoader()

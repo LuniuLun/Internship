@@ -74,6 +74,7 @@ class HomePage {
       return
     }
 
+    renderProductEle.innerHTML += `<p class='empty-state'>Not found results</p>`
     showMoreProductBtn.style.display = 'none'
   }
 
