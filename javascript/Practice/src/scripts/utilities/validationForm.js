@@ -66,6 +66,20 @@ class ValidationForm {
   }
 
   /**
+   * Checks if a value is a number greater than 0.
+   * @param {string} key - The name of the field.
+   * @param {string} value - The value to check.
+   * @returns {string|undefined} An error message if the value is not greater than 0, otherwise undefined.
+   */
+  static isGreaterThanZero(key, value) {
+    const numValue = parseFloat(value)
+    if (Math.isNaN(numValue) || numValue <= 0) {
+      return `${key} must be a number greater than 0.`
+    }
+    return undefined
+  }
+
+  /**
    * Checks if a string contains at least one special character.
    * @param {string} key - The name of the field.
    * @param {string} value - The value to check.
@@ -141,7 +155,12 @@ class ValidationForm {
    * @returns {string|false} An error message if validation fails, otherwise true.
    */
   static checkQuantity(key, value) {
-    return this.isNotEmpty(key, value) || this.isInteger(key, value) || false
+    return (
+      this.isNotEmpty(key, value) ||
+      this.isInteger(key, value) ||
+      this.isGreaterThanZero(key, value) ||
+      false
+    )
   }
 
   /**
@@ -151,7 +170,12 @@ class ValidationForm {
    * @returns {string|false} An error message if validation fails, otherwise true.
    */
   static checkPrice(key, value) {
-    return this.isNotEmpty(key, value) || this.isFloat(key, value) || false
+    return (
+      this.isNotEmpty(key, value) ||
+      this.isFloat(key, value) ||
+      this.isGreaterThanZero(key, value) ||
+      false
+    )
   }
 
   /**
