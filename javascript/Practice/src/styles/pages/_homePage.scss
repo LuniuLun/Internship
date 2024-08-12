@@ -30,12 +30,8 @@
     flex-wrap: wrap;
     width: 100%;
 
-    @include respond-to("extra-large") {
+    @include respond-to("medium") {
       justify-content: center;
-    }
-
-    @include respond-to("large") {
-      margin-left: unset;
     }
   }
 
