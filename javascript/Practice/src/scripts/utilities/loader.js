@@ -2,6 +2,7 @@
 class Loader {
   constructor() {
     this.instance = this
+    this.popupEle = document.querySelector('.js-wrapper-loader')
   }
 
   static getInstance() {
@@ -12,18 +13,12 @@ class Loader {
   }
 
   showLoader() {
-    const popupEle = document.querySelector('.js-wrapper-popup')
-    const loaderEle = document.createElement('div')
-    popupEle.innerHTML = ''
-    loaderEle.classList.add('loader')
-    popupEle.appendChild(loaderEle)
-    popupEle.classList.add('show')
+    this.popupEle.innerHTML = `<div class='loader'></div>`
+    this.popupEle.classList.add('show')
   }
 
   hideLoader() {
-    const popupEle = document.querySelector('.js-wrapper-popup')
-    popupEle.classList.remove('show')
-    popupEle.innerHTML = ''
+    this.popupEle.classList.remove('show')
   }
 }
 
