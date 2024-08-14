@@ -5,6 +5,7 @@ import RuleFilter from '../utilities/filterRule'
 import Popup from './modal'
 import Loader from '../utilities/loader'
 import EventBus from '../utilities/eventBus'
+import downArrowIcon from '../../assets/icons/down-arrow.svg'
 
 class HomePage {
   constructor() {
@@ -56,7 +57,7 @@ class HomePage {
 
     sortOptionItems.forEach((item) => {
       item.addEventListener('click', () => {
-        toggleBtn.innerHTML = `<img class="icon" src="/down-arrow.91aa4111.svg" alt="filter food">${item.textContent}`
+        toggleBtn.innerHTML = `<img class="icon" src="${downArrowIcon}" alt="filter food">${item.textContent}`
       })
     })
   }
