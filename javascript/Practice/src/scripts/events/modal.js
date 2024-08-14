@@ -13,6 +13,7 @@ class Modal {
     this.productInstance = Product.getInstance()
     this.eventBusInstance = EventBus.getInstance()
     this.validationImageResult = undefined
+    this.wrapperModalEle = document.querySelector('.js-wrapper-popup')
   }
 
   /**
@@ -51,16 +52,14 @@ class Modal {
    * @param {string} id - The ID of the product to edit (optional).
    */
   showForm(id) {
-    const wrapperFormEle = document.querySelector('.js-wrapper-popup')
-
     this.currentProduct = id
       ? this.productInstance
           .getter()
           .products.find((product) => product.id === id)
       : {}
     const formHTML = ModalTemplate.renderProductForm(this.currentProduct)
-    wrapperFormEle.innerHTML = formHTML
-    wrapperFormEle.classList.add('show')
+    this.wrapperModalEle.innerHTML = formHTML
+    this.wrapperModalEle.classList.add('show')
     document.body.classList.add('no-scroll')
     this.hideForm()
     this.submitForm()
@@ -74,9 +73,7 @@ class Modal {
    * Clears the form content and hides the form container.
    */
   hideForm() {
-    const wrapperFormEle = document.querySelector('.js-wrapper-popup')
-
-    wrapperFormEle.addEventListener('click', (e) => {
+    this.wrapperModalEle.addEventListener('click', (e) => {
       const targetElement = e.target
 
       if (
@@ -84,8 +81,8 @@ class Modal {
         targetElement.closest('.js-hidden-form')
       ) {
         e.preventDefault()
-        wrapperFormEle.classList.remove('show')
-        wrapperFormEle.innerHTML = ''
+        this.wrapperModalEle.classList.remove('show')
+        this.wrapperModalEle.innerHTML = ''
         document.body.classList.remove('no-scroll')
       }
     })
@@ -96,7 +93,7 @@ class Modal {
    * Validates the form and submits the data if valid.
    */
   submitForm() {
-    const formEle = document.getElementById('js-product-form')
+    const formEle = this.wrapperModalEle.querySelector('#js-product-form')
     const productInstance = Product.getInstance()
     const newProduct = {}
     formEle.addEventListener('submit', async (e) => {
@@ -107,8 +104,7 @@ class Modal {
         }
       })
       if (this.validationForm(newProduct) && !this.validationImageResult) {
-        const wrapperFormEle = document.querySelector('.js-wrapper-popup')
-        wrapperFormEle.classList.remove('show')
+        this.wrapperModalEle.classList.remove('show')
         this.loaderInstance.showLoader()
         const response = await productInstance.submitProduct(newProduct)
         this.validationImageResult = false
@@ -125,26 +121,26 @@ class Modal {
    * Prevents invalid characters from being entered in the input fields.
    */
   pressOnlyRealNumber() {
-    const numInputEle = document.querySelectorAll('.js-only-real-number')
-    numInputEle.forEach((ele) => {
-      ele.addEventListener('keypress', (event) => {
-        const { charCode } = event
-        const currentValue = ele.value
-        // Check if the user entered a number starting with a period
-        if (charCode === 46 && ele.selectionStart === 0) {
-          event.preventDefault()
-          return
-        }
-        // Check if there is already a period and the user re-enters the period
-        if (currentValue.includes('.') && charCode === 46) {
-          event.preventDefault()
-          return
-        }
-        // Check if not a number or a dot
-        if ((charCode < 48 || charCode > 57) && charCode !== 46) {
-          event.preventDefault()
-        }
-      })
+    const realNumInputEle = this.wrapperModalEle.querySelector(
+      '.js-only-real-number',
+    )
+    realNumInputEle.addEventListener('keypress', (event) => {
+      const { charCode } = event
+      const currentValue = realNumInputEle.value
+      // Check if the user entered a number starting with a period
+      if (charCode === 46 && realNumInputEle.selectionStart === 0) {
+        event.preventDefault()
+        return
+      }
+      // Check if there is already a period and the user re-enters the period
+      if (currentValue.includes('.') && charCode === 46) {
+        event.preventDefault()
+        return
+      }
+      // Check if not a number or a dot
+      if ((charCode < 48 || charCode > 57) && charCode !== 46) {
+        event.preventDefault()
+      }
     })
   }
 
@@ -153,17 +149,15 @@ class Modal {
    * Prevents invalid characters from being entered in the input fields.
    */
   pressOnlyIntegerNumber() {
-    const intInputElements = document.querySelectorAll(
+    const intNumInputElements = this.wrapperModalEle.querySelector(
       '.js-only-integer-number',
     )
-    intInputElements.forEach((ele) => {
-      ele.addEventListener('keypress', (event) => {
-        const { charCode } = event
-        // Check if not a number
-        if (charCode < 48 || charCode > 57) {
-          event.preventDefault()
-        }
-      })
+    intNumInputElements.addEventListener('keypress', (event) => {
+      const { charCode } = event
+      // Check if not a number
+      if (charCode < 48 || charCode > 57) {
+        event.preventDefault()
+      }
     })
   }
 
@@ -173,14 +167,14 @@ class Modal {
    * performs validation, and updates the error message accordingly.
    */
   async validationImage() {
-    const imageURLEle = document.querySelector('.js-check-imageURL')
+    const imageURLEle = this.wrapperModalEle.querySelector('.js-check-imageURL')
     imageURLEle.addEventListener('change', async (event) => {
       const imageURL = event.target.value
       const validationResult = await ValidationForm.checkImageURL(
         'imageURL',
         imageURL,
       )
-      const errorEle = document.querySelector('.js-imageURL-error')
+      const errorEle = this.wrapperModalEle.querySelector('.js-imageURL-error')
 
       if (validationResult) {
         errorEle.textContent = validationResult
@@ -214,7 +208,7 @@ class Modal {
         false,
     }
     Object.keys(messageArr).forEach((key) => {
-      const errorEle = document.querySelector(`.js-${key}`)
+      const errorEle = this.wrapperModalEle.querySelector(`.js-${key}`)
       if (messageArr[key]) {
         errorEle.innerHTML = messageArr[key]
         check = false
@@ -230,9 +224,8 @@ class Modal {
    * @param {string} id - The ID of the product to be deleted.
    */
   showWarningForm(id) {
-    const wrapperModalEle = document.querySelector('.js-wrapper-popup')
-    wrapperModalEle.innerHTML = ModalTemplate.renderWarning(id)
-    wrapperModalEle.classList.add('show')
+    this.wrapperModalEle.innerHTML = ModalTemplate.renderWarning(id)
+    this.wrapperModalEle.classList.add('show')
     document.body.classList.add('no-scroll')
 
     this.hideForm()
@@ -243,12 +236,12 @@ class Modal {
    * Handles the confirmation of product deletion.
    */
   acceptWarningForm() {
-    const getAcceptWarningFormEle = document.querySelector('.js-accept')
+    const getAcceptWarningFormEle =
+      this.wrapperModalEle.querySelector('.js-accept')
     const productInstance = Product.getInstance()
 
     getAcceptWarningFormEle.addEventListener('click', async (event) => {
-      const wrapperModalEle = document.querySelector('.js-wrapper-popup')
-      wrapperModalEle.classList.remove('show')
+      this.wrapperModalEle.classList.remove('show')
       this.loaderInstance.showLoader()
       const response = await productInstance.deleteProduct(event.target.id)
       if (response.status === 'success') {

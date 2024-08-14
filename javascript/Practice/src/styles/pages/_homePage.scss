@@ -43,7 +43,7 @@
 }
 
 .wrapper-loader,
-.wrapper-modal {
+.wrapper-popup {
   @include flex-layout(row, center, center);
   display: none;
   position: fixed;
