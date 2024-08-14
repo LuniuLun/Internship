@@ -27,7 +27,7 @@ class ModalTemplate {
             </h2>
             <div class="warning__action">
               <button class="btn btn--line js-hidden-form">Cancel</button>
-              <button class="btn btn--fill js-accept" id="${id}">Yes</button>
+              <button class="btn btn--line js-accept" id="${id}">Yes</button>
             </div>
           </div>`
   }
