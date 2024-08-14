@@ -61,6 +61,7 @@ class Modal {
     const formHTML = ModalTemplate.renderProductForm(this.currentProduct)
     wrapperFormEle.innerHTML = formHTML
     wrapperFormEle.classList.add('show')
+    document.body.classList.add('no-scroll')
     this.hideForm()
     this.submitForm()
     this.validationImage()
@@ -85,6 +86,7 @@ class Modal {
         e.preventDefault()
         wrapperFormEle.classList.remove('show')
         wrapperFormEle.innerHTML = ''
+        document.body.classList.remove('no-scroll')
       }
     })
   }
@@ -231,6 +233,7 @@ class Modal {
     const wrapperModalEle = document.querySelector('.js-wrapper-popup')
     wrapperModalEle.innerHTML = ModalTemplate.renderWarning(id)
     wrapperModalEle.classList.add('show')
+    document.body.classList.add('no-scroll')
 
     this.hideForm()
     this.acceptWarningForm()
