@@ -91,7 +91,7 @@ class ModalTemplate {
           <span class="form__error js-quantity-error"></span>
           <div class="form__action">
             <input class="btn btn--line js-hidden-form" value="Cancel" />
-            <input type="submit" class="btn btn--fill" value="Save" />
+            <input type="submit" class="btn btn--line" value="Save" />
           </div>
         </form>`
   }

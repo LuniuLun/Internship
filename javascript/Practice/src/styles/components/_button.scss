@@ -20,14 +20,4 @@
       box-shadow: $shadow-hover-btn;
     }
   }
-
-  &--fill {
-    background-color: $orange-color-1;
-    color: $white-text-2;
-
-    &:hover {
-      box-shadow: $shadow-hover-btn;
-      color: $white-text-1;
-    }
-  }
 }
