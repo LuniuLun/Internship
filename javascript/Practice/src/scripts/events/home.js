@@ -48,9 +48,16 @@ class HomePage {
   dropdownToggle() {
     const toggleBtn = document.querySelector('.js-btn-toggle')
     const sortOption = document.querySelector('.js-sort-option')
+    const sortOptionItems = document.querySelectorAll('.sort-option__item')
 
     toggleBtn.addEventListener('click', () => {
       sortOption.classList.toggle('show')
+    })
+
+    sortOptionItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        toggleBtn.innerHTML = `<img class="icon" src="/down-arrow.91aa4111.svg" alt="filter food">${item.textContent}`
+      })
     })
   }
 
