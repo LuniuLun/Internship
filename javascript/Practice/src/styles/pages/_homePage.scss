@@ -42,6 +42,7 @@
   }
 }
 
+.wrapper-loader,
 .wrapper-modal {
   @include flex-layout(row, center, center);
   display: none;

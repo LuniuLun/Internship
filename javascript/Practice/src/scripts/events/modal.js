@@ -73,13 +73,19 @@ class Modal {
    * Clears the form content and hides the form container.
    */
   hideForm() {
-    const hiddenFormBtn = document.querySelector('.js-hidden-form')
     const wrapperFormEle = document.querySelector('.js-wrapper-popup')
 
-    hiddenFormBtn.addEventListener('click', (e) => {
-      e.preventDefault()
-      wrapperFormEle.classList.remove('show')
-      wrapperFormEle.innerHTML = ''
+    wrapperFormEle.addEventListener('click', (e) => {
+      const targetElement = e.target
+
+      if (
+        !targetElement.closest('#js-product-form') ||
+        targetElement.closest('.js-hidden-form')
+      ) {
+        e.preventDefault()
+        wrapperFormEle.classList.remove('show')
+        wrapperFormEle.innerHTML = ''
+      }
     })
   }
 
