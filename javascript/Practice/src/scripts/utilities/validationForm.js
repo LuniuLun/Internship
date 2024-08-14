@@ -23,7 +23,7 @@ class ValidationForm {
    * @returns {string|undefined} An error message if the value is empty, otherwise undefined.
    */
   static isNotEmpty(key, value) {
-    return !value.trim().length ? `${key} is required.` : undefined
+    return !value.trim().length ? `Please fill in the ${key}.` : undefined
   }
 
   /**
@@ -35,7 +35,7 @@ class ValidationForm {
   static checkLenOfString(key, value) {
     const { length } = value.trim()
     return length < REGEXP.MIN_LEN || length > REGEXP.MAX_LEN
-      ? `${key} must have between ${REGEXP.MIN_LEN} and ${REGEXP.MAX_LEN} characters`
+      ? `The ${key} should be between ${REGEXP.MIN_LEN} and ${REGEXP.MAX_LEN} characters.`
       : undefined
   }
 
@@ -49,7 +49,7 @@ class ValidationForm {
     return REGEXP.REAL_NUMBER.test(value) &&
       (value.match(/\./g) || []).length <= 1
       ? undefined
-      : `${key} must be a real number`
+      : `Please enter a valid number for ${key}.`
   }
 
   /**
@@ -62,7 +62,7 @@ class ValidationForm {
     const numberValue = Number(value)
     return Number.isInteger(numberValue)
       ? undefined
-      : `${key} must be an integer number`
+      : `The ${key} should be a whole number.`
   }
 
   /**
@@ -74,7 +74,7 @@ class ValidationForm {
   static isGreaterThanZero(key, value) {
     const numValue = parseFloat(value)
     if (numValue <= 0) {
-      return `${key} must be a number greater than 0.`
+      return `The ${key} should be a number greater than 0.`
     }
     return undefined
   }
@@ -88,7 +88,7 @@ class ValidationForm {
   static isWithSpecialChars(key, value) {
     return REGEXP.SPECIAL_CHARS.test(value)
       ? undefined
-      : `${key} must contain at least one special character (!@#$%^&*(),.?":{}|<>)`
+      : `The ${key} should contain at least one special character (!@#$%^&*(),.?":{}|<>).`
   }
 
   /**
@@ -100,7 +100,7 @@ class ValidationForm {
   static isValidString(key, value) {
     return REGEXP.ALPHANUMERIC.test(value)
       ? undefined
-      : `${key} contains invalid characters. Only alphanumeric characters and spaces are allowed`
+      : `The ${key} don't contains invalid characters. Only letters, numbers, and spaces are allowed.`
   }
 
   /**
@@ -111,25 +111,25 @@ class ValidationForm {
    */
   static async isValidImageUrl(key, value) {
     if (!value.startsWith('http://') && !value.startsWith('https://')) {
-      return `${key} must start with http:// or https://`
+      return `The ${key} must start with http:// or https://.`
     }
     try {
       const response = await fetch(value, { method: 'HEAD' })
 
       if (!response.ok) {
-        return `${key} does not point to a valid image resource`
+        return `The ${key} does not point to a valid image resource.`
       }
 
       const contentType = response.headers.get('Content-Type')
       const allowedExtensions = REGEXP.IMAGE_EXTENSIONS
 
       if (!allowedExtensions.some((ext) => contentType.includes(ext))) {
-        return `${key} does not point to a valid image resource. Allowed types are: ${allowedExtensions.join(', ')}`
+        return `The ${key} must be a valid image resource. Allowed types are: ${allowedExtensions.join(', ')}.`
       }
 
       return undefined
     } catch (error) {
-      return `${key} does not point to a valid image resource`
+      return `The ${key} does not point to a valid image resource.`
     }
   }
 
