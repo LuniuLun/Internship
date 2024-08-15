@@ -3,23 +3,9 @@ import closeIcon from '../../assets/icons/close.svg'
 import ellipseIcon from '../../assets/icons/ellipse.svg'
 import plus from '../../assets/icons/plus.svg'
 import defaultImage from '../../assets/images/default-image.svg'
+import BaseInstance from '../utilities/baseInstance'
 
-class ProductTemplate {
-  constructor() {
-    this.instance = this
-  }
-
-  /**
-   * Singleton pattern to ensure only one instance of ProductTemplate exists.
-   * @returns {ProductTemplate} The instance of ProductTemplate.
-   */
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new ProductTemplate()
-    }
-    return this.instance
-  }
-
+class ProductTemplate extends BaseInstance {
   /**
    * Renders an HTML card for displaying a product.
    * @param {Object} params - The product details for the card.

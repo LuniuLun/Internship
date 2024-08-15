@@ -1,18 +1,9 @@
-class EventBus {
-  constructor() {
-    this.events = {} // Object to hold event listeners
-    this.instance = this
-  }
+import BaseInstance from './baseInstance'
 
-  /**
-   * Singleton pattern to ensure only one instance of EventBus exists.
-   * @returns {EventBus} The instance of EventBus.
-   */
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new EventBus()
-    }
-    return this.instance
+class EventBus extends BaseInstance {
+  constructor() {
+    super()
+    this.events = {}
   }
 
   /**

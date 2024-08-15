@@ -1,19 +1,6 @@
-class ModalTemplate {
-  constructor() {
-    this.instance = this
-  }
+import BaseInstance from '../utilities/baseInstance'
 
-  /**
-   * Singleton pattern to ensure only one instance of ModalTemplate exists.
-   * @returns {ModalTemplate} The instance of ModalTemplate.
-   */
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new ModalTemplate()
-    }
-    return this.instance
-  }
-
+class ModalTemplate extends BaseInstance {
   /**
    * Renders a warning HTML template for confirming a deletion action.
    * @param {string} id - The ID of the item to be deleted.

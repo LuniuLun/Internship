@@ -6,25 +6,15 @@ import Popup from './modal'
 import Loader from '../utilities/loader'
 import EventBus from '../utilities/eventBus'
 import downArrowIcon from '../../assets/icons/down-arrow.svg'
+import BaseInstance from '../utilities/baseInstance'
 
-class HomePage {
+class HomePage extends BaseInstance {
   constructor() {
-    this.instance = this
+    super()
     this.popupInstance = Popup.getInstance()
     this.loaderInstance = Loader.getInstance()
     this.productInstance = Product.getInstance()
     this.eventBusInstance = EventBus.getInstance()
-  }
-
-  /**
-   * Singleton pattern to ensure only one instance of HomePage exists.
-   * @returns {HomePage} The instance of HomePage.
-   */
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new HomePage()
-    }
-    return this.instance
   }
 
   /**

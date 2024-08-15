@@ -4,10 +4,11 @@ import ValidationForm from '../utilities/validationForm'
 import Product from '../product'
 import EventBus from '../utilities/eventBus'
 import Loader from '../utilities/loader'
+import BaseInstance from '../utilities/baseInstance'
 
-class Modal {
+class Modal extends BaseInstance {
   constructor(currentProduct) {
-    this.instance = this
+    super()
     this.currentProduct = currentProduct
     this.loaderInstance = Loader.getInstance()
     this.productInstance = Product.getInstance()

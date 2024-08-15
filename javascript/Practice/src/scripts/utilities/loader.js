@@ -1,22 +1,18 @@
-/* eslint-disable class-methods-use-this */
-class Loader {
+import BaseInstance from './baseInstance'
+
+class Loader extends BaseInstance {
   constructor() {
-    this.instance = this
+    super()
     this.popupEle = document.querySelector('.js-wrapper-loader')
   }
 
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new Loader()
-    }
-    return this.instance
-  }
-
+  // Displays the loader by adding a loader element to the popup and making it visible
   showLoader() {
     this.popupEle.innerHTML = `<div class='loader'></div>`
     this.popupEle.classList.add('show')
   }
 
+  // Hides the loader by removing the 'show' class from the popup
   hideLoader() {
     this.popupEle.classList.remove('show')
   }

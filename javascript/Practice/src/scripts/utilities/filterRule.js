@@ -1,21 +1,12 @@
-class FilterRule {
+import BaseInstance from './baseInstance'
+
+class FilterRule extends BaseInstance {
   constructor() {
-    this.instance = this
+    super()
     this.typeOfSort = '' // The type of sorting to be applied (e.g., A to Z, Z to A)
     this.property = 'name' // The property to be filtered (default is 'name')
     this.value = '' // The value to filter by
     this.limit = 9 // The limit of items to be fetched
-  }
-
-  /**
-   * Singleton pattern to ensure only one instance of FilterRule exists.
-   * @returns {FilterRule} The instance of the FilterRule class.
-   */
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new FilterRule()
-    }
-    return this.instance
   }
 
   /**

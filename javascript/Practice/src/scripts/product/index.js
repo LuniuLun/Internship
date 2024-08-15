@@ -4,27 +4,17 @@ import ProductTemplate from '../template/product'
 import Sort from '../utilities/sort'
 import Notification from '../utilities/notification'
 import Loader from '../utilities/loader'
+import BaseInstance from '../utilities/baseInstance'
 
-class Product {
+class Product extends BaseInstance {
   constructor() {
-    this.instance = this
+    super()
     this.loaderInstance = Loader.getInstance()
     this.productTemplate = ProductTemplate.getInstance()
     this.productService = ProductService.getInstance()
     this.notificationInstance = Notification.getInstance()
     this.products = []
     this.limit = 9
-  }
-
-  /**
-   * Singleton pattern to ensure only one instance of Product exists.
-   * @returns {Product} The single instance of Product.
-   */
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new Product()
-    }
-    return this.instance
   }
 
   getter() {

@@ -1,22 +1,16 @@
 import dotenv from 'dotenv'
 import HomePage from './events/home'
+import BaseInstance from './utilities/baseInstance'
 
 dotenv.config()
-class Main {
+class Main extends BaseInstance {
   constructor() {
-    this.instance = this
+    super()
     this.homePage = HomePage.getInstance()
   }
 
   async init() {
     await this.homePage.create()
-  }
-
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new Main()
-    }
-    return this.instance
   }
 }
 

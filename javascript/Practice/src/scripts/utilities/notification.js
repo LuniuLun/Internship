@@ -1,23 +1,9 @@
 /* eslint-disable class-methods-use-this */
+import BaseInstance from './baseInstance'
 import checkIcon from '../../assets/icons/check.svg'
 import closeIcon from '../../assets/icons/close.svg'
 
-class Notification {
-  constructor() {
-    this.instance = this
-  }
-
-  /**
-   * Singleton pattern to ensure only one instance of Notification exists.
-   * @returns {Notification} The instance of the Notification class.
-   */
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new Notification()
-    }
-    return this.instance
-  }
-
+class Notification extends BaseInstance {
   /**
    * Renders a notification with the provided message and status.
    * @param {Object} options - The options for the notification.

@@ -1,22 +1,12 @@
 import MESSAGE from '../constants/message'
+import BaseInstance from '../utilities/baseInstance'
 import Notification from '../utilities/notification'
 
-class ProductService {
+class ProductService extends BaseInstance {
   constructor() {
+    super()
     this.url = `${process.env.PARCEL_APP_BASE_URL}${process.env.PARCEL_APP_PRODUCTS_ENDPOINT}`
     this.notificationInstance = Notification.getInstance()
-    this.instance = this
-  }
-
-  /**
-   * Singleton pattern to ensure only one instance of ProductService exists.
-   * @returns {ProductService} The instance of ProductService.
-   */
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new ProductService()
-    }
-    return this.instance
   }
 
   /**

@@ -1,19 +1,6 @@
-class Sort {
-  constructor() {
-    this.instance = this
-  }
+import BaseInstance from './baseInstance'
 
-  /**
-   * Singleton pattern to ensure only one instance of Sort exists.
-   * @returns {Sort} The instance of the Sort class.
-   */
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new Sort()
-    }
-    return this.instance
-  }
-
+class Sort extends BaseInstance {
   /**
    * Sorts an array of objects by a specified property in ascending order.
    * @param {Array<Object>} array - The array of objects to sort.

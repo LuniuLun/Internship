@@ -1,21 +1,7 @@
 import REGEXP from '../constants/regExp'
+import BaseInstance from './baseInstance'
 
-class ValidationForm {
-  constructor() {
-    this.instance = this
-  }
-
-  /**
-   * Singleton pattern to ensure only one instance of ValidationForm exists.
-   * @returns {ValidationForm} The instance of the ValidationForm class.
-   */
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new ValidationForm()
-    }
-    return this.instance
-  }
-
+class ValidationForm extends BaseInstance {
   /**
    * Checks if a value is not empty.
    * @param {string} key - The name of the field.
