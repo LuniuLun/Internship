@@ -4,6 +4,11 @@ import checkIcon from '../../assets/icons/check.svg'
 import closeIcon from '../../assets/icons/close.svg'
 
 class Notification extends BaseInstance {
+  constructor() {
+    super()
+    this.messageEle = document.querySelector('.js-message')
+  }
+
   /**
    * Renders a notification with the provided message and status.
    * @param {Object} options - The options for the notification.
@@ -12,19 +17,20 @@ class Notification extends BaseInstance {
    */
   renderNotification({ status = '', message = '' }) {
     if (message) {
-      const messageEle = document.querySelector('.js-message')
-      const contentMessageEle = document.querySelector('.js-message-content')
-      const iconEle = messageEle.querySelector('.message__icon')
+      const contentMessageEle = this.messageEle.querySelector(
+        '.js-message-content',
+      )
+      const iconEle = this.messageEle.querySelector('.message__icon')
 
       // Set appropriate class and icon based on the status
       if (status === 'success') {
-        messageEle.classList.add('message--success')
-        messageEle.classList.remove('message--error')
+        this.messageEle.classList.add('message--success')
+        this.messageEle.classList.remove('message--error')
         iconEle.src = checkIcon
         iconEle.alt = 'success'
       } else if (status === 'error') {
-        messageEle.classList.add('message--error')
-        messageEle.classList.remove('message--success')
+        this.messageEle.classList.add('message--error')
+        this.messageEle.classList.remove('message--success')
         iconEle.src = closeIcon
         iconEle.alt = 'error'
       }
@@ -33,9 +39,9 @@ class Notification extends BaseInstance {
       contentMessageEle.textContent = message
 
       // Show the message and hide it after 2 seconds
-      messageEle.classList.add('show')
+      this.messageEle.classList.add('show')
       setTimeout(() => {
-        messageEle.classList.remove('show')
+        this.messageEle.classList.remove('show')
       }, 3000)
     }
   }
