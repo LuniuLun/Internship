@@ -5,6 +5,7 @@ import Product from '../product'
 import EventBus from '../utilities/eventBus'
 import Loader from '../utilities/loader'
 import BaseInstance from '../utilities/baseInstance'
+import REGEXP from '../constants/regExp'
 
 class Modal extends BaseInstance {
   constructor(currentProduct) {
@@ -128,18 +129,22 @@ class Modal extends BaseInstance {
     realNumInputEle.addEventListener('keypress', (event) => {
       const { charCode } = event
       const currentValue = realNumInputEle.value
-      // Check if the user entered a number starting with a period
-      if (charCode === 46 && realNumInputEle.selectionStart === 0) {
-        event.preventDefault()
-        return
-      }
-      // Check if there is already a period and the user re-enters the period
-      if (currentValue.includes('.') && charCode === 46) {
-        event.preventDefault()
-        return
-      }
-      // Check if not a number or a dot
-      if ((charCode < 48 || charCode > 57) && charCode !== 46) {
+
+      if (charCode === REGEXP.CHAR_CODE_DOT) {
+        // Check if the user entered a number starting with a period
+        if (realNumInputEle.selectionStart === 0) {
+          event.preventDefault()
+          return
+        }
+        // Check if there is already a period and the user re-enters the period
+        if (currentValue.includes('.')) {
+          event.preventDefault()
+        }
+        // Check if not a number or a dot
+      } else if (
+        charCode < REGEXP.CHAR_CODE_0 ||
+        charCode > REGEXP.CHAR_CODE_9
+      ) {
         event.preventDefault()
       }
     })
@@ -156,7 +161,7 @@ class Modal extends BaseInstance {
     intNumInputElements.addEventListener('keypress', (event) => {
       const { charCode } = event
       // Check if not a number
-      if (charCode < 48 || charCode > 57) {
+      if (charCode < REGEXP.CHAR_CODE_0 || charCode > REGEXP.CHAR_CODE_9) {
         event.preventDefault()
       }
     })
