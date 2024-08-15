@@ -218,9 +218,7 @@ class Modal extends BaseInstance {
       if (messageArr[key]) {
         errorEle.innerHTML = messageArr[key]
         check = false
-        return
-      }
-      errorEle.innerHTML = ''
+      } else errorEle.innerHTML = ''
     })
     return check
   }
