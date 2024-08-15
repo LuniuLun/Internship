@@ -15,6 +15,9 @@ class HomePage extends BaseInstance {
     this.loaderInstance = Loader.getInstance()
     this.productInstance = Product.getInstance()
     this.eventBusInstance = EventBus.getInstance()
+    this.filterEle = document.querySelector('.js-filter')
+    this.inputEle = document.querySelector('.js-filter-input')
+    this.showMoreProductBtn = document.querySelector('.js-show-more-product')
   }
 
   /**
@@ -37,9 +40,10 @@ class HomePage extends BaseInstance {
    * Toggles the visibility of the dropdown menu for sorting options.
    */
   dropdownToggle() {
-    const toggleBtn = document.querySelector('.js-btn-toggle')
-    const sortOption = document.querySelector('.js-sort-option')
-    const sortOptionItems = document.querySelectorAll('.sort-option__item')
+    const toggleBtn = this.filterEle.querySelector('.js-btn-toggle')
+    const sortOption = this.filterEle.querySelector('.js-sort-option')
+    const sortOptionItems =
+      this.filterEle.querySelectorAll('.sort-option__item')
 
     toggleBtn.addEventListener('click', () => {
       sortOption.classList.toggle('show')
@@ -58,7 +62,6 @@ class HomePage extends BaseInstance {
    */
   async renderProduct(limit = 9) {
     const products = await this.productInstance.getProduct(limit)
-    const showMoreProductBtn = document.querySelector('.js-show-more-product')
     const renderProductEle = document.querySelector('.js-get-products')
     renderProductEle.innerHTML = ''
 
@@ -68,25 +71,24 @@ class HomePage extends BaseInstance {
         html += ProductTemplate.renderProductCard(item)
       })
       renderProductEle.innerHTML += html
-      showMoreProductBtn.style.display = 'flex'
+      this.showMoreProductBtn.style.display = 'flex'
       return
     }
 
     renderProductEle.innerHTML += `<p class='empty-state'>Not found results</p>`
-    showMoreProductBtn.style.display = 'none'
+    this.showMoreProductBtn.style.display = 'none'
   }
 
   /**
    * Filters the products based on user input and sorting options.
    */
   filterProduct() {
-    const inputEle = document.querySelector('.js-filter-input')
-    const sortOptionEle = document.querySelectorAll('.sort-option__item')
-    const sortOption = document.querySelector('.js-sort-option')
+    const sortOptionEle = this.filterEle.querySelectorAll('.sort-option__item')
+    const sortOption = this.filterEle.querySelector('.js-sort-option')
     const productInstance = Product.getInstance()
     const ruleFilter = RuleFilter.getInstance()
 
-    inputEle.addEventListener('change', async (event) => {
+    this.inputEle.addEventListener('change', async (event) => {
       ruleFilter.setFilter({ value: event.target.value })
       await productInstance.filterProduct(ruleFilter)
     })
@@ -95,7 +97,7 @@ class HomePage extends BaseInstance {
       ele.addEventListener('click', async (event) => {
         sortOption.classList.remove('show')
         const typeOfSort = event.target.getAttribute('data-value')
-        ruleFilter.setFilter({ typeOfSort, value: inputEle.value })
+        ruleFilter.setFilter({ typeOfSort, value: this.inputEle.value })
         await productInstance.filterProduct(ruleFilter)
       })
     })
@@ -136,16 +138,14 @@ class HomePage extends BaseInstance {
    * Loads more products when the "show more" button is clicked.
    */
   getMoreProduct() {
-    const getMoreProductEle = document.querySelector('.js-show-more-product')
-    const inputEle = document.querySelector('.js-filter-input')
     const productInstance = Product.getInstance()
     const ruleFilter = RuleFilter.getInstance()
 
-    getMoreProductEle.addEventListener('click', async (event) => {
+    this.showMoreProductBtn.addEventListener('click', async (event) => {
       const limit = event.target.getAttribute('data-value')
       event.target.setAttribute('data-value', Number(limit) + 10)
       ruleFilter.setFilter({
-        value: inputEle.value,
+        value: this.inputEle.value,
         limit,
       })
       await productInstance.filterProduct(ruleFilter)
