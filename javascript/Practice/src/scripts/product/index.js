@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable consistent-return */
 import ProductService from '../services/product'
 import ProductTemplate from '../template/product'
@@ -14,91 +15,107 @@ class Product extends BaseInstance {
     this.productService = ProductService.getInstance()
     this.notificationInstance = Notification.getInstance()
     this.products = []
-    this.limit = 9
-  }
-
-  getter() {
-    return { products: this.products, limit: this.limit }
-  }
-
-  setter({ products, limit = 9 }) {
-    this.products = products
-    this.limit = limit
   }
 
   /**
-   * Fetches a list of products with a specified limit and reverses the order.
-   * @returns {Promise<Object[]>} A promise that resolves to the list of products.
+   * Returns the current state of products and limit.
+   * @returns {Object} - The current products array and limit value.
    */
-  async getProduct() {
-    // Fetch products only if the products array is empty
-    if (!this.products.length) {
-      const response = await this.productService.getProduct(this.limit)
-      if (response.status === 'success') {
-        this.products = response.data
-        if (this.products.length > 0) {
-          this.products = this.products.reverse()
-        }
-      } else {
-        this.notificationInstance.renderNotification(response)
-      }
+  getter() {
+    return this.products
+  }
+
+  /**
+   * Updates the current state with the provided products and limit.
+   * @param {Object} param0 - The products array and limit value to set.
+   */
+  setter(products) {
+    this.products = products
+  }
+
+  /**
+   * Sorts the products based on the provided sorting type and property.
+   * @param {string} typeOfSort - The type of sort (e.g., 'AToZ', 'ZToA').
+   * @param {Array} products - The array of products to sort.
+   * @param {string} property - The property to sort by (default is 'name').
+   * @returns {Array} - The sorted array of products.
+   */
+  sortProducts(typeOfSort, products, property = 'name') {
+    if (typeOfSort === 'AToZ') {
+      return Sort.sortObjectsByPropertyAZ(products, property)
     }
+    if (typeOfSort === 'ZToA') {
+      return Sort.sortObjectsByPropertyAZ(products, property).reverse()
+    }
+    return products
+  }
+
+  /**
+   * Fetches and filters products based on the provided criteria.
+   * If no filtering criteria are provided, it fetches all products.
+   * @param {Object} options - The filtering options including sort type, property, value, and limit.
+   * @param {string} options.typeOfSort - The type of sorting (AToZ or ZToA).
+   * @param {string} options.property - The property to filter by.
+   * @param {string} options.value - The value of the property to filter by.
+   * @param {number} options.limit - The maximum number of products to fetch.
+   * @returns {Array} - The filtered or fetched array of products.
+   */
+  async fetchAndFilterProducts({
+    typeOfSort = '',
+    property = '',
+    value = '',
+    limit = 9,
+  } = {}) {
+    let response
+
+    if (property && value) {
+      response = await this.productService.filterProduct(property, value, limit)
+    } else {
+      response = await this.productService.getProduct(limit)
+    }
+
+    if (response.status === 'success') {
+      this.products = typeOfSort
+        ? this.sortProducts(typeOfSort, response.data)
+        : response.data
+    } else {
+      this.products = []
+      this.notificationInstance.renderNotification(response)
+    }
+
     return this.products
   }
 
   /**
    * Filters products based on sorting type, property, value, and limit.
-   * Updates the product list in the DOM.
+   * Returns the filtered and sorted products.
    * @param {Object} options - The filtering options.
-   * @param {string} options.typeOfSort - The type of sorting (AToZ or ZToA).
    * @param {string} options.property - The property to filter by.
    * @param {string} options.value - The value of the property to filter by.
    * @param {number} options.limit - The number of products to fetch.
+   * @returns {Array} - The filtered and sorted products.
    */
-  async filterProduct({
-    typeOfSort = '',
-    property = '',
-    value = '',
-    limit = 9,
-  }) {
-    this.loaderInstance.showLoader()
-    this.limit = limit
-    const renderProductEle = document.querySelector('.js-get-products')
-    const showMoreProductBtn = document.querySelector('.js-show-more-product')
-    renderProductEle.innerHTML = ''
-
-    // Fetch filtered products from the product service
+  async getMoreProduct({ property = 'name', value = '', limit = 9 }) {
     const response = await this.productService.filterProduct(
       property,
       value,
       limit,
     )
-    if (response.status === 'success' && response.data.length > 0) {
-      let html = ProductTemplate.renderAdditionCard()
+    let data = []
 
-      this.products = response.data.reverse() // Reverse the order of products
-      if (typeOfSort === 'AToZ') {
-        this.products = Sort.sortObjectsByPropertyAZ(this.products, 'name')
-      }
-      if (typeOfSort === 'ZToA') {
-        this.products = Sort.sortObjectsByPropertyAZ(
-          this.products,
-          'name',
-        ).reverse()
-      }
-
-      // Render each product card
-      this.products.forEach((item) => {
-        html += ProductTemplate.renderProductCard(item)
+    if (limit - response.data.length > 10) {
+      this.notificationInstance.renderNotification({
+        status: 'error',
+        message: 'No more products available',
       })
-      renderProductEle.innerHTML += html
-      showMoreProductBtn.style.display = 'block'
-    } else {
-      renderProductEle.innerHTML += `<p class='empty-state'>Not found results</p>`
-      showMoreProductBtn.style.display = 'none'
+      return data
     }
-    this.loaderInstance.hideLoader()
+    if (response.status === 'success') {
+      this.products = response.data
+      data = this.products.slice(limit - 10, this.products.length) // Return only the new products
+    }
     this.notificationInstance.renderNotification(response)
+    return data
   }
 
   /**
