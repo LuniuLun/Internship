@@ -1,0 +1,56 @@
+.header {
+  @include flex-layout(column);
+  gap: 32px;
+  border-bottom: $dark-thin-border;
+  width: 1190px;
+  padding-bottom: 26px;
+
+  @include respond-to("medium") {
+    flex-direction: column;
+  }
+
+  @include respond-to("large") {
+    width: 100%;
+  }
+}
+
+.heading {
+  @include flex-layout(row, space-between);
+  width: 100%;
+
+  @include respond-to("medium") {
+    flex-direction: column;
+    align-items: unset
+  }
+}
+
+.title {
+  @extend %heading-text;
+  caret-color: transparent;
+}
+
+.filter {
+  @include flex-layout(column, center, end);
+  width: 100%;
+  gap: 38px;
+}
+
+.search-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 342px;
+
+  @include respond-to("medium") {
+    width: unset;
+  }
+
+  &__icon {
+    position: absolute;
+    left: 4%;
+  }
+
+  &__text-field {
+    padding-left: 40px;
+  }
+}
