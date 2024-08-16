@@ -55,9 +55,7 @@ class Modal extends BaseInstance {
    */
   showForm(id) {
     this.currentProduct = id
-      ? this.productInstance
-          .getter()
-          .products.find((product) => product.id === id)
+      ? this.productInstance.getter().find((product) => product.id === id)
       : {}
     const formHTML = ModalTemplate.renderProductForm(this.currentProduct)
     this.wrapperModalEle.innerHTML = formHTML
