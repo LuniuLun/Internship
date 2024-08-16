@@ -18,6 +18,7 @@ class HomePage extends BaseInstance {
     this.filterEle = document.querySelector('.js-filter')
     this.inputEle = document.querySelector('.js-filter-input')
     this.showMoreProductBtn = document.querySelector('.js-show-more-product')
+    this.renderProductEle = document.querySelector('.js-get-products')
   }
 
   /**
@@ -25,13 +26,13 @@ class HomePage extends BaseInstance {
    */
   async create() {
     this.loaderInstance.showLoader()
-    await this.renderProduct()
+    await this.getProducts()
     this.showPopup()
     this.dropdownToggle()
     this.filterProduct()
     this.getMoreProduct()
     this.eventBusInstance.on('reloadProduct', () => {
-      this.renderProduct()
+      this.getProducts()
     })
     this.loaderInstance.hideLoader()
   }
@@ -57,48 +58,61 @@ class HomePage extends BaseInstance {
   }
 
   /**
-   * Renders the list of products on the home page.
-   * @param {number} [limit=9] - The number of products to render.
+   * Renders the filtered products on the page.
+   * @param {Array} products - The array of filtered products to render.
    */
-  async renderProduct(limit = 9) {
-    const products = await this.productInstance.getProduct(limit)
-    const renderProductEle = document.querySelector('.js-get-products')
-    renderProductEle.innerHTML = ''
+  renderProducts(products) {
+    this.renderProductEle.innerHTML = ''
 
     if (products.length) {
       let html = ProductTemplate.renderAdditionCard()
       products.forEach((item) => {
         html += ProductTemplate.renderProductCard(item)
       })
-      renderProductEle.innerHTML += html
+      this.renderProductEle.innerHTML += html
       this.showMoreProductBtn.style.display = 'flex'
-      return
+    } else {
+      this.renderProductEle.innerHTML += `<p class='empty-state'>Not found results</p>`
+      this.showMoreProductBtn.style.display = 'none'
     }
-
-    renderProductEle.innerHTML += `<p class='empty-state'>Not found results</p>`
-    this.showMoreProductBtn.style.display = 'none'
   }
 
   /**
-   * Filters the products based on user input and sorting options.
+   * Fetches and renders products on the page.
+   * @param {number} limit - The maximum number of products to render.
+   */
+  async getProducts(limit = 9) {
+    const products = await this.productInstance.fetchAndFilterProducts(limit)
+    this.renderProducts(products)
+  }
+
+  /**
+   * Sets up event listeners for filtering products based on user input and sorting options.
    */
   filterProduct() {
     const sortOptionEle = this.filterEle.querySelectorAll('.sort-option__item')
     const sortOption = this.filterEle.querySelector('.js-sort-option')
-    const productInstance = Product.getInstance()
     const ruleFilter = RuleFilter.getInstance()
 
     this.inputEle.addEventListener('change', async (event) => {
+      this.loaderInstance.showLoader()
       ruleFilter.setFilter({ value: event.target.value })
-      await productInstance.filterProduct(ruleFilter)
+      const products =
+        await this.productInstance.fetchAndFilterProducts(ruleFilter)
+      this.renderProducts(products)
+      this.loaderInstance.hideLoader()
     })
 
     sortOptionEle.forEach((ele) => {
       ele.addEventListener('click', async (event) => {
+        this.loaderInstance.showLoader()
         sortOption.classList.remove('show')
         const typeOfSort = event.target.getAttribute('data-value')
         ruleFilter.setFilter({ typeOfSort, value: this.inputEle.value })
-        await productInstance.filterProduct(ruleFilter)
+        const products =
+          await this.productInstance.fetchAndFilterProducts(ruleFilter)
+        this.renderProducts(products)
+        this.loaderInstance.hideLoader()
       })
     })
   }
@@ -136,19 +150,32 @@ class HomePage extends BaseInstance {
 
   /**
    * Loads more products when the "show more" button is clicked.
+   * Updates the DOM with the newly loaded products.
    */
   getMoreProduct() {
     const productInstance = Product.getInstance()
     const ruleFilter = RuleFilter.getInstance()
 
     this.showMoreProductBtn.addEventListener('click', async (event) => {
-      const limit = event.target.getAttribute('data-value')
-      event.target.setAttribute('data-value', Number(limit) + 10)
+      this.loaderInstance.showLoader()
+      const limit = Number(event.target.getAttribute('data-limit'))
+      event.target.setAttribute('data-limit', limit + 10)
       ruleFilter.setFilter({
         value: this.inputEle.value,
         limit,
       })
-      await productInstance.filterProduct(ruleFilter)
+      const newProducts = await productInstance.getMoreProduct(ruleFilter)
+      if (newProducts.length) {
+        let html = ''
+        newProducts.forEach((product) => {
+          html += ProductTemplate.renderProductCard(product)
+        })
+        this.renderProductEle.innerHTML += html
+        this.showMoreProductBtn.style.display = 'block'
+      } else {
+        this.showMoreProductBtn.style.display = 'none'
+      }
+      this.loaderInstance.hideLoader()
     })
   }
 }
