@@ -107,6 +107,7 @@ class Modal extends BaseInstance {
       })
       if (this.validationForm(newProduct) && !this.validationImageResult) {
         this.wrapperModalEle.classList.remove('show')
+        document.body.classList.remove('no-scroll')
         this.loaderInstance.showLoader()
         const response = await productInstance.submitProduct(newProduct)
         this.validationImageResult = false

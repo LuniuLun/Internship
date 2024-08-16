@@ -67,6 +67,7 @@ class ProductService extends BaseInstance {
         }
       }
       const data = await response.json()
+
       return {
         status: 'success',
         message: MESSAGE.FILTER_PRODUCT_FAILED,
