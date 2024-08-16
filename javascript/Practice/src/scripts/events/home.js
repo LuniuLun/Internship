@@ -32,7 +32,7 @@ class HomePage extends BaseInstance {
     this.filterProduct()
     this.getMoreProduct()
     this.eventBusInstance.on('reloadProduct', () => {
-      this.getProducts()
+      this.renderProducts(this.productInstance.getter())
     })
     this.loaderInstance.hideLoader()
   }
