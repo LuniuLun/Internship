@@ -52,7 +52,7 @@ class Product {
    * Fetches and filters products based on provided options.
    */
   async fetchAndFilterProducts(
-    options: TFilterOptions<TProduct>,
+    options: Partial<TFilterOptions<TProduct>>,
   ): Promise<TProduct[]> {
     const {
       typeOfSort = '',
@@ -60,7 +60,6 @@ class Product {
       value = '',
       limit = '9',
     } = options
-
     let response: TApiResponse<TProduct[]>
 
     // Fetch products based on filter criteria

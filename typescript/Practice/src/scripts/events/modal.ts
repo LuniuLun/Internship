@@ -7,7 +7,6 @@ import Loader from '../utilities/loader'
 import REGEXP from '../constants/regExp'
 import handleErrors from '../utilities/handleError'
 import getValidElements from '../utilities/getValidElement'
-import { log } from 'console'
 import MESSAGE from '../constants/message'
 import Notification from '../utilities/notification'
 
