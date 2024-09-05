@@ -12,12 +12,12 @@ function renderWarning(id: string): string {
 }
 
 function renderProductForm({
-  id,
-  name,
-  imageURL,
-  price,
-  quantity,
-}: TProduct): string {
+  id = '',
+  name = '',
+  imageURL = '',
+  price = '',
+  quantity = '',
+}: Partial<TProduct>): string {
   return `
         <form action="" class="form slide-down" id="js-product-form">
           <input type="hidden" name="id" value="${id}" />
