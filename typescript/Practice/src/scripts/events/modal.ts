@@ -7,8 +7,6 @@ import Loader from '../utilities/loader'
 import REGEXP from '../constants/regExp'
 import handleErrors from '../utilities/handleError'
 import getValidElements from '../utilities/getValidElement'
-import Notification from '../utilities/notification'
-import preventScroll from '../utilities/preventScroll'
 
 class Modal {
   private static instance: Modal
@@ -71,8 +69,6 @@ class Modal {
 
     this.wrapperModalEle.innerHTML = formHTML
     this.wrapperModalEle.classList.add('show')
-    if (this.wrapperPage)
-      this.wrapperPage.addEventListener('wheel', preventScroll)
     this.setupFormHandlers()
   }
 
@@ -100,8 +96,6 @@ class Modal {
         e.preventDefault()
         this.wrapperModalEle!.classList.remove('show')
         this.wrapperModalEle!.innerHTML = ''
-        if (this.wrapperPage)
-          this.wrapperPage.removeEventListener('wheel', preventScroll)
       }
     })
   }
@@ -151,8 +145,6 @@ class Modal {
 
       if (this.validationForm(newProduct) && !this.validationImageResult) {
         this.wrapperModalEle!.classList.remove('show')
-        if (this.wrapperPage)
-          this.wrapperPage.removeEventListener('wheel', preventScroll)
         this.loaderInstance.showLoader()
         const response = await productInstance.submitProduct(newProduct)
         this.validationImageResult = ''
@@ -301,8 +293,6 @@ class Modal {
     if (this.wrapperModalEle) {
       this.wrapperModalEle.innerHTML = ModalTemplate.renderWarning(id)
       this.wrapperModalEle.classList.add('show')
-      if (this.wrapperPage)
-        this.wrapperPage.addEventListener('wheel', preventScroll)
       this.setupWarningHandlers()
     }
   }
