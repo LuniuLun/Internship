@@ -1,5 +1,5 @@
 .form {
-  @include flex-layout(column, center, flex-start);
+  @include flex-layout(column, none, flex-start);
   box-shadow: $shadow-hover-btn;
   border-radius: 16px 16px 0 16px;
   width: 544px;
