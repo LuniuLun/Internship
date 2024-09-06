@@ -1,10 +1,13 @@
-/**
- * renders a warning HTML template for confirming a deletion action.
- * @param {string} id - The ID of the item to be deleted.
- * @returns {string} The HTML string for the warning.
- */
-function renderWarning(id) {
-  return `          
+import BaseInstance from '../utilities/baseInstance'
+
+class ModalTemplate extends BaseInstance {
+  /**
+   * Renders a warning HTML template for confirming a deletion action.
+   * @param {string} id - The ID of the item to be deleted.
+   * @returns {string} The HTML string for the warning.
+   */
+  static renderWarning(id) {
+    return `          
           <div class="warning slide-down">
             <h2 class="warning__content">
               Are you sure you want to delete this food?
@@ -14,26 +17,26 @@ function renderWarning(id) {
               <button class="btn btn--line js-accept" id="${id}">Yes</button>
             </div>
           </div>`
-}
+  }
 
-/**
- * renders an HTML form for creating or editing a product.
- * @param {Object} params - The product details for the form.
- * @param {string} [params.id=''] - The ID of the product (for editing).
- * @param {string} [params.name=''] - The name of the product.
- * @param {string} [params.imageURL=''] - The image URL of the product.
- * @param {string} [params.price='1'] - The price of the product.
- * @param {string} [params.quantity='1'] - The quantity of the product.
- * @returns {string} The HTML string for the form.
- */
-function renderProductForm({
-  id = '',
-  name = '',
-  imageURL = '',
-  price = '',
-  quantity = '',
-}) {
-  return `
+  /**
+   * Renders an HTML form for creating or editing a product.
+   * @param {Object} params - The product details for the form.
+   * @param {string} [params.id=''] - The ID of the product (for editing).
+   * @param {string} [params.name=''] - The name of the product.
+   * @param {string} [params.imageURL=''] - The image URL of the product.
+   * @param {string} [params.price='1'] - The price of the product.
+   * @param {string} [params.quantity='1'] - The quantity of the product.
+   * @returns {string} The HTML string for the form.
+   */
+  static renderProductForm({
+    id = '',
+    name = '',
+    imageURL = '',
+    price = '',
+    quantity = '',
+  }) {
+    return `
         <form action="" class="form slide-down" id="js-product-form">
           <input type="hidden" name="id" value="${id}" />
           <h2 class="form__title">${id !== '' ? 'Edit' : 'Create a new food'}</h2>
@@ -78,6 +81,7 @@ function renderProductForm({
             <input type="submit" class="btn btn--line" value="Save" />
           </div>
         </form>`
+  }
 }
 
-export { renderProductForm, renderWarning }
+export default ModalTemplate

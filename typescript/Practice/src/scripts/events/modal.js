@@ -1,11 +1,11 @@
 /* eslint-disable class-methods-use-this */
+import ModalTemplate from '../template/modal'
 import ValidationForm from '../utilities/validationForm'
+import Product from '../product'
 import EventBus from '../utilities/eventBus'
 import Loader from '../utilities/loader'
 import BaseInstance from '../utilities/baseInstance'
 import REGEXP from '../constants/regExp'
-import Product from '../model/product'
-import { renderProductForm, renderWarning } from '../template/modal'
 
 class Modal extends BaseInstance {
   constructor(currentProduct) {
@@ -57,7 +57,7 @@ class Modal extends BaseInstance {
     this.currentProduct = id
       ? this.productInstance.getter().find((product) => product.id === id)
       : {}
-    const formHTML = renderProductForm(this.currentProduct)
+    const formHTML = ModalTemplate.renderProductForm(this.currentProduct)
     this.wrapperModalEle.innerHTML = formHTML
     this.wrapperModalEle.classList.add('show')
     document.body.classList.add('no-scroll')
@@ -227,7 +227,7 @@ class Modal extends BaseInstance {
    * @param {string} id - The ID of the product to be deleted.
    */
   showWarningForm(id) {
-    this.wrapperModalEle.innerHTML = renderWarning(id)
+    this.wrapperModalEle.innerHTML = ModalTemplate.renderWarning(id)
     this.wrapperModalEle.classList.add('show')
     document.body.classList.add('no-scroll')
 
