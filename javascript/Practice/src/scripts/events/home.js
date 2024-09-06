@@ -1,12 +1,12 @@
 /* eslint-disable class-methods-use-this */
-import ProductTemplate from '../template/product'
-import Product from '../product'
 import RuleFilter from '../utilities/filterRule'
 import Popup from './modal'
 import Loader from '../utilities/loader'
 import EventBus from '../utilities/eventBus'
 import downArrowIcon from '../../assets/icons/down-arrow.svg'
 import BaseInstance from '../utilities/baseInstance'
+import Product from '../model/product'
+import { renderAdditionCard, renderProductCard } from '../template/product'
 
 class HomePage extends BaseInstance {
   constructor() {
@@ -58,16 +58,16 @@ class HomePage extends BaseInstance {
   }
 
   /**
-   * Renders the filtered products on the page.
+   * renders the filtered products on the page.
    * @param {Array} products - The array of filtered products to render.
    */
   renderProducts(products) {
     this.renderProductEle.innerHTML = ''
 
     if (products.length) {
-      let html = ProductTemplate.renderAdditionCard()
+      let html = renderAdditionCard()
       products.forEach((item) => {
-        html += ProductTemplate.renderProductCard(item)
+        html += renderProductCard(item)
       })
       this.renderProductEle.innerHTML += html
       this.showMoreProductBtn.style.display = 'flex'
@@ -168,7 +168,7 @@ class HomePage extends BaseInstance {
       if (newProducts.length) {
         let html = ''
         newProducts.forEach((product) => {
-          html += ProductTemplate.renderProductCard(product)
+          html += renderProductCard(product)
         })
         this.renderProductEle.innerHTML += html
         this.showMoreProductBtn.style.display = 'block'

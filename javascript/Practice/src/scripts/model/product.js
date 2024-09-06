@@ -1,17 +1,15 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable consistent-return */
 import ProductService from '../services/product'
-import ProductTemplate from '../template/product'
-import Sort from '../utilities/sort'
 import Notification from '../utilities/notification'
 import Loader from '../utilities/loader'
 import BaseInstance from '../utilities/baseInstance'
+import sortObjectsByPropertyAZ from '../utilities/sort'
 
 class Product extends BaseInstance {
   constructor() {
     super()
     this.loaderInstance = Loader.getInstance()
-    this.productTemplate = ProductTemplate.getInstance()
     this.productService = ProductService.getInstance()
     this.notificationInstance = Notification.getInstance()
     this.products = []
@@ -42,10 +40,10 @@ class Product extends BaseInstance {
    */
   sortProducts(typeOfSort, products, property = 'name') {
     if (typeOfSort === 'AToZ') {
-      return Sort.sortObjectsByPropertyAZ(products, property)
+      return sortObjectsByPropertyAZ(products, property)
     }
     if (typeOfSort === 'ZToA') {
-      return Sort.sortObjectsByPropertyAZ(products, property).reverse()
+      return sortObjectsByPropertyAZ(products, property).reverse()
     }
     return products
   }

@@ -3,22 +3,20 @@ import closeIcon from '../../assets/icons/close.svg'
 import ellipseIcon from '../../assets/icons/ellipse.svg'
 import plus from '../../assets/icons/plus.svg'
 import defaultImage from '../../assets/images/default-image.svg'
-import BaseInstance from '../utilities/baseInstance'
 
-class ProductTemplate extends BaseInstance {
-  /**
-   * Renders an HTML card for displaying a product.
-   * @param {Object} params - The product details for the card.
-   * @param {string} params.id - The ID of the product.
-   * @param {string} params.name - The name of the product.
-   * @param {string} params.imageURL - The image URL of the product.
-   * @param {string} params.price - The price of the product.
-   * @param {string} params.quantity - The quantity of the product.
-   * @returns {string} The HTML string for the product card.
-   */
-  static renderProductCard({ id, name, imageURL, price, quantity }) {
-    const bowlText = quantity === '1' ? 'Bowl' : 'Bowls'
-    return `
+/**
+ * renders an HTML card for displaying a product.
+ * @param {Object} params - The product details for the card.
+ * @param {string} params.id - The ID of the product.
+ * @param {string} params.name - The name of the product.
+ * @param {string} params.imageURL - The image URL of the product.
+ * @param {string} params.price - The price of the product.
+ * @param {string} params.quantity - The quantity of the product.
+ * @returns {string} The HTML string for the product card.
+ */
+function renderProductCard({ id, name, imageURL, price, quantity }) {
+  const bowlText = quantity === '1' ? 'Bowl' : 'Bowls'
+  return `
             <div class="product" data-id="${id}">
               <img class="icon product__icon js-get-warning" src="${closeIcon}" id="${id}"/>
               <img
@@ -42,14 +40,14 @@ class ProductTemplate extends BaseInstance {
                 Edit dish
               </button>
             </div>`
-  }
+}
 
-  /**
-   * Renders an HTML card for adding a new product.
-   * @returns {string} The HTML string for the addition card.
-   */
-  static renderAdditionCard() {
-    return `            
+/**
+ * renders an HTML card for adding a new product.
+ * @returns {string} The HTML string for the addition card.
+ */
+function renderAdditionCard() {
+  return `            
             <div class="product product--dashed js-add-product">
               <img
                 class="icon icon--padded"
@@ -58,7 +56,6 @@ class ProductTemplate extends BaseInstance {
               />
               <span class="highlight">Add new dish</span>
             </div>`
-  }
 }
 
-export default ProductTemplate
+export { renderAdditionCard, renderProductCard }
