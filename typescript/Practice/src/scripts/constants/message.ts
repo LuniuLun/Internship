@@ -8,6 +8,8 @@ const MESSAGE = {
   GET_PRODUCT_FAILED: 'Failed to load products',
   GET_PRODUCT_SUCCESS: 'Load products successfully',
   FILTER_PRODUCT_FAILED: 'Get products successfully',
+  ERROR_EVENT: 'Function not supported yet',
+  UNKNOWN_ERROR: 'Unknown error occurred',
   NOT_FOUND: 'No Results Found',
   ERROR_NETWORK: 'Error network',
 }
