@@ -23,19 +23,37 @@ class Notification {
 
   renderNotification({ status = '', message = '' }) {
     if (status && message) {
-      this.messageEle = getValidElements(this.messageEle)
-      if (!this.messageEle) return
+      if (!this.messageEle) {
+        this.messageEle = document.createElement('div')
+        this.messageEle.classList.add('message', 'js-message')
+
+        const iconEle = document.createElement('img')
+        iconEle.classList.add('message__icon')
+        iconEle.alt = 'status'
+
+        const contentMessageEle = document.createElement('p')
+        contentMessageEle.classList.add(
+          'message__content',
+          'js-message-content',
+        )
+
+        this.messageEle.appendChild(iconEle)
+        this.messageEle.appendChild(contentMessageEle)
+
+        document.body.appendChild(this.messageEle)
+      }
 
       const contentMessageEle = getValidElements(
-        this.messageEle!.querySelector('.js-message-content'),
+        this.messageEle.querySelector('.js-message-content'),
       )
       const iconEle = getValidElements(
-        this.messageEle!.querySelector('.message__icon'),
+        this.messageEle.querySelector('.message__icon'),
       )
+
       if (!contentMessageEle || !iconEle) return
       const iconElement = iconEle as HTMLImageElement
-      // Set appropriate class and icon based on the status
 
+      // Set appropriate class and icon based on the status
       if (status === 'success') {
         this.messageEle.classList.add('message--success')
         this.messageEle.classList.remove('message--error')
@@ -47,6 +65,7 @@ class Notification {
         iconElement.src = closeIcon
         iconElement.alt = 'error'
       }
+
       // Set the message content
       contentMessageEle.textContent = message
 
