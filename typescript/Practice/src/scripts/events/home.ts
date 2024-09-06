@@ -183,7 +183,7 @@ class HomePage {
    */
   private setupPopup() {
     const getFormEle = handleErrors(() =>
-      getValidElements(document.querySelector('.js-get-popups')),
+      getValidElements(document.querySelector('.js-get-popup')),
     )
     if (!getFormEle) return
     const formEle = getFormEle as HTMLElement
