@@ -1,6 +1,6 @@
 # Food management
 
-This is the one practice of javascript. This site supports product management.
+This is the first practice of javascript. This site supports product management.
 
 ## Overview
 
