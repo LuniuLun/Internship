@@ -3,6 +3,8 @@
   box-shadow: $shadow-hover-btn;
   border-radius: 16px 16px 0 16px;
   width: 544px;
+  max-height: 90vh;
+  overflow-y: auto;
   padding: 40px 50px 30px;
   background-color: $dark-bg-2;
 
