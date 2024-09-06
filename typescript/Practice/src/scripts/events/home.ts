@@ -150,8 +150,14 @@ class HomePage {
     sortOptionItems?.forEach((item) => {
       item.addEventListener('click', async (event: Event) => {
         this.loaderInstance.showLoader()
+
+        let tempTarget = handleErrors(() => getValidElements(event.target))
+        if (!tempTarget) return
+        const target = tempTarget as HTMLElement
+
         sortOption.classList.remove('show')
-        const typeOfSort = (event.target as HTMLElement).getAttribute(
+
+        const typeOfSort = (target as HTMLElement).getAttribute(
           'data-value',
         ) as 'AToZ' | 'ZToA' | ''
         this.filterOptions.typeOfSort = typeOfSort
@@ -159,7 +165,9 @@ class HomePage {
         const products = await this.productInstance.fetchAndFilterProducts(
           this.filterOptions,
         )
+
         this.renderProducts(products)
+
         this.loaderInstance.hideLoader()
       })
     })
@@ -167,9 +175,13 @@ class HomePage {
     if (!this.inputEle) return
     this.inputEle = this.inputEle as HTMLInputElement
 
-    this.inputEle?.addEventListener('change', async (event) => {
+    this.inputEle?.addEventListener('change', async (event: Event) => {
       this.loaderInstance.showLoader()
-      this.filterOptions.value = (event.target as HTMLInputElement).value
+      let tempTarget = handleErrors(() => getValidElements(event.target))
+      if (!tempTarget) return
+      const target = tempTarget as HTMLInputElement
+
+      this.filterOptions.value = target.value
       const products = await this.productInstance.fetchAndFilterProducts(
         this.filterOptions,
       )
@@ -189,12 +201,14 @@ class HomePage {
     const formEle = getFormEle as HTMLElement
 
     formEle.addEventListener('click', (event: MouseEvent) => {
-      const targetElement = event.target as HTMLElement
+      let tempTarget = handleErrors(() => getValidElements(event.target))
+      if (!tempTarget) return
+      const target = tempTarget as HTMLElement
 
-      // TODO: Handle when the user presses the product edit button
-      if (targetElement.closest('.js-edit-product')) {
+      // Todo: Handle when the user presses the product edit button
+      if (target.closest('.js-edit-product')) {
         let productElement = handleErrors(() =>
-          getValidElements(targetElement.closest('.product')),
+          getValidElements(target.closest('.product')),
         )
         if (!productElement) return
         productElement = productElement as HTMLElement
@@ -204,10 +218,10 @@ class HomePage {
         return
       }
 
-      // TODO: Handle when the user presses the product warning button
-      if (targetElement.closest('.js-get-warning')) {
+      // Todo: Handle when the user presses the product warning button
+      if (target.closest('.js-get-warning')) {
         let productElement = handleErrors(() =>
-          getValidElements(targetElement.closest('.product')),
+          getValidElements(target.closest('.product')),
         )
         if (!productElement) return
         productElement = productElement as HTMLElement
@@ -217,8 +231,8 @@ class HomePage {
         return
       }
 
-      // TODO: Handle when the user presses the button to add a new product
-      if (targetElement.closest('.js-add-product')) {
+      // Todo: Handle when the user presses the button to add a new product
+      if (target.closest('.js-add-product')) {
         this.popupInstance.showForm()
       }
     })
@@ -233,7 +247,9 @@ class HomePage {
       this.loaderInstance.showLoader()
 
       // Get the current limit from the data attribute and convert it to a number
-      const target = event.target as HTMLElement
+      let tempTarget = handleErrors(() => getValidElements(event.target))
+      if (!tempTarget) return
+      const target = tempTarget as HTMLElement
       const currentLimit = Number(target.getAttribute('data-limit')) || 9
 
       // Update the limit
@@ -262,7 +278,6 @@ class HomePage {
           this.showMoreProductBtn.style.display = 'none'
         }
       }
-
       this.loaderInstance.hideLoader()
     })
   }
