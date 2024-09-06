@@ -1,9 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import checkIcon from '../../assets/icons/check.svg'
 import closeIcon from '../../assets/icons/close.svg'
-import MESSAGE from '../constants/message'
 import getValidElements from './getValidElement'
-import handleErrors from './handleError'
 
 class Notification {
   private static instance: Notification
