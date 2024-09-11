@@ -1,25 +1,26 @@
 import MESSAGE from '../constants/message'
-import BaseInstance from '../utilities/baseInstance'
-import Notification from '../utilities/notification'
 
-class ProductService extends BaseInstance {
-  constructor() {
-    super()
+class ProductService {
+  private static instance: ProductService
+  private url: string
+
+  private constructor() {
     this.url = `${process.env.PARCEL_APP_BASE_URL}${process.env.PARCEL_APP_PRODUCTS_ENDPOINT}`
-    this.notificationInstance = Notification.getInstance()
   }
 
-  /**
-   * Fetches a list of products with a specified limit.
-   * @param {number} limit - The number of products to fetch.
-   * @returns {Promise<{ status: string, data?: Object[], message?: string }>} A promise that resolves to the list of products or an error object.
-   */
-  async getProduct(limit = 9) {
+  public static getInstance(): ProductService {
+    if (!this.instance) {
+      this.instance = new this()
+    }
+    return this.instance
+  }
+
+  async getProduct(limit: string = '9'): Promise<TApiResponse<TProduct[]>> {
     try {
       const calledUrl = new URL(this.url)
-      calledUrl.searchParams.append('page', 1)
+      calledUrl.searchParams.append('page', '1')
       calledUrl.searchParams.append('limit', limit)
-      const response = await fetch(calledUrl)
+      const response = await fetch(calledUrl.toString())
 
       if (!response.ok) {
         return {
@@ -31,34 +32,33 @@ class ProductService extends BaseInstance {
       const data = await response.json()
       return {
         status: 'success',
+        message: MESSAGE.GET_PRODUCT_SUCCESS,
         data,
       }
-    } catch (error) {
+    } catch (error: unknown) {
       return {
         status: 'error',
-        message: error.message,
+        message:
+          error instanceof Error ? error.message : 'Unknown error occurred',
       }
     }
   }
 
-  /**
-   * Filters products based on a specified property and value with a limit.
-   * @param {string} property - The property to filter by.
-   * @param {string} value - The value of the property to filter by.
-   * @param {number} limit - The number of products to fetch.
-   * @returns {Promise<{ status: string, data?: Object[], message?: string }>} A promise that resolves to the filtered list of products or an error object.
-   */
-  async filterProduct(property = '', value = '', limit = 9) {
+  async filterProduct(
+    property = '',
+    value = '',
+    limit = '9',
+  ): Promise<TApiResponse<TProduct[]>> {
     try {
       const calledUrl = new URL(this.url)
-      calledUrl.searchParams.append('page', 1)
+      calledUrl.searchParams.append('page', '1')
       calledUrl.searchParams.append('limit', limit)
 
       if (property !== '' && value !== '') {
         calledUrl.searchParams.append(property, value)
       }
 
-      const response = await fetch(calledUrl)
+      const response = await fetch(calledUrl.toString())
 
       if (!response.ok) {
         return {
@@ -73,24 +73,20 @@ class ProductService extends BaseInstance {
         message: MESSAGE.FILTER_PRODUCT_FAILED,
         data,
       }
-    } catch (error) {
+    } catch (error: unknown) {
       return {
         status: 'error',
-        message: error.message,
+        message:
+          error instanceof Error ? error.message : 'Unknown error occurred',
       }
     }
   }
 
-  /**
-   * Adds a new product.
-   * @param {Object} newProduct - The new product data to be added.
-   * @returns {Promise<{ status: string, data?: Object, message?: string }>} A promise that resolves to the added product data or an error object.
-   */
-  async addProduct(newProduct) {
+  async addProduct(newProduct: TProduct): Promise<TApiResponse<TProduct>> {
     try {
       const response = await fetch(this.url, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newProduct),
       })
 
@@ -107,24 +103,24 @@ class ProductService extends BaseInstance {
         message: MESSAGE.ADD_PRODUCT_SUCCESS,
         data,
       }
-    } catch (error) {
+    } catch (error: unknown) {
       return {
         status: 'error',
-        message: error.message,
+        message:
+          error instanceof Error ? error.message : 'Unknown error occurred',
       }
     }
   }
 
-  /**
-   * Edits an existing product.
-   * @param {Object} newProduct - The updated product data.
-   * @returns {Promise<{ status: string, data?: Object, message?: string }>} A promise that resolves to the updated product data or an error object.
-   */
-  async editProduct(newProduct) {
+  async editProduct(newProduct: TProduct): Promise<TApiResponse<TProduct>> {
     try {
+      if (!newProduct.id) {
+        throw new Error('Product ID is required for editing.')
+      }
+
       const response = await fetch(`${this.url}/${newProduct.id}`, {
         method: 'PUT',
-        headers: { 'content-type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newProduct),
       })
 
@@ -141,20 +137,16 @@ class ProductService extends BaseInstance {
         message: MESSAGE.EDIT_PRODUCT_SUCCESS,
         data,
       }
-    } catch (error) {
+    } catch (error: unknown) {
       return {
         status: 'error',
-        message: error.message,
+        message:
+          error instanceof Error ? error.message : 'Unknown error occurred',
       }
     }
   }
 
-  /**
-   * Deletes a product by its ID.
-   * @param {string} id - The ID of the product to delete.
-   * @returns {Promise<{ status: string, data?: Object, message?: string }>} A promise that resolves to the deleted product data or an error object.
-   */
-  async deleteProduct(id) {
+  async deleteProduct(id: string): Promise<TApiResponse<TProduct>> {
     try {
       const response = await fetch(`${this.url}/${id}`, {
         method: 'DELETE',
@@ -173,10 +165,11 @@ class ProductService extends BaseInstance {
         message: MESSAGE.DELETE_PRODUCT_SUCCESS,
         data,
       }
-    } catch (error) {
+    } catch (error: unknown) {
       return {
         status: 'error',
-        message: error.message,
+        message:
+          error instanceof Error ? error.message : 'Unknown error occurred',
       }
     }
   }
