@@ -1,0 +1,27 @@
+%normal-semiBold-text {
+  @include text-styles(convertToRem(14), convertToRem(18.2), 600);
+}
+
+%normal-medium-text {
+  @include text-styles(convertToRem(14), convertToRem(18.2), 500);
+}
+
+%normal-thin-text {
+  @include text-styles(convertToRem(14), convertToRem(19.6), 400, $white-text-3);
+}
+
+%large-semiBold-text {
+  @include text-styles(convertToRem(16), convertToRem(22.4), 600);
+}
+
+%heading-text {
+  @include text-styles(convertToRem(20), convertToRem(28), 600);
+}
+
+%heading-h1-text {
+  @include text-styles(convertToRem(28), convertToRem(39.2), 600);
+}
+
+%normal-semiBold-txtBtn {
+  @include text-styles(convertToRem(14), convertToRem(19.6), 600);
+}

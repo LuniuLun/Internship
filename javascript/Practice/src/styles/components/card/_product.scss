@@ -1,0 +1,93 @@
+.product {
+  @include flex-layout(column);
+  position: relative;
+  gap: 16px;
+  border: $dark-thin-border;
+  border-radius: 8px;
+  width: 220px;
+  background-color: $dark-bg-2;
+  caret-color: transparent;
+
+  &:hover & {
+    &__icon {
+      display: block;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    z-index: 1;
+    display: none;
+    cursor: pointer;
+  }
+
+  &__img {
+    margin-top: 20px;
+    width: 127px;
+    border-radius: 50%;
+    aspect-ratio: 1;
+  }
+
+  &__description {
+    @include flex-layout(column);
+    gap: 8px;
+    margin: 0 40px;
+    width: 144px;
+
+    .item {
+      @extend %normal-medium-text;
+      text-align: center;
+      overflow: hidden;
+      margin: 0;
+      min-height: 37px;
+      width: 100%;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
+
+      &--thin {
+        @include flex-layout;
+        @extend %normal-thin-text;
+        gap: 6px;
+        height: 20px
+      }
+    }
+  }
+
+  &__btn {
+    @include flex-layout;
+    @extend %normal-semiBold-txtBtn;
+    gap: 8px;
+    border: 0;
+    border-radius: 0 0 8px 8px;
+    width: 100%;
+    padding: 16px 0;
+    color: $orange-color-1;
+    background-color: rgba(234, 124, 105, 0.24);
+    caret-color: transparent;
+  }
+
+  &--dashed {
+    border: 1px dashed $orange-color-1;
+    min-height: 290px;
+    cursor: pointer;
+
+    @include respond-to("small") {
+      height: 315px;
+    }
+
+    .icon {
+      &--padded {
+        padding: 14px;
+      }
+    }
+
+    .highlight {
+      @extend %large-semiBold-text;
+      color: $orange-color-1;
+    }
+  }
+}

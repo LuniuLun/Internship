@@ -1,0 +1,50 @@
+.form {
+  @include flex-layout(column, none, flex-start);
+  box-shadow: $shadow-hover-btn;
+  border-radius: 16px 16px 0 16px;
+  width: 544px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 40px 50px 30px;
+  background-color: $dark-bg-2;
+
+  @include respond-to("tiny") {
+    padding: 20px;
+  }
+
+  &__title {
+    @extend %heading-h1-text;
+    margin-top: 0;
+    width: 100%;
+    border-bottom: $dark-thin-border;
+    padding-bottom: 24px;
+  }
+
+  &__label {
+    @extend %normal-medium-text;
+    margin: 8px 0;
+  }
+
+  &__error {
+    @extend %normal-medium-text;
+    min-height: 1.2rem;
+    color: $orange-color-1;
+  }
+
+  &__action {
+    @include flex-layout(row, space-between);
+    width: 100%;
+    margin-top: 60px;
+
+    @include respond-to("small") {
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      @include respond-to("small") {
+        width: 50%;
+      }
+    }
+  }
+}

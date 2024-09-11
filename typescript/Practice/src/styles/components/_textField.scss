@@ -1,0 +1,17 @@
+.text-field {
+  @extend %normal-thin-text;
+  outline: none;
+  border: $dark-thin-border;
+  border-radius: 8px;
+  width: 100%;
+  padding: 13px;
+  background-color: $dark-form-bg-1;
+
+  @include respond-to("small") {
+    padding: 6px 12px;
+  }
+
+  &--short {
+    width: 50%;
+  }
+}
