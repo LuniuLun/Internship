@@ -1,0 +1,288 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.heroBanner {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0.5em 20px;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url(../../../assets/images/bg-heroBanner@3x.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Background image based on resolution */
+/* @media only screen and (min-resolution: 192dpi) {
+  .heroBanner {
+    background-image: url(../../../assets/images/bg-heroBanner@2x.png);
+  }
+} */
+
+/* Common Styles */
+.shortcut {
+  min-height: 60vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  max-width: 300px;
+}
+
+.nav {
+  display: flex;
+  gap: 70px;
+  list-style: none;
+}
+
+.nav__item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 1.125rem;
+  color: var(--white);
+  cursor: pointer;
+  caret-color: transparent;
+}
+
+.groupItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.menu {
+  position: relative;
+  display: none;
+}
+
+.bar {
+  width: 40px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 60px;
+  margin: auto;
+  max-width: 1215px;
+  width: 100%;
+  align-self: center;
+}
+
+.icon {
+  max-width: 83px;
+}
+
+.heading {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--white);
+}
+
+.heading__title {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.heading__des {
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.searchField {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-radius: 6px;
+  padding: 16px 20px 16px 40px;
+  background-color: var(--grey-bg);
+  color: var(--white);
+  font-size: 1rem;
+}
+
+.groupSearch {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  width: 100%;
+}
+
+.textField {
+  padding: 8px 12px;
+  outline: none;
+  border: none;
+  width: 300px;
+  background-color: transparent;
+  color: var(--white);
+}
+
+.textField::placeholder {
+  color: var(--white);
+}
+
+.avatar {
+  border-radius: 50%;
+  margin-right: -10px;
+  padding: 2px;
+  background-color: var(--white) !important;
+}
+
+.addCustomer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  height: 2em;
+  width: 2em;
+  background-color: var(--blue-primary);
+  z-index: 1;
+}
+
+.plusIcon {
+  height: 8px;
+}
+
+.clients {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.avaClients {
+  display: flex;
+  flex-direction: row;
+}
+
+.clients__des {
+  margin-left: 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.partners {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 20px 30px 10px;
+  background-color: var(--grey-bg);
+}
+
+.groupPartners {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 2;
+}
+
+.partners__item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  img {
+    max-width: 100px;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1440px) {
+  .nav {
+    display: none;
+  }
+
+  .menu {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .searchField {
+    flex-direction: column;
+  }
+
+  .groupSearch {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .groupSearch button {
+    flex: 0.5;
+  }
+
+  .separate {
+    display: none;
+  }
+
+  .tourList {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .groupSearch {
+    flex-direction: column;
+  }
+  .logo {
+    max-width: 200px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .partners {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .partners {
+    align-items: unset;
+  }
+
+  .addCustomer {
+    height: 1.65em;
+    width: 1.65em;
+  }
+
+  .groupPartners {
+    flex-direction: column;
+    align-items: unset;
+  }
+
+  .partners__item img {
+    max-width: 100px;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .logo {
+    max-width: 150px;
+  }
+}
