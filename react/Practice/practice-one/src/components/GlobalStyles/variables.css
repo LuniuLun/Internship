@@ -1,0 +1,13 @@
+:root {
+  --dark-bg-1: #252836;
+  --dark-bg-2: #1f1d2b;
+  --dark-form-bg-1: #2d303e;
+  --green-bg-1: #4b9658;
+  --dark-border-1: #393c49;
+  --white-text-1: #ffffff;
+  --white-text-2: #fafafa;
+  --white-text-3: #abbbc2;
+  --orange-color-1: #ea7c69;
+  --shadow-hover-btn: 0 8 24 0 rgba(234, 124, 137, 0.4);
+  --dark-thin-border: 1px solid var(--dark-border-1);
+}
