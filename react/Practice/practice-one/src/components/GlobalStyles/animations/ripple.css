@@ -1,5 +1,4 @@
 @-webkit-keyframes ripple {
-
   /* Safari 4.0 - 8.0 */
   0% {
     -webkit-transform: scale(0.5);
@@ -32,4 +31,11 @@
     transform: scale(2.5);
     opacity: 0;
   }
+}
+
+.ripple {
+  -webkit-animation: ripple 1.5s infinite;
+  animation: ripple 1.5s infinite;
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s;
 }

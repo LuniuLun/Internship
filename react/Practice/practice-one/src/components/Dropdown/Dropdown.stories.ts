@@ -2,7 +2,6 @@ import { Meta, StoryObj } from '@storybook/react'
 import Dropdown from './index'
 import { IDropdownOption } from '../../types/common'
 
-// Định nghĩa meta data cho Storybook
 const meta: Meta<typeof Dropdown> = {
   title: 'Example/Dropdown',
   component: Dropdown,
