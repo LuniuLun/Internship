@@ -1,10 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
+import './normalize.css'
+import './variables.css'
+import './typography.css'
+import './textStyles.css'
 import './animations/fadeInOut.css'
 import './animations/ripple.css'
 import './animations/slideDown.css'
-import './normalize.css'
-import './typography.css'
-import './variables.css'
 
 const GlobalStyle = createGlobalStyle`
   html {

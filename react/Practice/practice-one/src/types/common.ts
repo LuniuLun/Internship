@@ -1,6 +1,8 @@
 import { TButtonVariant } from './variant'
 
 export interface IButtonProps {
-  title?: string
   variant?: TButtonVariant
+  // size?: 'small' | 'medium' | 'large'
+  title: string
+  onClick?: () => void
 }

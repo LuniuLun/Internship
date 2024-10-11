@@ -1,0 +1,42 @@
+.normal-semiBold-text {
+  font-size: 0.875rem;
+  line-height: 1.1375rem;
+  font-weight: 600;
+}
+
+.normal-medium-text {
+  font-size: 0.875rem;
+  line-height: 1.1375rem;
+  font-weight: 500;
+}
+
+.normal-thin-text {
+  font-size: 0.875rem;
+  line-height: 1.225rem;
+  font-weight: 400;
+  color: var(--white-text-1);
+}
+
+.large-semiBold-text {
+  font-size: 1rem;
+  line-height: 1.4rem;
+  font-weight: 600;
+}
+
+.heading-text {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
+.heading-h1-text {
+  font-size: 1.75rem;
+  line-height: 2.45rem;
+  font-weight: 600;
+}
+
+.normal-semiBold-txtBtn {
+  font-size: 0.875rem;
+  line-height: 1.225rem;
+  font-weight: 600;
+}
