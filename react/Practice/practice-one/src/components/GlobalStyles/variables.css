@@ -10,4 +10,12 @@
   --orange-color-1: #ea7c69;
   --shadow-hover-btn: 0 8 24 0 rgba(234, 124, 137, 0.4);
   --dark-thin-border: 1px solid var(--dark-border-1);
+  --breakpoints: {
+    'tiny': (max-width: 470px),
+    'small': (max-width: 640px),
+    'medium': (max-width: 768px),
+    'large': (max-width: 992px),
+    'extra-large': (max-width: 1180px),
+    'huge': (max-width: 1400px)
+  }
 }

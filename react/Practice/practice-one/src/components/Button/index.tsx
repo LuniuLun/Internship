@@ -3,7 +3,6 @@ import styles from './Button.module.css'
 
 function Button({ variant, title, ...props }: IButtonProps) {
   const mode = variant ? styles[`btn--${variant}`] : ''
-  console.log(mode)
 
   return (
     <button className={`${styles.btn} ${mode} normal-semiBold-txtBtn`} {...props}>
