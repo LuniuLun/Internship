@@ -33,5 +33,25 @@ const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
   }
+
+  ::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+  background-color: var(dark-bg-1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(dark-bg-2);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #000;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #828282;
+    border-radius: 10px;
+  }
 `
 export default GlobalStyle
