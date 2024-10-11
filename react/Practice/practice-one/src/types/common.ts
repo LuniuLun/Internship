@@ -1,4 +1,4 @@
-import { TButtonVariant, TSizeVariant } from './variant'
+import { TButtonVariant, TSizeVariant, TStatusVariant } from './variant'
 
 export interface IButtonProps {
   variant?: TButtonVariant
@@ -14,4 +14,9 @@ export interface ITextFieldProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   label?: string
   error?: string
+}
+
+export interface IToastMessageProps {
+  status: TStatusVariant
+  message: string
 }
