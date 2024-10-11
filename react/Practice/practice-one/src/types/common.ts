@@ -31,3 +31,7 @@ export interface IDropdownProps {
   title: string
   options: IDropdownOption[]
 }
+
+export interface IHeadingProps {
+  title: string
+}
