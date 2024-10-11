@@ -20,3 +20,14 @@ export interface IToastMessageProps {
   status: TStatusVariant
   message: string
 }
+
+export interface IDropdownOption {
+  src?: string
+  handleOnClick?: () => void
+  titleOption: string
+}
+
+export interface IDropdownProps {
+  title: string
+  options: IDropdownOption[]
+}
