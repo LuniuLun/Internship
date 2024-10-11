@@ -3,6 +3,7 @@ import styles from './Dropdown.module.css'
 import { IDropdownProps } from '../../types/common'
 import arrowDownIcon from '../../assets/icons/down-arrow.svg'
 import { Link } from 'react-router-dom'
+import Button from '../Button'
 
 function Dropdown({ title, options }: IDropdownProps) {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,11 +14,7 @@ function Dropdown({ title, options }: IDropdownProps) {
 
   return (
     <div className={styles.dropdown}>
-      <button className={`${styles.btnToggle} normal-medium-text`} onClick={toggleDropdown}>
-        <img className={styles.icon} src={arrowDownIcon} alt='filter food' />
-        {title}
-      </button>
-
+      <Button variant='tertiary' size='sm' title={title} onClick={toggleDropdown} icon={arrowDownIcon} />
       {isOpen && (
         <ul className={styles.sortOption}>
           {options.map((option, index) => (

@@ -4,25 +4,6 @@
   width: 162px;
 }
 
-.btnToggle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: var(--dark-thin-border);
-  border-radius: 8px;
-  width: 160px;
-  padding: 14px;
-  background-color: var(--dark-bg-2);
-  color: var(--white-text-1);
-  caret-color: transparent;
-  white-space: none;
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--orange-color-1);
-  }
-}
-
 .sortOption {
   display: flex;
   align-items: center;

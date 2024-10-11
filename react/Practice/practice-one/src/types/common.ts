@@ -2,7 +2,8 @@ import { TButtonVariant, TSizeVariant, TStatusVariant } from './variant'
 
 export interface IButtonProps {
   variant?: TButtonVariant
-  // size?: 'small' | 'medium' | 'large'
+  size?: TSizeVariant
+  icon?: string
   title: string
   onClick?: () => void
 }
