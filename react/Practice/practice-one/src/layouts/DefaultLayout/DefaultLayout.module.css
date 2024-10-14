@@ -1,2 +1,21 @@
+html {
+  overflow: hidden;
+}
+
 .wrapper {
+  background-color: var(--dark-bg-1);
+  padding: 20px 18px;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  border-radius: 8px;
+  min-height: 100vh;
+  padding: 75px 0 26px;
+  background-color: var(--dark-bg-2);
 }

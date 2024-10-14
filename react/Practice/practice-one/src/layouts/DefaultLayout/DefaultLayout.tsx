@@ -1,4 +1,4 @@
-import Header from '../components/Header/Header'
+import Header from '../components/Header'
 import styles from './DefaultLayout.module.css'
 
 interface DefaultLayoutProps {
@@ -8,8 +8,10 @@ interface DefaultLayoutProps {
 function DefaultLayout({ children }: Readonly<DefaultLayoutProps>) {
   return (
     <div className={styles.wrapper}>
-      <Header />
-      {children}
+      <div className={styles.content}>
+        <Header />
+        {children}
+      </div>
     </div>
   )
 }

@@ -1,7 +1,12 @@
 import checkIcon from '../../assets/icons/check.svg'
 import closeIcon from '../../assets/icons/close.svg'
-import { IToastMessageProps } from '../../types/common'
+import { TStatusVariant } from '../../types/variant'
 import styles from './ToastMessage.module.css'
+
+export interface IToastMessageProps {
+  status: TStatusVariant
+  message: string
+}
 
 function ToastMessage({ status, message }: IToastMessageProps) {
   const mode = styles[`message--${status}`]

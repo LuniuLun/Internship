@@ -3,26 +3,24 @@ import { publicRoutes } from './routes'
 function App() {
   return (
     <Router>
-      <div>
-        <Routes>
-          {publicRoutes.map((route, index) => {
-            const Layout = route.layout
-            const Page = route.component
+      <Routes>
+        {publicRoutes.map((route, index) => {
+          const Layout = route.layout
+          const Page = route.component
 
-            return (
-              <Route
-                key={index}
-                path={route.path}
-                element={
-                  <Layout>
-                    <Page />
-                  </Layout>
-                }
-              />
-            )
-          })}
-        </Routes>
-      </div>
+          return (
+            <Route
+              key={index}
+              path={route.path}
+              element={
+                <Layout>
+                  <Page />
+                </Layout>
+              }
+            />
+          )
+        })}
+      </Routes>
     </Router>
   )
 }

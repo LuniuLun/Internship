@@ -34,6 +34,10 @@ const GlobalStyle = createGlobalStyle`
     text-size-adjust: none;
   }
 
+  #root {
+    width: 100%;
+  }
+
   ::-webkit-scrollbar {
   width: 14px;
   height: 14px;
