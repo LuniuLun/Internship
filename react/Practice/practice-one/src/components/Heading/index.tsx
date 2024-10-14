@@ -1,11 +1,16 @@
-import styles from './Heading.module.css'
+import { HeadingStyled } from './Heading.styled'
 
-export interface IHeadingProps {
+export interface IHeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   title: string
+  bottomBorder?: boolean
 }
 
-function Heading({ title }: IHeadingProps) {
-  return <h1 className={`${styles.heading} heading-h1-text`}>{title}</h1>
+const Heading = ({ title, bottomBorder, ...props }: IHeadingProps) => {
+  return (
+    <HeadingStyled bottomBorder={bottomBorder} {...props}>
+      {title}
+    </HeadingStyled>
+  )
 }
 
 export default Heading
