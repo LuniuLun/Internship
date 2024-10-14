@@ -6,7 +6,7 @@ export const HeaderContainer = styled.header`
   gap: 32px;
   border-bottom: var(--dark-thin-border);
   width: 1190px;
-  padding: 0 1.5em 26px 1.5em;
+  padding-bottom: 26px;
 
   @media (max-width: 1024px) {
     flex-direction: column;

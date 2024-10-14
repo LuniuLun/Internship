@@ -16,6 +16,6 @@ html {
   position: relative;
   border-radius: 8px;
   min-height: 100vh;
-  padding: 75px 0 26px;
+  padding: 75px 1.5rem 26px 1.5rem;
   background-color: var(--dark-bg-2);
 }
