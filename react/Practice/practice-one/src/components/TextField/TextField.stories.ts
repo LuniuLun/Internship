@@ -3,7 +3,7 @@ import TextField from './index'
 import { fn } from '@storybook/test'
 
 const meta: Meta<typeof TextField> = {
-  title: 'Example/TextField',
+  title: 'Components/TextField',
   component: TextField,
   parameters: {
     layout: 'centered'

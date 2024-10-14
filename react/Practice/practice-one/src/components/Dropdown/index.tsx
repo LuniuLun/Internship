@@ -1,9 +1,19 @@
 import { useState } from 'react'
 import styles from './Dropdown.module.css'
-import { IDropdownProps } from '../../types/common'
 import arrowDownIcon from '../../assets/icons/down-arrow.svg'
 import { Link } from 'react-router-dom'
 import Button from '../Button'
+
+export interface IDropdownOption {
+  src?: string
+  handleOnClick?: () => void
+  titleOption: string
+}
+
+export interface IDropdownProps {
+  title: string
+  options: IDropdownOption[]
+}
 
 function Dropdown({ title, options }: IDropdownProps) {
   const [isOpen, setIsOpen] = useState(false)

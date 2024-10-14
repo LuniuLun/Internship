@@ -3,7 +3,7 @@ import ProductCard from './index'
 
 // Meta thông tin cho Storybook
 const meta: Meta<typeof ProductCard> = {
-  title: 'Example/ProductCard',
+  title: 'Components/ProductCard',
   component: ProductCard,
   tags: ['autodocs'],
   argTypes: {},

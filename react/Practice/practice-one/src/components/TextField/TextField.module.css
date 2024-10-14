@@ -9,18 +9,17 @@
   outline: none;
   border: var(--dark-thin-border);
   border-radius: 8px;
-  padding: 13px;
+  padding: 12px 14px;
   background-color: var(--dark-form-bg-1);
 }
 
 @media (max-width: 640px) {
   .textField {
-    padding: 6px 12px;
+    padding: 10px 12px;
   }
 }
 
 .textField--lg {
-  width: 100%;
 }
 
 .textField--sm {

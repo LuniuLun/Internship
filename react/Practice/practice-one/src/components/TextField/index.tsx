@@ -1,10 +1,22 @@
-import { ITextFieldProps } from '../../types/common'
+import { TSizeVariant } from '../../types/variant'
 import styles from './TextField.module.css'
 
-function TextField({ name, value, onChange, label, error, size = 'lg' }: ITextFieldProps) {
-  const mode = styles[`textField--${size}`]
-  console.log(mode)
+export interface ITextFieldProps {
+  name?: string
+  size?: TSizeVariant
+  value: string
+  onChange: (value: string) => void
+  label?: string
+  error?: string
+  placeholder: string
+}
 
+function TextField({ name, value, onChange, label, error, size = 'lg', placeholder }: ITextFieldProps) {
+  const mode = styles[`textField--${size}`]
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value)
+  }
   return (
     <div className={styles.wrapper}>
       {label && (
@@ -17,7 +29,8 @@ function TextField({ name, value, onChange, label, error, size = 'lg' }: ITextFi
         name={name}
         className={`${styles.textField} ${mode} normal-thin-text`}
         value={value}
-        onChange={onChange}
+        onChange={handleChange}
+        placeholder={placeholder}
       />
       {error && <span className={`${styles.error} normal-medium-text`}>{error}</span>}
     </div>

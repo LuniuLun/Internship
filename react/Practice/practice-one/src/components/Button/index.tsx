@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components'
+import { TButtonVariant, TSizeVariant } from '../../types/variant'
 
-interface IButtonProps {
-  variant?: 'primary' | 'tertiary'
-  size?: 'sm' | 'md'
+export interface IButtonProps {
+  variant?: TButtonVariant
+  size?: TSizeVariant
+  icon?: string
   title: string
-  icon?: string // Optional if you're using an icon
-  onClick: () => void
+  onClick?: () => void
 }
 
 const ButtonStyled = styled.button<{ variant?: string; size?: string }>`

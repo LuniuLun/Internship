@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import Loader from './index'
 
 const meta: Meta<typeof Loader> = {
-  title: 'Example/Loader',
+  title: 'Components/Loader',
   component: Loader,
   tags: ['autodocs'],
   argTypes: {},

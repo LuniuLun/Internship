@@ -4,7 +4,7 @@ import { fn } from '@storybook/test'
 import Button from './index'
 
 const meta = {
-  title: 'Example/Button',
+  title: 'Components/Button',
   component: Button,
   parameters: {
     layout: 'centered'
