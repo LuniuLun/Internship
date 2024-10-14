@@ -11,8 +11,8 @@ html {
 
 .content {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   position: relative;
   border-radius: 8px;
   min-height: 100vh;

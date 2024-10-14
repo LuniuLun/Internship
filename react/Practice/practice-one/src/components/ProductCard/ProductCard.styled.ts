@@ -1,8 +1,10 @@
-.product {
+import styled from 'styled-components'
+
+export const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-self: center;
+  justify-content: space-between;
   position: relative;
   gap: 16px;
   border: var(--dark-thin-border);
@@ -10,29 +12,39 @@
   width: 220px;
   background-color: var(--dark-bg-2);
   color: var(--white-text-1);
-}
 
-.product:hover .product__icon {
-  display: block;
-}
+  button {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    &:hover {
+      background-color: var(--orange-color-2);
+      color: var(--orange-color-1);
+      box-shadow: none;
+    }
+  }
+`
 
-.product__icon {
+export const ProductIcon = styled.img`
   position: absolute;
   right: 10px;
   top: 12px;
   z-index: 1;
   display: none;
   cursor: pointer;
-}
 
-.product__img {
+  ${ProductContainer}:hover & {
+    display: block;
+  }
+`
+
+export const ProductImage = styled.img`
   margin-top: 20px;
   width: 127px;
   border-radius: 50%;
   aspect-ratio: 1;
-}
+`
 
-.product__description {
+export const ProductDescription = styled.div`
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -40,46 +52,28 @@
   gap: 8px;
   margin: 0 40px;
   width: 144px;
-}
+`
 
-.item {
+export const Item = styled.h4`
   text-align: center;
   overflow: hidden;
   margin: 0;
-  min-height: 37px;
+  min-height: 45px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   text-overflow: ellipsis;
-}
+`
 
-.item__thin {
+export const ItemThin = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 6px;
   height: 20px;
   color: var(--white-text-3);
-}
+`
 
-.product__btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  border: 0;
-  border-radius: 0 0 8px 8px;
-  width: 100%;
-  padding: 16px 0;
-  background-color: rgba(234, 124, 105, 0.24);
-  color: var(--orange-color-1);
-  cursor: pointer;
-}
-
-.product__btn img {
+export const ProductButtonImage = styled.img`
   margin-right: 8px;
-}
-
-.product__btn:hover {
-  background-color: rgba(234, 124, 105, 0.4);
-}
+`

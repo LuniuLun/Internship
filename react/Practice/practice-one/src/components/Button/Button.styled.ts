@@ -50,6 +50,7 @@ const handleSize = (size?: string) => {
     case 'md':
       return css`
         padding: 14px;
+        min-width: 180px;
       `
     case 'sm':
       return css`
