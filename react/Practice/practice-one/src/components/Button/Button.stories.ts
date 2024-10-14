@@ -31,16 +31,23 @@ export const Secondary: Story = {
   }
 }
 
-// export const Large: Story = {
-//   args: {
-//     size: 'large',
-//     title: 'Button'
-//   }
-// }
+export const Tertiary: Story = {
+  args: {
+    variant: 'tertiary',
+    title: 'Button'
+  }
+}
 
-// export const Small: Story = {
-//   args: {
-//     size: 'small',
-//     title: 'Button'
-//   }
-// }
+export const Medium: Story = {
+  args: {
+    size: 'md',
+    title: 'Button'
+  }
+}
+
+export const Small: Story = {
+  args: {
+    size: 'sm',
+    title: 'Button'
+  }
+}

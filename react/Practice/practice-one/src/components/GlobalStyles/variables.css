@@ -8,6 +8,7 @@
   --white-text-2: #fafafa;
   --white-text-3: #abbbc2;
   --orange-color-1: #ea7c69;
+  --orange-color-2: rgba(234, 124, 105, .24);
   --shadow-hover-btn: 0 8 24 0 rgba(234, 124, 137, 0.4);
   --dark-thin-border: 1px solid var(--dark-border-1);
   --breakpoints: {
