@@ -5,17 +5,20 @@ import defaultImage from '../../assets/images/default-image.svg'
 import Button from '../Button'
 import { ProductContainer, ProductIcon, ProductImage, ProductDescription, Item, ItemThin } from './ProductCard.styled'
 
-interface ProductProps {
+interface IProduct {
   id: string
   name: string
   imageURL: string
   price: number
   quantity: number
+}
+
+interface IProductCardProps extends IProduct {
   onEdit: () => void
   onDelete: () => void
 }
 
-const ProductCard: React.FC<ProductProps> = ({ id, name, imageURL, price, quantity, onEdit, onDelete }) => {
+const ProductCard = ({ id, name, imageURL, price, quantity, onEdit, onDelete }: IProductCardProps) => {
   const bowlText = quantity === 1 ? 'Bowl' : 'Bowls'
 
   return (

@@ -15,7 +15,7 @@ export interface IDropdownProps {
   options: IDropdownOption[]
 }
 
-function Dropdown({ title, options }: IDropdownProps) {
+const Dropdown = ({ title, options }: IDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleDropdown = () => {
