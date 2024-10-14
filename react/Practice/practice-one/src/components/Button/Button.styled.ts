@@ -68,15 +68,14 @@ const ButtonStyled = styled.button<Partial<IButtonProps>>`
   border-radius: 8px;
   width: 100%;
   text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.225rem;
+  font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
   transition:
     background-color 0.3s,
     color 0.3s;
-
-  @media (max-width: 768px) {
-    padding: 8px;
-  }
 
   ${({ variant }) => handleVariant(variant)}
   ${({ size }) => handleSize(size)}
