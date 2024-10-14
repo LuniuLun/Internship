@@ -1,5 +1,4 @@
 import { Button, Form, ProductCard, TextField } from '../../components'
-import foodData from '../../Data/food'
 import {
   AdditionalCard,
   AdditionalDes,
@@ -10,11 +9,30 @@ import {
   WrapperProducts
 } from './Home.styled'
 import plus from '../../assets/icons/plus.svg'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
+import { fetchProducts } from '../../models/product'
+import { IProduct } from '../../types/product'
 
 const Home = () => {
+  const [products, setProducts] = useState<IProduct[]>([])
   const [showPopup, setShowPopup] = useState(false)
   const [showForm, setShowForm] = useState(false)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const getData = await fetchProducts({})
+        console.log(getData)
+
+        setProducts(getData)
+      } finally {
+        console.log(123)
+      }
+    }
+    return () => {
+      fetchData()
+    }
+  }, [])
 
   const handleEdit = (id: string) => {
     console.log('Edit product with ID:', id)
@@ -41,16 +59,16 @@ const Home = () => {
           <AdditionalIcon src={plus} alt='add food' />
           <AdditionalDes>Add new dish</AdditionalDes>
         </AdditionalCard>
-        {foodData.map((product) => (
+        {products.map(({ id, name, imageURL, price, quantity }) => (
           <ProductCard
-            key={product.id}
-            id={product.id}
-            name={product.name}
-            imageURL={product.imageURL}
-            price={product.price}
-            quantity={product.quantity}
-            onEdit={() => handleEdit(product.id)}
-            onDelete={() => handleDelete(product.id)}
+            key={id}
+            id={id}
+            name={name}
+            imageURL={imageURL}
+            price={price}
+            quantity={quantity}
+            onEdit={() => handleEdit(id)}
+            onDelete={() => handleDelete(id)}
           />
         ))}
       </WrapperProducts>
