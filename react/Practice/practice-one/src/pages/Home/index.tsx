@@ -1,7 +1,7 @@
 import { Button, ProductCard } from '../../components'
 import foodData from '../../Data/food'
-import { HomeStyled, WrapperBtn, WrapperProducts } from './Home.styled'
-
+import { AdditionalCard, AdditionalDes, AdditionalIcon, HomeStyled, WrapperBtn, WrapperProducts } from './Home.styled'
+import plus from '../../assets/icons/plus.svg'
 function Home() {
   const handleEdit = (id: string) => {
     console.log('Edit product with ID:', id)
@@ -14,7 +14,11 @@ function Home() {
   return (
     <HomeStyled>
       <WrapperProducts>
-        {...foodData.map((product) => (
+        <AdditionalCard>
+          <AdditionalIcon src={plus} alt='add food'></AdditionalIcon>
+          <AdditionalDes>Add new dish</AdditionalDes>
+        </AdditionalCard>
+        {foodData.map((product) => (
           <ProductCard
             key={product.id}
             id={product.id}
@@ -33,5 +37,4 @@ function Home() {
     </HomeStyled>
   )
 }
-
 export default Home

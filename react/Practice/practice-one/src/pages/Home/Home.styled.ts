@@ -33,3 +33,30 @@ export const WrapperBtn = styled.section`
   justify-content: center;
   margin-top: 40px;
 `
+
+export const AdditionalCard = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px dashed var(--orange-color-1);
+  min-height: 264px;
+  width: 180px;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 20px;
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s;
+`
+
+export const AdditionalIcon = styled.img`
+  padding: 14px;
+  margin-right: 10px;
+`
+
+export const AdditionalDes = styled.span`
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--orange-color-1);
+`
