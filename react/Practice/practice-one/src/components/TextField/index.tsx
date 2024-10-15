@@ -1,16 +1,17 @@
+import { useState } from 'react'
 import { TSizeVariant } from '../../types/variant'
 import styles from './TextField.module.css'
 
-export interface ITextFieldProps extends React.HTMLAttributes<HTMLInputElement> {
+export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name?: string
-  size?: TSizeVariant
+  dimension?: TSizeVariant
   label?: string
   error?: string
-  placeholder?: string
 }
 
-const TextField = ({ name, label, error, size = 'lg', placeholder }: ITextFieldProps) => {
-  const mode = styles[`textField--${size}`]
+const TextField = ({ value, name, label, error, dimension = 'lg', ...props }: ITextFieldProps) => {
+  const mode = styles[`textField--${dimension}`]
+  const [valueInput, setValueInput] = useState(value)
 
   return (
     <div className={styles.wrapper}>
@@ -20,10 +21,12 @@ const TextField = ({ name, label, error, size = 'lg', placeholder }: ITextFieldP
         </label>
       )}
       <input
-        type='text'
         name={name}
+        value={valueInput}
+        type='text'
         className={`${styles.textField} ${mode} normal-thin-text`}
-        placeholder={placeholder}
+        onChange={(e) => setValueInput(e.target.value)}
+        {...props}
       />
       {error && <span className={`${styles.error} normal-medium-text`}>{error}</span>}
     </div>
