@@ -6,17 +6,18 @@ interface IFormProps extends React.HTMLAttributes<HTMLFormElement> {
   id?: string
   title: string
   children?: React.ReactNode
+  handleCancel: () => void
 }
 
-const Form = ({ id, title, children, ...props }: IFormProps) => {
+const Form = ({ id, title, children, handleCancel, ...props }: IFormProps) => {
   return (
-    <FormContainer className='slide-down' {...props}>
+    <FormContainer {...props}>
       {id && <input type='hidden' name='id' value={id} />}
       <Heading title={title} bottomBorder={true} />
       {children}
       <FormAction>
-        <Button variant='primary' title='Cancel' />
-        <Button variant='primary' title='Save' />
+        <Button onClick={handleCancel} variant='primary' title='Cancel' />
+        <Button type='submit' variant='primary' title='Save' />
       </FormAction>
     </FormContainer>
   )
