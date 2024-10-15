@@ -1,4 +1,4 @@
-import { Button, Form, ProductCard, TextField } from '../../components'
+import { Button, Form, Loader, ProductCard, TextField } from '../../components'
 import {
   AdditionalCard,
   AdditionalDes,
@@ -18,16 +18,18 @@ const Home = () => {
   const [chosenProduct, setChosenProduct] = useState<IProduct | null>(null)
   const [showPopup, setShowPopup] = useState(false)
   const [showForm, setShowForm] = useState(false)
+  const [showLoader, setShowLoader] = useState(false)
 
   useEffect(() => {
+    setShowPopup(true)
+    setShowLoader(true)
     const fetchData = async () => {
       try {
         const getData = await fetchProducts({})
-        console.log(getData)
-
         setProducts(getData)
       } finally {
-        console.log(123)
+        setShowPopup(false)
+        setShowLoader(false)
       }
     }
     return () => {
@@ -112,6 +114,7 @@ const Home = () => {
               />
             </Form>
           )}
+          {showLoader && <Loader />}
         </WrapperPopup>
       )}
     </HomeStyled>
