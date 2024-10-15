@@ -15,6 +15,7 @@ import { IProduct } from '../../types/product'
 
 const Home = () => {
   const [products, setProducts] = useState<IProduct[]>([])
+  const [chosenProduct, setChosenProduct] = useState<IProduct | null>(null)
   const [showPopup, setShowPopup] = useState(false)
   const [showForm, setShowForm] = useState(false)
 
@@ -34,10 +35,20 @@ const Home = () => {
     }
   }, [])
 
-  const handleEdit = (id: string) => {
-    console.log('Edit product with ID:', id)
+  const handleShowPopup = () => {
     setShowPopup(true)
     setShowForm(true)
+  }
+
+  const handleClosePopup = () => {
+    setShowPopup(false)
+    setShowForm(false)
+  }
+
+  const handleEdit = (product: IProduct) => {
+    setChosenProduct(product)
+    console.log('Edit product:', chosenProduct)
+    handleShowPopup()
   }
 
   const handleDelete = (id: string) => {
@@ -47,15 +58,16 @@ const Home = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const formData = new FormData(event.target as HTMLFormElement)
-    for (const [key, value] of formData) {
-      console.log(`You searched for ${key}: ${value}\n`)
+    for (const [name, value] of formData) {
+      console.log(`You searched for ${name}: ${value}\n`)
     }
+    setChosenProduct(null)
   }
 
   return (
     <HomeStyled>
       <WrapperProducts>
-        <AdditionalCard onClick={() => setShowPopup(true)}>
+        <AdditionalCard onClick={handleShowPopup}>
           <AdditionalIcon src={plus} alt='add food' />
           <AdditionalDes>Add new dish</AdditionalDes>
         </AdditionalCard>
@@ -67,7 +79,7 @@ const Home = () => {
             imageURL={imageURL}
             price={price}
             quantity={quantity}
-            onEdit={() => handleEdit(id)}
+            onEdit={() => handleEdit({ id, name, imageURL, price, quantity })}
             onDelete={() => handleDelete(id)}
           />
         ))}
@@ -78,11 +90,26 @@ const Home = () => {
       {showPopup && (
         <WrapperPopup>
           {showForm && (
-            <Form onSubmit={handleSubmit} title='Add new food'>
-              <TextField name='name' label='Name' />
-              <TextField name='imageURL' label='Image URL' />
-              <TextField name='price' label='Price' />
-              <TextField name='quantity' label='Quantity' size='sm' />
+            <Form handleCancel={handleClosePopup} onSubmit={handleSubmit} title='Add new food' className='slide-down'>
+              <TextField
+                key={chosenProduct?.id}
+                type='hidden'
+                name='id'
+                value={chosenProduct?.id ? chosenProduct.id : ''}
+              />
+              <TextField name='name' label='Name' value={chosenProduct?.name ? chosenProduct.name : ''} />
+              <TextField
+                name='imageURL'
+                label='Image URL'
+                value={chosenProduct?.imageURL ? chosenProduct.imageURL : ''}
+              />
+              <TextField name='price' label='Price' value={chosenProduct?.price ? chosenProduct.price : ''} />
+              <TextField
+                name='quantity'
+                label='Quantity'
+                dimension='sm'
+                value={chosenProduct?.quantity ? chosenProduct.quantity : ''}
+              />
             </Form>
           )}
         </WrapperPopup>
