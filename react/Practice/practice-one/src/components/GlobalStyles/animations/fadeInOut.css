@@ -1,5 +1,4 @@
 @-webkit-keyframes fadeInOut {
-
   /* Safari 4.0 - 8.0 */
   0% {
     opacity: 1;
@@ -21,4 +20,9 @@
     opacity: 0;
     display: none;
   }
+}
+
+.fade-in-out {
+  -webkit-animation: fadeInOut 3s ease-in-out;
+  animation: fadeInOut 3s ease-in-out;
 }
