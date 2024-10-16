@@ -82,15 +82,10 @@ export const submitProduct = async (newProduct: IProduct): Promise<IApiResponse<
   return response
 }
 
-// /**
-//  * Deletes a product by its ID and removes it from the product list.
-//  */
-// export const deleteProduct = async (id: string): Promise<IApiResponse<IProduct>> => {
-//   const response = await productService.deleteProduct(id)
-//   if (response.status === 'success') {
-//     // Remove product with the given id from the products array
-//     products = products.filter((product) => product.id !== id)
-//   }
-//   notificationInstance.renderNotification(response)
-//   return response
-// }
+/**
+ * Deletes a product by its ID and removes it from the product list.
+ */
+export const deleteProduct = async (id: string): Promise<IApiResponse<IProduct>> => {
+  const response = await productService.deleteProduct(id)
+  return response
+}

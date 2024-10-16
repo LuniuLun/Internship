@@ -10,7 +10,7 @@ import {
 } from './Home.styled'
 import plus from '../../assets/icons/plus.svg'
 import { FormEvent, useEffect, useState } from 'react'
-import { fetchProducts, getMoreProduct, submitProduct } from '../../models/product'
+import { deleteProduct, fetchProducts, getMoreProduct, submitProduct } from '../../models/product'
 import { IProduct } from '../../types/product'
 import { IToastMessageProps } from '../../components/ToastMessage'
 
@@ -94,10 +94,44 @@ const Home = () => {
   const handleDelete = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const formData = new FormData(event.target as HTMLFormElement)
-    for (const [name, value] of formData) {
-      console.log(`You searched for ${name}: ${value}\n`)
-    }
+    const productId = formData.get('id') as string | null
     handleCloseWarning()
+
+    if (productId) {
+      setShowPopup(true)
+      setShowLoader(true)
+      const deleteData = async () => {
+        try {
+          const response = await deleteProduct(productId)
+
+          if (response) {
+            setShowNotification(true)
+            setNotification({
+              status: response.status as IToastMessageProps['status'],
+              message: response.message
+            })
+
+            setTimeout(() => {
+              setShowNotification(false)
+            }, 3000)
+
+            if (response.status === 'success' && response.data) {
+              setProducts((preProducts) => {
+                return preProducts.filter((product) => product.id !== response.data!.id)
+              })
+            }
+          }
+        } finally {
+          setShowPopup(false)
+          setShowLoader(false)
+        }
+      }
+
+      deleteData()
+      return () => {
+        setShowNotification(false)
+      }
+    }
   }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -139,7 +173,6 @@ const Home = () => {
           }, 3000)
         }
       } finally {
-        setShowPopup(false)
         setShowLoader(false)
       }
     }
@@ -155,9 +188,6 @@ const Home = () => {
     const limit = limitStr ? parseInt(limitStr, 10) : 0
     const newLimit = limit + 10
     event.currentTarget.dataset.limit = newLimit.toString()
-    console.log(`Updated limit: ${newLimit}`)
-    console.log(`Data limit: ${limit}`)
-    console.log(limit, products.length)
 
     if (limit - products.length <= 10) {
       setShowPopup(true)
