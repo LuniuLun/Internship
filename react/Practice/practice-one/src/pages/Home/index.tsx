@@ -10,7 +10,7 @@ import {
 } from './Home.styled'
 import plus from '../../assets/icons/plus.svg'
 import { FormEvent, useEffect, useState } from 'react'
-import { fetchProducts, submitProduct } from '../../models/product'
+import { fetchProducts, getMoreProduct, submitProduct } from '../../models/product'
 import { IProduct } from '../../types/product'
 import { IToastMessageProps } from '../../components/ToastMessage'
 
@@ -150,6 +150,58 @@ const Home = () => {
     }
   }
 
+  const handleShowMore = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const limitStr = event.currentTarget.dataset.limit
+    const limit = limitStr ? parseInt(limitStr, 10) : 0
+    const newLimit = limit + 10
+    event.currentTarget.dataset.limit = newLimit.toString()
+    console.log(`Updated limit: ${newLimit}`)
+    console.log(`Data limit: ${limit}`)
+    console.log(limit, products.length)
+
+    if (limit - products.length <= 10) {
+      setShowPopup(true)
+      setShowLoader(true)
+
+      const fetchData = async () => {
+        try {
+          const response = await getMoreProduct({ limit: limit.toString() })
+
+          if (response) {
+            setShowNotification(true)
+            setNotification({
+              status: response.status as IToastMessageProps['status'],
+              message: response.message
+            })
+
+            setTimeout(() => {
+              setShowNotification(false)
+            }, 3000)
+
+            if (response.status === 'success' && response.data && response.data.length > 0) {
+              if (response.data?.length > 0) {
+                setProducts((preProducts) => [...preProducts, ...response.data!])
+              }
+            }
+          }
+        } finally {
+          setShowPopup(false)
+          setShowLoader(false)
+        }
+      }
+
+      fetchData()
+      return () => {
+        setShowNotification(false)
+      }
+    } else {
+      setNotification({
+        status: 'error',
+        message: 'You have reached the maximum limit'
+      })
+    }
+  }
+
   return (
     <HomeStyled>
       <WrapperProducts>
@@ -171,7 +223,7 @@ const Home = () => {
         ))}
       </WrapperProducts>
       <WrapperBtn>
-        <Button variant='primary' title='Show more' />
+        <Button variant='primary' title='Show more' data-limit='19' onClick={handleShowMore} />
       </WrapperBtn>
       {showPopup && (
         <WrapperPopup>

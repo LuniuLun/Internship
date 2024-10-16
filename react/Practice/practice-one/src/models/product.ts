@@ -45,37 +45,25 @@ export const fetchProducts = async (
   return response
 }
 
-// /**
-//  * Fetches additional products based on filtering options.
-//  */
-// export const getMoreProduct = async ({
-//   property = 'name',
-//   value = '',
-//   limit = '9'
-// }: TFilterOptions<IProduct>): Promise<IProduct[]> => {
-//   let data: IProduct[] = []
-//   const limitNumber = Number.parseInt(limit)
-//   const response: IApiResponse<IProduct[]> = await productService.filterProduct(property, value, limit)
+/**
+ * Fetches additional products based on filtering options.
+ */
+export const getMoreProduct = async ({
+  property = 'name',
+  value = '',
+  limit = '9'
+}: TFilterOptions<IProduct>): Promise<IApiResponse<IProduct[]>> => {
+  const limitNumber = Number.parseInt(limit)
+  const response: IApiResponse<IProduct[]> = await productService.filterProduct(property, value, limit)
 
-//   if (response.status === 'success') {
-//     const responseData = response.data ?? [] // Default to empty array if undefined
+  if (response.status === 'success') {
+    const responseData = response.data ?? []
+    const products = responseData
+    response.data = products.slice(limitNumber - 10, products.length)
+  }
 
-//     // Check if there are enough products to fetch
-//     if (limitNumber - responseData.length > 10) {
-//       notificationInstance.renderNotification({
-//         status: 'error',
-//         message: 'No more products available'
-//       })
-//       return data
-//     }
-
-//     products = responseData
-//     data = products.slice(limitNumber - 10, products.length) // Return only the new products
-//   }
-
-//   notificationInstance.renderNotification(response)
-//   return data
-// }
+  return response
+}
 
 /**
  * Submits a new product or edits an existing product.
