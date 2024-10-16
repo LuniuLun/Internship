@@ -19,6 +19,7 @@ const Home = () => {
   const [chosenProduct, setChosenProduct] = useState<IProduct | null>(null)
   const [showPopup, setShowPopup] = useState(false)
   const [showForm, setShowForm] = useState(false)
+  const [showWarning, setShowWarning] = useState(false)
   const [showLoader, setShowLoader] = useState(false)
   const [showNotification, setShowNotification] = useState(false)
   const [notification, setNotification] = useState<IToastMessageProps>({
@@ -62,24 +63,42 @@ const Home = () => {
     }
   }, [])
 
-  const handleShowPopup = () => {
+  const handleShowForm = () => {
     setShowPopup(true)
     setShowForm(true)
   }
 
-  const handleClosePopup = () => {
+  const handleCloseForm = () => {
     setShowPopup(false)
     setShowForm(false)
+    setChosenProduct(null)
   }
 
-  const handleEdit = (product: IProduct) => {
+  const handleShowWarning = (product: IProduct) => {
+    setChosenProduct(product)
+    setShowPopup(true)
+    setShowWarning(true)
+    console.log('Show warning for product:', product)
+  }
+
+  const handleCloseWarning = () => {
+    setShowPopup(false)
+    setShowWarning(false)
+  }
+
+  const handleShowEditForm = (product: IProduct) => {
     setChosenProduct(product)
     console.log('Edit product:', chosenProduct)
-    handleShowPopup()
+    handleShowForm()
   }
 
-  const handleDelete = (id: string) => {
-    console.log('Delete product with ID:', id)
+  const handleDelete = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const formData = new FormData(event.target as HTMLFormElement)
+    for (const [name, value] of formData) {
+      console.log(`You searched for ${name}: ${value}\n`)
+    }
+    handleCloseWarning()
   }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -88,13 +107,13 @@ const Home = () => {
     for (const [name, value] of formData) {
       console.log(`You searched for ${name}: ${value}\n`)
     }
-    setChosenProduct(null)
+    handleCloseForm()
   }
 
   return (
     <HomeStyled>
       <WrapperProducts>
-        <AdditionalCard onClick={handleShowPopup}>
+        <AdditionalCard onClick={handleShowForm}>
           <AdditionalIcon src={plus} alt='add food' />
           <AdditionalDes>Add new dish</AdditionalDes>
         </AdditionalCard>
@@ -106,8 +125,8 @@ const Home = () => {
             imageURL={imageURL}
             price={price}
             quantity={quantity}
-            onEdit={() => handleEdit({ id, name, imageURL, price, quantity })}
-            onDelete={() => handleDelete(id)}
+            onEdit={() => handleShowEditForm({ id, name, imageURL, price, quantity })}
+            onDelete={() => handleShowWarning({ id, name, imageURL, price, quantity })}
           />
         ))}
       </WrapperProducts>
@@ -117,7 +136,7 @@ const Home = () => {
       {showPopup && (
         <WrapperPopup>
           {showForm && (
-            <Form handleCancel={handleClosePopup} onSubmit={handleSubmit} title='Add new food' className='slide-down'>
+            <Form handleCancel={handleCloseForm} onSubmit={handleSubmit} title='Add new food' className='slide-down'>
               <TextField
                 key={chosenProduct?.id}
                 type='hidden'
@@ -136,6 +155,22 @@ const Home = () => {
                 label='Quantity'
                 dimension='sm'
                 value={chosenProduct?.quantity ? chosenProduct.quantity : ''}
+              />
+            </Form>
+          )}
+          {showWarning && (
+            <Form
+              title='Are you sure you want to delete this food?'
+              onSubmit={handleDelete}
+              handleCancel={handleCloseWarning}
+              bottomBorderTitle={false}
+              className='slide-down center-title'
+            >
+              <TextField
+                key={chosenProduct?.id}
+                type='hidden'
+                name='id'
+                value={chosenProduct?.id ? chosenProduct.id : ''}
               />
             </Form>
           )}
