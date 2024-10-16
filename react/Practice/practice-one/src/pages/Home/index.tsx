@@ -1,4 +1,4 @@
-import { Button, Form, Loader, ProductCard, TextField } from '../../components'
+import { Button, Form, Loader, ProductCard, TextField, ToastMessage } from '../../components'
 import {
   AdditionalCard,
   AdditionalDes,
@@ -12,6 +12,7 @@ import plus from '../../assets/icons/plus.svg'
 import { FormEvent, useEffect, useState } from 'react'
 import { fetchProducts } from '../../models/product'
 import { IProduct } from '../../types/product'
+import { IToastMessageProps } from '../../components/ToastMessage'
 
 const Home = () => {
   const [products, setProducts] = useState<IProduct[]>([])
@@ -19,21 +20,45 @@ const Home = () => {
   const [showPopup, setShowPopup] = useState(false)
   const [showForm, setShowForm] = useState(false)
   const [showLoader, setShowLoader] = useState(false)
+  const [showNotification, setShowNotification] = useState(false)
+  const [notification, setNotification] = useState<IToastMessageProps>({
+    status: 'error',
+    message: ''
+  })
 
   useEffect(() => {
     setShowPopup(true)
     setShowLoader(true)
+
     const fetchData = async () => {
       try {
-        const getData = await fetchProducts({})
-        setProducts(getData)
+        const response = await fetchProducts({})
+        console.log(response)
+
+        if (response.data) {
+          setShowNotification(true)
+          setNotification({
+            status: response.status as IToastMessageProps['status'],
+            message: response.message
+          })
+
+          setTimeout(() => {
+            setShowNotification(false)
+          }, 3000)
+
+          if (response.data.length > 0) {
+            setProducts(response.data)
+          }
+        }
       } finally {
         setShowPopup(false)
         setShowLoader(false)
       }
     }
+
+    fetchData()
     return () => {
-      fetchData()
+      setShowNotification(false)
     }
   }, [])
 
@@ -116,6 +141,9 @@ const Home = () => {
           )}
           {showLoader && <Loader />}
         </WrapperPopup>
+      )}
+      {showNotification && (
+        <ToastMessage className='fade-in-out' status={notification.status} message={notification.message} />
       )}
     </HomeStyled>
   )

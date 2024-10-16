@@ -24,10 +24,11 @@ export const sortProducts = (
 /**
  * Fetches and filters products based on provided options.
  */
-export const fetchProducts = async (options: Partial<TFilterOptions<IProduct>> = {}): Promise<IProduct[]> => {
+export const fetchProducts = async (
+  options: Partial<TFilterOptions<IProduct>> = {}
+): Promise<IApiResponse<IProduct[]>> => {
   const { typeOfSort = '', property = 'name', value = '', limit = '9' } = options
   let response: IApiResponse<IProduct[]>
-  let products: IProduct[]
   // Fetch products based on filter criteria
   if (property && value) {
     response = await filterProduct(property, value, limit)
@@ -36,12 +37,12 @@ export const fetchProducts = async (options: Partial<TFilterOptions<IProduct>> =
   }
 
   if (response.status === 'success') {
-    products = typeOfSort ? sortProducts(typeOfSort, response.data ?? [], property) : (response.data ?? [])
+    response.data = typeOfSort ? sortProducts(typeOfSort, response.data ?? [], property) : (response.data ?? [])
   } else {
-    products = []
+    response.data = []
   }
 
-  return products
+  return response
 }
 
 // /**
