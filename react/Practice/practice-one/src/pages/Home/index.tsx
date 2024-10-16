@@ -87,7 +87,7 @@ const Home = () => {
 
   const handleShowEditForm = (product: IProduct) => {
     setChosenProduct(product)
-    console.log('Edit product:', chosenProduct)
+    console.log('Edit product:', product)
     handleShowForm()
   }
 
@@ -102,6 +102,7 @@ const Home = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
     const newProduct: IProduct = { id: '', name: '', imageURL: '', price: '', quantity: '' }
     const formData = new FormData(event.target as HTMLFormElement)
     for (const [key, value] of formData.entries()) {
@@ -109,12 +110,12 @@ const Home = () => {
         newProduct[key as keyof IProduct] = value as string
       }
     }
-    console.log(newProduct)
+
+    handleCloseForm()
 
     const submitData = async () => {
       try {
         const response = await submitProduct(newProduct)
-        console.log(response)
 
         if (response) {
           setShowNotification(true)
@@ -122,16 +123,17 @@ const Home = () => {
             status: response.status as IToastMessageProps['status'],
             message: response.message
           })
-          if (response.status === 'success') {
+          if (response.status === 'success' && response.data) {
             setProducts((preProducts) => {
-              const productExists = preProducts.some((product) => product.id === newProduct.id)
+              const productExists = preProducts.some((product) => product.id === response.data!.id)
               if (productExists) {
-                return preProducts.map((product) => (product.id === newProduct.id ? newProduct : product))
+                return preProducts.map((product) => (product.id === response.data!.id ? response.data! : product))
               } else {
-                return [newProduct, ...preProducts]
+                return [response.data!, ...preProducts]
               }
             })
           }
+
           setTimeout(() => {
             setShowNotification(false)
           }, 3000)
@@ -144,7 +146,6 @@ const Home = () => {
 
     submitData()
     return () => {
-      handleCloseForm()
       setShowNotification(false)
     }
   }
