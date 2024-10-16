@@ -28,11 +28,11 @@ const Home = () => {
   })
 
   useEffect(() => {
-    setShowPopup(true)
-    setShowLoader(true)
-
     const fetchData = async () => {
       try {
+        setShowPopup(true)
+        setShowLoader(true)
+
         const response = await fetchProducts({})
 
         if (response) {
@@ -44,7 +44,7 @@ const Home = () => {
 
           setTimeout(() => {
             setShowNotification(false)
-          }, 3000)
+          }, 2900)
 
           if (response.data && response.data.length > 0) {
             setProducts(response.data)
@@ -98,10 +98,10 @@ const Home = () => {
     handleCloseWarning()
 
     if (productId) {
-      setShowPopup(true)
-      setShowLoader(true)
       const deleteData = async () => {
         try {
+          setShowPopup(true)
+          setShowLoader(true)
           const response = await deleteProduct(productId)
 
           if (response) {
@@ -113,7 +113,7 @@ const Home = () => {
 
             setTimeout(() => {
               setShowNotification(false)
-            }, 3000)
+            }, 2900)
 
             if (response.status === 'success' && response.data) {
               setProducts((preProducts) => {
@@ -149,6 +149,8 @@ const Home = () => {
 
     const submitData = async () => {
       try {
+        setShowPopup(true)
+        setShowLoader(true)
         const response = await submitProduct(newProduct)
 
         if (response) {
@@ -170,9 +172,10 @@ const Home = () => {
 
           setTimeout(() => {
             setShowNotification(false)
-          }, 3000)
+          }, 2900)
         }
       } finally {
+        setShowPopup(false)
         setShowLoader(false)
       }
     }
@@ -206,7 +209,7 @@ const Home = () => {
 
             setTimeout(() => {
               setShowNotification(false)
-            }, 3000)
+            }, 2900)
 
             if (response.status === 'success' && response.data && response.data.length > 0) {
               if (response.data?.length > 0) {
@@ -215,8 +218,8 @@ const Home = () => {
             }
           }
         } finally {
-          setShowPopup(false)
-          setShowLoader(false)
+          // setShowPopup(false)
+          // setShowLoader(false)
         }
       }
 
