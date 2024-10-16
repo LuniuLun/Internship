@@ -39,6 +39,12 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
 
+  .center-title {
+    h1 {
+      text-align: center;
+    }
+  }
+
   ::-webkit-scrollbar {
   width: 14px;
   height: 14px;

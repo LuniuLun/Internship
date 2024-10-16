@@ -18,6 +18,16 @@ export const FormContainer = styled.form`
   }
 `
 
+export const Title = styled.div<{ bottomBorderTitle: boolean }>`
+  ${({ bottomBorderTitle }) =>
+    bottomBorderTitle &&
+    `
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: var(--dark-thin-border);
+  `}
+`
+
 export const FormAction = styled.div`
   display: flex;
   align-items: center;
