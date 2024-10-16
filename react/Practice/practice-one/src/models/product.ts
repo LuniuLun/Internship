@@ -1,4 +1,4 @@
-import { filterProduct, getProduct } from '../service/product'
+import * as productService from '../service/product'
 import { IApiResponse } from '../types/apiResponse'
 import { TFilterOptions } from '../types/filterOption'
 import { IProduct } from '../types/product'
@@ -31,9 +31,9 @@ export const fetchProducts = async (
   let response: IApiResponse<IProduct[]>
   // Fetch products based on filter criteria
   if (property && value) {
-    response = await filterProduct(property, value, limit)
+    response = await productService.filterProduct(property, value, limit)
   } else {
-    response = await getProduct(limit)
+    response = await productService.getProduct(limit)
   }
 
   if (response.status === 'success') {
@@ -77,36 +77,22 @@ export const fetchProducts = async (
 //   return data
 // }
 
-// /**
-//  * Submits a new product or edits an existing product.
-//  */
-// export const submitProduct = async (newProduct: IProduct): Promise<IApiResponse<IProduct>> => {
-//   const data = { ...newProduct }
-//   data.price = parseFloat(data.price).toFixed(2).toString()
-//   let response
-//   if (newProduct.id) {
-//     // Edit an existing product
-//     response = await productService.editProduct(data)
-//     if (response.status === 'success') {
-//       // Update products in the products array
-//       const productIndex = products.findIndex((product) => product.id === data.id)
-//       if (productIndex !== -1) {
-//         products[productIndex] = data
-//       }
-//     }
-//     notificationInstance.renderNotification(response)
-//     return response
-//   }
-//   // Add a new product
-//   response = await productService.addProduct(data)
-//   if (response.status === 'success' && response.data) {
-//     // Add the new product to the beginning of the products array
-//     products.unshift(response.data)
-//   }
-
-//   notificationInstance.renderNotification(response)
-//   return response
-// }
+/**
+ * Submits a new product or edits an existing product.
+ */
+export const submitProduct = async (newProduct: IProduct): Promise<IApiResponse<IProduct>> => {
+  const data = { ...newProduct }
+  data.price = parseFloat(data.price).toFixed(2).toString()
+  let response
+  if (newProduct.id) {
+    // Edit an existing product
+    response = await productService.editProduct(data)
+    return response
+  }
+  // Add a new product
+  response = await productService.addProduct(data)
+  return response
+}
 
 // /**
 //  * Deletes a product by its ID and removes it from the product list.

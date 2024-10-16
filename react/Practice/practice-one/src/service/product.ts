@@ -6,7 +6,6 @@ const baseUrl = `${import.meta.env.VITE_API_URL}${import.meta.env.VITE_API_ENDPO
 
 export const getProduct = async (limit: string = '9'): Promise<IApiResponse<IProduct[]>> => {
   try {
-    console.log('Base URL: ', baseUrl)
     const calledUrl = new URL(baseUrl)
     calledUrl.searchParams.append('page', '1')
     calledUrl.searchParams.append('limit', limit)

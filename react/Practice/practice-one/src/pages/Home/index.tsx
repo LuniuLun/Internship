@@ -10,7 +10,7 @@ import {
 } from './Home.styled'
 import plus from '../../assets/icons/plus.svg'
 import { FormEvent, useEffect, useState } from 'react'
-import { fetchProducts } from '../../models/product'
+import { fetchProducts, submitProduct } from '../../models/product'
 import { IProduct } from '../../types/product'
 import { IToastMessageProps } from '../../components/ToastMessage'
 
@@ -34,9 +34,8 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await fetchProducts({})
-        console.log(response)
 
-        if (response.data) {
+        if (response) {
           setShowNotification(true)
           setNotification({
             status: response.status as IToastMessageProps['status'],
@@ -47,7 +46,7 @@ const Home = () => {
             setShowNotification(false)
           }, 3000)
 
-          if (response.data.length > 0) {
+          if (response.data && response.data.length > 0) {
             setProducts(response.data)
           }
         }
@@ -103,11 +102,51 @@ const Home = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    const newProduct: IProduct = { id: '', name: '', imageURL: '', price: '', quantity: '' }
     const formData = new FormData(event.target as HTMLFormElement)
-    for (const [name, value] of formData) {
-      console.log(`You searched for ${name}: ${value}\n`)
+    for (const [key, value] of formData.entries()) {
+      if (key in newProduct) {
+        newProduct[key as keyof IProduct] = value as string
+      }
     }
-    handleCloseForm()
+    console.log(newProduct)
+
+    const submitData = async () => {
+      try {
+        const response = await submitProduct(newProduct)
+        console.log(response)
+
+        if (response) {
+          setShowNotification(true)
+          setNotification({
+            status: response.status as IToastMessageProps['status'],
+            message: response.message
+          })
+          if (response.status === 'success') {
+            setProducts((preProducts) => {
+              const productExists = preProducts.some((product) => product.id === newProduct.id)
+              if (productExists) {
+                return preProducts.map((product) => (product.id === newProduct.id ? newProduct : product))
+              } else {
+                return [newProduct, ...preProducts]
+              }
+            })
+          }
+          setTimeout(() => {
+            setShowNotification(false)
+          }, 3000)
+        }
+      } finally {
+        setShowPopup(false)
+        setShowLoader(false)
+      }
+    }
+
+    submitData()
+    return () => {
+      handleCloseForm()
+      setShowNotification(false)
+    }
   }
 
   return (
