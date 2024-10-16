@@ -50,8 +50,7 @@ export const ProductDescription = styled.div`
   align-content: center;
   justify-content: center;
   gap: 8px;
-  margin: 0 40px;
-  width: 144px;
+  width: 150px;
 `
 
 export const Item = styled.h4`
@@ -72,6 +71,11 @@ export const ItemThin = styled.p`
   gap: 6px;
   height: 20px;
   color: var(--white-text-3);
+  span {
+    overflow: hidden;
+    max-width: 40px;
+    text-overflow: ellipsis;
+  }
 `
 
 export const ProductButtonImage = styled.img`
