@@ -5,7 +5,7 @@ This is the first practice of React with concept is convert JavaScript practice 
 ## Overview
 
 - Design: [Food management](https://www.figma.com/design/jxChNg9bwxv11ihSG9h28C/Foods-Mangement-(Copy)?node-id=512-5279&t=rCCA3PgjHdeiqfVL-0)
-- Timeline: 40 hours (2024/10/9 - 2024/10/16)
+- Timeline: 40 hours (2024/10/9 - 2024/10/18)
 
 ## Team size
 

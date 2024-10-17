@@ -14,6 +14,8 @@ import { deleteProduct, fetchProducts, getMoreProduct, submitProduct } from '../
 import { IProduct } from '../../types/product'
 import { IToastMessageProps } from '../../components/ToastMessage'
 import { checkImageURL, checkName, checkPrice, checkQuantity } from '../../utilities/validationForm'
+import { restrictRealNumberInput } from '../../utilities/restrictRealNumberInput'
+import { restrictIntegerInput } from '../../utilities/restrictIntegerInput'
 
 const errorMessagesDefault = { name: '', price: '', quantity: '', imageURL: '' }
 
@@ -302,6 +304,7 @@ const Home = () => {
                 label='Price'
                 value={chosenProduct?.price ? chosenProduct.price : ''}
                 errorMessage={errorMessage.price}
+                onKeyDown={(e) => restrictRealNumberInput(e)}
               />
               <TextField
                 name='quantity'
@@ -309,6 +312,7 @@ const Home = () => {
                 dimension='sm'
                 value={chosenProduct?.quantity ? chosenProduct.quantity : ''}
                 errorMessage={errorMessage.quantity}
+                onKeyDown={(e) => restrictIntegerInput(e)}
               />
             </Form>
           )}
