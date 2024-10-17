@@ -1,7 +1,7 @@
-import styles from './Loader.module.css'
+import { LoaderContainer } from './Loader.styled'
 
 const Loader = () => {
-  return <div className={`${styles.loader} ripple`}></div>
+  return <LoaderContainer className='ripple' />
 }
 
 export default Loader
