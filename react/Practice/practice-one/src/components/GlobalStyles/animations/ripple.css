@@ -36,4 +36,6 @@
 .ripple {
   -webkit-animation: ripple 1.5s infinite;
   animation: ripple 1.5s infinite;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
 }
