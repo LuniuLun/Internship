@@ -1,8 +1,20 @@
 import REGEXP from '../constants/regExp'
 
 export const restrictRealNumberInput = (event: React.KeyboardEvent<HTMLInputElement>) => {
-  const { key, target } = event
+  const { key, ctrlKey, metaKey, target } = event
   const inputValue = (target as HTMLInputElement).value
+
+  if (
+    key === 'Backspace' ||
+    key === 'Delete' ||
+    key === 'ArrowLeft' ||
+    key === 'ArrowRight' ||
+    key === 'Tab' ||
+    ctrlKey ||
+    metaKey
+  ) {
+    return
+  }
 
   if (key === '.' && (inputValue.includes('.') || event.currentTarget.selectionStart === 0)) {
     event.preventDefault()
