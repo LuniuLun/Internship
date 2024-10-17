@@ -21,9 +21,9 @@ function Header() {
         <SearchForm>
           <SearchIcon src={searchIcon} alt='search icon' />
           <TextField
-            size='lg'
+            dimension='lg'
             value={searchValue}
-            onChange={setSearchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
             placeholder='Search for food, coffee, etc..'
           />
         </SearchForm>

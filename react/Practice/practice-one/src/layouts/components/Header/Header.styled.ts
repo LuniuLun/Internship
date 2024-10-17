@@ -55,5 +55,7 @@ export const SearchForm = styled.div`
 
 export const SearchIcon = styled.img`
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   left: 4%;
 `

@@ -20,29 +20,27 @@ export const Default: Story = {
     value: 'Sample Text',
     label: 'Sample Label',
     onChange: fn(),
-    error: ''
+    errorMessage: ''
   }
 }
 
-// Câu chuyện cho TextField với error
 export const WithError: Story = {
   args: {
     name: 'example',
     value: 'Sample Text',
     label: 'Sample Label',
     onChange: fn(),
-    error: 'This field is required'
+    errorMessage: 'This field is required'
   }
 }
 
-// Câu chuyện cho TextField ngắn
 export const ShortTextField: Story = {
   args: {
     name: 'short-example',
     value: 'Short Text',
     label: 'Short Example',
     onChange: fn(),
-    error: '',
-    size: 'sm'
+    errorMessage: '',
+    dimension: 'sm'
   }
 }

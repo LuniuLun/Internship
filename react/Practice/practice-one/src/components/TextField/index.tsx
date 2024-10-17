@@ -1,35 +1,34 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { TSizeVariant } from '../../types/variant'
-import styles from './TextField.module.css'
+import { ErrorMessage, Input, Label, Wrapper } from './TextField.styled'
 
 export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name?: string
   dimension?: TSizeVariant
   label?: string
-  error?: string
+  errorMessage?: string
 }
 
-const TextField = ({ value, name, label, error, dimension = 'lg', ...props }: ITextFieldProps) => {
-  const mode = styles[`textField--${dimension}`]
+const TextField = ({ value, name, label, errorMessage, dimension = 'lg', ...props }: ITextFieldProps) => {
   const [valueInput, setValueInput] = useState(value)
 
   return (
-    <div className={styles.wrapper}>
+    <Wrapper>
       {label && (
-        <label htmlFor={name} className={`${styles.label} normal-medium-text`}>
+        <Label htmlFor={name} className='normal-medium-text'>
           {label}
-        </label>
+        </Label>
       )}
-      <input
+      <Input
         name={name}
         value={valueInput}
-        type='text'
-        className={`${styles.textField} ${mode} normal-thin-text`}
+        dimension={dimension}
+        className='normal-thin-text'
         onChange={(e) => setValueInput(e.target.value)}
         {...props}
       />
-      {error && <span className={`${styles.error} normal-medium-text`}>{error}</span>}
-    </div>
+      <ErrorMessage className='normal-medium-text'>{errorMessage}</ErrorMessage>
+    </Wrapper>
   )
 }
 
