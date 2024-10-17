@@ -13,6 +13,9 @@ import { FormEvent, useEffect, useState } from 'react'
 import { deleteProduct, fetchProducts, getMoreProduct, submitProduct } from '../../models/product'
 import { IProduct } from '../../types/product'
 import { IToastMessageProps } from '../../components/ToastMessage'
+import { checkImageURL, checkName, checkPrice, checkQuantity } from '../../utilities/validationForm'
+
+const errorMessagesDefault = { name: '', price: '', quantity: '', imageURL: '' }
 
 const Home = () => {
   const [products, setProducts] = useState<IProduct[]>([])
@@ -22,6 +25,7 @@ const Home = () => {
   const [showWarning, setShowWarning] = useState(false)
   const [showLoader, setShowLoader] = useState(false)
   const [showNotification, setShowNotification] = useState(false)
+  const [errorMessage, setErrorMessage] = useState(errorMessagesDefault)
   const [notification, setNotification] = useState<IToastMessageProps>({
     status: 'error',
     message: ''
@@ -71,6 +75,7 @@ const Home = () => {
     setShowPopup(false)
     setShowForm(false)
     setChosenProduct(null)
+    setErrorMessage(errorMessagesDefault)
   }
 
   const handleShowWarning = (product: IProduct) => {
@@ -134,7 +139,7 @@ const Home = () => {
     }
   }
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const newProduct: IProduct = { id: '', name: '', imageURL: '', price: '', quantity: '' }
@@ -144,6 +149,18 @@ const Home = () => {
         newProduct[key as keyof IProduct] = value as string
       }
     }
+
+    const errors = {
+      name: checkName('Name', newProduct.name) || '',
+      price: checkPrice('Price', newProduct.price) || '',
+      quantity: checkQuantity('Quantity', newProduct.quantity) || '',
+      imageURL: (await checkImageURL('Image URL', newProduct.imageURL)) || ''
+    }
+    setErrorMessage(errors)
+
+    const hasErrors = Object.values(errors).some((error) => error !== '')
+
+    if (hasErrors) return
 
     handleCloseForm()
 
@@ -218,8 +235,8 @@ const Home = () => {
             }
           }
         } finally {
-          // setShowPopup(false)
-          // setShowLoader(false)
+          setShowPopup(false)
+          setShowLoader(false)
         }
       }
 
@@ -268,18 +285,30 @@ const Home = () => {
                 name='id'
                 value={chosenProduct?.id ? chosenProduct.id : ''}
               />
-              <TextField name='name' label='Name' value={chosenProduct?.name ? chosenProduct.name : ''} />
+              <TextField
+                name='name'
+                label='Name'
+                value={chosenProduct?.name ? chosenProduct.name : ''}
+                errorMessage={errorMessage.name}
+              />
               <TextField
                 name='imageURL'
                 label='Image URL'
                 value={chosenProduct?.imageURL ? chosenProduct.imageURL : ''}
+                errorMessage={errorMessage.imageURL}
               />
-              <TextField name='price' label='Price' value={chosenProduct?.price ? chosenProduct.price : ''} />
+              <TextField
+                name='price'
+                label='Price'
+                value={chosenProduct?.price ? chosenProduct.price : ''}
+                errorMessage={errorMessage.price}
+              />
               <TextField
                 name='quantity'
                 label='Quantity'
                 dimension='sm'
                 value={chosenProduct?.quantity ? chosenProduct.quantity : ''}
+                errorMessage={errorMessage.quantity}
               />
             </Form>
           )}
