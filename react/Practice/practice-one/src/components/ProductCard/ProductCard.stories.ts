@@ -20,8 +20,8 @@ export const Default: Story = {
     id: '1',
     name: 'Delicious Bowl',
     imageURL: 'https://example.com/bowl.jpg',
-    price: 12.99,
-    quantity: 2,
+    price: '12.99',
+    quantity: '2',
     onEdit: () => alert('Edit clicked!'),
     onDelete: () => alert('Delete clicked!')
   }
