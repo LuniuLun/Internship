@@ -1,5 +1,5 @@
 import React from 'react'
-import { GlobalStyles } from '../src/components/index' // import đúng đường dẫn đến GlobalStyle
+import { GlobalStyles } from '../src/components/index'
 import { MemoryRouter } from 'react-router-dom'
 const preview = {
   parameters: {
