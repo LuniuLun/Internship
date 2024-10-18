@@ -14,7 +14,7 @@ const ToastMessage = ({ status, message, ...props }: IToastMessageProps) => {
   }
 
   return (
-    <Message status={status} {...props}>
+    <Message $status={status} {...props}>
       <Icon src={getIcon()} alt={status} />
       <p className='normal-semiBold-text'>{message}</p>
     </Message>

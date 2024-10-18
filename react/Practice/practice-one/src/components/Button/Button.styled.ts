@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components'
-import { IButtonProps } from '.'
 
-const handleVariant = (variant?: string) => {
-  switch (variant) {
+const handleVariant = ($variant?: string) => {
+  switch ($variant) {
     case 'primary':
       return css`
         border: 1px solid var(--orange-color-1);
@@ -61,7 +60,7 @@ const handleSize = (size?: string) => {
   }
 }
 
-const ButtonStyled = styled.button<Partial<IButtonProps>>`
+const ButtonStyled = styled.button<{ $variant?: string; $size?: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,8 +76,8 @@ const ButtonStyled = styled.button<Partial<IButtonProps>>`
     background-color 0.3s,
     color 0.3s;
 
-  ${({ variant }) => handleVariant(variant)}
-  ${({ size }) => handleSize(size)}
+  ${({ $variant }) => handleVariant($variant)}
+  ${({ $size }) => handleSize($size)}
 `
 
 export default ButtonStyled

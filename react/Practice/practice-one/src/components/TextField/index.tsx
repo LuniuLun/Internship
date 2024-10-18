@@ -25,9 +25,9 @@ const TextField = ({ value, name, label, errorMessage, dimension = 'lg', onChang
       <Input
         name={name}
         value={valueInput}
-        dimension={dimension}
         className='normal-thin-text'
         onChange={handleChange}
+        $dimension={dimension}
         {...props}
       />
       <ErrorMessage className='normal-medium-text'>{errorMessage}</ErrorMessage>

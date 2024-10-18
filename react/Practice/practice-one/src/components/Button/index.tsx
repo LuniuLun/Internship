@@ -9,7 +9,7 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
 }
 
 const Button = ({ variant, title, size = 'md', icon, ...props }: IButtonProps) => (
-  <ButtonStyled variant={variant} size={size} {...props}>
+  <ButtonStyled $variant={variant} $size={size} {...props}>
     {icon && <img src={icon} alt={title} style={{ marginRight: '8px' }} />}
     {title}
   </ButtonStyled>

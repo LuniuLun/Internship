@@ -14,7 +14,7 @@ const Form = ({ id, title, children, handleCancel, bottomBorderTitle = true, ...
   return (
     <FormContainer {...props}>
       {id && <input type='hidden' name='id' value={id} />}
-      <Title bottomBorderTitle={bottomBorderTitle}>
+      <Title $bottomBorderTitle={bottomBorderTitle.toString()}>
         <Heading title={title} />
       </Title>
       {children}

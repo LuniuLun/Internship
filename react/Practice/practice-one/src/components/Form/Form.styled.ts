@@ -18,9 +18,9 @@ export const FormContainer = styled.form`
   }
 `
 
-export const Title = styled.div<{ bottomBorderTitle: boolean }>`
-  ${({ bottomBorderTitle }) =>
-    bottomBorderTitle &&
+export const Title = styled.div<{ $bottomBorderTitle: string }>`
+  ${({ $bottomBorderTitle }) =>
+    $bottomBorderTitle &&
     `
     margin-bottom: 20px;
     padding-bottom: 20px;
