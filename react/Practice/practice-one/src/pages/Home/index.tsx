@@ -227,8 +227,15 @@ const Home = () => {
       setShowLoader(true)
 
       const fetchData = async () => {
+        console.log(sort, property, q)
+
         try {
-          const response = await getMoreProduct({ limit: newLimit.toString() })
+          const response = await getMoreProduct({
+            typeOfSort: sort === 'AToZ' || sort === 'ZToA' ? sort : undefined,
+            property: property as keyof IProduct,
+            value: q,
+            limit: newLimit.toString()
+          })
 
           if (response) {
             setShowNotification(true)
