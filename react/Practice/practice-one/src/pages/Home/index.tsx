@@ -67,7 +67,7 @@ const Home = () => {
             setShowNotification(false)
           }, 2900)
 
-          if (response.data && response.data.length > 0) {
+          if (response.data) {
             setProducts(response.data)
           }
         }
