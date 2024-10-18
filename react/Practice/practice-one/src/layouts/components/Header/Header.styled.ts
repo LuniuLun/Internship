@@ -21,6 +21,7 @@ export const HeaderContainer = styled.header`
 export const HeadingSection = styled.section`
   display: flex;
   justify-content: space-between;
+  gap: 30px;
   width: 100%;
 
   @media (max-width: 768px) {

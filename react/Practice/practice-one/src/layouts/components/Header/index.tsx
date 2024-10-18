@@ -23,7 +23,7 @@ const Header = () => {
   }, [searchValue, navigate])
 
   return (
-    <HeaderContainer>
+    <HeaderContainer className='container'>
       <HeadingSection>
         <Link to='/'>
           <Heading title='Foods Management' />

@@ -44,15 +44,56 @@ const GlobalStyle = createGlobalStyle`
       text-align: center;
     }
   }
+    
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .container-fluid {
+    width: 100%;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  @media (max-width: 575px) {
+    .container {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 576px) {
+    .container {
+      width: 540px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      width: 720px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .container {
+      width: 960px;
+    }
+  }
+
+  @media (min-width: 1300px) {
+    .container {
+      width: 1190px;
+    }
+  }
 
   ::-webkit-scrollbar {
   width: 14px;
   height: 14px;
-  background-color: var(dark-bg-1);
+  background-color: var(--dark-bg-1);
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: var(dark-bg-2);
+    background-color: var(--dark-bg-2);
     border-radius: 10px;
   }
 

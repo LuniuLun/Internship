@@ -277,7 +277,7 @@ const Home = () => {
     <HomeStyled>
       {products.length > 0 ? (
         <>
-          <WrapperProducts>
+          <WrapperProducts className='container'>
             <AdditionalCard onClick={handleShowForm}>
               <AdditionalIcon src={plus} alt='add food' />
               <AdditionalDes>Add new dish</AdditionalDes>
@@ -303,9 +303,14 @@ const Home = () => {
         <ErrorState title='Not results found' />
       )}
       {showPopup && (
-        <WrapperPopup>
+        <WrapperPopup className='container-fluid'>
           {showForm && (
-            <Form handleCancel={handleCloseForm} onSubmit={handleSubmit} title='Add new food' className='slide-down'>
+            <Form
+              handleCancel={handleCloseForm}
+              onSubmit={handleSubmit}
+              title={chosenProduct?.id ? 'Edit' : 'Add new food'}
+              className='slide-down'
+            >
               <TextField
                 key={chosenProduct?.id}
                 type='hidden'
