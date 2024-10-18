@@ -9,9 +9,12 @@ export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElem
   errorMessage?: string
 }
 
-const TextField = ({ value, name, label, errorMessage, dimension = 'lg', ...props }: ITextFieldProps) => {
+const TextField = ({ value, name, label, errorMessage, dimension = 'lg', onChange, ...props }: ITextFieldProps) => {
   const [valueInput, setValueInput] = useState(value)
-
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValueInput(e.target.value)
+    onChange?.(e)
+  }
   return (
     <Wrapper>
       {label && (
@@ -24,7 +27,7 @@ const TextField = ({ value, name, label, errorMessage, dimension = 'lg', ...prop
         value={valueInput}
         dimension={dimension}
         className='normal-thin-text'
-        onChange={(e) => setValueInput(e.target.value)}
+        onChange={handleChange}
         {...props}
       />
       <ErrorMessage className='normal-medium-text'>{errorMessage}</ErrorMessage>
