@@ -26,8 +26,9 @@ const Home = () => {
   const [showForm, setShowForm] = useState(false)
   const [showWarning, setShowWarning] = useState(false)
   const [showLoader, setShowLoader] = useState(false)
-  const [showNotification, setShowNotification] = useState(false)
   const [errorMessage, setErrorMessage] = useState(errorMessagesDefault)
+  const [limit, setLimit] = useState(19)
+  const [showNotification, setShowNotification] = useState(false)
   const [notification, setNotification] = useState<IToastMessageProps>({
     status: 'error',
     message: ''
@@ -205,12 +206,7 @@ const Home = () => {
     }
   }
 
-  const handleShowMore = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    const limitStr = event.currentTarget.dataset.limit
-    const limit = limitStr ? parseInt(limitStr, 10) : 0
-    const newLimit = limit + 10
-    event.currentTarget.dataset.limit = newLimit.toString()
-
+  const handleShowMore = () => {
     if (limit - products.length <= 10) {
       setShowPopup(true)
       setShowLoader(true)
@@ -231,6 +227,7 @@ const Home = () => {
             }, 2900)
 
             if (response.status === 'success' && response.data && response.data.length > 0) {
+              setLimit(limit + 10)
               if (response.data?.length > 0) {
                 setProducts((preProducts) => [...preProducts, ...response.data!])
               }
@@ -275,7 +272,7 @@ const Home = () => {
         ))}
       </WrapperProducts>
       <WrapperBtn>
-        <Button variant='primary' title='Show more' data-limit='19' onClick={handleShowMore} />
+        <Button variant='primary' title='Show more' onClick={handleShowMore} />
       </WrapperBtn>
       {showPopup && (
         <WrapperPopup>
