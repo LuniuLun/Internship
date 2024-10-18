@@ -1,4 +1,5 @@
-import { Button, Form, Loader, ProductCard, TextField, ToastMessage } from '../../components'
+import { Button, Form, Loader, ProductCard, TextField, ToastMessage, ErrorState } from '../../components'
+import { IToastMessageProps } from '../../components/ToastMessage'
 import {
   AdditionalCard,
   AdditionalDes,
@@ -12,14 +13,24 @@ import plus from '../../assets/icons/plus.svg'
 import { FormEvent, useEffect, useState } from 'react'
 import { deleteProduct, fetchProducts, getMoreProduct, submitProduct } from '../../models/product'
 import { IProduct } from '../../types/product'
-import { IToastMessageProps } from '../../components/ToastMessage'
-import { checkImageURL, checkName, checkPrice, checkQuantity } from '../../utilities/validationForm'
-import { restrictRealNumberInput } from '../../utilities/restrictRealNumberInput'
-import { restrictIntegerInput } from '../../utilities/restrictIntegerInput'
+import { useLocation } from 'react-router-dom'
+import {
+  checkImageURL,
+  checkName,
+  checkPrice,
+  checkQuantity,
+  restrictIntegerInput,
+  restrictRealNumberInput
+} from '../../utilities'
 
 const errorMessagesDefault = { name: '', price: '', quantity: '', imageURL: '' }
 
 const Home = () => {
+  const location = useLocation()
+  const queryParams = new URLSearchParams(location.search)
+  const sort = queryParams.get('sort') || ''
+  const property = queryParams.get('property') || ('name' as keyof IProduct)
+  const q = queryParams.get('q') || ''
   const [products, setProducts] = useState<IProduct[]>([])
   const [chosenProduct, setChosenProduct] = useState<IProduct | null>(null)
   const [showPopup, setShowPopup] = useState(false)
@@ -27,20 +38,23 @@ const Home = () => {
   const [showWarning, setShowWarning] = useState(false)
   const [showLoader, setShowLoader] = useState(false)
   const [errorMessage, setErrorMessage] = useState(errorMessagesDefault)
-  const [limit, setLimit] = useState(19)
+  const [limit, setLimit] = useState(9)
   const [showNotification, setShowNotification] = useState(false)
   const [notification, setNotification] = useState<IToastMessageProps>({
     status: 'error',
     message: ''
   })
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         setShowPopup(true)
         setShowLoader(true)
-
-        const response = await fetchProducts({})
+        const response = await fetchProducts({
+          typeOfSort: sort === 'AToZ' || sort === 'ZToA' ? sort : undefined,
+          property: property as keyof IProduct,
+          value: q,
+          limit: limit.toString()
+        })
 
         if (response) {
           setShowNotification(true)
@@ -67,7 +81,7 @@ const Home = () => {
     return () => {
       setShowNotification(false)
     }
-  }, [])
+  }, [sort, property, q])
 
   const handleShowForm = () => {
     setShowPopup(true)
@@ -207,13 +221,14 @@ const Home = () => {
   }
 
   const handleShowMore = () => {
-    if (limit - products.length <= 10) {
+    const newLimit = limit + 10
+    if (newLimit - products.length <= 10) {
       setShowPopup(true)
       setShowLoader(true)
 
       const fetchData = async () => {
         try {
-          const response = await getMoreProduct({ limit: limit.toString() })
+          const response = await getMoreProduct({ limit: newLimit.toString() })
 
           if (response) {
             setShowNotification(true)
@@ -227,7 +242,7 @@ const Home = () => {
             }, 2900)
 
             if (response.status === 'success' && response.data && response.data.length > 0) {
-              setLimit(limit + 10)
+              setLimit(newLimit)
               if (response.data?.length > 0) {
                 setProducts((preProducts) => [...preProducts, ...response.data!])
               }
@@ -253,27 +268,33 @@ const Home = () => {
 
   return (
     <HomeStyled>
-      <WrapperProducts>
-        <AdditionalCard onClick={handleShowForm}>
-          <AdditionalIcon src={plus} alt='add food' />
-          <AdditionalDes>Add new dish</AdditionalDes>
-        </AdditionalCard>
-        {products.map(({ id, name, imageURL, price, quantity }) => (
-          <ProductCard
-            key={id}
-            id={id}
-            name={name}
-            imageURL={imageURL}
-            price={price}
-            quantity={quantity}
-            onEdit={() => handleShowEditForm({ id, name, imageURL, price, quantity })}
-            onDelete={() => handleShowWarning({ id, name, imageURL, price, quantity })}
-          />
-        ))}
-      </WrapperProducts>
-      <WrapperBtn>
-        <Button variant='primary' title='Show more' onClick={handleShowMore} />
-      </WrapperBtn>
+      {products.length > 0 ? (
+        <>
+          <WrapperProducts>
+            <AdditionalCard onClick={handleShowForm}>
+              <AdditionalIcon src={plus} alt='add food' />
+              <AdditionalDes>Add new dish</AdditionalDes>
+            </AdditionalCard>
+            {products.map(({ id, name, imageURL, price, quantity }) => (
+              <ProductCard
+                key={id}
+                id={id}
+                name={name}
+                imageURL={imageURL}
+                price={price}
+                quantity={quantity}
+                onEdit={() => handleShowEditForm({ id, name, imageURL, price, quantity })}
+                onDelete={() => handleShowWarning({ id, name, imageURL, price, quantity })}
+              />
+            ))}
+          </WrapperProducts>
+          <WrapperBtn>
+            <Button variant='primary' title='Show more' onClick={handleShowMore} />
+          </WrapperBtn>
+        </>
+      ) : (
+        <ErrorState title='Not results found' />
+      )}
       {showPopup && (
         <WrapperPopup>
           {showForm && (

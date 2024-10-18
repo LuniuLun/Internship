@@ -5,7 +5,7 @@ interface DefaultLayoutProps {
   children: React.ReactNode
 }
 
-function DefaultLayout({ children }: Readonly<DefaultLayoutProps>) {
+const DefaultLayout = ({ children }: DefaultLayoutProps) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>

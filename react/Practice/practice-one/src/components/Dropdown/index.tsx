@@ -33,13 +33,12 @@ const Dropdown = ({ title, options }: IDropdownProps) => {
                 <Link to={option.src} className={styles.content}>
                   {option.titleOption}
                 </Link>
-              ) : (
-                <></>
-              )}
-              {option.handleOnClick && (
+              ) : option.handleOnClick ? (
                 <span onClick={option.handleOnClick} className={styles.content}>
                   {option.titleOption}
                 </span>
+              ) : (
+                <span className={styles.content}>{option.titleOption}</span>
               )}
             </li>
           ))}

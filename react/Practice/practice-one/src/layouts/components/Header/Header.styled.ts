@@ -38,7 +38,7 @@ export const FilterSection = styled.section`
   width: 100%;
 `
 
-export const SearchForm = styled.div`
+export const SearchForm = styled.form`
   position: relative;
   display: flex;
   align-items: center;
