@@ -1,4 +1,14 @@
-import { Button, Form, Loader, ProductCard, TextField, ToastMessage, ErrorState } from '../../components'
+import {
+  Button,
+  Form,
+  Loader,
+  ProductCard,
+  TextField,
+  ToastMessage,
+  ErrorState,
+  Label,
+  ErrorMessage
+} from '../../components'
 import { IToastMessageProps } from '../../components/ToastMessage'
 import {
   AdditionalCard,
@@ -7,7 +17,8 @@ import {
   HomeStyled,
   WrapperBtn,
   WrapperPopup,
-  WrapperProducts
+  WrapperProducts,
+  WrapperTextField
 } from './Home.styled'
 import plus from '../../assets/icons/plus.svg'
 import { FormEvent, useEffect, useState } from 'react'
@@ -317,33 +328,31 @@ const Home = () => {
                 name='id'
                 value={chosenProduct?.id ? chosenProduct.id : ''}
               />
-              <TextField
-                name='name'
-                label='Name'
-                value={chosenProduct?.name ? chosenProduct.name : ''}
-                errorMessage={errorMessage.name}
-              />
-              <TextField
-                name='imageURL'
-                label='Image URL'
-                value={chosenProduct?.imageURL ? chosenProduct.imageURL : ''}
-                errorMessage={errorMessage.imageURL}
-              />
-              <TextField
-                name='price'
-                label='Price'
-                value={chosenProduct?.price ? chosenProduct.price : ''}
-                errorMessage={errorMessage.price}
-                onKeyDown={(e) => restrictRealNumberInput(e)}
-              />
-              <TextField
-                name='quantity'
-                label='Quantity'
-                dimension='sm'
-                value={chosenProduct?.quantity ? chosenProduct.quantity : ''}
-                errorMessage={errorMessage.quantity}
-                onKeyDown={(e) => restrictIntegerInput(e)}
-              />
+              <WrapperTextField>
+                <Label title='Name' htmlFor='name' />
+                <TextField name='name' value={chosenProduct?.name || ''} />
+                <ErrorMessage title={errorMessage?.name} />
+              </WrapperTextField>
+              <WrapperTextField>
+                <Label title='Image URL' htmlFor='imageURL' />
+                <TextField name='imageURL' value={chosenProduct?.imageURL || ''} />
+                <ErrorMessage title={errorMessage?.imageURL} />
+              </WrapperTextField>
+              <WrapperTextField>
+                <Label title='Price' htmlFor='price' />
+                <TextField name='price' value={chosenProduct?.price || ''} onKeyDown={restrictRealNumberInput} />
+                <ErrorMessage title={errorMessage?.price} />
+              </WrapperTextField>
+              <WrapperTextField>
+                <Label title='Quantity' htmlFor='quantity' />
+                <TextField
+                  name='quantity'
+                  dimension='sm'
+                  value={chosenProduct?.quantity || ''}
+                  onKeyDown={restrictIntegerInput}
+                />
+                <ErrorMessage title={errorMessage?.quantity} />
+              </WrapperTextField>
             </Form>
           )}
           {showWarning && (

@@ -72,3 +72,10 @@ export const WrapperPopup = styled.section`
   align-items: center;
   justify-content: center;
 `
+
+export const WrapperTextField = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  width: 100%;
+`
