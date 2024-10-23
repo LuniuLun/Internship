@@ -1,6 +1,12 @@
 import styled from 'styled-components'
 import { TSizeVariant } from '../../types/variant'
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`
+
 export const Input = styled.input<{ $dimension: TSizeVariant }>`
   outline: none;
   border: var(--dark-thin-border);

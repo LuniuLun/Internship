@@ -47,6 +47,7 @@ export const SearchForm = styled.form`
 
   input {
     padding-left: 40px;
+    width: 100%;
   }
 
   @media (max-width: 768px) {
@@ -56,6 +57,6 @@ export const SearchForm = styled.form`
 
 export const SearchIcon = styled.img`
   position: absolute;
-  top: 20%;
+  top: 35%;
   left: 4%;
 `

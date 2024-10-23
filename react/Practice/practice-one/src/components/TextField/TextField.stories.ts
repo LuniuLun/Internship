@@ -18,7 +18,19 @@ export const Default: Story = {
   args: {
     name: 'example',
     value: 'Sample Text',
-    onChange: fn()
+    label: 'Sample Label',
+    onChange: fn(),
+    errorMessage: ''
+  }
+}
+
+export const WithError: Story = {
+  args: {
+    name: 'example',
+    value: 'Sample Text',
+    label: 'Sample Label',
+    onChange: fn(),
+    errorMessage: 'This field is required'
   }
 }
 
@@ -26,7 +38,9 @@ export const ShortTextField: Story = {
   args: {
     name: 'short-example',
     value: 'Short Text',
+    label: 'Short Example',
     onChange: fn(),
+    errorMessage: '',
     dimension: 'sm'
   }
 }
