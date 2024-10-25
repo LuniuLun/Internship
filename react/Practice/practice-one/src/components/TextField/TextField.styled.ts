@@ -5,6 +5,11 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  p {
+    margin-top: 4px;
+    min-height: 1.6rem;
+  }
 `
 
 export const Input = styled.input<{ $dimension: TSizeVariant }>`

@@ -1,6 +1,7 @@
 import checkIcon from '../../assets/icons/check.svg'
 import closeIcon from '../../assets/icons/close.svg'
 import { TStatusVariant } from '../../types/variant'
+import { Typography } from '../common'
 import { Icon, Message } from './ToastMessage.styled'
 
 export interface IToastMessageProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -16,7 +17,7 @@ const ToastMessage = ({ status, message, ...props }: IToastMessageProps) => {
   return (
     <Message $status={status} {...props}>
       <Icon src={getIcon()} alt={status} />
-      <p className='normal-semiBold-text'>{message}</p>
+      <Typography as='p'>{message}</Typography>
     </Message>
   )
 }
