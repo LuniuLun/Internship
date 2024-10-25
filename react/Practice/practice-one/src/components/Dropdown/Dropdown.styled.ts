@@ -1,10 +1,12 @@
-.dropdown {
+import styled from 'styled-components';
+
+export const DropdownContainer = styled.div`
   position: relative;
   border-radius: 8px;
   width: 162px;
-}
+`;
 
-.sortOption {
+export const SortOption = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,23 +15,23 @@
   margin: 0;
   right: 18px;
   top: 120%;
-  display: flex;
   width: 200px;
   list-style: none;
-}
+  padding: 0;
 
-.sortOption::after {
-  content: '';
-  position: absolute;
-  z-index: 1;
-  top: -22px;
-  right: 0px;
-  border-width: 12px;
-  border-style: solid;
-  border-color: transparent transparent var(--dark-bg-1) transparent;
-}
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: -22px;
+    right: 0px;
+    border-width: 12px;
+    border-style: solid;
+    border-color: transparent transparent var(--dark-bg-1) transparent;
+  }
+`;
 
-.sortOptionItem {
+export const SortOptionItem = styled.li`
   z-index: 2;
   width: 100%;
   padding: 8px 16px;
@@ -55,10 +57,10 @@
       color: var(--white-text-1);
     }
   }
-}
+`;
 
-.content {
+export const Content = styled.span`
   display: flex;
   width: 100%;
   color: var(--orange-color-1);
-}
+`;

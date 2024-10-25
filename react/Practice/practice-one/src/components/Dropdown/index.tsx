@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import styles from './Dropdown.module.css'
-import arrowDownIcon from '../../assets/icons/down-arrow.svg'
 import { Link } from 'react-router-dom'
-import Button from '../Button'
+import arrowDownIcon from '../../assets/icons/down-arrow.svg'
+import { Button } from '../common'
+import { DropdownContainer, SortOption, SortOptionItem, Content } from './Dropdown.styled'
 
 export interface IDropdownOption {
   src?: string
@@ -23,28 +23,28 @@ const Dropdown = ({ title, options }: IDropdownProps) => {
   }
 
   return (
-    <div className={styles.dropdown}>
+    <DropdownContainer>
       <Button variant='tertiary' size='sm' title={title} onClick={toggleDropdown} icon={arrowDownIcon} />
       {isOpen && (
-        <ul className={styles.sortOption}>
+        <SortOption>
           {options.map((option, index) => (
-            <li key={index} className={`${styles.sortOptionItem} normal-medium-text`}>
+            <SortOptionItem key={index} className='normal-medium-text'>
               {option.src ? (
-                <Link to={option.src} className={styles.content}>
-                  {option.titleOption}
+                <Link to={option.src}>
+                  <Content>{option.titleOption}</Content>
                 </Link>
               ) : option.handleOnClick ? (
-                <span onClick={option.handleOnClick} className={styles.content}>
+                <Content as='span' onClick={option.handleOnClick}>
                   {option.titleOption}
-                </span>
+                </Content>
               ) : (
-                <span className={styles.content}>{option.titleOption}</span>
+                <Content as='span'>{option.titleOption}</Content>
               )}
-            </li>
+            </SortOptionItem>
           ))}
-        </ul>
+        </SortOption>
       )}
-    </div>
+    </DropdownContainer>
   )
 }
 
