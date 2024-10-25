@@ -37,13 +37,6 @@ export const ProductIcon = styled.img`
   }
 `
 
-export const ProductImage = styled.img`
-  margin-top: 20px;
-  width: 127px;
-  border-radius: 50%;
-  aspect-ratio: 1;
-`
-
 export const ProductDescription = styled.div`
   display: flex;
   flex-direction: column;
@@ -51,25 +44,26 @@ export const ProductDescription = styled.div`
   justify-content: center;
   gap: 8px;
   width: 150px;
+
+  h4 {
+    text-align: center;
+    overflow: hidden;
+    margin: 0;
+    min-height: 45px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+  }
 `
 
-export const Item = styled.h4`
-  text-align: center;
-  overflow: hidden;
-  margin: 0;
-  min-height: 45px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  text-overflow: ellipsis;
-`
-
-export const ItemThin = styled.p`
+export const ItemThin = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 6px;
   height: 20px;
+  font-size: 0.875rem;
   color: var(--white-text-3);
   span {
     overflow: hidden;

@@ -1,10 +1,9 @@
 import closeIcon from '../../assets/icons/close.svg'
 import editIcon from '../../assets/icons/edit.svg'
 import ellipseIcon from '../../assets/icons/ellipse.svg'
-import defaultImage from '../../assets/images/default-image.svg'
 import { IProduct } from '../../types/product'
-import Button from '../Button'
-import { ProductContainer, ProductIcon, ProductImage, ProductDescription, Item, ItemThin } from './ProductCard.styled'
+import { Button, Image, Typography } from '../common'
+import { ProductContainer, ProductIcon, ProductDescription, ItemThin } from './ProductCard.styled'
 
 interface IProductCardProps extends IProduct {
   onEdit: () => void
@@ -17,19 +16,19 @@ const ProductCard = ({ id, name, imageURL, price, quantity, onEdit, onDelete }: 
   return (
     <ProductContainer data-id={id}>
       <ProductIcon src={closeIcon} alt='Delete product' onClick={onDelete} />
-      <ProductImage
-        src={imageURL}
-        alt={name}
-        onError={(e) => {
-          ;(e.target as HTMLImageElement).src = defaultImage
-        }}
-      />
+      <Image src={imageURL} alt={name} />
       <ProductDescription>
-        <Item className='normal-medium-text'>{name}</Item>
-        <ItemThin className='normal-thin-text'>
-          $ <span>{parseFloat(price).toFixed(2)}</span>
+        <Typography as='h4'>{name}</Typography>
+        <ItemThin>
+          $
+          <Typography as='span' variant='normal-thin'>
+            {parseFloat(price).toFixed(2)}
+          </Typography>
           <img src={ellipseIcon} alt='-' />
-          <span>{quantity}</span> {bowlText}
+          <Typography as='span' variant='normal-thin'>
+            {quantity}
+          </Typography>
+          {bowlText}
         </ItemThin>
       </ProductDescription>
       <Button variant='secondary' title='Edit dish' icon={editIcon} onClick={onEdit} />

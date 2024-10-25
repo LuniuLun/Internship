@@ -2,7 +2,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import searchIcon from '../../../assets/icons/find.svg'
 import { FilterSection, HeaderContainer, HeadingSection, SearchForm, SearchIcon } from './Header.styled'
-import { Dropdown, Heading, TextField } from '../../../components'
+import { Dropdown, TextField } from '../../../components'
+import { Heading } from '../../../components/common'
 
 const Header = () => {
   const [searchValue, setSearchValue] = useState('')

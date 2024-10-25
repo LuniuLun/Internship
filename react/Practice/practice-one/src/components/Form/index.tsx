@@ -1,5 +1,4 @@
-import Button from '../Button'
-import Heading from '../Heading'
+import { Button, Heading } from '../common'
 import { FormAction, FormContainer, Title } from './Form.styled'
 
 interface IFormProps extends React.HTMLAttributes<HTMLFormElement> {
