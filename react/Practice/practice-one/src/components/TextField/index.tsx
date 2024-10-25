@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { TSizeVariant } from '../../types/variant'
 import { Input, Wrapper } from './TextField.styled'
-import Label from '../Label'
-import ErrorMessage from '../ErrorMessage'
+import Label from '../common/Label'
+import { Typography } from '../common'
 
 export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name?: string
@@ -28,7 +28,9 @@ const TextField = ({ value, name, label, errorMessage, dimension = 'lg', onChang
         $dimension={dimension}
         {...props}
       />
-      <ErrorMessage className='normal-medium-text' title={errorMessage || ''} />
+      <Typography as='p' variant='error-message'>
+        {errorMessage || ''}
+      </Typography>
     </Wrapper>
   )
 }
