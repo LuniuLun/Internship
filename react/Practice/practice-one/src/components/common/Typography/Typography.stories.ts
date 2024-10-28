@@ -21,11 +21,11 @@ export const Default: Story = {
   }
 }
 
-// Normal SemiBold Story
-export const NormalSemiBold: Story = {
+// Normal bold Story
+export const Normalbold: Story = {
   args: {
-    variant: 'normal-semiBold',
-    children: 'Normal SemiBold Text'
+    variant: 'normal-bold',
+    children: 'Normal bold Text'
   }
 }
 
@@ -45,11 +45,11 @@ export const NormalThin: Story = {
   }
 }
 
-// Large SemiBold Story
-export const LargeSemiBold: Story = {
+// Large bold Story
+export const Largebold: Story = {
   args: {
-    variant: 'large-semiBold',
-    children: 'Large SemiBold Text'
+    variant: 'large-bold',
+    children: 'Large bold Text'
   }
 }
 

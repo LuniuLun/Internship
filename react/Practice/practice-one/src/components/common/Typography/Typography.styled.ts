@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 import { ITypographyProps } from '.'
 
-export const TextStyled = styled.span<ITypographyProps>`
+export const TextStyled = styled.p<ITypographyProps>`
   margin: 0;
   font-size: ${({ variant }) => {
     switch (variant) {
-      case 'normal-semiBold':
+      case 'normal-bold':
       case 'normal-medium':
       case 'normal-thin':
         return '0.875rem'
-      case 'large-semiBold':
+      case 'large-bold':
         return '1rem'
       default:
         return '0.875rem'
@@ -18,12 +18,12 @@ export const TextStyled = styled.span<ITypographyProps>`
 
   line-height: ${({ variant }) => {
     switch (variant) {
-      case 'normal-semiBold':
+      case 'normal-bold':
       case 'normal-medium':
         return '1.1375rem'
       case 'normal-thin':
         return '1.225rem'
-      case 'large-semiBold':
+      case 'large-bold':
         return '1.4rem'
       default:
         return '1.1375rem'
@@ -32,8 +32,8 @@ export const TextStyled = styled.span<ITypographyProps>`
 
   font-weight: ${({ variant }) => {
     switch (variant) {
-      case 'normal-semiBold':
-      case 'large-semiBold':
+      case 'normal-bold':
+      case 'large-bold':
         return 600
       case 'normal-medium':
         return 500
