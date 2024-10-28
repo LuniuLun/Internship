@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-const handleVariant = ($variant?: string) => {
+const handleVariant = ($variant?: string, disabled?: boolean) => {
   switch ($variant) {
     case 'primary':
       return css`
@@ -8,11 +8,14 @@ const handleVariant = ($variant?: string) => {
         background-color: transparent;
         color: var(--orange-color-1);
 
-        &:hover {
-          background-color: var(--orange-color-1);
-          color: var(--white-text-1);
-          box-shadow: var(--shadow-hover-btn);
-        }
+        ${!disabled &&
+        css`
+          &:hover {
+            background-color: var(--orange-color-1);
+            color: var(--white-text-1);
+            box-shadow: var(--shadow-hover-btn);
+          }
+        `}
       `
     case 'secondary':
       return css`
@@ -20,11 +23,14 @@ const handleVariant = ($variant?: string) => {
         background-color: var(--orange-color-2);
         color: var(--orange-color-1);
 
-        &:hover {
-          background-color: var(--orange-color-1);
-          color: var(--white-text-1);
-          box-shadow: var(--shadow-hover-btn);
-        }
+        ${!disabled &&
+        css`
+          &:hover {
+            background-color: var(--orange-color-1);
+            color: var(--white-text-1);
+            box-shadow: var(--shadow-hover-btn);
+          }
+        `}
       `
     case 'tertiary':
       return css`
@@ -33,11 +39,14 @@ const handleVariant = ($variant?: string) => {
         background-color: var(--dark-bg-2);
         color: var(--white-text-1);
 
-        &:hover {
-          background-color: var(--orange-color-1);
-          color: var(--white-text-1);
-          box-shadow: var(--shadow-hover-btn);
-        }
+        ${!disabled &&
+        css`
+          &:hover {
+            background-color: var(--orange-color-1);
+            color: var(--white-text-1);
+            box-shadow: var(--shadow-hover-btn);
+          }
+        `}
       `
     default:
       return css``
@@ -76,8 +85,13 @@ const ButtonStyled = styled.button<{ $variant?: string; $size?: string }>`
     background-color 0.3s,
     color 0.3s;
 
-  ${({ $variant }) => handleVariant($variant)}
+  ${({ $variant, disabled }) => handleVariant($variant, disabled)}
   ${({ $size }) => handleSize($size)}
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 `
 
 export default ButtonStyled

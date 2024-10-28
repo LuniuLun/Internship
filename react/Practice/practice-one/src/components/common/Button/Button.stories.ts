@@ -51,3 +51,11 @@ export const Small: Story = {
     title: 'Button'
   }
 }
+
+export const Disabled: Story = {
+  args: {
+    variant: 'secondary',
+    title: 'Disabled button',
+    disabled: true
+  }
+}
