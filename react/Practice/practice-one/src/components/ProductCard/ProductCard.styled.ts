@@ -24,16 +24,22 @@ export const ProductContainer = styled.div`
   }
 `
 
-export const ProductIcon = styled.img`
+export const ButtonStyled = styled.button`
   position: absolute;
   right: 10px;
   top: 12px;
   z-index: 1;
   display: none;
+  border: none;
+  height: 24px;
+  width: 24px;
+  padding: 0;
+  background-color: transparent;
   cursor: pointer;
 
   ${ProductContainer}:hover & {
     display: block;
+    background-color: transparent;
   }
 `
 
@@ -45,7 +51,7 @@ export const ProductDescription = styled.div`
   gap: 8px;
   width: 150px;
 
-  h4 {
+  h2 {
     text-align: center;
     overflow: hidden;
     margin: 0;
@@ -73,5 +79,9 @@ export const ItemThin = styled.div`
 `
 
 export const ProductButtonImage = styled.img`
+  margin-right: 8px;
+`
+
+export const EditIcon = styled.img`
   margin-right: 8px;
 `

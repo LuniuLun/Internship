@@ -2,36 +2,39 @@ import closeIcon from '../../assets/icons/close.svg'
 import editIcon from '../../assets/icons/edit.svg'
 import ellipseIcon from '../../assets/icons/ellipse.svg'
 import { IProduct } from '../../types/product'
-import { Button, Image, Typography } from '../common'
-import { ProductContainer, ProductIcon, ProductDescription, ItemThin } from './ProductCard.styled'
+import { Button, Heading, Image, Typography } from '../common'
+import { ProductContainer, ProductDescription, ItemThin, EditIcon, ButtonStyled } from './ProductCard.styled'
 
 interface IProductCardProps extends IProduct {
   onEdit: () => void
   onDelete: () => void
 }
 
-const ProductCard = ({ id, name, imageURL, price, quantity, onEdit, onDelete }: IProductCardProps) => {
-  const bowlText = quantity === '1' ? 'Bowl' : 'Bowls'
-
+const ProductCard = ({ name, imageURL, price, quantity, onEdit, onDelete }: IProductCardProps) => {
   return (
-    <ProductContainer data-id={id}>
-      <ProductIcon src={closeIcon} alt='Delete product' onClick={onDelete} />
-      <Image src={imageURL} alt={name} />
+    <ProductContainer>
+      <ButtonStyled onClick={onDelete}>
+        <Image src={closeIcon} alt='delete' />
+      </ButtonStyled>
+      <Image
+        src={imageURL}
+        alt={name}
+        style={{
+          marginTop: '20px'
+        }}
+      />
       <ProductDescription>
-        <Typography as='h4'>{name}</Typography>
+        <Heading as='h2' title={name} />
         <ItemThin>
-          $
-          <Typography as='span' variant='normal-thin'>
-            {parseFloat(price).toFixed(2)}
-          </Typography>
-          <img src={ellipseIcon} alt='-' />
-          <Typography as='span' variant='normal-thin'>
-            {quantity}
-          </Typography>
-          {bowlText}
+          $<Typography variant='normal-thin'>{parseFloat(price).toFixed(2)}</Typography>
+          <Image src={ellipseIcon} alt='-' size='sm' />
+          <Typography variant='normal-thin'>{quantity}</Typography>
+          {quantity === '1' ? 'Bowl' : 'Bowls'}
         </ItemThin>
       </ProductDescription>
-      <Button variant='secondary' title='Edit dish' icon={editIcon} onClick={onEdit} />
+      <Button variant='secondary' title='Edit dish' icon={editIcon} onClick={onEdit}>
+        <EditIcon src={editIcon} alt='edit' />
+      </Button>
     </ProductContainer>
   )
 }
