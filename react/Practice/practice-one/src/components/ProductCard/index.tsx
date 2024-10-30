@@ -3,7 +3,7 @@ import editIcon from '../../assets/icons/edit.svg'
 import ellipseIcon from '../../assets/icons/ellipse.svg'
 import { IProduct } from '../../types/product'
 import { Button, Heading, Image, Typography } from '../common'
-import { ProductContainer, ProductDescription, ItemThin, EditIcon, ButtonStyled } from './ProductCard.styled'
+import { ProductContainer, ProductDescription, ItemThin, ButtonStyled } from './ProductCard.styled'
 
 interface IProductCardProps extends IProduct {
   onEdit: () => void
@@ -27,13 +27,13 @@ const ProductCard = ({ name, imageURL, price, quantity, onEdit, onDelete }: IPro
         <Heading as='h2' title={name} />
         <ItemThin>
           $<Typography variant='normal-thin'>{parseFloat(price).toFixed(2)}</Typography>
-          <Image src={ellipseIcon} alt='-' size='sm' />
+          <Image src={ellipseIcon} alt='-' size='tiny' />
           <Typography variant='normal-thin'>{quantity}</Typography>
           {quantity === '1' ? 'Bowl' : 'Bowls'}
         </ItemThin>
       </ProductDescription>
       <Button variant='secondary' title='Edit dish' icon={editIcon} onClick={onEdit}>
-        <EditIcon src={editIcon} alt='edit' />
+        <Image src={editIcon} alt='edit' size='sm' />
       </Button>
     </ProductContainer>
   )
