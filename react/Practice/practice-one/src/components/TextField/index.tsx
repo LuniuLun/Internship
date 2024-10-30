@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { TSizeVariant } from '../../types/variant'
 import { Input, Wrapper } from './TextField.styled'
-import Label from '../common/Label'
 import { Typography } from '../common'
 
 export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -19,7 +18,11 @@ const TextField = ({ value, name, label, errorMessage, dimension = 'lg', onChang
   }
   return (
     <Wrapper>
-      {label && <Label htmlFor={name} title={label}></Label>}
+      {label && (
+        <Typography as='label' htmlFor={name} style={{ marginBottom: '8px', color: 'var(--white-text-1)' }}>
+          {label}
+        </Typography>
+      )}
       <Input
         name={name}
         value={valueInput}
@@ -28,9 +31,7 @@ const TextField = ({ value, name, label, errorMessage, dimension = 'lg', onChang
         $dimension={dimension}
         {...props}
       />
-      <Typography as='p' variant='error-message'>
-        {errorMessage || ''}
-      </Typography>
+      <Typography variant='error-message'>{errorMessage || ''}</Typography>
     </Wrapper>
   )
 }
