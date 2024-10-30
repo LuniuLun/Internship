@@ -73,6 +73,7 @@ const ButtonStyled = styled.button<{ $variant?: string; $size?: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   border-radius: 8px;
   width: 100%;
   text-align: center;

@@ -81,7 +81,3 @@ export const ItemThin = styled.div`
 export const ProductButtonImage = styled.img`
   margin-right: 8px;
 `
-
-export const EditIcon = styled.img`
-  margin-right: 8px;
-`
