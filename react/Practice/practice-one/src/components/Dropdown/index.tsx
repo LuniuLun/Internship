@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import arrowDownIcon from '../../assets/icons/down-arrow.svg'
-import { Button } from '../common'
+import { Button, Image } from '../common'
 import { DropdownContainer, SortOption, SortOptionItem, Content } from './Dropdown.styled'
 
 export interface IDropdownOption {
@@ -24,21 +24,21 @@ const Dropdown = ({ title, options }: IDropdownProps) => {
 
   return (
     <DropdownContainer>
-      <Button variant='tertiary' size='sm' title={title} onClick={toggleDropdown} icon={arrowDownIcon} />
+      <Button variant='tertiary' size='sm' title={title} onClick={toggleDropdown}>
+        <Image src={arrowDownIcon} alt='Show more' size='sm' />
+      </Button>
       {isOpen && (
         <SortOption>
           {options.map((option, index) => (
-            <SortOptionItem key={index} className='normal-medium-text'>
+            <SortOptionItem key={index}>
               {option.src ? (
                 <Link to={option.src}>
                   <Content>{option.titleOption}</Content>
                 </Link>
               ) : option.handleOnClick ? (
-                <Content as='span' onClick={option.handleOnClick}>
-                  {option.titleOption}
-                </Content>
+                <Content onClick={option.handleOnClick}>{option.titleOption}</Content>
               ) : (
-                <Content as='span'>{option.titleOption}</Content>
+                <Content>{option.titleOption}</Content>
               )}
             </SortOptionItem>
           ))}

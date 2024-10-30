@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const DropdownContainer = styled.div`
   position: relative;
   border-radius: 8px;
   width: 162px;
-`;
+`
 
 export const SortOption = styled.ul`
   display: flex;
@@ -29,13 +29,16 @@ export const SortOption = styled.ul`
     border-style: solid;
     border-color: transparent transparent var(--dark-bg-1) transparent;
   }
-`;
+`
 
 export const SortOptionItem = styled.li`
   z-index: 2;
   width: 100%;
   padding: 8px 16px;
   background-color: var(--dark-bg-1);
+  font-size: 0.875rem;
+  line-height: 1.1375rem;
+  font-weight: 500;
   caret-color: transparent;
   cursor: pointer;
 
@@ -53,14 +56,14 @@ export const SortOptionItem = styled.li`
 
   &:hover {
     background-color: var(--orange-color-1);
-    .content {
+    span {
       color: var(--white-text-1);
     }
   }
-`;
+`
 
 export const Content = styled.span`
   display: flex;
   width: 100%;
   color: var(--orange-color-1);
-`;
+`
