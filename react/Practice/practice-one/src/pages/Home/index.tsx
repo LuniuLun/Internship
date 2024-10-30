@@ -43,7 +43,8 @@ const Home = () => {
   const [showNotification, setShowNotification] = useState(false)
   const [notification, setNotification] = useState<IToastMessageProps>({
     status: 'error',
-    message: ''
+    message: '',
+    setShowNotification
   })
   useEffect(() => {
     const fetchData = async () => {
@@ -61,12 +62,9 @@ const Home = () => {
           setShowNotification(true)
           setNotification({
             status: response.status as IToastMessageProps['status'],
-            message: response.message
+            message: response.message,
+            setShowNotification
           })
-
-          setTimeout(() => {
-            setShowNotification(false)
-          }, 2900)
 
           if (response.data) {
             setProducts(response.data)
@@ -79,9 +77,6 @@ const Home = () => {
     }
 
     fetchData()
-    return () => {
-      setShowNotification(false)
-    }
   }, [sort, property, q])
 
   const handleShowForm = () => {
@@ -100,7 +95,6 @@ const Home = () => {
     setChosenProduct(product)
     setShowPopup(true)
     setShowWarning(true)
-    console.log('Show warning for product:', product)
   }
 
   const handleCloseWarning = () => {
@@ -110,7 +104,6 @@ const Home = () => {
 
   const handleShowEditForm = (product: IProduct) => {
     setChosenProduct(product)
-    console.log('Edit product:', product)
     handleShowForm()
   }
 
@@ -131,12 +124,9 @@ const Home = () => {
             setShowNotification(true)
             setNotification({
               status: response.status as IToastMessageProps['status'],
-              message: response.message
+              message: response.message,
+              setShowNotification
             })
-
-            setTimeout(() => {
-              setShowNotification(false)
-            }, 2900)
 
             if (response.status === 'success' && response.data) {
               setProducts((preProducts) => {
@@ -151,12 +141,10 @@ const Home = () => {
       }
 
       deleteData()
-      return () => {
-        setShowNotification(false)
-      }
     }
   }
 
+  // convert limit
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
@@ -192,7 +180,8 @@ const Home = () => {
           setShowNotification(true)
           setNotification({
             status: response.status as IToastMessageProps['status'],
-            message: response.message
+            message: response.message,
+            setShowNotification
           })
           if (response.status === 'success' && response.data) {
             setProducts((preProducts) => {
@@ -204,10 +193,6 @@ const Home = () => {
               }
             })
           }
-
-          setTimeout(() => {
-            setShowNotification(false)
-          }, 2900)
         }
       } finally {
         setShowPopup(false)
@@ -216,9 +201,6 @@ const Home = () => {
     }
 
     submitData()
-    return () => {
-      setShowNotification(false)
-    }
   }
 
   const handleShowMore = () => {
@@ -242,12 +224,9 @@ const Home = () => {
             setShowNotification(true)
             setNotification({
               status: response.status as IToastMessageProps['status'],
-              message: response.message
+              message: response.message,
+              setShowNotification
             })
-
-            setTimeout(() => {
-              setShowNotification(false)
-            }, 2900)
 
             if (response.status === 'success' && response.data && response.data.length > 0) {
               setLimit(newLimit)
@@ -263,13 +242,11 @@ const Home = () => {
       }
 
       fetchData()
-      return () => {
-        setShowNotification(false)
-      }
     } else {
       setNotification({
         status: 'error',
-        message: 'You have reached the maximum limit'
+        message: 'You have reached the maximum limit',
+        setShowNotification
       })
     }
   }
@@ -367,7 +344,12 @@ const Home = () => {
         </WrapperPopup>
       )}
       {showNotification && (
-        <ToastMessage className='fade-in-out' status={notification.status} message={notification.message} />
+        <ToastMessage
+          className='fade-in-out'
+          status={notification.status}
+          message={notification.message}
+          setShowNotification={setShowNotification}
+        />
       )}
     </HomeStyled>
   )
