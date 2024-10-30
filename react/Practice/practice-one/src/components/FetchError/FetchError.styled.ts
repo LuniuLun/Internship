@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ErrorStateStyled = styled.div`
+export const FetchErrorStyled = styled.p`
   font-size: 3rem;
   font-weight: 400;
   text-transform: uppercase;
