@@ -1,4 +1,4 @@
-import { Form, Loader, ProductCard, TextField, ToastMessage, ErrorState } from '../../components'
+import { Form, Loader, ProductCard, TextField, ToastMessage, FetchError } from '../../components'
 import { IToastMessageProps } from '../../components/ToastMessage'
 import {
   AdditionalCard,
@@ -11,7 +11,6 @@ import {
 } from './Home.styled'
 import plus from '../../assets/icons/plus.svg'
 import { FormEvent, useEffect, useState } from 'react'
-import { deleteProduct, fetchProducts, getMoreProduct, submitProduct } from '../../models/product'
 import { IProduct } from '../../types/product'
 import { useLocation } from 'react-router-dom'
 import {
@@ -23,6 +22,7 @@ import {
   restrictRealNumberInput
 } from '../../utilities'
 import { Button } from '../../components/common'
+import { useProduct } from '../../utilities/hooks/useProduct'
 
 const errorMessagesDefault = { name: '', price: '', quantity: '', imageURL: '' }
 
@@ -32,6 +32,7 @@ const Home = () => {
   const sort = queryParams.get('sort') || ''
   const property = queryParams.get('property') || ('name' as keyof IProduct)
   const q = queryParams.get('q') || ''
+  const { fetchProducts, submitProduct, deleteProduct, loadMoreProducts } = useProduct()
   const [products, setProducts] = useState<IProduct[]>([])
   const [chosenProduct, setChosenProduct] = useState<IProduct | null>(null)
   const [showPopup, setShowPopup] = useState(false)
@@ -129,8 +130,8 @@ const Home = () => {
             })
 
             if (response.status === 'success' && response.data) {
-              setProducts((preProducts) => {
-                return preProducts.filter((product) => product.id !== response.data!.id)
+              setProducts((prev) => {
+                return prev.filter((product) => product.id !== response.data!.id)
               })
             }
           }
@@ -144,7 +145,6 @@ const Home = () => {
     }
   }
 
-  // convert limit
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
@@ -184,12 +184,12 @@ const Home = () => {
             setShowNotification
           })
           if (response.status === 'success' && response.data) {
-            setProducts((preProducts) => {
-              const productExists = preProducts.some((product) => product.id === response.data!.id)
+            setProducts((prev) => {
+              const productExists = prev.some((product) => product.id === response.data!.id)
               if (productExists) {
-                return preProducts.map((product) => (product.id === response.data!.id ? response.data! : product))
+                return prev.map((product) => (product.id === response.data!.id ? response.data! : product))
               } else {
-                return [response.data!, ...preProducts]
+                return [...prev, response.data!]
               }
             })
           }
@@ -213,7 +213,7 @@ const Home = () => {
         console.log(sort, property, q)
 
         try {
-          const response = await getMoreProduct({
+          const response = await loadMoreProducts({
             typeOfSort: sort === 'AToZ' || sort === 'ZToA' ? sort : undefined,
             property: property as keyof IProduct,
             value: q,
@@ -230,8 +230,9 @@ const Home = () => {
 
             if (response.status === 'success' && response.data && response.data.length > 0) {
               setLimit(newLimit)
-              if (response.data?.length > 0) {
-                setProducts((preProducts) => [...preProducts, ...response.data!])
+              const newProducts = response.data
+              if (newProducts.length > 0) {
+                setProducts((prev) => [...prev, ...newProducts.slice(prev.length)])
               }
             }
           }
@@ -260,7 +261,7 @@ const Home = () => {
               <AdditionalIcon src={plus} alt='add food' />
               <AdditionalDes>Add new dish</AdditionalDes>
             </AdditionalCard>
-            {products.map(({ id, name, imageURL, price, quantity }) => (
+            {products.map(({ id, name, imageURL, price, quantity }: IProduct) => (
               <ProductCard
                 key={id}
                 id={id}
@@ -278,7 +279,7 @@ const Home = () => {
           </WrapperBtn>
         </>
       ) : (
-        <ErrorState title='Not results found' />
+        <FetchError title='Not results found' />
       )}
       {showPopup && (
         <WrapperPopup className='container-fluid'>
