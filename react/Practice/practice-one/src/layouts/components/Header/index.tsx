@@ -18,8 +18,10 @@ const Header = () => {
   ]
 
   useEffect(() => {
-    if (searchValue.trim() !== '') {
+    if (searchValue) {
       navigate(`/?sort=AToZ&property=name&q=${searchValue}`)
+    } else {
+      navigate('/')
     }
   }, [searchValue, navigate])
 

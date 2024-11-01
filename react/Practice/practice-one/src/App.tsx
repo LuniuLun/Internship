@@ -7,7 +7,6 @@ function App() {
     <Routes>
       <Route path='/' element={<DefaultLayout />}>
         <Route index element={<Home />} />
-        <Route path=':sort&&property&&q' element={<Home />} />
       </Route>
     </Routes>
   )
