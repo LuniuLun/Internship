@@ -2,34 +2,39 @@ import { useEffect } from 'react'
 import checkIcon from '../../assets/icons/check.svg'
 import closeIcon from '../../assets/icons/close.svg'
 import { TStatusVariant } from '../../types/variant'
-import { Typography } from '../common'
-import { Icon, Message } from './ToastMessage.styled'
+import { Image, Typography } from '../common'
+import { Message } from './ToastMessage.styled'
+import useToast from '../hooks/useToast'
 
-export interface IToastMessageProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface IToastMessage {
   status: TStatusVariant
   message: string
-  setShowNotification: (value: boolean) => void
-  duration?: number
+  id?: string
 }
 
-const ToastMessage = ({ status, message, duration = 2900, setShowNotification, ...props }: IToastMessageProps) => {
-  const getIcon = () => {
-    return status === 'success' ? checkIcon : closeIcon
-  }
+export interface IToastMessageCardProps {
+  duration?: number
+  className?: string
+}
 
+const ToastMessage = ({ duration = 2900, className }: IToastMessageCardProps) => {
+  const { toasts, removeToast } = useToast()
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowNotification(false)
-    }, duration)
-    return () => clearTimeout(timer)
-  }, [duration])
+    toasts.forEach((toast) => {
+      const timer = setTimeout(() => {
+        if (!toast.id) return
+        removeToast(toast.id)
+      }, duration)
+      return () => clearTimeout(timer)
+    })
+  }, [duration, removeToast, toasts])
 
-  return (
-    <Message $status={status} {...props}>
-      <Icon src={getIcon()} alt={status} />
-      <Typography as='p'>{message}</Typography>
+  return toasts.map((item: IToastMessage, index: number) => (
+    <Message key={item.id} $status={item.status} className={className} $index={index}>
+      <Image src={item.status === 'success' ? checkIcon : closeIcon} alt={item.status} size='sm' />
+      <Typography as='p'>{item.message}</Typography>
     </Message>
-  )
+  ))
 }
 
 export default ToastMessage

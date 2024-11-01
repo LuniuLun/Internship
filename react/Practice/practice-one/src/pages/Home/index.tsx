@@ -1,5 +1,4 @@
 import { Form, Loader, ProductCard, TextField, ToastMessage, FetchError } from '../../components'
-import { IToastMessageProps } from '../../components/ToastMessage'
 import {
   AdditionalCard,
   AdditionalDes,
@@ -22,7 +21,9 @@ import {
   restrictRealNumberInput
 } from '../../utilities'
 import { Button } from '../../components/common'
-import { useProduct } from '../../utilities/hooks/useProduct'
+import { useProduct } from '../../components/hooks/useProduct'
+import useToast from '../../components/hooks/useToast'
+import { IToastMessage } from '../../components/ToastMessage'
 
 const errorMessagesDefault = { name: '', price: '', quantity: '', imageURL: '' }
 
@@ -33,6 +34,7 @@ const Home = () => {
   const property = queryParams.get('property') || ('name' as keyof IProduct)
   const q = queryParams.get('q') || ''
   const { fetchProducts, submitProduct, deleteProduct, loadMoreProducts } = useProduct()
+  const { addToast } = useToast()
   const [products, setProducts] = useState<IProduct[]>([])
   const [chosenProduct, setChosenProduct] = useState<IProduct | null>(null)
   const [showPopup, setShowPopup] = useState(false)
@@ -41,12 +43,7 @@ const Home = () => {
   const [showLoader, setShowLoader] = useState(false)
   const [errorMessage, setErrorMessage] = useState(errorMessagesDefault)
   const [limit, setLimit] = useState(9)
-  const [showNotification, setShowNotification] = useState(false)
-  const [notification, setNotification] = useState<IToastMessageProps>({
-    status: 'error',
-    message: '',
-    setShowNotification
-  })
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -60,11 +57,9 @@ const Home = () => {
         })
 
         if (response) {
-          setShowNotification(true)
-          setNotification({
-            status: response.status as IToastMessageProps['status'],
-            message: response.message,
-            setShowNotification
+          addToast({
+            status: response.status as IToastMessage['status'],
+            message: response.message
           })
 
           if (response.data) {
@@ -122,11 +117,9 @@ const Home = () => {
           const response = await deleteProduct(productId)
 
           if (response) {
-            setShowNotification(true)
-            setNotification({
-              status: response.status as IToastMessageProps['status'],
-              message: response.message,
-              setShowNotification
+            addToast({
+              status: response.status as IToastMessage['status'],
+              message: response.message
             })
 
             if (response.status === 'success' && response.data) {
@@ -177,11 +170,9 @@ const Home = () => {
         const response = await submitProduct(newProduct)
 
         if (response) {
-          setShowNotification(true)
-          setNotification({
-            status: response.status as IToastMessageProps['status'],
-            message: response.message,
-            setShowNotification
+          addToast({
+            status: response.status as IToastMessage['status'],
+            message: response.message
           })
           if (response.status === 'success' && response.data) {
             setProducts((prev) => {
@@ -210,8 +201,6 @@ const Home = () => {
       setShowLoader(true)
 
       const fetchData = async () => {
-        console.log(sort, property, q)
-
         try {
           const response = await loadMoreProducts({
             typeOfSort: sort === 'AToZ' || sort === 'ZToA' ? sort : undefined,
@@ -221,11 +210,9 @@ const Home = () => {
           })
 
           if (response) {
-            setShowNotification(true)
-            setNotification({
-              status: response.status as IToastMessageProps['status'],
-              message: response.message,
-              setShowNotification
+            addToast({
+              status: response.status as IToastMessage['status'],
+              message: response.message
             })
 
             if (response.status === 'success' && response.data && response.data.length > 0) {
@@ -244,10 +231,9 @@ const Home = () => {
 
       fetchData()
     } else {
-      setNotification({
+      addToast({
         status: 'error',
-        message: 'You have reached the maximum limit',
-        setShowNotification
+        message: 'You have reached the maximum limit'
       })
     }
   }
@@ -344,14 +330,7 @@ const Home = () => {
           {showLoader && <Loader />}
         </WrapperPopup>
       )}
-      {showNotification && (
-        <ToastMessage
-          className='fade-in-out'
-          status={notification.status}
-          message={notification.message}
-          setShowNotification={setShowNotification}
-        />
-      )}
+      <ToastMessage className='slide-down' />
     </HomeStyled>
   )
 }
