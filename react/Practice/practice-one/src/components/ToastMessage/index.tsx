@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import checkIcon from '../../assets/icons/check.svg'
-import closeIcon from '../../assets/icons/close.svg'
-import { TStatusVariant } from '../../types/variant'
-import { Image, Typography } from '../common'
 import { Message } from './ToastMessage.styled'
-import useToast from '../hooks/useToast'
+import checkIcon from '@assets/icons/check.svg'
+import closeIcon from '@assets/icons/close.svg'
+import { Image, Typography } from '../common'
+import useToast from '@hooks/useToast'
+import { TStatusVariant } from '@type/variant'
 
 export interface IToastMessage {
   status: TStatusVariant

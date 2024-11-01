@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import arrowDownIcon from '../../assets/icons/down-arrow.svg'
+import arrowDownIcon from '@assets/icons/down-arrow.svg'
 import { Button, Image } from '../common'
 import { DropdownContainer, SortOption, SortOptionItem, Content } from './Dropdown.styled'
 

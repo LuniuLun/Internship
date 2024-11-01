@@ -25,6 +25,6 @@
 }
 
 .slide-down {
-  -webkit-animation: slideDown .5s ease-in-out;
-  animation: slideDown .5s ease-in-out;
+  -webkit-animation: slideDown 0.5s ease-in-out;
+  animation: slideDown 0.5s ease-in-out;
 }

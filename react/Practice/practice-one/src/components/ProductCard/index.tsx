@@ -1,7 +1,7 @@
-import closeIcon from '../../assets/icons/close.svg'
-import editIcon from '../../assets/icons/edit.svg'
-import ellipseIcon from '../../assets/icons/ellipse.svg'
-import { IProduct } from '../../types/product'
+import closeIcon from '@assets/icons/close.svg'
+import editIcon from '@assets/icons/edit.svg'
+import ellipseIcon from '@assets/icons/ellipse.svg'
+import { IProduct } from '@type/product'
 import { Button, Heading, Image, Typography } from '../common'
 import { ProductContainer, ProductDescription, ItemThin, ButtonStyled } from './ProductCard.styled'
 

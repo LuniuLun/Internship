@@ -1,4 +1,4 @@
-import REGEXP from '../constants/regExp'
+import REGEXP from '@constants/regExp'
 
 export const restrictIntegerInput = (event: React.KeyboardEvent<HTMLInputElement>) => {
   const charCode = event.charCode || event.which

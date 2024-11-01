@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import DefaultLayout from './layouts'
 import Home from './pages/Home'
-import { ToastProvider } from './components/'
+import { ToastProvider } from '@components'
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import { TButtonVariant, TSizeVariant } from '../../../types/variant'
+import { TButtonVariant, TSizeVariant } from '@type/variant'
 import ButtonStyled from './Button.styled'
 
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

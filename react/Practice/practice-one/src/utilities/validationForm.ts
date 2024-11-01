@@ -1,4 +1,4 @@
-import REGEXP from '../constants/regExp'
+import REGEXP from '@constants/regExp'
 
 export const isNotEmpty = (key: string, value: string): string | undefined => {
   return !value.trim().length ? `Please fill in the ${key}.` : undefined

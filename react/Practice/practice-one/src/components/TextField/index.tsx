@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TSizeVariant } from '../../types/variant'
+import { TSizeVariant } from '@type/variant'
 import { Input, Wrapper } from './TextField.styled'
 import { Typography } from '../common'
 

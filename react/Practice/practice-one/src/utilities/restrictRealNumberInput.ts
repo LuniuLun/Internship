@@ -1,4 +1,4 @@
-import REGEXP from '../constants/regExp'
+import REGEXP from '@constants/regExp'
 
 export const restrictRealNumberInput = (event: React.KeyboardEvent<HTMLInputElement>) => {
   const { key, ctrlKey, metaKey, target } = event

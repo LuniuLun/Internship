@@ -1,4 +1,6 @@
-import { Form, Loader, ProductCard, TextField, ToastMessage, FetchError } from '../../components'
+import { FormEvent, useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+
 import {
   AdditionalCard,
   AdditionalDes,
@@ -8,10 +10,16 @@ import {
   WrapperPopup,
   WrapperProducts
 } from './Home.styled'
-import plus from '../../assets/icons/plus.svg'
-import { FormEvent, useEffect, useState } from 'react'
-import { IProduct } from '../../types/product'
-import { useLocation } from 'react-router-dom'
+
+import { Form, Loader, ProductCard, TextField, ToastMessage, FetchError } from '@components'
+import { Button } from '@components/common'
+import { useProduct } from '@components/hooks/useProduct'
+import useToast from '@components/hooks/useToast'
+import { IToastMessage } from '@components/ToastMessage'
+
+import plus from '@assets/icons/plus.svg'
+import { IProduct } from '@type/product'
+
 import {
   checkImageURL,
   checkName,
@@ -19,11 +27,7 @@ import {
   checkQuantity,
   restrictIntegerInput,
   restrictRealNumberInput
-} from '../../utilities'
-import { Button } from '../../components/common'
-import { useProduct } from '../../components/hooks/useProduct'
-import useToast from '../../components/hooks/useToast'
-import { IToastMessage } from '../../components/ToastMessage'
+} from '@utilities'
 
 const errorMessagesDefault = { name: '', price: '', quantity: '', imageURL: '' }
 

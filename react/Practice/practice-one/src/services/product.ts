@@ -1,6 +1,6 @@
-import MESSAGE from '../constants/message'
-import { IApiResponse } from '../types/apiResponse'
-import { IProduct } from '../types/product'
+import MESSAGE from '@constants/message'
+import { IApiResponse } from '@type/apiResponse'
+import { IProduct } from '@type/product'
 
 const baseUrl = `${import.meta.env.VITE_API_URL}${import.meta.env.VITE_API_ENDPOINT}`
 

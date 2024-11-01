@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
-import * as productService from '../../service/product'
-import { IApiResponse } from '../../types/apiResponse'
-import { TFilterOptions } from '../../types/filterOption'
-import { IProduct } from '../../types/product'
-import SortObjectsByPropertyAZ from '../../utilities/sort'
+import * as productService from '@services/product'
+import { IApiResponse } from '@type/apiResponse'
+import { TFilterOptions } from '@type/filterOption'
+import { IProduct } from '@type/product'
+import SortObjectsByPropertyAZ from '@utilities/sort'
 
 interface UseProductReturn {
   fetchProducts: (options: Partial<TFilterOptions<IProduct>>) => Promise<IApiResponse<IProduct[]>>
