@@ -1,0 +1,12 @@
+.normal-medium-text {
+  font-size: 0.875rem;
+  line-height: 1.1375rem;
+  font-weight: 500;
+}
+
+.normal-thin-text {
+  font-size: 0.875rem;
+  line-height: 1.225rem;
+  font-weight: 400;
+  color: var(--white-text-1);
+}
