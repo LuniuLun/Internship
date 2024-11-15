@@ -145,3 +145,4 @@ dist
 1
 
 /public
+*storybook.log

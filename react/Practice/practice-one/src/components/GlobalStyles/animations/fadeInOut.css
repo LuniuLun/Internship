@@ -1,0 +1,28 @@
+@-webkit-keyframes fadeInOut {
+  /* Safari 4.0 - 8.0 */
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateZ(0);
+    /* Fix for Safari bug with `display: none` */
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.fade-in-out {
+  -webkit-animation: fadeInOut 3s ease-in-out;
+  animation: fadeInOut 3s ease-in-out;
+}
