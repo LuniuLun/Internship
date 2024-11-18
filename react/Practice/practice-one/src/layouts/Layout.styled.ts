@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const Wrapper = styled.div`
   background-color: var(--dark-bg-1);
   padding: 20px 18px;
-  height: 100vh;
   overflow-y: auto;
 `
 
