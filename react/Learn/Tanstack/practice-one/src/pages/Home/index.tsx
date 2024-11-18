@@ -1,5 +1,6 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 
 import {
   AdditionalCard,
@@ -30,54 +31,125 @@ import {
 } from '@utilities'
 
 const errorMessagesDefault = { name: '', price: '', quantity: '', imageURL: '' }
-
 const Home = () => {
+  const queryClient = useQueryClient()
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const sort = queryParams.get('sort') || ''
   const property = queryParams.get('property') || ('name' as keyof IProduct)
   const q = queryParams.get('q') || ''
-  const { fetchProducts, submitProduct, deleteProduct, loadMoreProducts } = useProduct()
+  const { submitProduct, deleteProduct, loadMoreProducts } = useProduct()
   const { addToast } = useToast()
-  const [products, setProducts] = useState<IProduct[]>([])
   const [chosenProduct, setChosenProduct] = useState<IProduct | null>(null)
   const [showPopup, setShowPopup] = useState(false)
   const [showForm, setShowForm] = useState(false)
   const [showWarning, setShowWarning] = useState(false)
   const [showLoader, setShowLoader] = useState(false)
   const [errorMessage, setErrorMessage] = useState(errorMessagesDefault)
-  const [limit, setLimit] = useState(9)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setShowPopup(true)
-        setShowLoader(true)
-        const response = await fetchProducts({
-          typeOfSort: sort === 'AToZ' || sort === 'ZToA' ? sort : undefined,
-          property: property as keyof IProduct,
-          value: q,
-          limit: limit.toString()
-        })
+  const deleteMutation = useMutation({
+    mutationFn: async (productId: string) => {
+      const response = await deleteProduct(productId)
+      addToast({
+        status: response.status as IToastMessage['status'],
+        message: response.message
+      })
+      return response
+    },
+    onSuccess: (response) => {
+      if (response.status === 'success' && response.data) {
+        queryClient.setQueryData(
+          ['products', { sort, property, q }],
+          (oldData: { pages: IProduct[][]; pageParams: number[] }) => {
+            // If there's no old data or no pages, return the current state (empty array)
+            if (!oldData || !oldData.pages) return { pages: [], pageParams: oldData.pageParams }
+            // Remove the product from the pages by filtering out the deleted product
+            const updatedPages = oldData.pages.map((page) => page.filter((product) => product.id !== response.data!.id))
 
-        if (response) {
-          addToast({
-            status: response.status as IToastMessage['status'],
-            message: response.message
-          })
-
-          if (response.data) {
-            setProducts(response.data)
+            // Return the updated pages structure
+            return {
+              ...oldData, // Keep the previous page parameters
+              pages: updatedPages // Update the pages with the modified product list
+            }
           }
-        }
-      } finally {
-        setShowPopup(false)
-        setShowLoader(false)
+        )
       }
+    },
+    onError: (error) => {
+      console.error('Error deleting product:', error)
     }
+  })
 
-    fetchData()
-  }, [sort, property, q])
+  const submitMutation = useMutation({
+    mutationFn: submitProduct,
+    onSuccess: (response) => {
+      addToast({
+        status: response.status as IToastMessage['status'],
+        message: response.message
+      })
+      if (response.status === 'success' && response.data) {
+        queryClient.setQueryData(
+          ['products', { sort, property, q }],
+          (oldData: { pages: IProduct[][]; pageParams: number[] }) => {
+            // If there's no old data or no pages, return a new array with the updated product
+            if (!oldData || !oldData.pages) return { pages: [[response.data!]], pageParams: oldData.pageParams }
+            // Go through each page and find the page where the product should be updated
+            const updatedPages = oldData.pages.map((page) => {
+              const productExists = page.some((product) => product.id === response.data!.id)
+
+              if (productExists) {
+                // If the product exists on this page, update it
+                return page.map((product) => (product.id === response.data!.id ? response.data! : product))
+              } else {
+                // If the product doesn't exist, return the page as is
+                return page
+              }
+            })
+
+            // Now, you should return the updated pages structure
+            return {
+              ...oldData, // Keep the previous page parameters
+              pages: updatedPages // Update the pages with the modified product list
+            }
+          }
+        )
+      }
+    },
+    onSettled: () => {
+      setShowPopup(false)
+      setShowLoader(false)
+    }
+  })
+
+  const {
+    data: productList,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetching,
+    isError,
+    error
+  } = useInfiniteQuery({
+    queryKey: ['products', { sort, property, q }],
+    queryFn: async ({ pageParam = 9 }) => {
+      const response = await loadMoreProducts({
+        typeOfSort: sort === 'AToZ' || sort === 'ZToA' ? sort : undefined,
+        property: property as keyof IProduct,
+        value: q,
+        limit: pageParam.toString()
+      })
+
+      return response.data
+    },
+    initialPageParam: 9,
+
+    getNextPageParam: (data, allPages) => {
+      if (allPages && data && allPages?.length * 10 - data.length === 1) {
+        return allPages.length * 10 + 9
+      }
+      return undefined
+    }
+  })
 
   const handleShowForm = () => {
     setShowPopup(true)
@@ -111,34 +183,13 @@ const Home = () => {
     event.preventDefault()
     const formData = new FormData(event.target as HTMLFormElement)
     const productId = formData.get('id') as string | null
-    handleCloseWarning()
 
     if (productId) {
-      const deleteData = async () => {
-        try {
-          setShowPopup(true)
-          setShowLoader(true)
-          const response = await deleteProduct(productId)
-
-          if (response) {
-            addToast({
-              status: response.status as IToastMessage['status'],
-              message: response.message
-            })
-
-            if (response.status === 'success' && response.data) {
-              setProducts((prev) => {
-                return prev.filter((product) => product.id !== response.data!.id)
-              })
-            }
-          }
-        } finally {
-          setShowPopup(false)
-          setShowLoader(false)
-        }
-      }
-
-      deleteData()
+      setShowPopup(true)
+      setShowLoader(true)
+      deleteMutation.mutate(productId)
+      setShowPopup(false)
+      setShowLoader(false)
     }
   }
 
@@ -162,115 +213,64 @@ const Home = () => {
     setErrorMessage(errors)
 
     const hasErrors = Object.values(errors).some((error) => error !== '')
-
     if (hasErrors) return
 
     handleCloseForm()
-
-    const submitData = async () => {
-      try {
-        setShowPopup(true)
-        setShowLoader(true)
-        const response = await submitProduct(newProduct)
-
-        if (response) {
-          addToast({
-            status: response.status as IToastMessage['status'],
-            message: response.message
-          })
-          if (response.status === 'success' && response.data) {
-            setProducts((prev) => {
-              const productExists = prev.some((product) => product.id === response.data!.id)
-              if (productExists) {
-                return prev.map((product) => (product.id === response.data!.id ? response.data! : product))
-              } else {
-                return [...prev, response.data!]
-              }
-            })
-          }
-        }
-      } finally {
-        setShowPopup(false)
-        setShowLoader(false)
-      }
-    }
-
-    submitData()
+    setShowPopup(true)
+    setShowLoader(true)
+    submitMutation.mutate(newProduct)
   }
 
-  const handleShowMore = () => {
-    const newLimit = limit + 10
-    if (newLimit - products.length <= 10) {
-      setShowPopup(true)
-      setShowLoader(true)
+  if (isFetching) {
+    return <h2>Loading...</h2>
+  }
 
-      const fetchData = async () => {
-        try {
-          const response = await loadMoreProducts({
-            typeOfSort: sort === 'AToZ' || sort === 'ZToA' ? sort : undefined,
-            property: property as keyof IProduct,
-            value: q,
-            limit: newLimit.toString()
-          })
-
-          if (response) {
-            addToast({
-              status: response.status as IToastMessage['status'],
-              message: response.message
-            })
-
-            if (response.status === 'success' && response.data && response.data.length > 0) {
-              setLimit(newLimit)
-              const newProducts = response.data
-              if (newProducts.length > 0) {
-                setProducts((prev) => [...prev, ...newProducts.slice(prev.length)])
-              }
-            }
-          }
-        } finally {
-          setShowPopup(false)
-          setShowLoader(false)
-        }
-      }
-
-      fetchData()
-    } else {
-      addToast({
-        status: 'error',
-        message: 'You have reached the maximum limit'
-      })
-    }
+  if (isError) {
+    return (
+      <h2>
+        Something went wrong<p>. Error: {error.message}</p>
+      </h2>
+    )
   }
 
   return (
     <HomeStyled>
-      {products.length > 0 ? (
+      {Array.isArray(productList?.pages) && productList?.pages.length > 0 ? (
         <>
           <WrapperProducts className='container'>
             <AdditionalCard onClick={handleShowForm}>
               <AdditionalIcon src={plus} alt='add food' />
               <AdditionalDes>Add new dish</AdditionalDes>
             </AdditionalCard>
-            {products.map(({ id, name, imageURL, price, quantity }: IProduct) => (
-              <ProductCard
-                key={id}
-                id={id}
-                name={name}
-                imageURL={imageURL}
-                price={price}
-                quantity={quantity}
-                onEdit={() => handleShowEditForm({ id, name, imageURL, price, quantity })}
-                onDelete={() => handleShowWarning({ id, name, imageURL, price, quantity })}
-              />
-            ))}
+            {productList?.pages
+              .flat()
+              .filter((product): product is IProduct => product !== undefined)
+              .map(({ id, name, imageURL, price, quantity }: IProduct) => (
+                <ProductCard
+                  key={id}
+                  id={id}
+                  name={name}
+                  imageURL={imageURL}
+                  price={price}
+                  quantity={quantity}
+                  onEdit={() => handleShowEditForm({ id, name, imageURL, price, quantity })}
+                  onDelete={() => handleShowWarning({ id, name, imageURL, price, quantity })}
+                />
+              ))}
           </WrapperProducts>
           <WrapperBtn>
-            <Button variant='primary' title='Show more' onClick={handleShowMore} />
+            <Button
+              variant='primary'
+              title={isFetchingNextPage ? 'Loading more...' : hasNextPage ? 'Load More' : 'Nothing more to load'}
+              onClick={() => fetchNextPage()}
+              disabled={!hasNextPage || isFetchingNextPage}
+            />
           </WrapperBtn>
         </>
       ) : (
-        <FetchError title='Not results found' />
+        <FetchError title='No results found' />
       )}
+
       {showPopup && (
         <WrapperPopup className='container-fluid'>
           {showForm && (
