@@ -38,7 +38,7 @@ const Home = () => {
   const sort = queryParams.get('sort') || ''
   const property = queryParams.get('property') || ('name' as keyof IProduct)
   const q = queryParams.get('q') || ''
-  const { submitProduct, deleteProduct, loadMoreProducts } = useProduct()
+  const { submitProduct, deleteProduct, fetchProducts } = useProduct()
   const { addToast } = useToast()
   const [chosenProduct, setChosenProduct] = useState<IProduct | null>(null)
   const [showPopup, setShowPopup] = useState(false)
@@ -132,7 +132,7 @@ const Home = () => {
   } = useInfiniteQuery({
     queryKey: ['products', { sort, property, q }],
     queryFn: async ({ pageParam = 9 }) => {
-      const response = await loadMoreProducts({
+      const response = await fetchProducts({
         typeOfSort: sort === 'AToZ' || sort === 'ZToA' ? sort : undefined,
         property: property as keyof IProduct,
         value: q,
@@ -143,7 +143,7 @@ const Home = () => {
     },
     initialPageParam: 9,
     getNextPageParam: (data, allPages) => {
-      if (allPages && data && allPages?.length * 10 - data.length === 1) {
+      if (allPages && data && allPages.length * 10 - data.length === 1) {
         return allPages.length * 10 + 9
       }
       return undefined
@@ -235,17 +235,15 @@ const Home = () => {
 
   return (
     <HomeStyled>
-      {Array.isArray(productList?.pages) && productList?.pages.length > 0 ? (
+      {Array.isArray(productList?.pages) && productList.pages.length > 0 ? (
         <>
           <WrapperProducts className='container'>
             <AdditionalCard onClick={handleShowForm}>
               <AdditionalIcon src={plus} alt='add food' />
               <AdditionalDes>Add new dish</AdditionalDes>
             </AdditionalCard>
-            {productList?.pages
-              .flat()
-              .filter((product): product is IProduct => product !== undefined)
-              .map(({ id, name, imageURL, price, quantity }: IProduct) => (
+            {productList.pages[productList.pages.length - 1].map(
+              ({ id, name, imageURL, price, quantity }: IProduct) => (
                 <ProductCard
                   key={id}
                   id={id}
@@ -256,7 +254,8 @@ const Home = () => {
                   onEdit={() => handleShowEditForm({ id, name, imageURL, price, quantity })}
                   onDelete={() => handleShowWarning({ id, name, imageURL, price, quantity })}
                 />
-              ))}
+              )
+            )}
           </WrapperProducts>
           <WrapperBtn>
             <Button

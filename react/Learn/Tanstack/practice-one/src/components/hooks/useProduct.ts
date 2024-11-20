@@ -9,7 +9,6 @@ interface UseProductReturn {
   fetchProducts: (options: Partial<TFilterOptions<IProduct>>) => Promise<IApiResponse<IProduct[]>>
   submitProduct: (product: IProduct) => Promise<IApiResponse<IProduct>>
   deleteProduct: (id: string) => Promise<IApiResponse<IProduct>>
-  loadMoreProducts: (options?: Partial<TFilterOptions<IProduct>>) => Promise<IApiResponse<IProduct[]>>
 }
 
 export const useProduct = (): UseProductReturn => {
@@ -41,20 +40,6 @@ export const useProduct = (): UseProductReturn => {
     [sortProducts]
   )
 
-  const loadMoreProducts = useCallback(
-    async (options: Partial<TFilterOptions<IProduct>> = {}) => {
-      const { property = 'name', value = '', limit = '9' } = options
-
-      const response =
-        property && value
-          ? await productService.filterProduct(property, value, limit.toString())
-          : await productService.getProduct(limit.toString())
-
-      return response
-    },
-    [sortProducts]
-  )
-
   const submitProduct = async (product: IProduct): Promise<IApiResponse<IProduct>> => {
     const response = product.id ? await productService.editProduct(product) : await productService.addProduct(product)
     return response
@@ -68,7 +53,6 @@ export const useProduct = (): UseProductReturn => {
   return {
     fetchProducts,
     submitProduct,
-    deleteProduct,
-    loadMoreProducts
+    deleteProduct
   }
 }
