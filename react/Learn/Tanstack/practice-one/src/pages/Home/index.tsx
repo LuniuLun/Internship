@@ -1,125 +1,41 @@
-import { FormEvent, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-
+import { useHomeQueries } from './hooks/homeQueries'
+import { useHomeHandlers } from './hooks/homeHandlers'
 import {
-  AdditionalCard,
-  AdditionalDes,
-  AdditionalIcon,
   HomeStyled,
+  WrapperProducts,
   WrapperBtn,
   WrapperPopup,
-  WrapperProducts
+  AdditionalCard,
+  AdditionalIcon,
+  AdditionalDes
 } from './Home.styled'
-
-import { Form, Loader, ProductCard, TextField, ToastMessage, FetchError } from '@components'
-import { Button } from '@components/common'
-import { useProduct } from '@components/hooks/useProduct'
-import useToast from '@components/hooks/useToast'
-import { IToastMessage } from '@components/ToastMessage'
-
-import plus from '@assets/icons/plus.svg'
+import { ProductCard, Form, TextField, Loader, FetchError, ToastMessage } from '@components'
+import { restrictIntegerInput, restrictRealNumberInput } from '@utilities'
 import { IProduct } from '@type/product'
+import plus from '@assets/icons/plus.svg'
+import { Button } from '@components/common'
+import { useState } from 'react'
 
-import {
-  checkImageURL,
-  checkName,
-  checkPrice,
-  checkQuantity,
-  restrictIntegerInput,
-  restrictRealNumberInput
-} from '@utilities'
-
-const errorMessagesDefault = { name: '', price: '', quantity: '', imageURL: '' }
 const Home = () => {
-  const queryClient = useQueryClient()
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
-  const sort = queryParams.get('sort') || ''
-  const property = queryParams.get('property') || ('name' as keyof IProduct)
-  const q = queryParams.get('q') || ''
-  const { submitProduct, deleteProduct, fetchProducts } = useProduct()
-  const { addToast } = useToast()
-  const [chosenProduct, setChosenProduct] = useState<IProduct | null>(null)
   const [showPopup, setShowPopup] = useState(false)
-  const [showForm, setShowForm] = useState(false)
-  const [showWarning, setShowWarning] = useState(false)
   const [showLoader, setShowLoader] = useState(false)
-  const [errorMessage, setErrorMessage] = useState(errorMessagesDefault)
-
-  const deleteMutation = useMutation({
-    mutationFn: async (productId: string) => {
-      const response = await deleteProduct(productId)
-      addToast({
-        status: response.status as IToastMessage['status'],
-        message: response.message
-      })
-      return response
-    },
-    onSuccess: (response) => {
-      if (response.status === 'success' && response.data) {
-        queryClient.setQueryData(
-          ['products', { sort, property, q }],
-          (oldData: { pages: IProduct[][]; pageParams: number[] }) => {
-            // If there's no old data or no pages, return the current state (empty array)
-            if (!oldData || !oldData.pages) return { pages: [], pageParams: oldData.pageParams }
-            // Remove the product from the pages by filtering out the deleted product
-            const updatedPages = oldData.pages.map((page) => page.filter((product) => product.id !== response.data!.id))
-
-            // Return the updated pages structure
-            return {
-              ...oldData, // Keep the previous page parameters
-              pages: updatedPages // Update the pages with the modified product list
-            }
-          }
-        )
-      }
-    },
-    onError: (error) => {
-      console.error('Error deleting product:', error)
-    }
-  })
-
-  const submitMutation = useMutation({
-    mutationFn: submitProduct,
-    onSuccess: (response) => {
-      addToast({
-        status: response.status as IToastMessage['status'],
-        message: response.message
-      })
-      if (response.status === 'success' && response.data) {
-        queryClient.setQueryData(
-          ['products', { sort, property, q }],
-          (oldData: { pages: IProduct[][]; pageParams: number[] }) => {
-            // If there's no old data or no pages, return a new array with the updated product
-            if (!oldData || !oldData.pages) return { pages: [[response.data!]], pageParams: oldData.pageParams }
-            // Go through each page and find the page where the product should be updated
-            const updatedPages = oldData.pages.map((page) => {
-              const productExists = page.some((product) => product.id === response.data!.id)
-
-              if (productExists) {
-                // If the product exists on this page, update it
-                return page.map((product) => (product.id === response.data!.id ? response.data! : product))
-              } else {
-                // If the product doesn't exist, return the page as is
-                return page
-              }
-            })
-
-            // Now, you should return the updated pages structure
-            return {
-              ...oldData, // Keep the previous page parameters
-              pages: updatedPages // Update the pages with the modified product list
-            }
-          }
-        )
-      }
-    },
-    onSettled: () => {
-      setShowPopup(false)
-      setShowLoader(false)
-    }
-  })
+  const { deleteMutation, submitMutation, infiniteQuery } = useHomeQueries({ setShowPopup, setShowLoader, queryParams })
+  const {
+    chosenProduct,
+    showForm,
+    showWarning,
+    errorMessage,
+    handleShowForm,
+    handleCloseForm,
+    handleShowWarning,
+    handleCloseWarning,
+    handleShowEditForm,
+    handleDelete,
+    handleSubmit
+  } = useHomeHandlers({ setShowPopup, setShowLoader, deleteMutation, submitMutation })
 
   const {
     data: productList,
@@ -129,97 +45,7 @@ const Home = () => {
     isFetching,
     isError,
     error
-  } = useInfiniteQuery({
-    queryKey: ['products', { sort, property, q }],
-    queryFn: async ({ pageParam = 9 }) => {
-      const response = await fetchProducts({
-        typeOfSort: sort === 'AToZ' || sort === 'ZToA' ? sort : undefined,
-        property: property as keyof IProduct,
-        value: q,
-        limit: pageParam.toString()
-      })
-
-      return response.data
-    },
-    initialPageParam: 9,
-    getNextPageParam: (data, allPages) => {
-      if (allPages && data && allPages.length * 10 - data.length === 1) {
-        return allPages.length * 10 + 9
-      }
-      return undefined
-    },
-    staleTime: 300000
-  })
-
-  const handleShowForm = () => {
-    setShowPopup(true)
-    setShowForm(true)
-  }
-
-  const handleCloseForm = () => {
-    setShowPopup(false)
-    setShowForm(false)
-    setChosenProduct(null)
-    setErrorMessage(errorMessagesDefault)
-  }
-
-  const handleShowWarning = (product: IProduct) => {
-    setChosenProduct(product)
-    setShowPopup(true)
-    setShowWarning(true)
-  }
-
-  const handleCloseWarning = () => {
-    setShowPopup(false)
-    setShowWarning(false)
-  }
-
-  const handleShowEditForm = (product: IProduct) => {
-    setChosenProduct(product)
-    handleShowForm()
-  }
-
-  const handleDelete = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const formData = new FormData(event.target as HTMLFormElement)
-    const productId = formData.get('id') as string | null
-
-    if (productId) {
-      setShowPopup(true)
-      setShowLoader(true)
-      deleteMutation.mutate(productId)
-      setShowPopup(false)
-      setShowLoader(false)
-    }
-  }
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
-    const newProduct: IProduct = { id: '', name: '', imageURL: '', price: '', quantity: '' }
-    const formData = new FormData(event.target as HTMLFormElement)
-    for (const [key, value] of formData.entries()) {
-      if (key in newProduct) {
-        newProduct[key as keyof IProduct] = value as string
-      }
-    }
-
-    const errors = {
-      name: checkName('Name', newProduct.name) || '',
-      price: checkPrice('Price', newProduct.price) || '',
-      quantity: checkQuantity('Quantity', newProduct.quantity) || '',
-      imageURL: (await checkImageURL('Image URL', newProduct.imageURL)) || ''
-    }
-    setErrorMessage(errors)
-
-    const hasErrors = Object.values(errors).some((error) => error !== '')
-    if (hasErrors) return
-
-    handleCloseForm()
-    setShowPopup(true)
-    setShowLoader(true)
-    submitMutation.mutate(newProduct)
-  }
+  } = infiniteQuery
 
   if (isFetching) {
     return <h2>Loading...</h2>
