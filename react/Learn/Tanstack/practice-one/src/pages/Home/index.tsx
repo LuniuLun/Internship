@@ -142,13 +142,13 @@ const Home = () => {
       return response.data
     },
     initialPageParam: 9,
-
     getNextPageParam: (data, allPages) => {
       if (allPages && data && allPages?.length * 10 - data.length === 1) {
         return allPages.length * 10 + 9
       }
       return undefined
-    }
+    },
+    staleTime: 300000
   })
 
   const handleShowForm = () => {
