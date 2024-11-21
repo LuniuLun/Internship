@@ -1,7 +1,6 @@
 // handlers/homeHandlers.ts
 import { useState, FormEvent } from 'react'
 import { IProduct } from '@type/product'
-import { checkName, checkPrice, checkQuantity, checkImageURL } from '@utilities'
 import { UseMutationResult } from '@tanstack/react-query'
 import { IApiResponse } from '@type/apiResponse'
 
@@ -65,32 +64,11 @@ export const useHomeHandlers = ({
     }
   }
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
-    const newProduct: IProduct = { id: '', name: '', imageURL: '', price: '', quantity: '' }
-    const formData = new FormData(event.target as HTMLFormElement)
-    for (const [key, value] of formData.entries()) {
-      if (key in newProduct) {
-        newProduct[key as keyof IProduct] = value as string
-      }
-    }
-
-    const errors = {
-      name: checkName('Name', newProduct.name) || '',
-      price: checkPrice('Price', newProduct.price) || '',
-      quantity: checkQuantity('Quantity', newProduct.quantity) || '',
-      imageURL: (await checkImageURL('Image URL', newProduct.imageURL)) || ''
-    }
-    setErrorMessage(errors)
-
-    const hasErrors = Object.values(errors).some((error) => error !== '')
-    if (hasErrors) return
-
+  const handleSubmit = async (data: IProduct) => {
     handleCloseForm()
     setShowPopup(true)
     setShowLoader(true)
-    submitMutation.mutate(newProduct)
+    submitMutation.mutate(data)
   }
 
   return {

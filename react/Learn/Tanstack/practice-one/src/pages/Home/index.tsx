@@ -11,11 +11,11 @@ import {
   AdditionalDes
 } from './Home.styled'
 import { ProductCard, Form, TextField, Loader, FetchError, ToastMessage } from '@components'
-import { restrictIntegerInput, restrictRealNumberInput } from '@utilities'
 import { IProduct } from '@type/product'
 import plus from '@assets/icons/plus.svg'
 import { Button } from '@components/common'
 import { useState } from 'react'
+import ProductForm from './components/ProductForm'
 
 const Home = () => {
   const location = useLocation()
@@ -27,7 +27,6 @@ const Home = () => {
     chosenProduct,
     showForm,
     showWarning,
-    errorMessage,
     handleShowForm,
     handleCloseForm,
     handleShowWarning,
@@ -99,46 +98,11 @@ const Home = () => {
       {showPopup && (
         <WrapperPopup className='container-fluid'>
           {showForm && (
-            <Form
-              handleCancel={handleCloseForm}
-              onSubmit={handleSubmit}
-              title={chosenProduct?.id ? 'Edit' : 'Add new food'}
-              className='slide-down'
-            >
-              <TextField
-                key={chosenProduct?.id}
-                type='hidden'
-                name='id'
-                value={chosenProduct?.id ? chosenProduct.id : ''}
-              />
-              <TextField
-                name='name'
-                label='Name'
-                value={chosenProduct?.name ? chosenProduct.name : ''}
-                errorMessage={errorMessage.name}
-              />
-              <TextField
-                name='imageURL'
-                label='Image URL'
-                value={chosenProduct?.imageURL ? chosenProduct.imageURL : ''}
-                errorMessage={errorMessage.imageURL}
-              />
-              <TextField
-                name='price'
-                label='Price'
-                value={chosenProduct?.price ? chosenProduct.price : ''}
-                errorMessage={errorMessage.price}
-                onKeyDown={(e) => restrictRealNumberInput(e)}
-              />
-              <TextField
-                name='quantity'
-                label='Quantity'
-                dimension='sm'
-                value={chosenProduct?.quantity ? chosenProduct.quantity : ''}
-                errorMessage={errorMessage.quantity}
-                onKeyDown={(e) => restrictIntegerInput(e)}
-              />
-            </Form>
+            <ProductForm
+              chosenProduct={chosenProduct ?? {}}
+              handleSubmit={handleSubmit}
+              handleCloseForm={handleCloseForm}
+            />
           )}
           {showWarning && (
             <Form
