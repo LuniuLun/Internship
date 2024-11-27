@@ -6,6 +6,7 @@ function App() {
 
   return (
     <>
+      VITE + REACT
       <Button bg="brand.highlight" onClick={toggleColorMode}>
         {colorMode === "light" ? "Dark" : "Light"}
       </Button>
