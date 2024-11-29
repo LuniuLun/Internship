@@ -1,7 +1,7 @@
 const colors = {
   brand: {
     primary: '#4A85F6', // --primary-color
-    secondary: '#8F9BB3', // --secondary-color
+    secondary: '#EFF4FA', // --secondary-color
     white: '#FFFFFF', // --white-text-default
     black: '#000000', // --black-text-default
     blackTextPrimary: '#222B45', // --black-text-primary
