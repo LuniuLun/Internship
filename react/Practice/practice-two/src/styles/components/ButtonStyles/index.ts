@@ -1,6 +1,9 @@
 import { ComponentStyleConfig } from '@chakra-ui/react'
 
-export const ButtonStyles: ComponentStyleConfig = {
+const ButtonStyles: ComponentStyleConfig = {
+  baseStyle: {
+    fontWeight: 'bold'
+  },
   sizes: {
     sm: {
       borderRadius: 'md',
@@ -39,6 +42,9 @@ export const ButtonStyles: ComponentStyleConfig = {
     }
   },
   defaultProps: {
-    fontWeight: 'bold'
+    size: 'md',
+    variant: 'primary'
   }
 }
+
+export default ButtonStyles
