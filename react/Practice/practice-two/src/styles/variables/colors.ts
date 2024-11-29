@@ -3,7 +3,7 @@ const colors = {
     primary: '#4A85F6', // --primary-color
     secondary: '#EFF4FA', // --secondary-color
     white: '#FFFFFF', // --white-text-default
-    black: '#000000', // --black-text-default
+    black: '#0A0A0A', // --black-text-default
     blackTextPrimary: '#222B45', // --black-text-primary
     blackTextSecondary: '#8F9BB3', // --black-text-secondary
     blackTextTertiary: '#757575', // --black-text-tertiary
