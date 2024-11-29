@@ -1,12 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import { Provider } from '@chakra-ui/react/provider'
+import '@fontsource/open-sans/400.css'
+import '@fontsource/open-sans/500.css'
+import '@fontsource/open-sans/600.css'
+import '@fontsource/open-sans/700.css'
+import { defaultTheme } from './styles'
+import { ChakraProvider } from '@chakra-ui/react'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Provider>
+    <ChakraProvider theme={defaultTheme} resetCSS>
       <App />
-    </Provider>
+    </ChakraProvider>
   </React.StrictMode>
 )
