@@ -9,5 +9,6 @@ export const defaultTheme = extendTheme({
   radii,
   styles: globalStyles.styles,
   config: globalStyles.config,
+  fonts: globalStyles.fonts,
   components: { Button, Heading }
 })
