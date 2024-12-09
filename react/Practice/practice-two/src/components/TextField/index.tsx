@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
-import { Input, Wrapper, Icon } from './TextField.styled'
-import { Text } from '@chakra-ui/react'
+import { Input, Text, Image, Box } from '@chakra-ui/react'
 import { TBoder, TDimensionInput } from '@type/variant'
+import colors from '@styles/variables/colors'
 
 export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string
@@ -13,15 +13,44 @@ export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElem
 }
 
 const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
-  ({ name, placeholder, errorMessage, dimension = 'sm', iconSrc, border = 'thin', ...props }, ref) => {
+  ({ name, placeholder, errorMessage, dimension = 'sm', iconSrc, border = 'thin' }, ref) => {
     return (
-      <Wrapper>
-        {iconSrc && <Icon src={iconSrc} alt={name} />}
-        <Input ref={ref} name={name} placeholder={placeholder} $dimension={dimension} $border={border} {...props} />
-        <Text color='brand.red' fontSize={'xs'} fontWeight={'light'}>
+      <Box
+        flex='1'
+        position='relative'
+        display='flex'
+        alignItems='center'
+        justifyContent='center'
+        backgroundColor={colors.brand.white}
+      >
+        {iconSrc && (
+          <Image
+            src={iconSrc}
+            alt={name}
+            position='absolute'
+            left='12px'
+            top='50%'
+            transform='translateY(-50%)'
+            zIndex='2'
+          />
+        )}
+        <Input
+          ref={ref}
+          name={name}
+          placeholder={placeholder}
+          borderRadius='2xl'
+          border={border === 'thin' ? `1px solid ${colors.brand.secondary}` : 'none'}
+          width='100%'
+          padding={dimension === 'md' ? '12px 16px' : '9px 12px'}
+          paddingLeft={iconSrc ? '40px' : '12px'}
+          fontSize={'md'}
+          color={colors.brand.blackTextPrimary}
+          backgroundColor={colors.brand.white}
+        />
+        <Text color={colors.brand.red} fontSize='xs' fontWeight='light'>
           {errorMessage}
         </Text>
-      </Wrapper>
+      </Box>
     )
   }
 )
