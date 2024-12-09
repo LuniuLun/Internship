@@ -1,3 +1,4 @@
 export { default as InfoGroup } from './InfoGroup'
 export { default as TextField } from './TextField'
 export { default as Select } from './CustomSelect'
+export { default as StatisticCard } from './StatisticCard'
