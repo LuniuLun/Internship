@@ -7,11 +7,14 @@ import '@fontsource/open-sans/600.css'
 import '@fontsource/open-sans/700.css'
 import { defaultTheme } from './styles'
 import { ChakraProvider } from '@chakra-ui/react'
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ChakraProvider theme={defaultTheme} resetCSS>
-      <App />
-    </ChakraProvider>
+    <BrowserRouter>
+      <ChakraProvider theme={defaultTheme} resetCSS>
+        <App />
+      </ChakraProvider>
+    </BrowserRouter>
   </React.StrictMode>
 )
