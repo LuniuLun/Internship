@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { Description, Heading, InfoGroupStyled } from './InfoGroup'
+import { Description, Heading, InfoGroupStyled } from './InfoGroup.styled'
 import { TSizeInfoGroup } from '@type/variant'
 
 interface IInfoGroupProps {
