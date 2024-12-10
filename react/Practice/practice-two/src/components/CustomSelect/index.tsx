@@ -17,7 +17,7 @@ const CustomSelect = ({ border = 'none', options, placeholder = 'Select an optio
   return (
     <Select
       placeholder={placeholder}
-      onChange={(e) => {
+      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
         if (onChange) onChange(e.target.value)
       }}
       variant={border === 'bottom' ? 'flushed' : 'filled'}
