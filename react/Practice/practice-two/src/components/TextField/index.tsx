@@ -21,6 +21,7 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
         display='flex'
         alignItems='center'
         justifyContent='center'
+        flexDirection={'column'}
         backgroundColor={colors.brand.white}
       >
         {iconSrc && (
@@ -41,13 +42,15 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
           borderRadius='2xl'
           border={border === 'thin' ? `1px solid ${colors.brand.secondary}` : 'none'}
           width='100%'
+          height={'unset'}
           padding={dimension === 'md' ? '12px 16px' : '9px 12px'}
           paddingLeft={iconSrc ? '40px' : '12px'}
           fontSize={'md'}
+          lineHeight={dimension === 'md' ? '24px' : '16px'}
           color={colors.brand.blackTextPrimary}
           backgroundColor={colors.brand.white}
         />
-        <Text color={colors.brand.red} fontSize='xs' fontWeight='light'>
+        <Text alignSelf={'flex-start'} marginLeft={'12px'} color={colors.brand.red} fontSize='xs' fontWeight='light'>
           {errorMessage}
         </Text>
       </Box>
