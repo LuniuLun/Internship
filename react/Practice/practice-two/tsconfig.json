@@ -1,4 +1,24 @@
 {
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@assets/icons": ["src/assets/icons/index"],
+      "@assets/*": ["src/assets/*"],
+      "@components": ["src/components/index"],
+      "@components/*": ["src/components/*"],
+      "@styles": ["src/styles/index"],
+      "@styles/*": ["src/styles/*"],
+      "@type/*": ["src/types/*"]
+    }
+  },
   "files": [],
-  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
+  "exclude": ["./src/components/__tests__/**", "./src/__mocks__/**", "./src/test-utils"]
 }
