@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 import TextField from '.'
-import searchIcon from '@assets/icons/search.svg'
-
+import { SearchIcon } from '@assets/icons'
 const meta = {
   title: 'Components/TextField',
   component: TextField,
@@ -22,8 +21,8 @@ const meta = {
     dimension: {
       control: { type: 'select', options: ['sm', 'md'] }
     },
-    iconSrc: {
-      control: { type: 'text' }
+    icon: {
+      control: { type: 'object' }
     },
     errorMessage: {
       control: { type: 'text' }
@@ -41,7 +40,7 @@ export const Default: Story = {
     placeholder: 'Enter text here',
     border: 'thin',
     dimension: 'sm',
-    iconSrc: '',
+    icon: <SearchIcon />,
     errorMessage: ''
   }
 }
@@ -52,7 +51,7 @@ export const WithIcon: Story = {
     placeholder: 'Enter text with icon',
     border: 'thin',
     dimension: 'sm',
-    iconSrc: searchIcon,
+    icon: <SearchIcon />,
     errorMessage: ''
   }
 }
@@ -63,7 +62,7 @@ export const WithError: Story = {
     placeholder: 'Enter text with error',
     border: 'thin',
     dimension: 'sm',
-    iconSrc: '',
+    icon: '',
     errorMessage: 'This field is required.'
   }
 }
@@ -74,7 +73,7 @@ export const MiddleSized: Story = {
     placeholder: 'Enter text (middle-sized)',
     border: 'thin',
     dimension: 'md',
-    iconSrc: '',
+    icon: '',
     errorMessage: ''
   }
 }

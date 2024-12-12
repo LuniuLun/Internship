@@ -1,18 +1,18 @@
-import { Image } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 interface LogoProps {
-  srcLogo: string
+  icon: React.ReactNode
   src: string
-  alt?: string
-  width?: string | number
-  height?: string | number
+  width?: string
+  height?: string
 }
 
-const Logo = ({ src, srcLogo, alt = 'Logo', width = '100px', height = 'auto' }: LogoProps) => {
+const Logo = ({ src, icon, width = '100px', height = '100px' }: LogoProps) => {
   return (
     <Link to={src}>
-      <Image src={srcLogo} alt={alt} width={width} height={height} borderRadius='50%' />
+      <Box borderRadius='50%'>{React.cloneElement(icon as React.ReactElement, { width, height })}</Box>
     </Link>
   )
 }

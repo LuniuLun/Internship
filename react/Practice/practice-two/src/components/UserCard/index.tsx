@@ -1,5 +1,5 @@
+import { DownArrowIcon } from '@assets/icons'
 import { Box, Text, Avatar, Flex, IconButton } from '@chakra-ui/react'
-import downArrowIcon from '@assets/icons/down-arrow.svg'
 
 interface UserCardProps {
   name: string
@@ -23,7 +23,7 @@ const UserCard = ({ name, role, avatar }: UserCardProps) => {
         bgColor={'transparent'}
         _hover={{ bgColor: 'blue.50' }}
         aria-label='dropdown'
-        icon={<img src={downArrowIcon} alt='down arrow' />}
+        icon={<DownArrowIcon />}
       />
     </Box>
   )
