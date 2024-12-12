@@ -1,9 +1,9 @@
 export default {
+  setupFilesAfterEnv: ['@testing-library/jest-dom', '<rootDir>/jest.setup.ts'],
   testEnvironment: 'jsdom',
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
   },
-  setupFiles: ['<rootDir>/src/setupTests.ts'],
   moduleNameMapper: {
     '^@components(.*)$': '<rootDir>/src/components$1',
     '^@assets/icons(.*)$': '<rootDir>/src/assets/icons$1',
