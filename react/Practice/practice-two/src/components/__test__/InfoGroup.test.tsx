@@ -32,9 +32,9 @@ describe('InfoGroup', () => {
     expect(descriptionElement).toHaveStyle(`color: ${colors.brand.blackTextTertiary}`)
   })
 
-  it('applies the correct font size and color for larger size', () => {
+  it('applies the correct font size and color for middle size', () => {
     const heading = 'Test Heading'
-    const description = 'Test description for the larger size.'
+    const description = 'Test description for the middle size.'
 
     render(<InfoGroup heading={heading} description={description} size='md' />)
 
