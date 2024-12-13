@@ -11,7 +11,7 @@ interface IInfoGroupProps {
 
 const InfoGroup = ({ heading, description, size = 'sm' }: IInfoGroupProps) => {
   return (
-    <Flex direction='column' align='center'>
+    <Flex direction='column' align='center' alignItems={'start'}>
       <Text fontWeight='500' fontSize={size === 'sm' ? '0.875rem' : '1rem'} color={colors.brand.black}>
         {heading}
       </Text>
