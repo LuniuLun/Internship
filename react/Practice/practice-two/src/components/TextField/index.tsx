@@ -3,13 +3,15 @@ import { Text, Box, InputProps, InputGroup, InputLeftElement, Input } from '@cha
 import colors from '@styles/variables/colors'
 
 export interface ITextFieldProps extends InputProps {
+  variant?: 'outline' | 'filled' | 'flushed' | 'unstyled'
+  size?: 'sm' | 'md' | 'lg'
   placeholder?: string
   icon?: React.ReactNode
   errorMessage?: string
 }
 
 const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
-  ({ placeholder, errorMessage, icon, ...props }, ref) => {
+  ({ placeholder, variant = 'unstyled', size = 'sm', errorMessage, icon, ...props }, ref) => {
     return (
       <Box
         flex='1'
@@ -25,7 +27,14 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
               {React.cloneElement(icon as React.ReactElement)}
             </InputLeftElement>
           )}
-          <Input errorBorderColor='red.300' ref={ref} placeholder={placeholder} {...props} />
+          <Input
+            errorBorderColor='red.300'
+            ref={ref}
+            placeholder={placeholder}
+            variant={variant}
+            size={size}
+            {...props}
+          />
         </InputGroup>
         <Text alignSelf={'flex-start'} marginLeft={'12px'} color={colors.brand.red} fontSize='xs' fontWeight='light'>
           {errorMessage}

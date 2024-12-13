@@ -35,7 +35,7 @@ const meta = {
     border: 'none',
     placeholder: 'Select an option'
   }
-} satisfies Meta<typeof CustomSelect>
+} as Meta<typeof CustomSelect>
 
 export default meta
 type Story = StoryObj<typeof meta>

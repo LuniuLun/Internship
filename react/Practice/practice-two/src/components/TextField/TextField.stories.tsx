@@ -17,10 +17,10 @@ const meta = {
       control: { type: 'text' }
     },
     variant: {
-      control: { type: 'select', options: ['outline', 'filled', 'flushed', 'unstyled'] }
+      control: { type: 'radio', options: ['outline', 'filled', 'flushed', 'unstyled'] }
     },
     size: {
-      control: { type: 'select', options: ['sm', 'md', 'lg'] }
+      control: { type: 'radio', options: ['sm', 'md', 'lg'] }
     },
     icon: {
       control: { type: 'object' },

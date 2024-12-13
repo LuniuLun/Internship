@@ -12,13 +12,8 @@ const meta = {
     size: {
       control: { type: 'radio', options: ['sm', 'lg'] }
     }
-  },
-  args: {
-    heading: 'Sample Heading',
-    description: 'This is a sample description for InfoGroup component.',
-    size: 'sm'
   }
-} satisfies Meta<typeof InfoGroup>
+} as Meta<typeof InfoGroup>
 
 export default meta
 type Story = StoryObj<typeof meta>
