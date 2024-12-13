@@ -1,9 +1,6 @@
 import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { ChakraProvider } from '@chakra-ui/react'
 import CustomSelect from '@components/CustomSelect'
-
-const customRender = (ui: React.ReactNode) => render(ui, { wrapper: ChakraProvider })
 
 const mockOnChange = jest.fn()
 
@@ -15,7 +12,7 @@ describe('CustomSelect', () => {
   ]
 
   it('renders the select with options and placeholder', () => {
-    customRender(<CustomSelect options={options} placeholder='Test Placeholder' />)
+    render(<CustomSelect options={options} placeholder='Test Placeholder' />)
 
     const selectElement = screen.getByRole('combobox')
     expect(selectElement).toHaveTextContent('Test Placeholder')
@@ -26,7 +23,7 @@ describe('CustomSelect', () => {
   })
 
   it('calls onChange when an option is selected', () => {
-    customRender(<CustomSelect options={options} onChange={mockOnChange} />)
+    render(<CustomSelect options={options} onChange={mockOnChange} />)
 
     const selectElement = screen.getByRole('combobox')
     fireEvent.change(selectElement, { target: { value: 'option1' } })
@@ -35,7 +32,7 @@ describe('CustomSelect', () => {
   })
 
   it('applies correct border variant based on the border prop', () => {
-    const { rerender } = customRender(<CustomSelect options={options} border='bottom' />)
+    const { rerender } = render(<CustomSelect options={options} border='bottom' />)
 
     const selectElement = screen.getByRole('combobox')
     expect(selectElement).toHaveStyle('border-bottom: 1px solid black')
@@ -45,7 +42,7 @@ describe('CustomSelect', () => {
   })
 
   it('renders the default placeholder if none is provided', () => {
-    customRender(<CustomSelect options={options} />)
+    render(<CustomSelect options={options} />)
 
     const selectElement = screen.getByRole('combobox')
     expect(selectElement).toHaveTextContent('Select an option')

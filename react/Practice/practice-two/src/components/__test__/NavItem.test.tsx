@@ -1,19 +1,14 @@
 import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { ChakraProvider } from '@chakra-ui/react'
 import { DashboardIcon } from '@assets/icons'
 import colors from '@styles/variables/colors'
 import NavItem from '@components/NavItem'
-
-const customRender = (ui: React.ReactNode) => render(ui, { wrapper: ChakraProvider })
 
 describe('NavItem', () => {
   const handleClickMock = jest.fn()
 
   const renderNavItem = (isActive: boolean) =>
-    customRender(
-      <NavItem icon={<DashboardIcon />} title='Test Title' isActive={isActive} handleClick={handleClickMock} />
-    )
+    render(<NavItem icon={<DashboardIcon />} title='Test Title' isActive={isActive} handleClick={handleClickMock} />)
 
   it('should render the title and icon', () => {
     const { container } = renderNavItem(false)
