@@ -1,49 +1,32 @@
 import React, { forwardRef } from 'react'
-import { Input, Text, Box } from '@chakra-ui/react'
-import { TBoder, TDimensionInput } from '@type/variant'
+import { Text, Box, InputProps, InputGroup, InputLeftElement, Input } from '@chakra-ui/react'
 import colors from '@styles/variables/colors'
 
-export interface ITextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  name: string
-  placeholder: string
-  border?: TBoder
-  dimension?: TDimensionInput
+export interface ITextFieldProps extends InputProps {
+  placeholder?: string
   icon?: React.ReactNode
   errorMessage?: string
 }
 
 const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
-  ({ name, placeholder, errorMessage, dimension = 'sm', icon, border = 'thin' }, ref) => {
+  ({ placeholder, errorMessage, icon, ...props }, ref) => {
     return (
       <Box
         flex='1'
-        position='relative'
         display='flex'
         alignItems='center'
         justifyContent='center'
-        flexDirection={'column'}
-        backgroundColor={colors.brand.white}
+        flexDirection='column'
+        backgroundColor='transparent'
       >
-        {icon && (
-          <Box position='absolute' left='12px' top='50%' transform='translateY(-50%)' zIndex='2'>
-            {React.cloneElement(icon as React.ReactElement)}
-          </Box>
-        )}
-        <Input
-          ref={ref}
-          name={name}
-          placeholder={placeholder}
-          borderRadius='2xl'
-          border={border === 'thin' ? `1px solid ${colors.brand.secondary}` : 'none'}
-          width='100%'
-          height={'unset'}
-          padding={dimension === 'md' ? '12px 16px' : '9px 12px'}
-          paddingLeft={icon ? '40px' : '12px'}
-          fontSize={'md'}
-          lineHeight={dimension === 'md' ? '24px' : '16px'}
-          color={colors.brand.blackTextPrimary}
-          backgroundColor={colors.brand.white}
-        />
+        <InputGroup>
+          {icon && (
+            <InputLeftElement pointerEvents='none' height='100%' transform='translateX(30%)'>
+              {React.cloneElement(icon as React.ReactElement)}
+            </InputLeftElement>
+          )}
+          <Input errorBorderColor='red.300' ref={ref} placeholder={placeholder} {...props} />
+        </InputGroup>
         <Text alignSelf={'flex-start'} marginLeft={'12px'} color={colors.brand.red} fontSize='xs' fontWeight='light'>
           {errorMessage}
         </Text>
