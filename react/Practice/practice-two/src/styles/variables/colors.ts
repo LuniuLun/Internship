@@ -1,17 +1,17 @@
 const colors = {
   brand: {
-    primary: '#4A85F6', // --primary-color
-    secondary: '#EFF4FA', // --secondary-color
-    red: '#EF4444', // --red-color
-    white: '#FFFFFF', // --white-text-default
-    black: '#0A0A0A', // --black-text-default
-    blackTextPrimary: '#222B45', // --black-text-primary
-    blackTextSecondary: '#8F9BB3', // --black-text-secondary
-    blackTextTertiary: '#757575', // --black-text-tertiary
-    whiteBg: '#FFFFFF', // --white-bg
-    blackBg: '#09090B', // --black-bg
-    greyBg: '#192038', // --grey-bg
-    hoverBtnColor: '#0095FF' // --hover-btn-color
+    primary: '#4A85F6',
+    secondary: '#EFF4FA',
+    red: '#EF4444',
+    white: '#FFFFFF',
+    black: '#0A0A0A',
+    blackTextPrimary: '#222B45',
+    blackTextSecondary: '#8F9BB3',
+    blackTextTertiary: '#757575',
+    whiteBg: '#FFFFFF',
+    blackBg: '#09090B',
+    greyBg: '#192038',
+    hoverBtnColor: '#0095FF'
   }
 }
 
