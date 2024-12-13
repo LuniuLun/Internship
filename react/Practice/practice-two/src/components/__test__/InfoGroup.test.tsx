@@ -1,14 +1,17 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import InfoGroup from '@components/InfoGroup'
 import colors from '@styles/variables/colors'
+
+const customRender = (ui: React.ReactNode) => render(ui, { wrapper: ChakraProvider })
 
 describe('InfoGroup', () => {
   it('renders the heading and description correctly', () => {
     const heading = 'Test Heading'
     const description = 'Test description for the InfoGroup component.'
 
-    render(<InfoGroup heading={heading} description={description} />)
+    customRender(<InfoGroup heading={heading} description={description} />)
 
     const headingElement = screen.getByText(heading)
     expect(headingElement).toBeInTheDocument()
@@ -21,7 +24,7 @@ describe('InfoGroup', () => {
     const heading = 'Test Heading'
     const description = 'Test description for the small size.'
 
-    render(<InfoGroup heading={heading} description={description} size='sm' />)
+    customRender(<InfoGroup heading={heading} description={description} size='sm' />)
 
     const headingElement = screen.getByText(heading)
     expect(headingElement).toHaveStyle('font-size: 0.875rem')
@@ -36,7 +39,7 @@ describe('InfoGroup', () => {
     const heading = 'Test Heading'
     const description = 'Test description for the middle size.'
 
-    render(<InfoGroup heading={heading} description={description} size='md' />)
+    customRender(<InfoGroup heading={heading} description={description} size='md' />)
 
     const headingElement = screen.getByText(heading)
     expect(headingElement).toHaveStyle('font-size: 1rem')
