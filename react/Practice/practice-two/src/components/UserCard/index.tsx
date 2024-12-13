@@ -1,5 +1,6 @@
 import { DownArrowIcon } from '@assets/icons'
-import { Box, Text, Avatar, Flex, IconButton } from '@chakra-ui/react'
+import { Box, Avatar, IconButton } from '@chakra-ui/react'
+import InfoGroup from '@components/InfoGroup'
 
 interface UserCardProps {
   name: string
@@ -9,14 +10,9 @@ interface UserCardProps {
 
 const UserCard = ({ name, role, avatar }: UserCardProps) => {
   return (
-    <Box display='flex' alignItems='center' p='4' backgroundColor='transparent' boxShadow='sm' maxWidth='260px'>
+    <Box display='flex' gap={4} alignItems='center' p='4' backgroundColor='transparent' boxShadow='sm' maxWidth='260px'>
       <Avatar name={name} src={avatar} size='md' />
-      <Flex direction='column' ml='4'>
-        <Text fontWeight='bold'>{name}</Text>
-        <Text fontSize='sm' color='gray.500'>
-          {role}
-        </Text>
-      </Flex>
+      <InfoGroup heading={name} description={role} size='sm' />
       <IconButton
         h='24px'
         w='24px'
