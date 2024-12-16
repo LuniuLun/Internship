@@ -2,6 +2,7 @@ import React from 'react'
 import { Flex, Text, Button } from '@chakra-ui/react'
 import { LeftArrowIcon, RightArrowIcon } from '@assets/icons'
 import CustomSelect from '@components/CustomSelect'
+import colors from '@styles/variables/colors'
 
 interface PaginationProps {
   currentPage: number
@@ -31,11 +32,12 @@ const Pagination: React.FC<PaginationProps> = ({
   }
 
   return (
-    <Flex align='center' p={4} gap='26px'>
+    <Flex align='center' p={4} gap='26px' color={colors.brand.blackTextQuaternary} fontSize='xs'>
       <Flex align='center' gap='26px'>
         <Text whiteSpace={'nowrap'}>Items per page:</Text>
         <CustomSelect<number>
           border='bottom'
+          fontSize='sm'
           placeholder={itemsPerPage.toString()}
           onChange={onItemsPerPageChange}
           options={itemsPerPageOptions.map((option) => ({

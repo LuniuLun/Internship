@@ -9,11 +9,13 @@ export interface SelectOption<T> {
 interface ICustomSelectProps<T> {
   options: SelectOption<T>[]
   border?: TBorderDirection
+  fontSize?: string
   placeholder?: string
   onChange?: (value: T) => void
 }
 
 const CustomSelect = <T extends string | number>({
+  fontSize,
   border = 'none',
   options,
   placeholder = 'Select an option',
@@ -32,6 +34,7 @@ const CustomSelect = <T extends string | number>({
       fontWeight='semibold'
       placeholder={placeholder}
       onChange={handleChange}
+      fontSize={fontSize ? fontSize : ''}
       variant={border === 'bottom' ? 'flushed' : 'filled'}
       sx={{
         borderBottom: border === 'bottom' ? '1px solid black' : 'none',
