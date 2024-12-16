@@ -19,6 +19,7 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
           )}
           <Input
             errorBorderColor='red.300'
+            paddingLeft={icon ? '40px' : '12px'}
             ref={ref}
             placeholder={placeholder}
             variant={variant}
