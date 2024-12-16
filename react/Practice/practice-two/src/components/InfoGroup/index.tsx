@@ -18,7 +18,7 @@ const InfoGroup = ({ heading, description, size = 'sm' }: IInfoGroupProps) => {
       <Text
         fontWeight='400'
         fontSize='0.75rem'
-        color={size === 'sm' ? colors.brand.blackTextTertiary : colors.brand.blackTextSecondary}
+        color={size === 'sm' ? colors.brand.blackTextSecondary : colors.brand.blackTextTertiary}
       >
         {description}
       </Text>
