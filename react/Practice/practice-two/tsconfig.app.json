@@ -30,7 +30,11 @@
       "@components/*": ["src/components/*"],
       "@styles": ["src/styles/index"],
       "@styles/*": ["src/styles/*"],
-      "@type/*": ["src/types/*"]
+      "@pages/*": ["src/pages/*"],
+      "@layout/*": ["src/layout/*"],
+      "@layout": ["src/layout/index"],
+      "@type/*": ["src/types/*"],
+      "@hooks/*": ["src/hooks/*"]
     }
   },
   "include": ["src", "./jest.setup.ts"]
