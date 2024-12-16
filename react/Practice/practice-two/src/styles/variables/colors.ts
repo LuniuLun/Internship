@@ -9,6 +9,7 @@ const colors = {
     blackTextPrimary: '#222B45',
     blackTextSecondary: '#8F9BB3',
     blackTextTertiary: '#757575',
+    blackTextQuaternary: '#717171',
     whiteBg: '#FFFFFF',
     blackBg: '#09090B',
     greyBg: '#192038',
