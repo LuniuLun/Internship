@@ -2,21 +2,34 @@ import { ComponentStyleConfig } from '@chakra-ui/react'
 
 const InputStyles: ComponentStyleConfig = {
   baseStyle: {
-    borderRadius: 'md',
-    width: '100%',
-    fontSize: 'md',
-    backgroundColor: 'brand.white',
-    color: 'brand.blackTextPrimary'
+    field: {
+      borderRadius: 'md',
+      width: '100%',
+      fontSize: 'md',
+      backgroundColor: 'brand.white',
+      color: 'brand.blackTextPrimary',
+      _placeholder: {
+        color: 'brand.blackTextTertiary'
+      }
+    }
   },
   sizes: {
     sm: {
-      height: '34px'
+      field: {
+        height: '34px'
+      }
     }
   },
   variants: {
     outline: {
-      border: '1px solid',
-      borderColor: 'brand.secondary'
+      field: {
+        borderRadius: 'lg',
+        width: '100%',
+        fontSize: 'md',
+        border: '1px solid',
+        borderColor: 'brand.secondary',
+        background: 'brand.white'
+      }
     }
   },
   defaultProps: {
