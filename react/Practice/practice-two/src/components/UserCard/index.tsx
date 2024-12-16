@@ -10,9 +10,9 @@ interface UserCardProps {
 
 const UserCard = ({ name, role, avatar }: UserCardProps) => {
   return (
-    <Box display='flex' gap={4} alignItems='center' p='4' backgroundColor='transparent' boxShadow='sm' maxWidth='260px'>
+    <Box display='flex' gap={4} alignItems='center' backgroundColor='transparent' boxShadow='sm' maxWidth='260px'>
       <Avatar name={name} src={avatar} size='md' />
-      <InfoGroup heading={name} description={role} size='sm' />
+      <InfoGroup heading={name} description={role} size='md' />
       <IconButton
         h='24px'
         w='24px'
