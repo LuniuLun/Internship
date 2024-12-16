@@ -1,5 +1,5 @@
 import { FilterIcon, PlusIcon, SearchIcon } from '@assets/icons'
-import { Button, Flex, FormControl, FormLabel, Heading, useDisclosure } from '@chakra-ui/react'
+import { Button, Flex, FormControl, FormLabel, Heading, Stack, useDisclosure } from '@chakra-ui/react'
 import { CustomTable, TextField } from '@components'
 import CustomSelect, { SelectOption } from '@components/CustomSelect'
 import users from '../../data/users'
@@ -42,12 +42,12 @@ const Dashboard = () => {
   }
 
   return (
-    <Flex flexDirection='column' gap={6}>
+    <Stack gap={6}>
       <Heading variant='primary' paddingLeft='13px'>
         Users Dashboard
       </Heading>
       <Flex gap={8} alignItems='center'>
-        <TextField icon={<SearchIcon />} variant='filled' size='lg' placeholder='Search' />
+        <TextField icon={<SearchIcon />} variant='outline' size='lg' placeholder='Search' />
         <Button display='flex' gap={2} onClick={onOpen}>
           Add user
           <PlusIcon />
@@ -71,7 +71,7 @@ const Dashboard = () => {
           <TextField id='name' name='name' placeholder='Enter your name' variant='outline' />
         </FormControl>
       </CustomModal>
-    </Flex>
+    </Stack>
   )
 }
 

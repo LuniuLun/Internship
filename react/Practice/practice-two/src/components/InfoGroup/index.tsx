@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { Text, Flex } from '@chakra-ui/react'
+import { Text, Stack } from '@chakra-ui/react'
 import { TSizeInfoGroup } from '@type/variant'
 import colors from '@styles/variables/colors'
 
@@ -11,7 +11,7 @@ interface IInfoGroupProps {
 
 const InfoGroup = ({ heading, description, size = 'sm' }: IInfoGroupProps) => {
   return (
-    <Flex direction='column' align='center' alignItems={'start'}>
+    <Stack align='center' alignItems={'start'} gap={0}>
       <Text fontWeight='500' fontSize={size === 'sm' ? '0.875rem' : '1rem'} color={colors.brand.black}>
         {heading}
       </Text>
@@ -22,7 +22,7 @@ const InfoGroup = ({ heading, description, size = 'sm' }: IInfoGroupProps) => {
       >
         {description}
       </Text>
-    </Flex>
+    </Stack>
   )
 }
 
