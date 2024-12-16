@@ -33,6 +33,7 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
             placeholder={placeholder}
             variant={variant}
             size={size}
+            bgColor='brand.white'
             {...props}
           />
         </InputGroup>
