@@ -1,5 +1,5 @@
 import { FilterIcon, PlusIcon, SearchIcon } from '@assets/icons'
-import { Button, Flex, Heading } from '@chakra-ui/react'
+import { Button, Flex, FormControl, FormLabel, Heading, useDisclosure } from '@chakra-ui/react'
 import { CustomTable, TextField } from '@components'
 import CustomSelect, { SelectOption } from '@components/CustomSelect'
 import users from '../../data/users'
@@ -7,10 +7,12 @@ import { TableRow } from '@components/CustomTable'
 import Pagination from '@components/Pagination'
 import { useState } from 'react'
 import { useUser } from '@hooks/useUser'
+import CustomModal from '@components/CustomModal'
 
 const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [itemsPerPage, setItemsPerPage] = useState<number>(10)
+  const { isOpen: isModalOpen, onOpen, onClose } = useDisclosure()
   const { transformedUsers } = useUser(users)
   const totalItems = 100
 
@@ -35,6 +37,10 @@ const Dashboard = () => {
     console.log('Delete: ', row)
   }
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    console.log('Form data submitted:', e.target)
+  }
+
   return (
     <Flex flexDirection='column' gap={6}>
       <Heading variant='primary' paddingLeft='13px'>
@@ -42,7 +48,7 @@ const Dashboard = () => {
       </Heading>
       <Flex gap={8} alignItems='center'>
         <TextField icon={<SearchIcon />} variant='filled' size='lg' placeholder='Search' />
-        <Button display='flex' gap={2}>
+        <Button display='flex' gap={2} onClick={onOpen}>
           Add user
           <PlusIcon />
         </Button>
@@ -59,6 +65,12 @@ const Dashboard = () => {
           onItemsPerPageChange={handleItemsPerPageChange}
         />
       </Flex>
+      <CustomModal isOpen={isModalOpen} onClose={onClose} handleSubmit={handleSubmit} title='Add User'>
+        <FormControl>
+          <FormLabel htmlFor='name'>Name</FormLabel>
+          <TextField id='name' name='name' placeholder='Enter your name' variant='outline' />
+        </FormControl>
+      </CustomModal>
     </Flex>
   )
 }
