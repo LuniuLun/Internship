@@ -18,7 +18,7 @@ const CustomTable = ({ title, data, onEdit, onDelete }: CustomTableProps) => {
   const headers = data.length > 0 ? Object.keys(data[0]) : []
 
   return (
-    <Table>
+    <Table borderRadius='lg'>
       {title && (
         <TableCaption
           placement='top'
@@ -28,6 +28,7 @@ const CustomTable = ({ title, data, onEdit, onDelete }: CustomTableProps) => {
           color={colors.brand.blackTextPrimary}
           fontSize='1.0625rem'
           fontWeight='bold'
+          bgColor={colors.brand.white}
         >
           {title}
         </TableCaption>
