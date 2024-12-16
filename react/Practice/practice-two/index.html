@@ -1,10 +1,63 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Set UTF-8 character encoding to ensure proper display of special characters and language -->
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <!-- Define compatibility version for Internet Explorer -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- 
+      This viewport meta tag will set the width of the viewport according to the width of the device, 
+      initial zoom ratio is 1.0, 
+      maximum zoom ratio is 1.5, 
+      minimum zoom ratio is 0.5, 
+      user-scalable=yes allowing users to zoom in or out small,
+      viewport-fit=cover and ensures content covers the viewport even on devices with notches. 
+    -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.5, minimum-scale=0.5, user-scalable=yes, viewport-fit=cover"
+    />
+    <!-- Define keywords for search engines -->
+    <meta
+      name="keywords"
+      content="user management, user administration, user roles, account management, user permissions"
+    />
+    <!-- Define description for search engines -->
+    <meta
+      name="description"
+      content="Efficiently manage user accounts, roles, and permissions with our comprehensive user management system."
+    />
+    <!-- Define author of the webpage -->
+    <meta name="author" content="DucVan" />
+    <!-- Instructs search engine robots to index the content of the webpage but not to follow the links on this page -->
+    <meta name="robots" content="index, follow" />
+    <!-- Automatically reload the webpage after 60 minutes -->
+    <meta http-equiv="refresh" content="3600" />
+    <!-- Set up Open Graph to optimize social sharing -->
+    <meta property="og:site_name" content="User Management" />
+    <meta property="og:title" content="User Management System" />
+    <meta property="og:type" content="Business" />
+    <meta
+      property="og:description"
+      content="Efficiently manage user accounts, roles, and permissions with our comprehensive user management system."
+    />
+    <meta
+      property="og:image"
+      content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP7wxO6gC1ehawZuF_qhiXbfvVMPXyRzbysw&s"
+    />
+    <meta property="og:url" content="https://user-management-practice.netlify.app/" />
+    <!-- Set up Twitter Card -->
+    <meta name="twitter:title" content="User Management System" />
+    <meta
+      name="twitter:description"
+      content="Efficiently manage user accounts, roles, and permissions with our comprehensive user management system."
+    />
+    <meta
+      name="twitter:image"
+      content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP7wxO6gC1ehawZuF_qhiXbfvVMPXyRzbysw&s"
+    />
+    <title>User Management</title>
+    <link type="image/x-icon" href="/logo.png" rel="icon" />
   </head>
   <body>
     <div id="root"></div>
