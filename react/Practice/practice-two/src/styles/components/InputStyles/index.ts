@@ -4,7 +4,6 @@ const InputStyles: ComponentStyleConfig = {
   baseStyle: {
     borderRadius: 'md',
     width: '100%',
-    height: 'unset',
     fontSize: 'md',
     backgroundColor: 'brand.white',
     color: 'brand.blackTextPrimary'
@@ -15,16 +14,14 @@ const InputStyles: ComponentStyleConfig = {
     }
   },
   variants: {
-    primary: {
-      bg: 'brand.white',
-      color: 'brand.blackTextPrimary',
+    outline: {
       border: '1px solid',
       borderColor: 'brand.secondary'
     }
   },
   defaultProps: {
     size: 'sm',
-    variant: 'primary'
+    variant: 'outline'
   }
 }
 
