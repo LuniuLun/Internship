@@ -17,6 +17,7 @@ const NavItem: React.FC<NavItemProps> = ({ icon, title, isActive, handleClick })
       align='center'
       borderRight={isActive ? `6px solid ${colors.brand.primary}` : 'none'}
       p={4}
+      paddingLeft='32px'
       bg={'transparent'}
       cursor='pointer'
       _hover={{ bg: 'gray.50' }}
