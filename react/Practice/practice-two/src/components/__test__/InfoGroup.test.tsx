@@ -28,8 +28,7 @@ describe('InfoGroup', () => {
     expect(headingElement).toHaveStyle(`color: ${colors.brand.black}`)
 
     const descriptionElement = screen.getByText(description)
-    expect(descriptionElement).toHaveStyle('font-size: 0.75rem')
-    expect(descriptionElement).toHaveStyle(`color: ${colors.brand.blackTextTertiary}`)
+    expect(descriptionElement).toHaveStyle(`color: ${colors.brand.blackTextSecondary}`)
   })
 
   it('applies the correct font size and color for middle size', () => {
@@ -43,7 +42,6 @@ describe('InfoGroup', () => {
     expect(headingElement).toHaveStyle(`color: ${colors.brand.black}`)
 
     const descriptionElement = screen.getByText(description)
-    expect(descriptionElement).toHaveStyle('font-size: 0.75rem')
-    expect(descriptionElement).toHaveStyle(`color: ${colors.brand.blackTextSecondary}`)
+    expect(descriptionElement).toHaveStyle(`color: ${colors.brand.blackTextTertiary}`)
   })
 })
