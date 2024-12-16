@@ -22,7 +22,7 @@ export const DashboardIcon = ({ width = '24', height = '24', fill = '#757575' }:
 )
 
 export const DocumentIcon = ({ width = '24', height = '24', fill = '#757575' }: IconProps) => (
-  <svg width={width} height={height} viewBox='0 0 24 24' fill={fill} xmlns='http://www.w3.org/2000/svg'>
+  <svg width={width} height={height} viewBox='0 0 24 24' fill='#fff' xmlns='http://www.w3.org/2000/svg'>
     <path
       d='M22 10V15C22 20 20 22 15 22H9C4 22 2 20 2 15V9C2 4 4 2 9 2H14'
       stroke={fill}
@@ -132,6 +132,52 @@ export const PenIcon = ({ width = '14', height = '18', fill = '#C5CEE0' }: IconP
       d='M2.08551 12.2279L4.56634 12.0021L9.23301 7.33126L6.98634 5.08376L2.30551 9.76459L2.08551 12.2279ZM8.10301 3.96792L10.3488 6.21376L11.9713 4.58876L9.72634 2.34376L8.10301 3.96792ZM0.577192 13.7379C0.402192 13.5629 0.314692 13.3196 0.336358 13.0729L0.652192 9.59792C0.687192 9.21709 0.855525 8.85792 1.12719 8.58626L8.62386 1.08959C9.20886 0.502089 10.2697 0.531256 10.8872 1.14709L13.1689 3.42876L13.1697 3.42959C13.8072 4.06792 13.833 5.08292 13.2264 5.69126L5.72886 13.1888C5.45803 13.4596 5.09886 13.6279 4.71719 13.6629L1.24219 13.9788C1.21719 13.9804 1.19219 13.9813 1.16636 13.9813C0.947192 13.9813 0.734692 13.8946 0.577192 13.7379ZM13.6663 16.4813C13.6663 16.9396 13.2913 17.3146 12.833 17.3146H1.16634C0.708841 17.3146 0.333008 16.9396 0.333008 16.4813C0.333008 16.0238 0.708841 15.6479 1.16634 15.6479H12.833C13.2913 15.6479 13.6663 16.0238 13.6663 16.4813Z'
       fill={fill}
     />
+  </svg>
+)
+
+export const NotificationIcon = ({ width = '25', height = '25', fill = '#0A0A0A' }: IconProps) => (
+  <svg width={width} height={height} viewBox='0 0 25 25' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      d='M21.0189 7.47509C21.0209 9.40509 19.4526 10.9767 17.5226 10.9787C15.5926 10.9807 14.0209 9.41234 14.0189 7.48234C14.0169 5.55234 15.5853 3.98072 17.5153 3.97872C19.4453 3.97672 21.0169 5.54509 21.0189 7.47509ZM19.0244 12.7672C18.5246 12.8977 18.0246 12.9782 17.5246 12.9787C16.0668 12.9776 14.6687 12.3987 13.6368 11.3689C12.6049 10.3391 12.0231 8.94229 12.0189 7.48442C12.0174 6.01442 12.596 4.68382 13.515 3.69286C13.3333 3.47059 13.1043 3.29166 12.8447 3.1691C12.5851 3.04655 12.3014 2.98345 12.0143 2.98442C10.9143 2.98556 10.0152 3.88649 10.0164 4.98649L10.0167 5.27649C7.04757 6.15957 5.0204 8.89167 5.02361 11.9917L5.02983 17.9917L3.03191 19.9937L3.03294 20.9937L21.0329 20.9751L21.0319 19.9751L19.0298 17.9772L19.0244 12.7672ZM12.036 23.9844C13.146 23.9833 14.0351 23.0923 14.034 21.9823L10.034 21.9865C10.0345 22.5169 10.2458 23.0254 10.6212 23.4001C10.9967 23.7748 11.5056 23.985 12.036 23.9844Z'
+      fill='#0A0A0A'
+    />
+    <circle cx='17.5189' cy='7.4787' r='3.5' transform='rotate(-0.0593957 17.5189 7.4787)' fill={fill} />
+  </svg>
+)
+
+export const PlusIcon = ({ width = '12', height = '12', fill = 'white' }: IconProps) => (
+  <svg width={width} height={height} viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      d='M7.45422 4.46048H11.4611V7.33939H7.45422V11.2173H4.57532V7.33939H0.568481V4.46048H4.57532V0.518097H7.45422V4.46048Z'
+      fill={fill}
+    />
+  </svg>
+)
+
+export const FilterIcon = ({ width = '19', height = '19', fill = '#404040' }: IconProps) => (
+  <svg width={width} height={height} viewBox='0 0 19 19' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      d='M7.6 0C6.365 0 5.32 0.798 4.921 1.9H0V3.8H4.921C5.3105 4.902 6.3555 5.7 7.6 5.7C9.1675 5.7 10.45 4.4175 10.45 2.85C10.45 1.2825 9.1675 0 7.6 0ZM12.35 1.9V3.8H19V1.9H12.35ZM12.35 6.65C11.115 6.65 10.07 7.448 9.671 8.55H0V10.45H9.671C10.0605 11.552 11.1055 12.35 12.35 12.35C13.9175 12.35 15.2 11.0675 15.2 9.5C15.2 7.9325 13.9175 6.65 12.35 6.65ZM17.1 8.55V10.45H19V8.55H17.1ZM4.75 13.3C3.515 13.3 2.47 14.098 2.071 15.2H0V17.1H2.071C2.4605 18.202 3.5055 19 4.75 19C6.3175 19 7.6 17.7175 7.6 16.15C7.6 14.5825 6.3175 13.3 4.75 13.3ZM9.5 15.2V17.1H19V15.2H9.5Z'
+      fill={fill}
+    />
+  </svg>
+)
+
+export const LeftArrowIcon = ({ width = '20', height = '20', fill = '#717171' }: IconProps) => (
+  <svg width={width} height={height} viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <g filter='url(#filter0_d_1_1064)'>
+      <path d='M15 5.591H5' stroke={fill} strokeLinecap='round' strokeLinejoin='round' />
+      <path d='M10 10.591L5 5.591L10 0.591003' stroke={fill} strokeLinecap='round' strokeLinejoin='round' />
+    </g>
+  </svg>
+)
+
+export const RightArrowIcon = ({ width = '20', height = '20', fill = '#717171' }: IconProps) => (
+  <svg width={width} height={height} viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <g filter='url(#filter0_d_1_1061)'>
+      <path d='M5 5.59101L15 5.59101' stroke={fill} strokeLinecap='round' strokeLinejoin='round' />
+      <path d='M10 0.591003L15 5.591L10 10.591' stroke={fill} strokeLinecap='round' strokeLinejoin='round' />
+    </g>
   </svg>
 )
 
