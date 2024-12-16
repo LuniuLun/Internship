@@ -46,7 +46,13 @@ const CustomTable = ({ title, data, onEdit, onDelete }: CustomTableProps) => {
               {header}
             </Th>
           ))}
-          <Th textAlign='center' w='100px' padding={5} borderBottom={`2px solid ${colors.brand.secondary}`}>
+          <Th
+            textAlign='center'
+            w='100px'
+            padding={5}
+            fontSize='md'
+            borderBottom={`2px solid ${colors.brand.secondary}`}
+          >
             Action
           </Th>
         </Tr>
