@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 import InfoGroup from '@components/InfoGroup'
-import { User } from '@type/models'
 import { TableRow } from '@components/CustomTable'
+import { IUser } from '@type/models'
 
-interface TransformedUser extends Omit<User, 'name' | 'email'>, TableRow {
+interface TransformedUser extends Pick<IUser, 'role' | 'createDate'>, TableRow {
   name: React.ReactNode
 }
 
@@ -11,13 +11,13 @@ interface UseUserReturn {
   transformedUsers: TransformedUser[]
 }
 
-export const useUser = (users: User[]): UseUserReturn => {
+export const useUser = (users: IUser[]): UseUserReturn => {
   const transformedUsers = useMemo(() => {
     return users.map((user) => {
-      const { email, ...rest } = user
       return {
-        ...rest,
-        name: <InfoGroup heading={user.name} description={email} size='sm' /> // Add 'name' as a React node
+        name: <InfoGroup heading={`${user.firstName} ${user.lastName}`} description={user.email} size='sm' />,
+        role: user.role,
+        createDate: user.createDate.split('T')[0]
       }
     })
   }, [users])
