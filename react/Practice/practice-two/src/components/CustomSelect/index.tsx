@@ -18,7 +18,7 @@ const CustomSelect = <T extends string | number>({
   fontSize,
   border = 'none',
   options,
-  placeholder = 'Select an option',
+  placeholder,
   onChange
 }: ICustomSelectProps<T>) => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
