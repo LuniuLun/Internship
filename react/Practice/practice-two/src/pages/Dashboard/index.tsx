@@ -1,45 +1,56 @@
-import { FilterIcon, PlusIcon, SearchIcon } from '@assets/icons'
+import { useEffect, useState } from 'react'
 import { Button, Flex, FormControl, FormLabel, Heading, Stack, useDisclosure } from '@chakra-ui/react'
-import { CustomTable, TextField } from '@components'
-import CustomSelect, { SelectOption } from '@components/CustomSelect'
-import users from '../../data/users'
-import { TableRow } from '@components/CustomTable'
-import Pagination from '@components/Pagination'
-import { useState } from 'react'
+import { FilterIcon, PlusIcon, SearchIcon } from '@assets/icons'
+import { CustomTable, TextField, Pagination, CustomModal, CustomSelect } from '@components'
 import { useUser } from '@hooks/useUser'
-import CustomModal from '@components/CustomModal'
+import { IUser } from '@type/models'
+import { itemsPerPageOptions, sortOptions } from '@constants/option'
+import { fetchUsers } from '@services/user'
+import { useInfiniteQuery } from '@tanstack/react-query'
+import { TableRow } from '@components/CustomTable'
 
 const Dashboard = () => {
-  const [currentPage, setCurrentPage] = useState<number>(1)
-  const [itemsPerPage, setItemsPerPage] = useState<number>(10)
+  const [currentPage, setCurrentPage] = useState<number>(0)
+  const [itemsPerPage, setItemsPerPage] = useState<number>(5)
   const { isOpen: isModalOpen, onOpen, onClose } = useDisclosure()
-  const { transformedUsers } = useUser(users)
-  const totalItems = 100
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, refetch } = useInfiniteQuery({
+    queryKey: ['projects', itemsPerPage],
+    queryFn: async ({ pageParam = 1 }) => {
+      return await fetchUsers({ page: pageParam.toString(), limit: itemsPerPage.toString() })
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, _, lastPageParam) => {
+      if (!lastPage.data || lastPage.data.length === 0) return undefined
+      return lastPageParam + 1
+    }
+  })
 
-  const sortOptions: SelectOption<string>[] = [
-    { value: 'name', label: 'Name' },
-    { value: 'role', label: 'Role' }
-  ]
+  useEffect(() => {
+    setCurrentPage(0)
+    refetch()
+  }, [itemsPerPage, refetch])
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page)
-  }
+  const usersData: IUser[] = data?.pages[currentPage]?.data || []
+  const { loading, error, userQuantity, getUserQuantity, transformedUsers } = useUser(usersData)
+
+  useEffect(() => {
+    getUserQuantity()
+  }, [])
 
   const handleItemsPerPageChange = (items: number) => {
     setItemsPerPage(items)
-    setCurrentPage(1)
   }
 
-  const handleEdit = (row: TableRow) => {
-    console.log('Edit: ', row)
-  }
-  const handleDelete = (row: TableRow) => {
-    console.log('Delete: ', row)
-  }
-
+  const handleEdit = (row: TableRow) => console.log('Edit: ', row)
+  const handleDelete = (row: TableRow) => console.log('Delete: ', row)
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
     console.log('Form data submitted:', e.target)
   }
+
+  if (loading) return <div>Loading...</div>
+  if (error) return <div>Error: {error}</div>
 
   return (
     <Stack gap={6}>
@@ -55,20 +66,27 @@ const Dashboard = () => {
         <CustomSelect options={sortOptions} placeholder='Sort by' />
         <FilterIcon />
       </Flex>
+
       <CustomTable data={transformedUsers} title='List User' onEdit={handleEdit} onDelete={handleDelete} />
+
       <Flex justifyContent='center'>
         <Pagination
-          currentPage={currentPage}
-          totalItems={totalItems}
+          currentPage={currentPage + 1}
+          totalItems={userQuantity}
           itemsPerPage={itemsPerPage}
-          onPageChange={handlePageChange}
+          onPageChange={(page) => setCurrentPage(page - 1)}
           onItemsPerPageChange={handleItemsPerPageChange}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+          itemsPerPageOptions={itemsPerPageOptions}
         />
       </Flex>
-      <CustomModal isOpen={isModalOpen} onClose={onClose} handleSubmit={handleSubmit} title='Add User'>
+
+      <CustomModal isOpen={isModalOpen} onClose={onClose} title='Add User' handleSubmit={handleSubmit}>
         <FormControl>
-          <FormLabel htmlFor='name'>Name</FormLabel>
-          <TextField id='name' name='name' placeholder='Enter your name' variant='outline' />
+          <FormLabel>Name</FormLabel>
+          <TextField placeholder='Enter name' variant='outline' />
         </FormControl>
       </CustomModal>
     </Stack>
