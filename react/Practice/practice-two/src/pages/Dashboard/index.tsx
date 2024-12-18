@@ -13,7 +13,7 @@ const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [itemsPerPage, setItemsPerPage] = useState<number>(5)
   const { isOpen: isModalOpen, onOpen, onClose } = useDisclosure()
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, refetch } = useInfiniteQuery({
+  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, refetch } = useInfiniteQuery({
     queryKey: ['projects', itemsPerPage],
     queryFn: async ({ pageParam = 1 }) => {
       return await fetchUsers({ page: pageParam.toString(), limit: itemsPerPage.toString() })
@@ -49,7 +49,7 @@ const Dashboard = () => {
     console.log('Form data submitted:', e.target)
   }
 
-  if (loading) return <div>Loading...</div>
+  if (loading || isFetchingNextPage || isFetching) return <div>Loading...</div>
   if (error) return <div>Error: {error}</div>
 
   return (
