@@ -8,12 +8,17 @@ import '@fontsource/open-sans/700.css'
 import { defaultTheme } from './styles'
 import { ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider theme={defaultTheme} resetCSS>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>
