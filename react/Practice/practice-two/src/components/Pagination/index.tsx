@@ -8,37 +8,47 @@ interface PaginationProps {
   currentPage: number
   totalItems: number
   itemsPerPage: number
-  itemsPerPageOptions?: number[]
+  itemsPerPageOptions: number[]
   onPageChange: (page: number) => void
   onItemsPerPageChange: (items: number) => void
+  fetchNextPage: () => void
+  hasNextPage: boolean
+  isFetchingNextPage: boolean
 }
 
 const Pagination: React.FC<PaginationProps> = ({
   currentPage,
   totalItems,
   itemsPerPage,
-  itemsPerPageOptions = [5, 10, 20, 50],
+  itemsPerPageOptions,
   onPageChange,
-  onItemsPerPageChange
+  onItemsPerPageChange,
+  fetchNextPage,
+  hasNextPage,
+  isFetchingNextPage
 }) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage)
 
   const handlePrevious = () => {
-    if (currentPage > 1) onPageChange(currentPage - 1)
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1)
+    }
   }
 
   const handleNext = () => {
-    if (currentPage < totalPages) onPageChange(currentPage + 1)
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1)
+      if (!isFetchingNextPage && hasNextPage) fetchNextPage()
+    }
   }
 
   return (
     <Flex align='center' p={4} gap='26px' color={colors.brand.blackTextQuaternary} fontSize='xs'>
       <Flex align='center' gap='26px'>
-        <Text whiteSpace={'nowrap'}>Items per page:</Text>
+        <Text whiteSpace='nowrap'>Items per page:</Text>
         <CustomSelect<number>
           border='bottom'
-          fontSize='sm'
-          placeholder={itemsPerPage.toString()}
+          fontSize='xs'
           onChange={onItemsPerPageChange}
           options={itemsPerPageOptions.map((option) => ({
             value: option,
@@ -52,10 +62,14 @@ const Pagination: React.FC<PaginationProps> = ({
       </Text>
 
       <Flex gap={2}>
-        <Button variant={'unstyled'} onClick={handlePrevious} isDisabled={currentPage === 1}>
+        <Button variant='unstyled' onClick={handlePrevious} isDisabled={currentPage === 1}>
           <LeftArrowIcon />
         </Button>
-        <Button variant={'unstyled'} onClick={handleNext} isDisabled={currentPage === totalPages}>
+        <Button
+          variant='unstyled'
+          onClick={handleNext}
+          isDisabled={(currentPage === totalPages && !hasNextPage) || isFetchingNextPage}
+        >
           <RightArrowIcon />
         </Button>
       </Flex>
