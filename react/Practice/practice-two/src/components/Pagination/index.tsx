@@ -47,6 +47,7 @@ const Pagination: React.FC<PaginationProps> = ({
       <Flex align='center' gap='26px'>
         <Text whiteSpace='nowrap'>Items per page:</Text>
         <CustomSelect<number>
+          placeholder={itemsPerPage.toString()}
           border='bottom'
           fontSize='xs'
           onChange={onItemsPerPageChange}
