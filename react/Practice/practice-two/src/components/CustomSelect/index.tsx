@@ -1,4 +1,5 @@
 import { Select } from '@chakra-ui/react'
+import { useState } from 'react'
 import { TBorderDirection } from '@type/variant'
 
 export interface SelectOption<T> {
@@ -21,8 +22,11 @@ const CustomSelect = <T extends string | number>({
   placeholder,
   onChange
 }: ICustomSelectProps<T>) => {
+  const [selectedValue, setSelectedValue] = useState<string>('')
+
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value
+    setSelectedValue(value)
     if (onChange) {
       onChange(value as T)
     }
@@ -32,9 +36,9 @@ const CustomSelect = <T extends string | number>({
     <Select
       maxW='150px'
       fontWeight='semibold'
-      placeholder={placeholder}
+      value={selectedValue}
       onChange={handleChange}
-      fontSize={fontSize ? fontSize : ''}
+      fontSize={fontSize}
       variant={border === 'bottom' ? 'flushed' : 'filled'}
       sx={{
         borderBottom: border === 'bottom' ? '1px solid black' : 'none',
@@ -48,6 +52,9 @@ const CustomSelect = <T extends string | number>({
         }
       }}
     >
+      <option value='' disabled hidden>
+        {selectedValue || placeholder || 'Select'}
+      </option>
       {options.map((option, index) => (
         <option key={index} value={option.value}>
           {option.label}
