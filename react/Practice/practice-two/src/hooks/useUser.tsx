@@ -1,17 +1,26 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import InfoGroup from '@components/InfoGroup'
 import { TableRow } from '@components/CustomTable'
 import { IUser } from '@type/models'
+import { fetchAllUsers } from '@services/user'
 
 interface TransformedUser extends Pick<IUser, 'role' | 'createDate'>, TableRow {
   name: React.ReactNode
 }
 
 interface UseUserReturn {
+  loading: boolean
+  error: string
+  userQuantity: number
+  getUserQuantity: () => void
   transformedUsers: TransformedUser[]
 }
 
 export const useUser = (users: IUser[]): UseUserReturn => {
+  const [userQuantity, setUserQuantity] = useState(0)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
   const transformedUsers = useMemo(() => {
     return users.map((user) => {
       return {
@@ -22,7 +31,25 @@ export const useUser = (users: IUser[]): UseUserReturn => {
     })
   }, [users])
 
+  const getUserQuantity = () => {
+    const getAllUser = async () => {
+      setLoading(true)
+      const response = await fetchAllUsers()
+      if (response.status === 'success' && response.data) {
+        setUserQuantity(response.data.length)
+      } else {
+        setError(response.message)
+      }
+      setLoading(false)
+    }
+    getAllUser()
+  }
+
   return {
-    transformedUsers
+    error,
+    loading,
+    userQuantity,
+    transformedUsers,
+    getUserQuantity
   }
 }
