@@ -32,7 +32,8 @@ const Dashboard = () => {
     getNextPageParam: (lastPage, _, lastPageParam) => {
       if (!lastPage.data || lastPage.data.length === 0) return undefined
       return lastPageParam + 1
-    }
+    },
+    staleTime: 5 * 60 * 1000
   })
 
   const usersData: IUser[] = data?.pages[currentPage]?.data || []
