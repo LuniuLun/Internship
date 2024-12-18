@@ -10,13 +10,23 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { TableRow } from '@components/CustomTable'
 
 const Dashboard = () => {
+  const [searchQuery, setSearchQuery] = useState<string>('')
+  const [sortBy, setSortBy] = useState<string>('')
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [itemsPerPage, setItemsPerPage] = useState<number>(5)
   const { isOpen: isModalOpen, onOpen, onClose } = useDisclosure()
+
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, refetch } = useInfiniteQuery({
-    queryKey: ['projects', itemsPerPage],
+    queryKey: ['users', itemsPerPage, searchQuery, sortBy],
     queryFn: async ({ pageParam = 1 }) => {
-      return await fetchUsers({ page: pageParam.toString(), limit: itemsPerPage.toString() })
+      return await fetchUsers({
+        page: pageParam.toString(),
+        limit: itemsPerPage.toString(),
+        property: 'firstName',
+        value: searchQuery,
+        sortBy,
+        order: 'asc'
+      })
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, _, lastPageParam) => {
@@ -25,17 +35,25 @@ const Dashboard = () => {
     }
   })
 
-  useEffect(() => {
-    setCurrentPage(0)
-    refetch()
-  }, [itemsPerPage, refetch])
-
   const usersData: IUser[] = data?.pages[currentPage]?.data || []
   const { loading, error, userQuantity, getUserQuantity, transformedUsers } = useUser(usersData)
 
   useEffect(() => {
     getUserQuantity()
   }, [])
+
+  useEffect(() => {
+    setCurrentPage(0)
+    refetch()
+  }, [itemsPerPage, searchQuery, sortBy, refetch])
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value)
+  }
+
+  const handleSortChange = (value: string) => {
+    setSortBy(value)
+  }
 
   const handleItemsPerPageChange = (items: number) => {
     setItemsPerPage(items)
@@ -58,12 +76,19 @@ const Dashboard = () => {
         Users Dashboard
       </Heading>
       <Flex gap={8} alignItems='center'>
-        <TextField icon={<SearchIcon />} variant='outline' size='lg' placeholder='Search' />
+        <TextField
+          icon={<SearchIcon />}
+          variant='outline'
+          size='lg'
+          placeholder='Search'
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
         <Button display='flex' gap={2} onClick={onOpen}>
           Add user
           <PlusIcon />
         </Button>
-        <CustomSelect options={sortOptions} placeholder='Sort by' />
+        <CustomSelect options={sortOptions} placeholder='Sort by' onChange={handleSortChange} />
         <FilterIcon />
       </Flex>
 
