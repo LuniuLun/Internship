@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button, Flex, Heading, Stack, useDisclosure } from '@chakra-ui/react'
 import { FilterIcon, PlusIcon, SearchIcon } from '@assets/icons'
-import { CustomTable, TextField, Pagination, CustomSelect, UserModal } from '@components'
+import { CustomTable, TextField, Pagination, CustomSelect, UserModal, WarningModal } from '@components'
 import { useUser } from '@hooks/useUser'
 import { IUser } from '@type/models'
 import { fetchUsers } from '@services/user'
@@ -14,7 +14,8 @@ const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [itemsPerPage, setItemsPerPage] = useState<number>(5)
   const [selectedUser, setSelectedUser] = useState<IUser>()
-  const { isOpen: isModalOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen: isUserModalOpen, onOpen: onOpenUserModal, onClose: onCloseUserModal } = useDisclosure()
+  const { isOpen: isWarningModalOpen, onOpen: onOpenWarningModal, onClose: onCloseWarningModal } = useDisclosure()
 
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, refetch } = useInfiniteQuery({
     queryKey: ['users', itemsPerPage, searchQuery, sortBy],
@@ -64,9 +65,22 @@ const Dashboard = () => {
     const user = usersData.find((user) => user.id === id)
     if (!user) return
     setSelectedUser(user)
-    onOpen()
+    onOpenUserModal()
   }
-  const handleDelete = (id: string) => console.log('Delete: ', id)
+
+  const handleDelete = (id: string) => {
+    const user = usersData.find((user) => user.id === id)
+    if (!user) return
+    setSelectedUser(user)
+    onOpenWarningModal()
+  }
+
+  const handleWarningSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log('Delete user:', selectedUser)
+    onCloseWarningModal()
+  }
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     e.stopPropagation()
@@ -90,7 +104,7 @@ const Dashboard = () => {
           value={searchQuery}
           onChange={handleSearchChange}
         />
-        <Button display='flex' gap={2} onClick={onOpen}>
+        <Button display='flex' gap={2} onClick={onOpenUserModal}>
           Add user
           <PlusIcon />
         </Button>
@@ -114,7 +128,20 @@ const Dashboard = () => {
         />
       </Flex>
 
-      <UserModal selectedUser={selectedUser} isModalOpen={isModalOpen} onClose={onClose} handleSubmit={handleSubmit} />
+      <UserModal
+        selectedUser={selectedUser}
+        isModalOpen={isUserModalOpen}
+        onClose={onCloseUserModal}
+        handleSubmit={handleSubmit}
+      />
+
+      <WarningModal
+        isModalOpen={isWarningModalOpen}
+        onClose={onCloseWarningModal}
+        title='Warning'
+        message='This action will permanently delete the user. Do you want to proceed?'
+        handleSubmit={handleWarningSubmit}
+      />
     </Stack>
   )
 }
