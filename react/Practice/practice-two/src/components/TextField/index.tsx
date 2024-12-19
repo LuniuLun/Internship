@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useState } from 'react'
 import { Text, InputProps, InputGroup, InputLeftElement, Input, Stack } from '@chakra-ui/react'
 import colors from '@styles/variables/colors'
 
@@ -8,7 +8,13 @@ export interface ITextFieldProps extends InputProps {
 }
 
 const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
-  ({ placeholder, variant = 'unstyled', size = 'sm', errorMessage, icon, ...props }, ref) => {
+  ({ value, onChange, placeholder, variant = 'unstyled', size = 'sm', errorMessage, icon, ...props }, ref) => {
+    const [valueInput, setValueInput] = useState(value)
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setValueInput(e.target.value)
+      onChange?.(e)
+    }
+
     return (
       <Stack flex='1' display='flex' alignItems='center' justifyContent='center' backgroundColor='transparent'>
         <InputGroup>
@@ -24,6 +30,8 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
             placeholder={placeholder}
             variant={variant}
             size={size}
+            value={valueInput}
+            onChange={handleChange}
             {...props}
           />
         </InputGroup>
