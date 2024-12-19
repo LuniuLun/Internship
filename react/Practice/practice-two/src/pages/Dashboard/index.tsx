@@ -6,7 +6,6 @@ import { useUser } from '@hooks/useUser'
 import { IUser } from '@type/models'
 import { fetchUsers } from '@services/user'
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { TableRow } from '@components/CustomTable'
 import { ITEM_PER_PAGE, SORT_OPTION } from '@constants/option'
 
 const Dashboard = () => {
@@ -60,8 +59,8 @@ const Dashboard = () => {
     setItemsPerPage(parseInt(e.target.value))
   }
 
-  const handleEdit = (row: TableRow) => console.log('Edit: ', row)
-  const handleDelete = (row: TableRow) => console.log('Delete: ', row)
+  const handleEdit = (id: string) => console.log('Edit: ', id)
+  const handleDelete = (id: string) => console.log('Delete: ', id)
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     e.stopPropagation()

@@ -10,13 +10,15 @@ export interface TableRow {
 interface CustomTableProps extends TableProps {
   title?: string
   data: TableRow[]
-  onEdit?: (row: TableRow) => void
-  onDelete?: (row: TableRow) => void
+  onEdit?: (id: string) => void
+  onDelete?: (id: string) => void
 }
 
 const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTableProps) => {
   const headers = data.length > 0 ? Object.keys(data[0]) : []
   const hasActions = Boolean(onEdit || onDelete)
+
+  const filteredHeaders = headers.filter((header) => header !== 'id')
 
   return (
     <Table borderRadius='lg' {...props}>
@@ -36,7 +38,7 @@ const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTablePro
       )}
       <Thead>
         <Tr bgColor={colors.brand.secondary} color={colors.brand.blackTextSecondary}>
-          {headers.map((header, index) => (
+          {filteredHeaders.map((header, index) => (
             <Th
               key={header}
               borderBottom={`2px solid ${colors.brand.secondary}`}
@@ -63,7 +65,7 @@ const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTablePro
       <Tbody>
         {data.map((row, rowIndex) => (
           <Tr key={rowIndex} fontSize='sm' color={colors.brand.blackTextPrimary}>
-            {headers.map((header, index) => (
+            {filteredHeaders.map((header, index) => (
               <Td
                 key={header}
                 borderBottom={`2px solid ${colors.brand.secondary}`}
@@ -82,7 +84,7 @@ const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTablePro
                       bgColor={colors.brand.white}
                       icon={<PenIcon />}
                       size='sm'
-                      onClick={() => onEdit(row)}
+                      onClick={() => onEdit(row.id as string)}
                     />
                   )}
                   {onDelete && (
@@ -92,7 +94,7 @@ const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTablePro
                       icon={<BinIcon />}
                       size='sm'
                       colorScheme='red'
-                      onClick={() => onDelete(row)}
+                      onClick={() => onDelete(row.id as string)}
                     />
                   )}
                 </Flex>
