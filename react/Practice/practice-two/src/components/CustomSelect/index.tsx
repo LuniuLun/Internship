@@ -1,4 +1,4 @@
-import { Select } from '@chakra-ui/react'
+import { Select, SelectProps } from '@chakra-ui/react'
 import { useState } from 'react'
 import { TBorderDirection } from '@type/variant'
 
@@ -7,20 +7,17 @@ export interface SelectOption<T> {
   label: string
 }
 
-interface ICustomSelectProps<T> {
+interface ICustomSelectProps<T> extends SelectProps {
   options: SelectOption<T>[]
   border?: TBorderDirection
-  fontSize?: string
-  placeholder?: string
-  onChange?: (value: T) => void
 }
 
 const CustomSelect = <T extends string | number>({
-  fontSize,
   border = 'none',
   options,
   placeholder,
-  onChange
+  onChange,
+  ...props
 }: ICustomSelectProps<T>) => {
   const [selectedValue, setSelectedValue] = useState<string>('')
 
@@ -28,7 +25,7 @@ const CustomSelect = <T extends string | number>({
     const value = e.target.value
     setSelectedValue(value)
     if (onChange) {
-      onChange(value as T)
+      onChange(e)
     }
   }
 
@@ -38,19 +35,11 @@ const CustomSelect = <T extends string | number>({
       fontWeight='semibold'
       value={selectedValue}
       onChange={handleChange}
-      fontSize={fontSize}
       variant={border === 'bottom' ? 'flushed' : 'filled'}
       sx={{
-        borderBottom: border === 'bottom' ? '1px solid black' : 'none',
-        option: {
-          backgroundColor: 'gray.100',
-          color: 'gray.800'
-        },
-        'option:hover': {
-          backgroundColor: 'blue.500',
-          color: 'white'
-        }
+        borderBottom: border === 'bottom' ? '1px solid black' : ''
       }}
+      {...props}
     >
       <option value='' disabled hidden>
         {selectedValue || placeholder || 'Select'}
