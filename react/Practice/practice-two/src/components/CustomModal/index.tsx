@@ -1,34 +1,35 @@
 import {
-  Modal,
+  ModalProps,
   ModalOverlay,
   ModalContent,
   ModalHeader,
   ModalCloseButton,
   ModalBody,
   ModalFooter,
-  Button
+  Button,
+  Heading,
+  Modal
 } from '@chakra-ui/react'
 import colors from '@styles/variables/colors'
 
-interface CustomModalProps {
-  isOpen: boolean
-  onClose: () => void
+interface CustomModalProps extends ModalProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   title: string
-  children: React.ReactNode
 }
 
-const CustomModal: React.FC<CustomModalProps> = ({ isOpen, onClose, handleSubmit, title, children }) => {
+const CustomModal = ({ isOpen, onClose, handleSubmit, title, children, ...props }: CustomModalProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInBottom' scrollBehavior='inside'>
+    <Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInBottom' scrollBehavior='inside' {...props}>
       <ModalOverlay />
       <ModalContent bgColor={colors.brand.white}>
-        <ModalHeader>{title}</ModalHeader>
+        <ModalHeader borderBottom={`1px solid ${colors.brand.secondary}`}>
+          <Heading variant='secondary'>{title}</Heading>
+        </ModalHeader>
         <ModalCloseButton />
-        <ModalBody>
+        <ModalBody px='unset'>
           <form onSubmit={handleSubmit}>
             {children}
-            <ModalFooter gap={4} paddingRight={0}>
+            <ModalFooter gap={4} marginTop={10}>
               <Button variant='primary' type='submit' size={'sm'}>
                 Submit
               </Button>
