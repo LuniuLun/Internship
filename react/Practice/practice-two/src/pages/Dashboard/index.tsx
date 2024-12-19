@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Button, Flex, FormControl, FormLabel, Heading, Stack, useDisclosure } from '@chakra-ui/react'
+import { Button, Flex, Heading, Stack, useDisclosure } from '@chakra-ui/react'
 import { FilterIcon, PlusIcon, SearchIcon } from '@assets/icons'
-import { CustomTable, TextField, Pagination, CustomModal, CustomSelect } from '@components'
+import { CustomTable, TextField, Pagination, CustomSelect, UserModal } from '@components'
 import { useUser } from '@hooks/useUser'
 import { IUser } from '@type/models'
-import { itemsPerPageOptions, sortOptions } from '@constants/option'
 import { fetchUsers } from '@services/user'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { TableRow } from '@components/CustomTable'
+import { ITEM_PER_PAGE, SORT_OPTION } from '@constants/option'
 
 const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState<string>('')
@@ -52,12 +52,12 @@ const Dashboard = () => {
     setSearchQuery(e.target.value)
   }
 
-  const handleSortChange = (value: string) => {
-    setSortBy(value)
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(e.target.value)
   }
 
-  const handleItemsPerPageChange = (items: number) => {
-    setItemsPerPage(items)
+  const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setItemsPerPage(parseInt(e.target.value))
   }
 
   const handleEdit = (row: TableRow) => console.log('Edit: ', row)
@@ -89,7 +89,7 @@ const Dashboard = () => {
           Add user
           <PlusIcon />
         </Button>
-        <CustomSelect options={sortOptions} placeholder='Sort by' onChange={handleSortChange} />
+        <CustomSelect options={SORT_OPTION} placeholder='Sort by' onChange={handleSortChange} />
         <FilterIcon />
       </Flex>
 
@@ -105,16 +105,11 @@ const Dashboard = () => {
           fetchNextPage={fetchNextPage}
           hasNextPage={hasNextPage}
           isFetchingNextPage={isFetchingNextPage}
-          itemsPerPageOptions={itemsPerPageOptions}
+          itemsPerPageOptions={ITEM_PER_PAGE}
         />
       </Flex>
 
-      <CustomModal isOpen={isModalOpen} onClose={onClose} title='Add User' handleSubmit={handleSubmit}>
-        <FormControl>
-          <FormLabel>Name</FormLabel>
-          <TextField placeholder='Enter name' variant='outline' />
-        </FormControl>
-      </CustomModal>
+      <UserModal isModalOpen={isModalOpen} onClose={onClose} handleSubmit={handleSubmit} />
     </Stack>
   )
 }
