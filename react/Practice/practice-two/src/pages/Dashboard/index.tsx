@@ -13,6 +13,7 @@ const Dashboard = () => {
   const [sortBy, setSortBy] = useState<string>('')
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [itemsPerPage, setItemsPerPage] = useState<number>(5)
+  const [selectedUser, setSelectedUser] = useState<IUser>()
   const { isOpen: isModalOpen, onOpen, onClose } = useDisclosure()
 
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, refetch } = useInfiniteQuery({
@@ -59,7 +60,12 @@ const Dashboard = () => {
     setItemsPerPage(parseInt(e.target.value))
   }
 
-  const handleEdit = (id: string) => console.log('Edit: ', id)
+  const handleEdit = (id: string) => {
+    const user = usersData.find((user) => user.id === id)
+    if (!user) return
+    setSelectedUser(user)
+    onOpen()
+  }
   const handleDelete = (id: string) => console.log('Delete: ', id)
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -108,7 +114,7 @@ const Dashboard = () => {
         />
       </Flex>
 
-      <UserModal isModalOpen={isModalOpen} onClose={onClose} handleSubmit={handleSubmit} />
+      <UserModal selectedUser={selectedUser} isModalOpen={isModalOpen} onClose={onClose} handleSubmit={handleSubmit} />
     </Stack>
   )
 }
