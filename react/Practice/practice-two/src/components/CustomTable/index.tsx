@@ -1,4 +1,4 @@
-import { Table, Thead, Tbody, Tr, Th, Td, IconButton, Flex, TableCaption } from '@chakra-ui/react'
+import { Table, Thead, Tbody, Tr, Th, Td, IconButton, Flex, TableCaption, TableProps } from '@chakra-ui/react'
 import { BinIcon, PenIcon } from '@assets/icons'
 import colors from '@styles/variables/colors'
 import CustomCell from './CustomCell'
@@ -7,18 +7,19 @@ export interface TableRow {
   [key: string]: string | number | boolean | React.ReactNode
 }
 
-interface CustomTableProps {
+interface CustomTableProps extends TableProps {
   title?: string
   data: TableRow[]
-  onEdit: (row: TableRow) => void
-  onDelete: (row: TableRow) => void
+  onEdit?: (row: TableRow) => void
+  onDelete?: (row: TableRow) => void
 }
 
-const CustomTable = ({ title, data, onEdit, onDelete }: CustomTableProps) => {
+const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTableProps) => {
   const headers = data.length > 0 ? Object.keys(data[0]) : []
+  const hasActions = Boolean(onEdit || onDelete)
 
   return (
-    <Table borderRadius='lg'>
+    <Table borderRadius='lg' {...props}>
       {title && (
         <TableCaption
           placement='top'
@@ -46,15 +47,17 @@ const CustomTable = ({ title, data, onEdit, onDelete }: CustomTableProps) => {
               {header}
             </Th>
           ))}
-          <Th
-            textAlign='center'
-            w='100px'
-            padding={5}
-            fontSize='md'
-            borderBottom={`2px solid ${colors.brand.secondary}`}
-          >
-            Action
-          </Th>
+          {hasActions && (
+            <Th
+              textAlign='center'
+              w='100px'
+              padding={5}
+              fontSize='md'
+              borderBottom={`2px solid ${colors.brand.secondary}`}
+            >
+              Action
+            </Th>
+          )}
         </Tr>
       </Thead>
       <Tbody>
@@ -70,25 +73,31 @@ const CustomTable = ({ title, data, onEdit, onDelete }: CustomTableProps) => {
                 {CustomCell({ header, row })}
               </Td>
             ))}
-            <Td w='100px' borderBottom={`2px solid ${colors.brand.secondary}`} bgColor={colors.brand.white}>
-              <Flex gap={2}>
-                <IconButton
-                  aria-label='Edit'
-                  bgColor={colors.brand.white}
-                  icon={<PenIcon />}
-                  size='sm'
-                  onClick={() => onEdit(row)}
-                />
-                <IconButton
-                  aria-label='Delete'
-                  bgColor={colors.brand.white}
-                  icon={<BinIcon />}
-                  size='sm'
-                  colorScheme='red'
-                  onClick={() => onDelete(row)}
-                />
-              </Flex>
-            </Td>
+            {hasActions && (
+              <Td w='100px' borderBottom={`2px solid ${colors.brand.secondary}`} bgColor={colors.brand.white}>
+                <Flex gap={2}>
+                  {onEdit && (
+                    <IconButton
+                      aria-label='Edit'
+                      bgColor={colors.brand.white}
+                      icon={<PenIcon />}
+                      size='sm'
+                      onClick={() => onEdit(row)}
+                    />
+                  )}
+                  {onDelete && (
+                    <IconButton
+                      aria-label='Delete'
+                      bgColor={colors.brand.white}
+                      icon={<BinIcon />}
+                      size='sm'
+                      colorScheme='red'
+                      onClick={() => onDelete(row)}
+                    />
+                  )}
+                </Flex>
+              </Td>
+            )}
           </Tr>
         ))}
       </Tbody>
