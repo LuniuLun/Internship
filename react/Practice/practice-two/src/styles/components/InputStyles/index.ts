@@ -23,7 +23,7 @@ const InputStyles: ComponentStyleConfig = {
   variants: {
     outline: {
       field: {
-        borderRadius: '2xl',
+        borderRadius: 'xl',
         width: '100%',
         fontSize: 'md',
         border: '1px solid',
