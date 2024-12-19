@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Checkbox, Flex } from '@chakra-ui/react'
 import { TableRow } from '.'
 import colors from '@styles/variables/colors'
 
@@ -8,23 +8,31 @@ interface CustomCellProps {
 }
 
 const CustomCell = ({ header, row }: CustomCellProps) => {
-  if (header.toLowerCase() === 'role') {
-    const isAdmin = row[header]?.toString().toLowerCase().includes('admin')
+  const value = row[header]
+
+  if (header.toLowerCase() === 'role' || header.toLowerCase() === 'modulepermission') {
+    const isAdmin = value?.toString().toLowerCase().includes('admin')
     return (
-      <Box
+      <Flex
+        justifyContent='center'
         borderRadius='md'
-        margin='auto'
+        margin={header.toLowerCase() === 'role' ? 'auto' : 'unset'}
         w='130px'
         py='6px'
         fontWeight='semibold'
         color={isAdmin ? colors.brand.white : colors.brand.blackTextSecondary}
         bgColor={isAdmin ? colors.brand.hoverBtnColor : colors.brand.secondary}
       >
-        {row[header]}
-      </Box>
+        {value}
+      </Flex>
     )
   }
-  return row[header]
+
+  if (typeof value === 'boolean') {
+    return <Checkbox isChecked={value} isReadOnly />
+  }
+
+  return value
 }
 
 export default CustomCell
