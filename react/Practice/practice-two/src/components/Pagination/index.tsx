@@ -10,7 +10,7 @@ interface PaginationProps {
   itemsPerPage: number
   itemsPerPageOptions: number[]
   onPageChange: (page: number) => void
-  onItemsPerPageChange: (items: number) => void
+  onItemsPerPageChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
   fetchNextPage: () => void
   hasNextPage: boolean
   isFetchingNextPage: boolean
@@ -69,7 +69,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <Button
           variant='unstyled'
           onClick={handleNext}
-          isDisabled={(currentPage === totalPages && !hasNextPage) || isFetchingNextPage}
+          isDisabled={(currentPage === totalPages && hasNextPage) || isFetchingNextPage}
         >
           <RightArrowIcon />
         </Button>
