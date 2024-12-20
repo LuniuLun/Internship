@@ -1,41 +1,40 @@
 import React from 'react'
 import { Flex, Text, Box } from '@chakra-ui/react'
 import colors from '@styles/variables/colors'
+import { Link, LinkProps } from 'react-router-dom'
 
-interface NavItemProps {
+interface NavItemProps extends LinkProps {
   icon: React.ReactNode
   title: string
   isActive: boolean
-  handleClick: (title: string) => void
 }
 
-const NavItem: React.FC<NavItemProps> = ({ icon, title, isActive, handleClick }) => {
-  const onClick = () => handleClick(title)
-
+const NavItem = ({ icon, title, isActive, to }: NavItemProps) => {
   return (
-    <Flex
-      align='center'
-      borderRight={isActive ? `6px solid ${colors.brand.primary}` : 'none'}
-      p={4}
-      paddingLeft='32px'
-      bg={'transparent'}
-      cursor='pointer'
-      _hover={{ bg: 'gray.50' }}
-      onClick={onClick}
-    >
-      <Box>
-        {React.cloneElement(icon as React.ReactElement, {
-          fill: isActive ? colors.brand.primary : colors.brand.blackTextTertiary
-        })}
-      </Box>
-      <Text
-        ml={3}
-        fontWeight={isActive ? 'bold' : 'normal'}
-        color={isActive ? colors.brand.primary : colors.brand.blackTextTertiary}
+    <Link to={to}>
+      <Flex
+        align='center'
+        borderRight={isActive ? `6px solid ${colors.brand.primary}` : 'none'}
+        p={4}
+        paddingLeft='32px'
+        bg={'transparent'}
+        cursor='pointer'
+        _hover={{ bg: 'gray.50' }}
       >
-        {title}
-      </Text>
-    </Flex>
+        <Box>
+          {React.cloneElement(icon as React.ReactElement, {
+            fill: isActive ? colors.brand.primary : colors.brand.blackTextTertiary
+          })}
+        </Box>
+        <Text
+          ml={3}
+          fontWeight={isActive ? 'bold' : 'normal'}
+          color={isActive ? colors.brand.primary : colors.brand.blackTextTertiary}
+        >
+          {title}
+        </Text>
+      </Flex>
+    </Link>
   )
 }
 
