@@ -46,19 +46,25 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
             value={selectedUser?.role}
           />
         </Flex>
-        {!selectedUser?.id && (
-          <Flex gap={4}>
-            <FormControl>
-              <TextField placeholder='Username *' name='username' variant='outline' value={selectedUser?.username} />
-            </FormControl>
-            <FormControl>
-              <TextField placeholder='Password *' name='password' variant='outline' type='password' />
-            </FormControl>
+        <Flex gap={4}>
+          <FormControl>
+            <TextField placeholder='Username *' name='username' variant='outline' value={selectedUser?.username} />
+          </FormControl>
+          <FormControl>
+            <TextField
+              placeholder='Password *'
+              name='password'
+              variant='outline'
+              type='password'
+              value={selectedUser?.password}
+            />
+          </FormControl>
+          {!selectedUser?.id && (
             <FormControl>
               <TextField placeholder='Confirm Password *' name='confirmPassword' variant='outline' type='password' />
             </FormControl>
-          </Flex>
-        )}
+          )}
+        </Flex>
       </Stack>
       <ModulePermission />
     </CustomModal>
