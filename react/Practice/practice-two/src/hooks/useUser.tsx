@@ -13,16 +13,23 @@ interface TransformedUser extends Pick<IUser, 'id' | 'role' | 'createDate'>, Tab
 interface UseUserReturn {
   loading: boolean
   error: string
-  userQuantity: number
-  getUserQuantity: () => void
+  allUsers: IUser[]
+  superAdmin: IUser[]
+  admin: IUser[]
+  employee: IUser[]
+  getAllUser: () => void
   transformedUsers: TransformedUser[]
+  transformFullUsers: TableRow[]
   addUserMutation: UseMutationResult<IApiResponse<IUser>, Error, IUser>
   editUserMutation: UseMutationResult<IApiResponse<IUser>, Error, IUser>
   deleteUserMutation: UseMutationResult<IApiResponse<IUser>, Error, IUser>
 }
 
 export const useUser = (users: IUser[]): UseUserReturn => {
-  const [userQuantity, setUserQuantity] = useState(0)
+  const [allUsers, setAllUsers] = useState<IUser[]>([])
+  const [superAdmin, setSuperAdmin] = useState<IUser[]>([])
+  const [admin, setAdmin] = useState<IUser[]>([])
+  const [employee, setEmployee] = useState<IUser[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const queryClient = useQueryClient()
@@ -38,17 +45,37 @@ export const useUser = (users: IUser[]): UseUserReturn => {
     })
   }, [users])
 
-  const getUserQuantity = () => {
+  const transformFullUsers = useMemo((): TableRow[] => {
+    return users.map((user) => ({
+      id: user.id,
+      lastName: user.lastName,
+      firstName: user.firstName,
+      email: user.email,
+      phone: user.phone,
+      username: user.username,
+      password: user.password,
+      role: user.role,
+      createDate: user.createDate.split('T')[0]
+    }))
+  }, [users])
+
+  const getAllUser = () => {
     const getAllUser = async () => {
       setLoading(true)
       const response = await fetchAllUsers()
+
       if (response.status === 'success' && response.data) {
-        setUserQuantity(response.data.length)
+        setAllUsers(response.data)
+        setSuperAdmin(response.data.filter((user) => user.role === 'Super Admin'))
+        setAdmin(response.data.filter((user) => user.role === 'Admin'))
+        setEmployee(response.data.filter((user) => user.role === 'Employee'))
       } else {
         setError(response.message)
       }
+
       setLoading(false)
     }
+
     getAllUser()
   }
 
@@ -76,9 +103,13 @@ export const useUser = (users: IUser[]): UseUserReturn => {
   return {
     error,
     loading,
-    userQuantity,
+    allUsers,
+    superAdmin,
+    admin,
+    employee,
     transformedUsers,
-    getUserQuantity,
+    transformFullUsers,
+    getAllUser,
     addUserMutation,
     editUserMutation,
     deleteUserMutation
