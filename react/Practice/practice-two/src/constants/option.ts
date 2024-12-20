@@ -33,4 +33,15 @@ export const MODULE_PERMISSION = [
   }
 ]
 
+export const NAV_ITEMS = [
+  { path: '/', id: 'dashboard', title: 'Dashboard' },
+  { path: '/users', id: 'users', title: 'Users' },
+  { path: '/', id: 'documents', title: 'Documents' },
+  { path: '/', id: 'photos', title: 'Photos' },
+  { path: '/', id: 'hierarchy', title: 'Hierarchy' },
+  { path: '/', id: 'message', title: 'Message' },
+  { path: '/', id: 'help', title: 'Help' },
+  { path: '/', id: 'setting', title: 'Setting' }
+]
+
 export const ITEM_PER_PAGE = [5, 10, 15, 20, 50]
