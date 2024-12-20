@@ -4,8 +4,8 @@ import { FilterIcon, PlusIcon, SearchIcon } from '@assets/icons'
 import { CustomTable, TextField, Pagination, CustomSelect, UserModal, WarningModal, StatisticCard } from '@components'
 import { useUser } from '@hooks/useUser'
 import { IUser } from '@type/models'
-import { fetchUsers } from '@services/user'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { fetchAllUsers, fetchUsers } from '@services/user'
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { ITEM_PER_PAGE, SORT_OPTION } from '@constants/option'
 import { useCustomToast } from '@hooks/useCustomToast'
 
@@ -19,7 +19,7 @@ const Dashboard = () => {
   const { isOpen: isUserModalOpen, onOpen: onOpenUserModal, onClose: onCloseUserModal } = useDisclosure()
   const { isOpen: isWarningModalOpen, onOpen: onOpenWarningModal, onClose: onCloseWarningModal } = useDisclosure()
 
-  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, refetch } = useInfiniteQuery({
+  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, refetch, error } = useInfiniteQuery({
     queryKey: ['users', itemsPerPage, searchQuery, sortBy],
     queryFn: async ({ pageParam = 1 }) => {
       return await fetchUsers({
@@ -39,24 +39,22 @@ const Dashboard = () => {
     staleTime: 5 * 60 * 1000
   })
 
-  const usersData: IUser[] = data?.pages[currentPage]?.data || []
   const {
-    loading,
-    error,
-    transformFullUsers,
-    superAdmin,
-    admin,
-    employee,
-    allUsers,
-    getAllUser,
-    addUserMutation,
-    editUserMutation,
-    deleteUserMutation
-  } = useUser(usersData)
+    data: allUsers,
+    isLoading,
+    error: allUsersError
+  } = useQuery({
+    queryKey: ['allUsers'],
+    queryFn: async () => {
+      const response = await fetchAllUsers()
+      return response.data
+    },
+    staleTime: 5 * 60 * 1000
+  })
 
-  useEffect(() => {
-    getAllUser()
-  }, [])
+  const usersData: IUser[] = data?.pages[currentPage]?.data || []
+  const { transformAllUsers, addUserMutation, editUserMutation, deleteUserMutation, admin, employee, superAdmin } =
+    useUser(usersData, allUsers || [])
 
   useEffect(() => {
     setCurrentPage(0)
@@ -107,7 +105,6 @@ const Dashboard = () => {
         {
           onSuccess: (response) => {
             showToast({ status: 'success', title: response.message })
-            getAllUser()
           },
           onError: (response) => {
             showToast({ status: 'error', title: response.message })
@@ -145,7 +142,6 @@ const Dashboard = () => {
         {
           onSuccess: (response) => {
             showToast({ status: 'success', title: response.message })
-            getAllUser()
           },
           onError: (response) => {
             showToast({ status: 'error', title: response.message })
@@ -156,7 +152,6 @@ const Dashboard = () => {
       addUserMutation.mutate(newUser, {
         onSuccess: (response) => {
           showToast({ status: 'success', title: response.message })
-          getAllUser()
         },
         onError: (response) => {
           showToast({ status: 'error', title: response.message })
@@ -166,7 +161,7 @@ const Dashboard = () => {
     handleCloseUserModal()
   }
 
-  if (error) showToast({ status: 'error', title: error })
+  if (error || allUsersError) showToast({ status: 'error', title: error?.message || allUsersError?.message })
 
   return (
     <Stack gap={6}>
@@ -190,27 +185,27 @@ const Dashboard = () => {
         <FilterIcon />
       </Flex>
 
-      {loading ? (
+      {isLoading ? (
         <div>Loading...</div>
       ) : (
         <Flex gap={4}>
-          <StatisticCard label='Users' value={allUsers.length} />
+          <StatisticCard label='Users' value={allUsers?.length || 0} />
           <StatisticCard label='Super Admins' value={superAdmin.length} />
           <StatisticCard label='Admins' value={admin.length} />
           <StatisticCard label='Employees' value={employee.length} />
         </Flex>
       )}
 
-      {addUserMutation.isPending || editUserMutation.isPending || loading || isFetchingNextPage || isFetching ? (
+      {addUserMutation.isPending || editUserMutation.isPending || isFetchingNextPage || isFetching ? (
         <div>Loading...</div>
       ) : (
         <>
-          <CustomTable data={transformFullUsers} title='List User' onEdit={handleEdit} onDelete={handleDelete} />
+          <CustomTable data={transformAllUsers} title='List User' onEdit={handleEdit} onDelete={handleDelete} />
 
           <Flex justifyContent='center'>
             <Pagination
               currentPage={currentPage + 1}
-              totalItems={allUsers.length}
+              totalItems={allUsers?.length || 0}
               itemsPerPage={itemsPerPage}
               onPageChange={(page) => setCurrentPage(page - 1)}
               onItemsPerPageChange={handleItemsPerPageChange}
