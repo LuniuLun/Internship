@@ -4,7 +4,7 @@ import { FilterIcon, PlusIcon, SearchIcon } from '@assets/icons'
 import { CustomTable, TextField, Pagination, CustomSelect, UserModal, WarningModal } from '@components'
 import { useUser } from '@hooks/useUser'
 import { IUser } from '@type/models'
-import { addUser, editUser, fetchUsers } from '@services/user'
+import { addUser, deleteUser, editUser, fetchUsers } from '@services/user'
 import { useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { ITEM_PER_PAGE, SORT_OPTION } from '@constants/option'
 import { IApiResponse } from '@type/apiResponse'
@@ -65,6 +65,13 @@ const Dashboard = () => {
     }
   })
 
+  const deleteUserMutation = useMutation<IApiResponse<IUser>, Error, IUser>({
+    mutationFn: (variables: IUser) => deleteUser(variables.id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+    }
+  })
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
   }
@@ -103,7 +110,19 @@ const Dashboard = () => {
 
   const handleWarningSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('Delete user:', selectedUser)
+    if (selectedUser?.id) {
+      deleteUserMutation.mutate(
+        { ...selectedUser },
+        {
+          onSuccess: (response) => {
+            console.log(response.message)
+          },
+          onError: (response) => {
+            console.error('Error deleting user:', response.message)
+          }
+        }
+      )
+    }
     onCloseWarningModal()
   }
 
