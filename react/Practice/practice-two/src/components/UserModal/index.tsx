@@ -4,7 +4,7 @@ import { ROLE_OPTION } from '@constants/option'
 import { IUser } from '@type/models'
 
 interface UserModalProps {
-  selectedUser?: IUser
+  selectedUser?: IUser | null
   isModalOpen: boolean
   onClose: () => void
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void

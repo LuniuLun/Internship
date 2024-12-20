@@ -13,7 +13,7 @@ const Dashboard = () => {
   const [sortBy, setSortBy] = useState<string>('')
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [itemsPerPage, setItemsPerPage] = useState<number>(5)
-  const [selectedUser, setSelectedUser] = useState<IUser>()
+  const [selectedUser, setSelectedUser] = useState<IUser | null>(null)
   const { isOpen: isUserModalOpen, onOpen: onOpenUserModal, onClose: onCloseUserModal } = useDisclosure()
   const { isOpen: isWarningModalOpen, onOpen: onOpenWarningModal, onClose: onCloseWarningModal } = useDisclosure()
 
@@ -75,6 +75,16 @@ const Dashboard = () => {
     onOpenWarningModal()
   }
 
+  const handleCloseUserModal = () => {
+    setSelectedUser(null)
+    onCloseUserModal()
+  }
+
+  const handleCloseWarningModal = () => {
+    setSelectedUser(null)
+    onCloseWarningModal()
+  }
+
   const handleWarningSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log('Delete user:', selectedUser)
@@ -85,6 +95,7 @@ const Dashboard = () => {
     e.preventDefault()
     e.stopPropagation()
     console.log('Form data submitted:', e.target)
+    handleCloseUserModal()
   }
 
   if (loading || isFetchingNextPage || isFetching) return <div>Loading...</div>
@@ -131,13 +142,13 @@ const Dashboard = () => {
       <UserModal
         selectedUser={selectedUser}
         isModalOpen={isUserModalOpen}
-        onClose={onCloseUserModal}
+        onClose={handleCloseUserModal}
         handleSubmit={handleSubmit}
       />
 
       <WarningModal
         isModalOpen={isWarningModalOpen}
-        onClose={onCloseWarningModal}
+        onClose={handleCloseWarningModal}
         title='Warning'
         message='This action will permanently delete the user. Do you want to proceed?'
         handleSubmit={handleWarningSubmit}
