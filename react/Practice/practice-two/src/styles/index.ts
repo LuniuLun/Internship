@@ -6,7 +6,8 @@ import {
   HeadingStyles as Heading,
   InputStyles as Input,
   SelectStyles as Select,
-  CheckboxStyles as Checkbox
+  CheckboxStyles as Checkbox,
+  AlertStyles as Alert
 } from './components'
 
 export const defaultTheme = extendTheme({
@@ -14,5 +15,5 @@ export const defaultTheme = extendTheme({
   styles: globalStyles.styles,
   config: globalStyles.config,
   fonts: globalStyles.fonts,
-  components: { Button, Heading, Input, Select, Checkbox }
+  components: { Button, Heading, Input, Select, Checkbox, Alert }
 })
