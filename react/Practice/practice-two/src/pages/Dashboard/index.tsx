@@ -4,11 +4,13 @@ import { FilterIcon, PlusIcon, SearchIcon } from '@assets/icons'
 import { CustomTable, TextField, Pagination, CustomSelect, UserModal, WarningModal } from '@components'
 import { useUser } from '@hooks/useUser'
 import { IUser } from '@type/models'
-import { fetchUsers } from '@services/user'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { addUser, editUser, fetchUsers } from '@services/user'
+import { useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { ITEM_PER_PAGE, SORT_OPTION } from '@constants/option'
+import { IApiResponse } from '@type/apiResponse'
 
 const Dashboard = () => {
+  const queryClient = useQueryClient()
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [sortBy, setSortBy] = useState<string>('')
   const [currentPage, setCurrentPage] = useState<number>(0)
@@ -48,6 +50,20 @@ const Dashboard = () => {
     setCurrentPage(0)
     refetch()
   }, [itemsPerPage, searchQuery, sortBy, refetch])
+
+  const addUserMutation = useMutation<IApiResponse<IUser>, Error, IUser>({
+    mutationFn: addUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+    }
+  })
+
+  const editUserMutation = useMutation<IApiResponse<IUser>, Error, IUser>({
+    mutationFn: editUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+    }
+  })
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
@@ -93,12 +109,52 @@ const Dashboard = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    e.stopPropagation()
-    console.log('Form data submitted:', e.target)
+    const newUser: IUser = {
+      id: selectedUser?.id || '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      username: '',
+      password: '',
+      role: '',
+      createDate: selectedUser?.createDate || new Date().toISOString()
+    }
+
+    const formData = new FormData(e.target as HTMLFormElement)
+    for (const [key, value] of formData.entries()) {
+      if (key in newUser) {
+        newUser[key as keyof IUser] = value as string
+      }
+    }
+
+    if (selectedUser?.id) {
+      editUserMutation.mutate(
+        { ...newUser },
+        {
+          onSuccess: (response) => {
+            console.log(response.message)
+          },
+          onError: (response) => {
+            console.error('Error editing user:', response.message)
+          }
+        }
+      )
+    } else {
+      addUserMutation.mutate(newUser, {
+        onSuccess: (response) => {
+          console.log(response.message)
+        },
+        onError: (response) => {
+          console.error('Error editing user:', response.message)
+        }
+      })
+    }
     handleCloseUserModal()
   }
 
-  if (loading || isFetchingNextPage || isFetching) return <div>Loading...</div>
+  if (addUserMutation.isPending || editUserMutation.isPending || loading || isFetchingNextPage || isFetching)
+    return <div>Loading...</div>
   if (error) return <div>Error: {error}</div>
 
   return (
