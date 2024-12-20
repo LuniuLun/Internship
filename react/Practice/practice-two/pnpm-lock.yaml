@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@chakra-ui/anatomy':
+    specifier: ^2.3.4
+    version: 2.3.4
   '@chakra-ui/react':
     specifier: 2.10.4
     version: 2.10.4(@emotion/react@11.14.0)(@emotion/styled@11.14.0)(@types/react@18.3.12)(framer-motion@11.13.5)(react-dom@18.3.1)(react@18.3.1)
@@ -478,6 +481,10 @@ packages:
   /@bcoe/v8-coverage@0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
+
+  /@chakra-ui/anatomy@2.3.4:
+    resolution: {integrity: sha512-fFIYN7L276gw0Q7/ikMMlZxP7mvnjRaWJ7f3Jsf9VtDOi6eAYIBRrhQe6+SZ0PGmoOkRaBc7gSE5oeIbgFFyrw==}
+    dev: false
 
   /@chakra-ui/anatomy@2.3.5:
     resolution: {integrity: sha512-3im33cUOxCbISjaBlINE2u8BOwJSCdzpjCX0H+0JxK2xz26UaVA5xeI3NYHUoxDnr/QIrgfrllGxS0szYwOcyg==}
