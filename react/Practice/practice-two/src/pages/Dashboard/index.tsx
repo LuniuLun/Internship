@@ -7,8 +7,10 @@ import { IUser } from '@type/models'
 import { fetchUsers } from '@services/user'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { ITEM_PER_PAGE, SORT_OPTION } from '@constants/option'
+import { useCustomToast } from '@hooks/useCustomToast'
 
 const Dashboard = () => {
+  const { showToast } = useCustomToast()
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [sortBy, setSortBy] = useState<string>('')
   const [currentPage, setCurrentPage] = useState<number>(0)
@@ -101,10 +103,10 @@ const Dashboard = () => {
         { ...selectedUser },
         {
           onSuccess: (response) => {
-            console.log(response.message)
+            showToast({ status: 'success', title: response.message })
           },
           onError: (response) => {
-            console.error('Error deleting user:', response.message)
+            showToast({ status: 'error', title: response.message })
           }
         }
       )
@@ -138,20 +140,20 @@ const Dashboard = () => {
         { ...newUser },
         {
           onSuccess: (response) => {
-            console.log(response.message)
+            showToast({ status: 'success', title: response.message })
           },
           onError: (response) => {
-            console.error('Error editing user:', response.message)
+            showToast({ status: 'error', title: response.message })
           }
         }
       )
     } else {
       addUserMutation.mutate(newUser, {
         onSuccess: (response) => {
-          console.log(response.message)
+          showToast({ status: 'success', title: response.message })
         },
         onError: (response) => {
-          console.error('Error editing user:', response.message)
+          showToast({ status: 'error', title: response.message })
         }
       })
     }
@@ -160,7 +162,7 @@ const Dashboard = () => {
 
   if (addUserMutation.isPending || editUserMutation.isPending || loading || isFetchingNextPage || isFetching)
     return <div>Loading...</div>
-  if (error) return <div>Error: {error}</div>
+  if (error) showToast({ status: 'error', title: error })
 
   return (
     <Stack gap={6}>
