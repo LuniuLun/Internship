@@ -4,13 +4,11 @@ import { FilterIcon, PlusIcon, SearchIcon } from '@assets/icons'
 import { CustomTable, TextField, Pagination, CustomSelect, UserModal, WarningModal } from '@components'
 import { useUser } from '@hooks/useUser'
 import { IUser } from '@type/models'
-import { addUser, deleteUser, editUser, fetchUsers } from '@services/user'
-import { useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { fetchUsers } from '@services/user'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { ITEM_PER_PAGE, SORT_OPTION } from '@constants/option'
-import { IApiResponse } from '@type/apiResponse'
 
 const Dashboard = () => {
-  const queryClient = useQueryClient()
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [sortBy, setSortBy] = useState<string>('')
   const [currentPage, setCurrentPage] = useState<number>(0)
@@ -40,7 +38,16 @@ const Dashboard = () => {
   })
 
   const usersData: IUser[] = data?.pages[currentPage]?.data || []
-  const { loading, error, userQuantity, getUserQuantity, transformedUsers } = useUser(usersData)
+  const {
+    loading,
+    error,
+    userQuantity,
+    getUserQuantity,
+    transformedUsers,
+    addUserMutation,
+    editUserMutation,
+    deleteUserMutation
+  } = useUser(usersData)
 
   useEffect(() => {
     getUserQuantity()
@@ -50,27 +57,6 @@ const Dashboard = () => {
     setCurrentPage(0)
     refetch()
   }, [itemsPerPage, searchQuery, sortBy, refetch])
-
-  const addUserMutation = useMutation<IApiResponse<IUser>, Error, IUser>({
-    mutationFn: addUser,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] })
-    }
-  })
-
-  const editUserMutation = useMutation<IApiResponse<IUser>, Error, IUser>({
-    mutationFn: editUser,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] })
-    }
-  })
-
-  const deleteUserMutation = useMutation<IApiResponse<IUser>, Error, IUser>({
-    mutationFn: (variables: IUser) => deleteUser(variables.id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] })
-    }
-  })
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
