@@ -43,8 +43,8 @@ const Dashboard = () => {
   const {
     loading,
     error,
-    userQuantity,
-    getUserQuantity,
+    allUsers,
+    getAllUser,
     transformedUsers,
     addUserMutation,
     editUserMutation,
@@ -52,7 +52,7 @@ const Dashboard = () => {
   } = useUser(usersData)
 
   useEffect(() => {
-    getUserQuantity()
+    getAllUser()
   }, [])
 
   useEffect(() => {
@@ -104,6 +104,7 @@ const Dashboard = () => {
         {
           onSuccess: (response) => {
             showToast({ status: 'success', title: response.message })
+            getAllUser()
           },
           onError: (response) => {
             showToast({ status: 'error', title: response.message })
@@ -141,6 +142,7 @@ const Dashboard = () => {
         {
           onSuccess: (response) => {
             showToast({ status: 'success', title: response.message })
+            getAllUser()
           },
           onError: (response) => {
             showToast({ status: 'error', title: response.message })
@@ -151,6 +153,7 @@ const Dashboard = () => {
       addUserMutation.mutate(newUser, {
         onSuccess: (response) => {
           showToast({ status: 'success', title: response.message })
+          getAllUser()
         },
         onError: (response) => {
           showToast({ status: 'error', title: response.message })
@@ -159,9 +162,6 @@ const Dashboard = () => {
     }
     handleCloseUserModal()
   }
-
-  if (addUserMutation.isPending || editUserMutation.isPending || loading || isFetchingNextPage || isFetching)
-    return <div>Loading...</div>
   if (error) showToast({ status: 'error', title: error })
 
   return (
@@ -186,21 +186,27 @@ const Dashboard = () => {
         <FilterIcon />
       </Flex>
 
-      <CustomTable data={transformedUsers} title='List User' onEdit={handleEdit} onDelete={handleDelete} />
+      {addUserMutation.isPending || editUserMutation.isPending || loading || isFetchingNextPage || isFetching ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <CustomTable data={transformedUsers} title='List User' onEdit={handleEdit} onDelete={handleDelete} />
 
-      <Flex justifyContent='center'>
-        <Pagination
-          currentPage={currentPage + 1}
-          totalItems={userQuantity}
-          itemsPerPage={itemsPerPage}
-          onPageChange={(page) => setCurrentPage(page - 1)}
-          onItemsPerPageChange={handleItemsPerPageChange}
-          fetchNextPage={fetchNextPage}
-          hasNextPage={hasNextPage}
-          isFetchingNextPage={isFetchingNextPage}
-          itemsPerPageOptions={ITEM_PER_PAGE}
-        />
-      </Flex>
+          <Flex justifyContent='center'>
+            <Pagination
+              currentPage={currentPage + 1}
+              totalItems={allUsers.length}
+              itemsPerPage={itemsPerPage}
+              onPageChange={(page) => setCurrentPage(page - 1)}
+              onItemsPerPageChange={handleItemsPerPageChange}
+              fetchNextPage={fetchNextPage}
+              hasNextPage={hasNextPage}
+              isFetchingNextPage={isFetchingNextPage}
+              itemsPerPageOptions={ITEM_PER_PAGE}
+            />
+          </Flex>
+        </>
+      )}
 
       <UserModal
         selectedUser={selectedUser}
