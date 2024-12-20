@@ -44,9 +44,10 @@ const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTablePro
               borderBottom={`2px solid ${colors.brand.secondary}`}
               padding={5}
               fontSize='md'
+              textTransform='capitalize'
               textAlign={index === 0 ? 'left' : 'center'}
             >
-              {header}
+              {header.replace(/([a-z])([A-Z])/g, '$1 $2')}
             </Th>
           ))}
           {hasActions && (
@@ -55,6 +56,7 @@ const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTablePro
               w='100px'
               padding={5}
               fontSize='md'
+              textTransform='capitalize'
               borderBottom={`2px solid ${colors.brand.secondary}`}
             >
               Action
