@@ -49,3 +49,24 @@ export const WithBottomBorder: Story = {
     border: 'bottom'
   }
 }
+
+// Select with bottom border
+export const WithFullBorder: Story = {
+  args: {
+    border: 'full'
+  }
+}
+
+// Select with placeholder
+export const WithPlaceholder: Story = {
+  args: {
+    placeholder: 'Choose an option'
+  }
+}
+
+// Select with value prop
+export const WithSelectedValue: Story = {
+  args: {
+    value: 'option2'
+  }
+}
