@@ -115,30 +115,10 @@ const Dashboard = () => {
     onCloseWarningModal()
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const newUser: IUser = {
-      id: selectedUser?.id || '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      username: '',
-      password: '',
-      role: '',
-      createDate: selectedUser?.createDate || new Date().toISOString()
-    }
-
-    const formData = new FormData(e.target as HTMLFormElement)
-    for (const [key, value] of formData.entries()) {
-      if (key in newUser) {
-        newUser[key as keyof IUser] = value as string
-      }
-    }
-
+  const handleSubmit = (data: IUser) => {
     if (selectedUser?.id) {
       editUserMutation.mutate(
-        { ...newUser },
+        { ...data },
         {
           onSuccess: (response) => {
             showToast({ status: 'success', title: response.message })
@@ -150,7 +130,7 @@ const Dashboard = () => {
         }
       )
     } else {
-      addUserMutation.mutate(newUser, {
+      addUserMutation.mutate(data, {
         onSuccess: (response) => {
           showToast({ status: 'success', title: response.message })
           // getAllUser()
@@ -162,6 +142,7 @@ const Dashboard = () => {
     }
     handleCloseUserModal()
   }
+
   if (error || allUsersError) showToast({ status: 'error', title: error?.message || allUsersError?.message })
 
   return (
