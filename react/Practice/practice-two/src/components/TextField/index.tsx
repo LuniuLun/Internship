@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef } from 'react'
 import {
   Text,
   InputProps,
@@ -22,11 +22,9 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
     { value, onChange, placeholder, variant = 'unstyled', size = 'sm', errorMessage, icon, type = 'text', ...props },
     ref
   ) => {
-    const [valueInput, setValueInput] = useState(value)
-    const [showPassword, setShowPassword] = useState(false)
+    const [showPassword, setShowPassword] = React.useState(false)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setValueInput(e.target.value)
       onChange?.(e)
     }
 
@@ -56,7 +54,7 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
             placeholder={placeholder}
             variant={variant}
             size={size}
-            value={valueInput}
+            value={value}
             onChange={handleChange}
             type={type === 'password' && !showPassword ? 'password' : 'text'}
             {...props}
@@ -75,8 +73,8 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
           )}
         </InputGroup>
         <Text
-          alignSelf={'flex-start'}
-          marginLeft={'12px'}
+          alignSelf='flex-start'
+          marginLeft='12px'
           color={colors.brand.red}
           fontSize='xs'
           fontWeight='light'
