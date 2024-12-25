@@ -1,6 +1,16 @@
 import React, { forwardRef, useState } from 'react'
-import { Text, InputProps, InputGroup, InputLeftElement, Input, Stack } from '@chakra-ui/react'
+import {
+  Text,
+  InputProps,
+  InputGroup,
+  InputLeftElement,
+  Input,
+  Stack,
+  IconButton,
+  InputRightElement
+} from '@chakra-ui/react'
 import colors from '@styles/variables/colors'
+import { EyeIcon, CloseEyeIcon } from '@assets/icons'
 
 export interface ITextFieldProps extends InputProps {
   icon?: React.ReactNode
@@ -8,15 +18,31 @@ export interface ITextFieldProps extends InputProps {
 }
 
 const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
-  ({ value, onChange, placeholder, variant = 'unstyled', size = 'sm', errorMessage, icon, ...props }, ref) => {
+  (
+    { value, onChange, placeholder, variant = 'unstyled', size = 'sm', errorMessage, icon, type = 'text', ...props },
+    ref
+  ) => {
     const [valueInput, setValueInput] = useState(value)
+    const [showPassword, setShowPassword] = useState(false)
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setValueInput(e.target.value)
       onChange?.(e)
     }
 
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword)
+    }
+
     return (
-      <Stack flex='1' display='flex' alignItems='center' justifyContent='center' backgroundColor='transparent'>
+      <Stack
+        flex='1'
+        display='flex'
+        gap='unset'
+        alignItems='center'
+        justifyContent='center'
+        backgroundColor='transparent'
+      >
         <InputGroup>
           {icon && (
             <InputLeftElement pointerEvents='none' height='100%' transform='translateX(30%)'>
@@ -32,10 +58,30 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
             size={size}
             value={valueInput}
             onChange={handleChange}
+            type={type === 'password' && !showPassword ? 'password' : 'text'}
             {...props}
           />
+          {type === 'password' && (
+            <InputRightElement width='4.5rem'>
+              <IconButton
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                icon={showPassword ? <CloseEyeIcon /> : <EyeIcon />}
+                variant='link'
+                onClick={togglePasswordVisibility}
+                size='sm'
+                color='gray.500'
+              />
+            </InputRightElement>
+          )}
         </InputGroup>
-        <Text alignSelf={'flex-start'} marginLeft={'12px'} color={colors.brand.red} fontSize='xs' fontWeight='light'>
+        <Text
+          alignSelf={'flex-start'}
+          marginLeft={'12px'}
+          color={colors.brand.red}
+          fontSize='xs'
+          fontWeight='light'
+          height='12px'
+        >
           {errorMessage}
         </Text>
       </Stack>
