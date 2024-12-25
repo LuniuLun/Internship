@@ -10,25 +10,13 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    name: {
-      control: { type: 'text' }
-    },
-    placeholder: {
-      control: { type: 'text' }
-    },
-    variant: {
-      control: { type: 'radio', options: ['outline', 'filled', 'flushed', 'unstyled'] }
-    },
-    size: {
-      control: { type: 'radio', options: ['sm', 'md', 'lg'] }
-    },
-    icon: {
-      control: { type: 'object' },
-      description: 'Icon to be displayed inside the text field'
-    },
-    errorMessage: {
-      control: { type: 'text' }
-    }
+    name: { control: { type: 'text' } },
+    placeholder: { control: { type: 'text' } },
+    variant: { control: { type: 'radio', options: ['outline', 'filled', 'flushed', 'unstyled'] } },
+    size: { control: { type: 'radio', options: ['sm', 'md', 'lg'] } },
+    icon: { control: { type: 'object' }, description: 'Icon to be displayed inside the text field' },
+    errorMessage: { control: { type: 'text' } },
+    type: { control: { type: 'radio', options: ['text', 'password'] } }
   }
 } as Meta<typeof TextField>
 
@@ -112,6 +100,7 @@ export const FlushedVariant: Story = {
     errorMessage: ''
   }
 }
+
 export const FilledVariant: Story = {
   args: {
     name: 'filled-variant',
@@ -122,6 +111,7 @@ export const FilledVariant: Story = {
     errorMessage: ''
   }
 }
+
 export const OutlineVariant: Story = {
   args: {
     name: 'outline-variant',
@@ -141,5 +131,27 @@ export const UnstyledVariant: Story = {
     size: 'md',
     icon: <SearchIcon />,
     errorMessage: ''
+  }
+}
+
+export const PasswordField: Story = {
+  args: {
+    name: 'password',
+    placeholder: 'Enter password',
+    variant: 'outline',
+    size: 'md',
+    type: 'password',
+    errorMessage: ''
+  }
+}
+
+export const PasswordFieldWithError: Story = {
+  args: {
+    name: 'password-with-error',
+    placeholder: 'Enter password',
+    variant: 'outline',
+    size: 'md',
+    type: 'password',
+    errorMessage: 'Password is required.'
   }
 }
