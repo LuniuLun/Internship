@@ -86,7 +86,7 @@ const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTablePro
                       bgColor={colors.brand.white}
                       icon={<PenIcon />}
                       size='sm'
-                      onClick={() => onEdit(row.id as string)}
+                      onClick={() => onEdit && onEdit(row.id as string)}
                     />
                   )}
                   {onDelete && (
@@ -96,7 +96,7 @@ const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTablePro
                       icon={<BinIcon />}
                       size='sm'
                       colorScheme='red'
-                      onClick={() => onDelete(row.id as string)}
+                      onClick={() => onDelete && onDelete(row.id as string)}
                     />
                   )}
                 </Flex>
