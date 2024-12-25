@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 import NavItem from '.'
 import { DashboardIcon } from '@assets/icons'
+import { MemoryRouter } from 'react-router-dom' // Add this import
 
 const meta = {
   title: 'Components/NavItem',
@@ -19,8 +20,9 @@ const meta = {
     isActive: {
       control: { type: 'boolean' }
     },
-    handleClick: {
-      action: 'clicked'
+    to: {
+      control: { type: 'text' },
+      defaultValue: '/'
     }
   }
 } as Meta<typeof NavItem>
@@ -34,8 +36,9 @@ export const Active: Story = {
     icon: <DashboardIcon />,
     title: 'Active Item',
     isActive: true,
-    handleClick: (title: string) => alert(`Clicked on: ${title}`)
-  }
+    to: '/'
+  },
+  decorators: [(Story) => <MemoryRouter>{Story()}</MemoryRouter>]
 }
 
 export const Inactive: Story = {
@@ -43,6 +46,7 @@ export const Inactive: Story = {
     icon: <DashboardIcon />,
     title: 'Inactive Item',
     isActive: false,
-    handleClick: (title: string) => alert(`Clicked on: ${title}`)
-  }
+    to: '/'
+  },
+  decorators: [(Story) => <MemoryRouter>{Story()}</MemoryRouter>]
 }
