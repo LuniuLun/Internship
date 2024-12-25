@@ -16,7 +16,7 @@ interface PaginationProps {
   isFetchingNextPage: boolean
 }
 
-const Pagination: React.FC<PaginationProps> = ({
+const Pagination = ({
   currentPage,
   totalItems,
   itemsPerPage,
@@ -26,7 +26,7 @@ const Pagination: React.FC<PaginationProps> = ({
   fetchNextPage,
   hasNextPage,
   isFetchingNextPage
-}) => {
+}: PaginationProps) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage)
 
   const handlePrevious = () => {
@@ -59,17 +59,20 @@ const Pagination: React.FC<PaginationProps> = ({
       </Flex>
 
       <Text>
-        {`${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems}`}
+        {totalItems === 0
+          ? `0-0 of 0`
+          : `${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems}`}
       </Text>
 
       <Flex gap={2}>
-        <Button variant='unstyled' onClick={handlePrevious} isDisabled={currentPage === 1}>
+        <Button variant='unstyled' onClick={handlePrevious} isDisabled={currentPage === 1} aria-label='previous-page'>
           <LeftArrowIcon />
         </Button>
         <Button
           variant='unstyled'
           onClick={handleNext}
-          isDisabled={(currentPage === totalPages && hasNextPage) || isFetchingNextPage}
+          isDisabled={currentPage === totalPages || !hasNextPage || isFetchingNextPage}
+          aria-label='next-page'
         >
           <RightArrowIcon />
         </Button>
