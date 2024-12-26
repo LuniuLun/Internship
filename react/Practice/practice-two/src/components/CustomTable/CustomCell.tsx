@@ -10,7 +10,7 @@ interface CustomCellProps {
 const CustomCell = ({ header, row }: CustomCellProps) => {
   const value = row[header]
 
-  if (!value) return ''
+  if (!value && value !== false) return ''
 
   if (header.toLowerCase() === 'role' || header.toLowerCase() === 'modulepermission') {
     const isAdmin = value?.toString().toLowerCase().includes('admin')
