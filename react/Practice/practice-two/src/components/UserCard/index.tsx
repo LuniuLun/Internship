@@ -5,7 +5,7 @@ import InfoGroup from '@components/InfoGroup'
 interface UserCardProps {
   name: string
   role: string
-  avatar: string
+  avatar?: string
 }
 
 const UserCard = ({ name, role, avatar }: UserCardProps) => {
