@@ -10,6 +10,8 @@ interface CustomCellProps {
 const CustomCell = ({ header, row }: CustomCellProps) => {
   const value = row[header]
 
+  if (!value) return ''
+
   if (header.toLowerCase() === 'role' || header.toLowerCase() === 'modulepermission') {
     const isAdmin = value?.toString().toLowerCase().includes('admin')
     return (
@@ -29,7 +31,7 @@ const CustomCell = ({ header, row }: CustomCellProps) => {
   }
 
   if (typeof value === 'boolean') {
-    return <Checkbox isChecked={value} isReadOnly />
+    return <Checkbox isChecked={value} isReadOnly aria-label={`Cell active status for ${row.name}`} />
   }
 
   return value

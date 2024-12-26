@@ -16,9 +16,9 @@ interface CustomTableProps extends TableProps {
 
 const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTableProps) => {
   const headers = data.length > 0 ? Object.keys(data[0]) : []
-  const hasActions = Boolean(onEdit || onDelete)
-
   const filteredHeaders = headers.filter((header) => header !== 'id')
+
+  const hasActions = Boolean(onEdit || onDelete)
 
   return (
     <Table borderRadius='lg' {...props}>
