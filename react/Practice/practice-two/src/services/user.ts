@@ -52,9 +52,13 @@ export const fetchUsers = async (
   }
 }
 
-export const fetchAllUsers = async (): Promise<IApiResponse<IUser[]>> => {
+export const fetchAllUsers = async (property?: string, value?: string): Promise<IApiResponse<IUser[]>> => {
   try {
-    const response = await fetch(baseUrl)
+    const calledUrl = new URL(baseUrl)
+    if (property && value) {
+      calledUrl.searchParams.append(property, value)
+    }
+    const response = await fetch(calledUrl)
 
     if (!response.ok) {
       return {
