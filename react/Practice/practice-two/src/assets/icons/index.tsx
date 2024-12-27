@@ -196,6 +196,16 @@ export const CloseEyeIcon = ({ width = '20', height = '20', fill = '#717171' }: 
   </svg>
 )
 
+export const MenuIcon = ({ width = '20', height = '20', fill = '#717171' }: IconProps) => (
+  <svg width={width} height={height} viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg' fill='none'>
+    <path
+      fill={fill}
+      fillRule='evenodd'
+      d='M19 4a1 1 0 01-1 1H2a1 1 0 010-2h16a1 1 0 011 1zm0 6a1 1 0 01-1 1H2a1 1 0 110-2h16a1 1 0 011 1zm-1 7a1 1 0 100-2H2a1 1 0 100 2h16z'
+    />
+  </svg>
+)
+
 export const LogoIcon = ({ width = '101', height = '100' }: IconProps = {}) => (
   <svg version='1.1' viewBox='0 0 1616 1600' width={width} height={height} xmlns='http://www.w3.org/2000/svg'>
     <path transform='translate(0)' d='m0 0h1616v1600h-1616z' fill='#FCFCFC' />
