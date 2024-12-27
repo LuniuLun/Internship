@@ -68,14 +68,20 @@ const Dashboard = () => {
 
   const handleEdit = (id: string) => {
     const user = usersData.find((user) => user.id === id)
-    if (!user) return
+    if (!user) {
+      showToast({ status: 'error', title: 'User does not exist' })
+      return
+    }
     setSelectedUser(user)
     onOpenUserModal()
   }
 
   const handleDelete = (id: string) => {
     const user = usersData.find((user) => user.id === id)
-    if (!user) return
+    if (!user) {
+      showToast({ status: 'error', title: 'User does not exist' })
+      return
+    }
     setSelectedUser(user)
     onOpenWarningModal()
   }
@@ -92,15 +98,17 @@ const Dashboard = () => {
 
   const handleWarningSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (selectedUser?.id) {
-      deleteUserMutation.mutate(
-        { ...selectedUser },
-        {
-          onSuccess: (response) => showToast({ status: 'success', title: response.message }),
-          onError: (response) => showToast({ status: 'error', title: response.message })
-        }
-      )
+    if (!selectedUser?.id) {
+      showToast({ status: 'error', title: 'User does not exist' })
+      return
     }
+    deleteUserMutation.mutate(
+      { ...selectedUser },
+      {
+        onSuccess: (response) => showToast({ status: 'success', title: response.message }),
+        onError: (response) => showToast({ status: 'error', title: response.message })
+      }
+    )
     onCloseWarningModal()
   }
 
