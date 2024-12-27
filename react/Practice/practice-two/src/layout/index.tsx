@@ -7,7 +7,7 @@ const DefaultLayout = () => {
   return (
     <Flex>
       <Sidebar />
-      <Stack w='100%' px={6} bgColor='brand.grey'>
+      <Stack w={{ base: '100%', xl: 'calc(100% - 254px)' }} px={6} bgColor='brand.grey'>
         <Header />
         <Outlet />
       </Stack>
