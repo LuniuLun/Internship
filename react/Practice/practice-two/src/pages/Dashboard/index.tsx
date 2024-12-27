@@ -131,7 +131,7 @@ const Dashboard = () => {
         Users Dashboard
       </Heading>
       <Filter>
-        <Button display='flex' gap={2} onClick={onOpenUserModal}>
+        <Button display='flex' gap={2} onClick={onOpenUserModal} w='100%'>
           Add user <PlusIcon />
         </Button>
       </Filter>
