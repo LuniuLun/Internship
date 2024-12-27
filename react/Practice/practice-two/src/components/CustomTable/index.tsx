@@ -1,4 +1,4 @@
-import { Table, Thead, Tbody, Tr, Th, Td, IconButton, Flex, TableCaption, TableProps } from '@chakra-ui/react'
+import { Table, Thead, Tbody, Tr, Th, Td, IconButton, Flex, TableCaption, TableProps, Heading } from '@chakra-ui/react'
 import { BinIcon, PenIcon } from '@assets/icons'
 import colors from '@styles/variables/colors'
 import CustomCell from './CustomCell'
@@ -15,6 +15,13 @@ interface CustomTableProps extends TableProps {
 }
 
 const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTableProps) => {
+  if (data.length === 0)
+    return (
+      <Heading variant='secondary' color='brand.red'>
+        No data found
+      </Heading>
+    )
+
   const headers = data.length > 0 ? Object.keys(data[0]) : []
   const filteredHeaders = headers.filter((header) => header !== 'id')
 
