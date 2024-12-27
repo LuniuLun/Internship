@@ -74,7 +74,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
       handleSubmit={onSubmit(onFormSubmit)}
     >
       <Stack gap={4} px={4}>
-        <Flex gap={4} marginTop={4}>
+        <Flex gap={4} marginTop={4} flexDirection={{ base: 'column', md: 'row' }}>
           <FormControl>
             <TextField
               placeholder='First Name *'
@@ -98,7 +98,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
             />
           </FormControl>
         </Flex>
-        <Flex gap={4}>
+        <Flex gap={4} flexDirection={{ base: 'column', md: 'row' }}>
           <FormControl>
             <TextField
               placeholder='Email *'
@@ -133,7 +133,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
             {...register('role', { required: 'Please select Role' })}
           />
         </Flex>
-        <Flex gap={4}>
+        <Flex gap={4} flexDirection={{ base: 'column', md: 'row' }}>
           <FormControl>
             <TextField
               placeholder='Username *'
