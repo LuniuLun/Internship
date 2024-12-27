@@ -64,37 +64,38 @@ const Sidebar = () => {
   return (
     <Stack
       ref={sidebarRef}
+      gap={10}
       position={{ base: 'fixed', xl: 'unset' }}
       left={{ base: 0, xl: 'initial' }}
       top={{ base: 0, xl: 'initial' }}
-      width='254px'
-      height='100vh'
       transition='transform 0.3s ease'
       transform={{
         base: isSidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
         xl: 'translateX(0)'
       }}
       zIndex={1000}
+      width='254px'
+      height='100vh'
+      padding='40px 0 40px'
       bgColor='white'
     >
-      <Stack gap={10} maxW='254px' w='100%' height='100vh' padding='40px 0 40px'>
-        <Stack paddingLeft='32px'>
-          <Logo icon={<LogoIcon />} src='/' />
-        </Stack>
-        <Stack gap={2}>
-          {NAV_ITEMS.map((item) => {
-            const Icon = iconMap[item.id] || DashboardIcon
-            return (
-              <NavItem
-                key={item.id}
-                icon={<Icon />}
-                title={item.title}
-                isActive={activeNavItem === item.id}
-                to={item.path}
-              />
-            )
-          })}
-        </Stack>
+      <Stack paddingLeft='32px'>
+        <Logo icon={<LogoIcon />} src='/' />
+      </Stack>
+      <Stack gap={2}>
+        {NAV_ITEMS.map((item) => {
+          const Icon = iconMap[item.id] || DashboardIcon
+          return (
+            <NavItem
+              key={item.id}
+              icon={<Icon />}
+              title={item.title}
+              isActive={activeNavItem === item.id}
+              to={item.path}
+              onClick={() => closeSidebar()}
+            />
+          )
+        })}
       </Stack>
     </Stack>
   )
