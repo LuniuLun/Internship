@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Flex } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import { CustomSelect, TextField } from '@components'
 import { FilterIcon, SearchIcon } from '@assets/icons'
 import { SORT_OPTION } from '@constants/option'
@@ -21,7 +21,7 @@ const Filter = ({ children }: FilterProps) => {
   }
 
   return (
-    <Flex gap={8} alignItems='center'>
+    <Flex gap={8} alignItems='center' flexDirection={{ base: 'column', md: 'row' }}>
       <TextField
         icon={<SearchIcon />}
         variant='outline'
@@ -30,9 +30,19 @@ const Filter = ({ children }: FilterProps) => {
         value={searchQuery}
         onChange={handleSearchChange}
       />
-      {children}
-      <CustomSelect options={SORT_OPTION} placeholder='Sort by' value={sortBy} onChange={handleSortChange} />
-      <FilterIcon />
+      <Flex gap={8} alignItems='center' w={{ base: '100%', md: 'unset' }}>
+        {children}
+        <CustomSelect
+          options={SORT_OPTION}
+          placeholder='Sort by'
+          value={sortBy}
+          onChange={handleSortChange}
+          maxW={{ base: '100%', md: '150px' }}
+        />
+        <Box w='19px'>
+          <FilterIcon />
+        </Box>
+      </Flex>
     </Flex>
   )
 }
