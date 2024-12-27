@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
 import { Button, Stack, Heading, useDisclosure, Flex } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomTable, Filter, Pagination, UserModal, WarningModal } from '@components'
@@ -90,7 +90,7 @@ const Dashboard = () => {
     onCloseWarningModal()
   }
 
-  const handleWarningSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleWarningSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (selectedUser?.id) {
       deleteUserMutation.mutate(

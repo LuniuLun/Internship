@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { ReactNode, useMemo } from 'react'
 import InfoGroup from '@components/InfoGroup'
 import { TableRow } from '@components/CustomTable'
 import { IUser } from '@type/models'
@@ -7,7 +7,7 @@ import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-
 import { IApiResponse } from '@type/apiResponse'
 
 interface TransformedUser extends Pick<IUser, 'id' | 'role' | 'createDate'>, TableRow {
-  name: React.ReactNode
+  name: ReactNode
 }
 
 interface UseUserReturn {
