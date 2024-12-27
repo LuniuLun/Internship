@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Box, Stack } from '@chakra-ui/react'
+import { ElementType, useEffect, useRef, useState } from 'react'
+import { Stack, useBreakpointValue } from '@chakra-ui/react'
 import { Logo, NavItem } from '@components'
 import { useLocation } from 'react-router-dom'
 import { NAV_ITEMS } from '@constants/option'
+import { useSidebar } from '@hooks/useSidebar'
 import {
   DashboardIcon,
   LeaderboardIcon,
@@ -15,7 +16,7 @@ import {
   LogoIcon
 } from '@assets/icons'
 
-const iconMap: Record<string, React.ElementType> = {
+const iconMap: Record<string, ElementType> = {
   dashboard: DashboardIcon,
   users: LeaderboardIcon,
   documents: DocumentIcon,
@@ -27,8 +28,12 @@ const iconMap: Record<string, React.ElementType> = {
 }
 
 const Sidebar = () => {
-  const location = useLocation()
   const [activeNavItem, setActiveNavItem] = useState<string>('dashboard')
+  const { isSidebarOpen, closeSidebar } = useSidebar()
+  const sidebarRef = useRef<HTMLDivElement>(null)
+
+  const location = useLocation()
+  const isTablet = useBreakpointValue({ base: true, xl: false })
 
   useEffect(() => {
     const currentPath = location.pathname
@@ -41,24 +46,55 @@ const Sidebar = () => {
     setActiveNavItem(matchedItem ? matchedItem.id : 'dashboard')
   }, [location.pathname])
 
+  useEffect(() => {
+    if (isTablet) {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+          closeSidebar()
+        }
+      }
+      document.addEventListener('mousedown', handleClickOutside)
+
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }
+  }, [isTablet, closeSidebar])
+
   return (
-    <Stack gap={10} maxW='254px' w='100%' height='100vh' padding='40px 0 40px'>
-      <Box paddingLeft='32px'>
-        <Logo icon={<LogoIcon />} src='/' />
-      </Box>
-      <Stack gap={2}>
-        {NAV_ITEMS.map((item) => {
-          const Icon = iconMap[item.id] || DashboardIcon
-          return (
-            <NavItem
-              key={item.id}
-              icon={<Icon />}
-              title={item.title}
-              isActive={activeNavItem === item.id}
-              to={item.path}
-            />
-          )
-        })}
+    <Stack
+      ref={sidebarRef}
+      position={{ base: 'fixed', xl: 'unset' }}
+      left={{ base: 0, xl: 'initial' }}
+      top={{ base: 0, xl: 'initial' }}
+      width='254px'
+      height='100vh'
+      transition='transform 0.3s ease'
+      transform={{
+        base: isSidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
+        xl: 'translateX(0)'
+      }}
+      zIndex={1000}
+      bgColor='white'
+    >
+      <Stack gap={10} maxW='254px' w='100%' height='100vh' padding='40px 0 40px'>
+        <Stack paddingLeft='32px'>
+          <Logo icon={<LogoIcon />} src='/' />
+        </Stack>
+        <Stack gap={2}>
+          {NAV_ITEMS.map((item) => {
+            const Icon = iconMap[item.id] || DashboardIcon
+            return (
+              <NavItem
+                key={item.id}
+                icon={<Icon />}
+                title={item.title}
+                isActive={activeNavItem === item.id}
+                to={item.path}
+              />
+            )
+          })}
+        </Stack>
       </Stack>
     </Stack>
   )
