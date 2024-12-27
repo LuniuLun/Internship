@@ -1,4 +1,4 @@
-import { Box, Button, Flex, IconButton } from '@chakra-ui/react'
+import { Box, Flex, IconButton } from '@chakra-ui/react'
 import { MenuIcon, NotificationIcon } from '@assets/icons'
 import { InfoGroup, UserCard } from '@components'
 import { useSidebar } from '@hooks/useSidebar'
