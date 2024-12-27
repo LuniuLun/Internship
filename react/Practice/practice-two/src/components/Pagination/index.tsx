@@ -27,6 +27,7 @@ const Pagination = ({
   hasNextPage,
   isFetchingNextPage
 }: PaginationProps) => {
+  if (totalItems || itemsPerPage === 0) return
   const totalPages = Math.ceil(totalItems / itemsPerPage)
 
   const handlePrevious = () => {
@@ -59,9 +60,7 @@ const Pagination = ({
       </Flex>
 
       <Text>
-        {totalItems === 0
-          ? `0-0 of 0`
-          : `${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems}`}
+        {`${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems}`}
       </Text>
 
       <Flex gap={2}>
