@@ -133,7 +133,7 @@ const Dashboard = () => {
       </Heading>
 
       <Filter>
-        <Button display='flex' gap={2} onClick={onOpenUserModal}>
+        <Button display='flex' gap={2} onClick={onOpenUserModal} w='100%'>
           Add user <PlusIcon />
         </Button>
       </Filter>
@@ -141,11 +141,15 @@ const Dashboard = () => {
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <Flex gap={4}>
-          <StatisticCard label='Users' value={allUsers?.data?.length || 0} />
-          <StatisticCard label='Super Admins' value={superAdmin.length} />
-          <StatisticCard label='Admins' value={admin.length} />
-          <StatisticCard label='Employees' value={employee.length} />
+        <Flex gap={4} flexDirection={{ base: 'column', md: 'row' }}>
+          <Flex gap={4} w='100%'>
+            <StatisticCard label='Users' value={allUsers?.data?.length || 0} />
+            <StatisticCard label='Super Admins' value={superAdmin.length} />
+          </Flex>
+          <Flex gap={4} w='100%'>
+            <StatisticCard label='Admins' value={admin.length} />
+            <StatisticCard label='Employees' value={employee.length} />
+          </Flex>
         </Flex>
       )}
 
