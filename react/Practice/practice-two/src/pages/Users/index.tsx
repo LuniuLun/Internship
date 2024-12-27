@@ -7,12 +7,12 @@ import { fetchAllUsers, fetchUsers } from '@services/user'
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { ITEM_PER_PAGE } from '@constants/option'
 import { useCustomToast } from '@hooks/useCustomToast'
-import { useFilter } from '@hooks/useFilter'
 import { useEffect, useState } from 'react'
+import { useFilterStore } from '@hooks/useFilterStore'
 
 const Dashboard = () => {
   const { showToast } = useCustomToast()
-  const { searchQuery, sortBy } = useFilter()
+  const { searchQuery, sortBy } = useFilterStore()
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [itemsPerPage, setItemsPerPage] = useState<number>(5)
   const [selectedUser, setSelectedUser] = useState<IUser | null>(null)
