@@ -34,12 +34,13 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
 
     return (
       <Stack
-        flex='1'
+        flex={1}
         display='flex'
         gap='unset'
         alignItems='center'
         justifyContent='center'
         backgroundColor='transparent'
+        w='100%'
       >
         <InputGroup>
           {icon && (
@@ -72,14 +73,7 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
             </InputRightElement>
           )}
         </InputGroup>
-        <Text
-          alignSelf='flex-start'
-          marginLeft='12px'
-          color={colors.brand.red}
-          fontSize='xs'
-          fontWeight='light'
-          height='12px'
-        >
+        <Text alignSelf='flex-start' marginLeft='12px' color={colors.brand.red} fontSize='xs' fontWeight='light'>
           {errorMessage}
         </Text>
       </Stack>
