@@ -1,11 +1,23 @@
-import { NotificationIcon } from '@assets/icons'
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Button, Flex, IconButton } from '@chakra-ui/react'
+import { MenuIcon, NotificationIcon } from '@assets/icons'
 import { InfoGroup, UserCard } from '@components'
+import { useSidebar } from '@hooks/useSidebar'
 
 const Header = () => {
+  const { toggleSidebar } = useSidebar()
+
   return (
     <Flex alignItems='center' justifyContent='space-between' w='100%' padding='31px 0 22px 13px' bgColor='transparent'>
-      <InfoGroup heading='Hello, Lekan' description='Have a nice day' size='md' />
+      <Flex gap={4}>
+        <IconButton
+          icon={<MenuIcon />}
+          aria-label='Toggle Sidebar'
+          onClick={toggleSidebar}
+          bgColor='brand.secondary'
+          display={{ base: 'block', xl: 'none' }}
+        />
+        <InfoGroup heading='Hello, Lekan' description='Have a nice day' size='md' />
+      </Flex>
       <Flex
         alignItems='center'
         gap={5}

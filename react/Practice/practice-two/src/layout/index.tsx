@@ -14,4 +14,5 @@ const DefaultLayout = () => {
     </Flex>
   )
 }
+
 export default DefaultLayout
