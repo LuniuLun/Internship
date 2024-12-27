@@ -3,14 +3,14 @@ import { Flex } from '@chakra-ui/react'
 import { CustomSelect, TextField } from '@components'
 import { FilterIcon, SearchIcon } from '@assets/icons'
 import { SORT_OPTION } from '@constants/option'
-import { useFilter } from '@hooks/useFilter'
+import { useFilterStore } from '@hooks/useFilterStore'
 
 interface FilterProps {
   children?: ReactNode
 }
 
 const Filter = ({ children }: FilterProps) => {
-  const { searchQuery, sortBy, setSearchQuery, setSortBy } = useFilter()
+  const { searchQuery, sortBy, setSearchQuery, setSortBy } = useFilterStore()
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
