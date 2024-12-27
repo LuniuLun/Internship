@@ -44,24 +44,33 @@ const Pagination = ({
   }
 
   return (
-    <Flex align='center' p={4} gap='26px' color={colors.brand.blackTextQuaternary} fontSize='xs'>
+    <Flex
+      align='center'
+      gap='26px'
+      flexDirection={{ base: 'column', md: 'row' }}
+      p={4}
+      color={colors.brand.blackTextQuaternary}
+      fontSize='xs'
+    >
       <Flex align='center' gap='26px'>
-        <Text whiteSpace='nowrap'>Items per page:</Text>
-        <CustomSelect
-          placeholder={itemsPerPage.toString()}
-          border='bottom'
-          fontSize='xs'
-          onChange={onItemsPerPageChange}
-          options={itemsPerPageOptions.map((option) => ({
-            value: option,
-            label: option.toString()
-          }))}
-        />
-      </Flex>
+        <Flex align='center' gap='26px'>
+          <Text whiteSpace='nowrap'>Items per page:</Text>
+          <CustomSelect
+            placeholder={itemsPerPage.toString()}
+            border='bottom'
+            fontSize='xs'
+            onChange={onItemsPerPageChange}
+            options={itemsPerPageOptions.map((option) => ({
+              value: option,
+              label: option.toString()
+            }))}
+          />
+        </Flex>
 
-      <Text>
-        {`${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems}`}
-      </Text>
+        <Text>
+          {`${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems}`}
+        </Text>
+      </Flex>
 
       <Flex gap={2}>
         <Button variant='unstyled' onClick={handlePrevious} isDisabled={currentPage === 1} aria-label='previous-page'>
