@@ -9,9 +9,9 @@ interface NavItemProps extends LinkProps {
   isActive: boolean
 }
 
-const NavItem = ({ icon, title, isActive, to }: NavItemProps) => {
+const NavItem = ({ icon, title, isActive, to, onClick }: NavItemProps) => {
   return (
-    <Link to={to}>
+    <Link to={to} onClick={onClick}>
       <Flex
         align='center'
         borderRight={isActive ? `6px solid ${colors.brand.primary}` : 'none'}
