@@ -58,10 +58,12 @@ describe('Pagination', () => {
     expect(nextButton).toBeDisabled()
   })
 
-  it('should render correct page text when there are no items', () => {
-    renderPagination(1, 0, 10, false)
+  it('should not render anything when there are no items or items per page', () => {
+    const { container } = renderPagination(1, 0, 10, false)
+    expect(container.firstChild).toBeNull()
 
-    expect(screen.getByText('0-0 of 0')).toBeInTheDocument()
+    const { container: containerWithNoItemsPerPage } = renderPagination(1, 100, 0, false)
+    expect(containerWithNoItemsPerPage.firstChild).toBeNull()
   })
 
   it('should render correct page text when there are items, but no per page options', () => {

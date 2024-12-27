@@ -27,7 +27,7 @@ const Pagination = ({
   hasNextPage,
   isFetchingNextPage
 }: PaginationProps) => {
-  if (!totalItems || !itemsPerPage) return
+  if (!totalItems || !itemsPerPage) return null
   const totalPages = Math.ceil(totalItems / itemsPerPage)
 
   const handlePrevious = () => {
