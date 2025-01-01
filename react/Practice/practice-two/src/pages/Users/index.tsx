@@ -141,47 +141,50 @@ const Dashboard = () => {
       </Heading>
 
       <Filter>
-        <Button display='flex' gap={2} onClick={onOpenUserModal} w='100%'>
+        <Button display='flex' gap={2} onClick={onOpenUserModal} w='100%' isLoading={addUserMutation.isPending}>
           Add user <PlusIcon />
         </Button>
       </Filter>
 
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <Flex gap={4} flexDirection={{ base: 'column', md: 'row' }}>
-          <Flex gap={4} w='100%'>
-            <StatisticCard label='Users' value={allUsers?.data?.length || 0} />
-            <StatisticCard label='Super Admins' value={superAdmin.length} />
-          </Flex>
-          <Flex gap={4} w='100%'>
-            <StatisticCard label='Admins' value={admin.length} />
-            <StatisticCard label='Employees' value={employee.length} />
-          </Flex>
+      <Flex gap={4} flexDirection={{ base: 'column', md: 'row' }}>
+        <Flex gap={4} w='100%'>
+          <StatisticCard label='Users' value={allUsers?.data?.length || 0} isLoaded={!isLoading} />
+          <StatisticCard label='Super Admins' value={superAdmin.length} isLoaded={!isLoading} />
         </Flex>
-      )}
+        <Flex gap={4} w='100%'>
+          <StatisticCard label='Admins' value={admin.length} isLoaded={!isLoading} />
+          <StatisticCard label='Employees' value={employee.length} isLoaded={!isLoading} />
+        </Flex>
+      </Flex>
 
-      {addUserMutation.isPending || editUserMutation.isPending || isFetchingNextPage || isFetching || isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <>
-          <CustomTable data={transformAllUsers} title='List User' onEdit={handleEdit} onDelete={handleDelete} />
+      <CustomTable
+        data={transformAllUsers}
+        title='List User'
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+        isLoaded={!addUserMutation.isPending && !editUserMutation.isPending && !isFetchingNextPage && !isFetching}
+      />
 
-          <Flex justifyContent='center'>
-            <Pagination
-              currentPage={currentPage + 1}
-              totalItems={allUsers?.data?.length || 0}
-              itemsPerPage={itemsPerPage}
-              onPageChange={(page) => setCurrentPage(page - 1)}
-              onItemsPerPageChange={handleItemsPerPageChange}
-              fetchNextPage={fetchNextPage}
-              hasNextPage={hasNextPage}
-              isFetchingNextPage={isFetchingNextPage}
-              itemsPerPageOptions={ITEM_PER_PAGE}
-            />
-          </Flex>
-        </>
-      )}
+      <Flex justifyContent='center'>
+        <Pagination
+          currentPage={currentPage + 1}
+          totalItems={allUsers?.data?.length || 0}
+          itemsPerPage={itemsPerPage}
+          onPageChange={(page) => setCurrentPage(page - 1)}
+          onItemsPerPageChange={handleItemsPerPageChange}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+          itemsPerPageOptions={ITEM_PER_PAGE}
+          isLoaded={
+            !addUserMutation.isPending &&
+            !editUserMutation.isPending &&
+            !isFetchingNextPage &&
+            !isFetching &&
+            !isLoading
+          }
+        />
+      </Flex>
 
       <UserModal
         selectedUser={selectedUser}
