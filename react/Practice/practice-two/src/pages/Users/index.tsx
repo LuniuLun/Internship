@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Stack, useDisclosure } from '@chakra-ui/react'
+import { Button, Flex, Heading, Spinner, Stack, useDisclosure } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomTable, Pagination, UserModal, WarningModal, StatisticCard, Filter } from '@components'
 import { useUser } from '@hooks/useUser'
@@ -19,26 +19,35 @@ const Dashboard = () => {
   const { isOpen: isUserModalOpen, onOpen: onOpenUserModal, onClose: onCloseUserModal } = useDisclosure()
   const { isOpen: isWarningModalOpen, onOpen: onOpenWarningModal, onClose: onCloseWarningModal } = useDisclosure()
 
-  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, refetch, isError, error } =
-    useInfiniteQuery({
-      queryKey: ['users', itemsPerPage, searchQuery, sortBy],
-      queryFn: async ({ pageParam = 1 }) => {
-        return await fetchUsers({
-          page: pageParam.toString(),
-          limit: itemsPerPage.toString(),
-          property: 'firstName',
-          value: searchQuery,
-          sortBy,
-          order: 'asc'
-        })
-      },
-      initialPageParam: 1,
-      getNextPageParam: (lastPage, _, lastPageParam) => {
-        if (!lastPage.data || lastPage.data.length === 0) return undefined
-        return lastPageParam + 1
-      },
-      staleTime: 5 * 60 * 1000
-    })
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+    refetch,
+    isError,
+    error,
+    isLoading: firstUserLoading
+  } = useInfiniteQuery({
+    queryKey: ['users', itemsPerPage, searchQuery, sortBy],
+    queryFn: async ({ pageParam = 1 }) => {
+      return await fetchUsers({
+        page: pageParam.toString(),
+        limit: itemsPerPage.toString(),
+        property: 'firstName',
+        value: searchQuery,
+        sortBy,
+        order: 'asc'
+      })
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, _, lastPageParam) => {
+      if (!lastPage.data || lastPage.data.length === 0) return undefined
+      return lastPageParam + 1
+    },
+    staleTime: 5 * 60 * 1000
+  })
 
   const {
     data: allUsers,
@@ -126,6 +135,14 @@ const Dashboard = () => {
       })
     }
     handleCloseUserModal()
+  }
+
+  if (firstUserLoading) {
+    return (
+      <Flex w='100%' h='100vh' justifyContent='center' alignItems='center'>
+        <Spinner size='xl' color='brand.primary' />
+      </Flex>
+    )
   }
 
   if (isError || allUsersIsError)

@@ -139,6 +139,14 @@ const Dashboard = () => {
     handleCloseUserModal()
   }
 
+  if (firstUserLoading) {
+    return (
+      <Flex w='100%' h='100vh' justifyContent='center' alignItems='center'>
+        <Spinner size='xl' color='brand.primary' />
+      </Flex>
+    )
+  }
+
   if (isError || allUsersIsError)
     showToast({ status: 'error', title: error?.message || allUsersError?.message || 'Error fetching users' })
 
