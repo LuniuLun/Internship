@@ -1,15 +1,8 @@
-import React, { createContext, useState } from 'react'
-
-interface SidebarContextType {
-  isSidebarOpen: boolean
-  toggleSidebar: () => void
-  closeSidebar: () => void
-}
-
-export const SidebarContext = createContext<SidebarContextType | undefined>(undefined)
+import { SidebarContext } from '@contexts'
+import { ReactNode, useState } from 'react'
 
 interface SidebarProviderProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export const SidebarProvider = ({ children }: SidebarProviderProps) => {
