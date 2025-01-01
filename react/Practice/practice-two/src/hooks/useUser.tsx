@@ -6,8 +6,9 @@ import { addUser, deleteUser, editUser } from '@services/user'
 import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query'
 import { IApiResponse } from '@type/apiResponse'
 
-interface TransformedUser extends Pick<IUser, 'id' | 'role' | 'createDate'>, TableRow {
+interface TransformedUser extends Pick<IUser, 'id' | 'role'>, TableRow {
   name: ReactNode
+  createDate: string
 }
 
 interface UseUserReturn {
@@ -30,7 +31,7 @@ export const useUser = (usersData: IUser[], allUsers: IUser[]): UseUserReturn =>
         id: user.id,
         name: <InfoGroup heading={`${user.firstName} ${user.lastName}`} description={user.email} size='sm' />,
         role: user.role,
-        createDate: user.createDate.split('T')[0]
+        createDate: user.createDate.toString().split('T')[0]
       }
     })
   }, [usersData])
@@ -45,7 +46,7 @@ export const useUser = (usersData: IUser[], allUsers: IUser[]): UseUserReturn =>
       username: user.username,
       password: user.password,
       role: user.role,
-      createDate: user.createDate.split('T')[0]
+      createDate: user.createDate.toString().split('T')[0]
     }))
   }, [usersData])
 
