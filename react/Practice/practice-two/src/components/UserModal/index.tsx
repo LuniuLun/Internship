@@ -60,7 +60,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
     const user: IUser = {
       id: selectedUser?.id || '',
       ...userData,
-      createDate: selectedUser?.createDate || Date.now().toString()
+      createDate: selectedUser?.createDate || new Date(Date.now())
     }
     handleSubmit(user)
   }
