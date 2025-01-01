@@ -1,4 +1,4 @@
-import { SidebarContext } from '@layout/components/Sidebar/SidebarProvider'
+import { SidebarContext } from '@contexts'
 import { useContext } from 'react'
 
 export const useSidebar = () => {
