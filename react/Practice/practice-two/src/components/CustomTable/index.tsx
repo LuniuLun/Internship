@@ -10,7 +10,8 @@ import {
   TableCaption,
   TableProps,
   Heading,
-  Box
+  Box,
+  Skeleton
 } from '@chakra-ui/react'
 import { BinIcon, PenIcon } from '@assets/icons'
 import colors from '@styles/variables/colors'
@@ -25,19 +26,20 @@ interface CustomTableProps extends TableProps {
   data: TableRow[]
   onEdit?: (id: string) => void
   onDelete?: (id: string) => void
+  isLoaded?: boolean
 }
 
-const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTableProps) => {
-  if (data.length === 0)
+const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: CustomTableProps) => {
+  if (data.length === 0 && isLoaded) {
     return (
       <Heading variant='secondary' color='brand.red'>
         No data found
       </Heading>
     )
+  }
 
   const headers = data.length > 0 ? Object.keys(data[0]) : []
   const filteredHeaders = headers.filter((header) => header !== 'id')
-
   const hasActions = Boolean(onEdit || onDelete)
 
   return (
@@ -69,7 +71,9 @@ const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTablePro
                 textTransform='capitalize'
                 textAlign={index === 0 ? 'left' : 'center'}
               >
-                {header.replace(/([a-z])([A-Z])/g, '$1 $2')}
+                <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300'>
+                  {header.replace(/([a-z])([A-Z])/g, '$1 $2')}
+                </Skeleton>
               </Th>
             ))}
             {hasActions && (
@@ -97,7 +101,9 @@ const CustomTable = ({ title, data, onEdit, onDelete, ...props }: CustomTablePro
                   textAlign={index === 0 ? 'left' : 'center'}
                   bgColor={colors.brand.white}
                 >
-                  {CustomCell({ header, row })}
+                  <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300'>
+                    {CustomCell({ header, row })}
+                  </Skeleton>
                 </Td>
               ))}
               {hasActions && (
