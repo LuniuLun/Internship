@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from 'react'
-import { Button, Stack, Heading, useDisclosure, Flex } from '@chakra-ui/react'
+import { Button, Stack, Heading, useDisclosure, Flex, Spinner } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomTable, Filter, Pagination, UserModal, WarningModal } from '@components'
 import { useUser } from '@hooks/useUser'
@@ -19,26 +19,35 @@ const Dashboard = () => {
   const { isOpen: isUserModalOpen, onOpen: onOpenUserModal, onClose: onCloseUserModal } = useDisclosure()
   const { isOpen: isWarningModalOpen, onOpen: onOpenWarningModal, onClose: onCloseWarningModal } = useDisclosure()
 
-  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, refetch, isError, error } =
-    useInfiniteQuery({
-      queryKey: ['users', itemsPerPage, searchQuery, sortBy],
-      queryFn: async ({ pageParam = 1 }) => {
-        return await fetchUsers({
-          page: pageParam.toString(),
-          limit: itemsPerPage.toString(),
-          property: 'firstName',
-          value: searchQuery,
-          sortBy,
-          order: 'asc'
-        })
-      },
-      initialPageParam: 1,
-      getNextPageParam: (lastPage, _, lastPageParam) => {
-        if (!lastPage.data || lastPage.data.length === 0) return undefined
-        return lastPageParam + 1
-      },
-      staleTime: 5 * 60 * 1000
-    })
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+    refetch,
+    isError,
+    error,
+    isLoading: firstUserLoading
+  } = useInfiniteQuery({
+    queryKey: ['users', itemsPerPage, searchQuery, sortBy],
+    queryFn: async ({ pageParam = 1 }) => {
+      return await fetchUsers({
+        page: pageParam.toString(),
+        limit: itemsPerPage.toString(),
+        property: 'firstName',
+        value: searchQuery,
+        sortBy,
+        order: 'asc'
+      })
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, _, lastPageParam) => {
+      if (!lastPage.data || lastPage.data.length === 0) return undefined
+      return lastPageParam + 1
+    },
+    staleTime: 5 * 60 * 1000
+  })
 
   const {
     data: allUsers,
@@ -138,33 +147,42 @@ const Dashboard = () => {
       <Heading variant='primary' paddingLeft='13px'>
         Users Dashboard
       </Heading>
-      <Filter>
-        <Button display='flex' gap={2} onClick={onOpenUserModal} w='100%'>
+      <Filter
+        isLoaded={!addUserMutation.isPending && !editUserMutation.isPending && !isFetchingNextPage && !isFetching}
+      >
+        <Button display='flex' gap={2} onClick={onOpenUserModal} w='100%' isLoading={addUserMutation.isPending}>
           Add user <PlusIcon />
         </Button>
       </Filter>
 
-      {addUserMutation.isPending || editUserMutation.isPending || isFetchingNextPage || isFetching || isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <>
-          <CustomTable data={transformedUsers} title='List User' onEdit={handleEdit} onDelete={handleDelete} />
+      <CustomTable
+        data={transformedUsers}
+        title='List User'
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+        isLoaded={!addUserMutation.isPending && !editUserMutation.isPending && !isFetchingNextPage && !isFetching}
+      />
 
-          <Flex justifyContent='center'>
-            <Pagination
-              currentPage={currentPage + 1}
-              totalItems={allUsers?.data?.length || 0}
-              itemsPerPage={itemsPerPage}
-              onPageChange={(page) => setCurrentPage(page - 1)}
-              onItemsPerPageChange={handleItemsPerPageChange}
-              fetchNextPage={fetchNextPage}
-              hasNextPage={hasNextPage}
-              isFetchingNextPage={isFetchingNextPage}
-              itemsPerPageOptions={ITEM_PER_PAGE}
-            />
-          </Flex>
-        </>
-      )}
+      <Flex justifyContent='center'>
+        <Pagination
+          currentPage={currentPage + 1}
+          totalItems={allUsers?.data?.length || 0}
+          itemsPerPage={itemsPerPage}
+          onPageChange={(page) => setCurrentPage(page - 1)}
+          onItemsPerPageChange={handleItemsPerPageChange}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+          itemsPerPageOptions={ITEM_PER_PAGE}
+          isLoaded={
+            !addUserMutation.isPending &&
+            !editUserMutation.isPending &&
+            !isFetchingNextPage &&
+            !isFetching &&
+            !isLoading
+          }
+        />
+      </Flex>
 
       <UserModal
         selectedUser={selectedUser}
