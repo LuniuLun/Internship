@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import EnvCompatiblePlugin from 'vite-plugin-env-compatible'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), EnvCompatiblePlugin()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -16,7 +17,8 @@ export default defineConfig({
       '@layout': path.resolve(__dirname, 'src/layout'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@constants': path.resolve(__dirname, 'src/constants'),
-      '@services': path.resolve(__dirname, 'src/services')
+      '@services': path.resolve(__dirname, 'src/services'),
+      '@contexts': path.resolve(__dirname, 'src/contexts')
     }
   }
 })
