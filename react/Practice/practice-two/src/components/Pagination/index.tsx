@@ -29,7 +29,8 @@ const Pagination = ({
   isFetchingNextPage,
   isLoaded
 }: PaginationProps) => {
-  if ((!totalItems || !itemsPerPage) && isLoaded) return null
+  if ((totalItems === 0 || itemsPerPage === 0) && isLoaded) return null
+
   const totalPages = Math.ceil(totalItems / itemsPerPage)
 
   const handlePrevious = () => {
@@ -67,6 +68,7 @@ const Pagination = ({
                 value: option,
                 label: option.toString()
               }))}
+              aria-label='items-per-page'
             />
           </Flex>
 
