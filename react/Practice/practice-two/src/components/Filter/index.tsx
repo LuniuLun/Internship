@@ -49,6 +49,7 @@ const Filter = ({ isLoaded = true, children }: FilterProps) => {
           onChange={handleSortChange}
           maxW={{ base: '100%', md: '150px' }}
           isDisabled={!isLoaded}
+          aria-label='sort'
         />
         <Box w='19px'>
           <FilterIcon />
