@@ -30,10 +30,10 @@ const CustomModal = ({ isOpen, onClose, handleSubmit, title, children, ...props 
           <form onSubmit={handleSubmit}>
             {children}
             <ModalFooter gap={4} marginTop={10}>
-              <Button variant='primary' type='submit' size={'sm'}>
+              <Button variant='primary' type='submit' size={'sm'} aria-label='submit'>
                 Submit
               </Button>
-              <Button variant='secondary' onClick={onClose} size={'sm'}>
+              <Button variant='secondary' onClick={onClose} size={'sm'} aria-label='cancel'>
                 Cancel
               </Button>
             </ModalFooter>
