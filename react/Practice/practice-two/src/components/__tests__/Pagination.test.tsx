@@ -20,18 +20,18 @@ describe('Pagination', () => {
         fetchNextPage={fetchNextPageMock}
         hasNextPage={hasNextPage}
         isFetchingNextPage={false}
+        isLoaded={true}
       />
     )
 
   it('should render items per page select and handle change', () => {
-    renderPagination(1, 100, 10, false)
+    const { getByRole } = renderPagination(1, 100, 10, true)
+    const select = getByRole('combobox', { name: /items-per-page/i }) as HTMLSelectElement
 
-    expect(screen.getByText('Items per page:')).toBeInTheDocument()
-
-    const select = screen.getByRole('combobox')
     expect(select).toBeInTheDocument()
 
     fireEvent.change(select, { target: { value: '20' } })
+
     expect(onItemsPerPageChangeMock).toHaveBeenCalledWith(
       expect.objectContaining({ target: expect.objectContaining({ value: '20' }) })
     )
@@ -59,10 +59,10 @@ describe('Pagination', () => {
   })
 
   it('should not render anything when there are no items or items per page', () => {
-    const { container } = renderPagination(1, 0, 10, false)
+    const { container } = renderPagination(1, 0, 10, true)
     expect(container.firstChild).toBeNull()
 
-    const { container: containerWithNoItemsPerPage } = renderPagination(1, 100, 0, false)
+    const { container: containerWithNoItemsPerPage } = renderPagination(1, 100, 0, true)
     expect(containerWithNoItemsPerPage.firstChild).toBeNull()
   })
 
