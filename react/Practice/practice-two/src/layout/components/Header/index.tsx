@@ -11,7 +11,7 @@ const Header = () => {
       <Flex gap={4}>
         <IconButton
           icon={<MenuIcon />}
-          aria-label='Toggle Sidebar'
+          aria-label='toggle-sidebar'
           onClick={toggleSidebar}
           bgColor='brand.secondary'
           display={{ base: 'block', xl: 'none' }}
