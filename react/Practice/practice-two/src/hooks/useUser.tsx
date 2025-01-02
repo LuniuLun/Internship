@@ -12,21 +12,22 @@ interface TransformedUser extends Pick<IUser, 'id' | 'role'>, TableRow {
 }
 
 interface UseUserReturn {
-  superAdmin: IUser[]
-  admin: IUser[]
-  employee: IUser[]
-  transformedUsers: TransformedUser[]
-  transformAllUsers: TableRow[]
+  superAdmin: IUser[] | []
+  admin: IUser[] | []
+  employee: IUser[] | []
+  transformedUsers: TransformedUser[] | []
+  transformAllUsers: TableRow[] | []
   addUserMutation: UseMutationResult<IApiResponse<IUser>, Error, IUser>
   editUserMutation: UseMutationResult<IApiResponse<IUser>, Error, IUser>
   deleteUserMutation: UseMutationResult<IApiResponse<IUser>, Error, IUser>
 }
 
-export const useUser = (usersData: IUser[], allUsers: IUser[]): UseUserReturn => {
+export const useUser = (usersData?: IUser[], allUsers?: IUser[]): UseUserReturn => {
   const queryClient = useQueryClient()
 
   const transformedUsers = useMemo(() => {
-    return usersData.map((user) => {
+    if (!usersData) return []
+    return usersData?.map((user) => {
       return {
         id: user.id,
         name: <InfoGroup heading={`${user.firstName} ${user.lastName}`} description={user.email} size='sm' />,
@@ -36,8 +37,9 @@ export const useUser = (usersData: IUser[], allUsers: IUser[]): UseUserReturn =>
     })
   }, [usersData])
 
-  const transformAllUsers = useMemo((): TableRow[] => {
-    return usersData.map((user) => ({
+  const transformAllUsers = useMemo((): TableRow[] | [] => {
+    if (!usersData) return []
+    return usersData?.map((user) => ({
       id: user.id,
       lastName: user.lastName,
       firstName: user.firstName,
@@ -51,9 +53,9 @@ export const useUser = (usersData: IUser[], allUsers: IUser[]): UseUserReturn =>
   }, [usersData])
 
   const { superAdmin, admin, employee } = useMemo(() => {
-    const superAdminUsers = allUsers.filter((user) => user.role === 'Super Admin')
-    const adminUsers = allUsers.filter((user) => user.role === 'Admin')
-    const employeeUsers = allUsers.filter((user) => user.role === 'Employee')
+    const superAdminUsers = allUsers?.filter((user) => user.role === 'Super Admin') || []
+    const adminUsers = allUsers?.filter((user) => user.role === 'Admin') || []
+    const employeeUsers = allUsers?.filter((user) => user.role === 'Employee') || []
     return { superAdmin: superAdminUsers, admin: adminUsers, employee: employeeUsers }
   }, [allUsers])
 
