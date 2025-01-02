@@ -61,6 +61,4 @@ const CustomSelect = forwardRef<HTMLSelectElement, ICustomSelectProps<string | n
   }
 )
 
-CustomSelect.displayName = 'CustomSelect'
-
 export default CustomSelect
