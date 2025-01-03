@@ -142,7 +142,7 @@ const Dashboard = () => {
   if (firstUserLoading) {
     return (
       <Flex w='100%' h='100vh' justifyContent='center' alignItems='center'>
-        <Spinner size='xl' color='brand.primary' />
+        <Spinner size='xl' color='brand.primary' aria-label='loading' />
       </Flex>
     )
   }
@@ -158,7 +158,14 @@ const Dashboard = () => {
       <Filter
         isLoaded={!addUserMutation.isPending && !editUserMutation.isPending && !isFetchingNextPage && !isFetching}
       >
-        <Button display='flex' gap={2} onClick={onOpenUserModal} w='100%' isLoading={addUserMutation.isPending}>
+        <Button
+          display='flex'
+          gap={2}
+          onClick={onOpenUserModal}
+          w='100%'
+          isLoading={addUserMutation.isPending}
+          aria-label='add-user-btn'
+        >
           Add user <PlusIcon />
         </Button>
       </Filter>

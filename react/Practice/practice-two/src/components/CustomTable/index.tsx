@@ -111,7 +111,7 @@ const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: Cust
                   <Flex gap={2} justifyContent='center'>
                     {onEdit && (
                       <IconButton
-                        aria-label='Edit'
+                        aria-label='edit-user-btn'
                         bgColor={colors.brand.white}
                         icon={<PenIcon />}
                         size='sm'
@@ -120,7 +120,7 @@ const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: Cust
                     )}
                     {onDelete && (
                       <IconButton
-                        aria-label='Delete'
+                        aria-label='delete-user-btn'
                         bgColor={colors.brand.white}
                         icon={<BinIcon />}
                         size='sm'
