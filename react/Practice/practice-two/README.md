@@ -5,7 +5,7 @@ This design is an admin dashboard for user management.
 ## Overview
 
 - Design: [Food management](https://www.figma.com/design/1YZIcBdB3irhLktTCSkgwq/User-management?node-id=0-1&t=S8GKEx5DgZG9qkPh-1)
-- Timeline: 80 hours (2024/11/29 - 2024/12/20)
+- Timeline: 80 hours (2024/11/29 - 2024/01/03)
 
 ## Team size
 
