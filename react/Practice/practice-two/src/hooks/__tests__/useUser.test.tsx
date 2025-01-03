@@ -18,7 +18,7 @@ jest.mock('@tanstack/react-query', () => ({
         email: 'jane@example.com',
         role: 'Admin',
         createDate: new Date('2024-01-02'),
-        phone: '987-654-3210',
+        phone: '9876543210',
         username: 'jane.smith',
         password: 'password456'
       }
@@ -38,7 +38,7 @@ describe('useUser', () => {
         email: 'john@example.com',
         role: 'Admin',
         createDate: new Date('2024-01-01T00:00:00'),
-        phone: '123-456-7890',
+        phone: '1234567890',
         username: 'john.doe',
         password: 'password123'
       },
@@ -49,7 +49,7 @@ describe('useUser', () => {
         email: 'jane@example.com',
         role: 'Super Admin',
         createDate: new Date('2024-01-02T00:00:00'),
-        phone: '987-654-3210',
+        phone: '9876543210',
         username: 'jane.smith',
         password: 'password456'
       }
@@ -64,7 +64,7 @@ describe('useUser', () => {
         email: 'alice@example.com',
         role: 'Employee',
         createDate: new Date('2024-01-03T00:00:00'),
-        phone: '555-123-4567',
+        phone: '5551234567',
         username: 'alice.johnson',
         password: 'password789'
       }
@@ -80,7 +80,7 @@ describe('useUser', () => {
         email: 'jane@example.com',
         role: 'Super Admin',
         createDate: new Date('2024-01-02T00:00:00'),
-        phone: '987-654-3210',
+        phone: '9876543210',
         username: 'jane.smith',
         password: 'password456'
       }
@@ -93,9 +93,9 @@ describe('useUser', () => {
         email: 'john@example.com',
         role: 'Admin',
         createDate: new Date('2024-01-01T00:00:00'),
-        phone: '123-456-7890', // Added phone property
-        username: 'john.doe', // Added username property
-        password: 'password123' // Added password property
+        phone: '1234567890',
+        username: 'john.doe',
+        password: 'password123'
       }
     ])
     expect(result.current.employee).toEqual([
@@ -106,15 +106,14 @@ describe('useUser', () => {
         email: 'alice@example.com',
         role: 'Employee',
         createDate: new Date('2024-01-03T00:00:00'),
-        phone: '555-123-4567', // Added phone property
-        username: 'alice.johnson', // Added username property
-        password: 'password789' // Added password property
+        phone: '5551234567',
+        username: 'alice.johnson',
+        password: 'password789'
       }
     ])
 
-    // Kiểm tra transformedUsers
     expect(result.current.transformedUsers).toHaveLength(2)
-    expect(result.current.transformedUsers[0].name).toBeTruthy() // Đây là component InfoGroup
+    expect(result.current.transformedUsers[0].name).toBeTruthy()
   })
 
   it('should call addUserMutation and invalidate queries on success', async () => {
@@ -126,16 +125,15 @@ describe('useUser', () => {
         email: 'john@example.com',
         role: 'Admin',
         createDate: new Date('2024-01-01T00:00:00'),
-        phone: '123-456-7890', // Added phone property
-        username: 'john.doe', // Added username property
-        password: 'password123' // Added password property
+        phone: '1234567890',
+        username: 'john.doe',
+        password: 'password123'
       }
     ]
     const allUsers: IUser[] = usersData
 
     const { result } = renderHook(() => useUser(usersData, allUsers))
 
-    // Giả lập hàm mutation
     const mockAddUser = jest.fn().mockResolvedValue({
       data: {
         id: '2',
@@ -144,13 +142,12 @@ describe('useUser', () => {
         email: 'jane@example.com',
         role: 'Admin',
         createDate: new Date('2024-01-02'),
-        phone: '987-654-3210', // Added phone property
-        username: 'jane.smith', // Added username property
-        password: 'password456' // Added password property
+        phone: '9876543210',
+        username: 'jane.smith',
+        password: 'password456'
       }
     })
 
-    // Gán mock vào mutation
     result.current.addUserMutation.mutateAsync = mockAddUser
 
     await act(async () => {
@@ -160,15 +157,96 @@ describe('useUser', () => {
         lastName: 'Smith',
         email: 'jane@example.com',
         role: 'Admin',
-        createDate: new Date('2024-01-02'), // Date object
-        phone: '987-654-3210', // Added phone property
-        username: 'jane.smith', // Added username property
-        password: 'password456' // Added password property
+        createDate: new Date('2024-01-02'),
+        phone: '9876543210',
+        username: 'jane.smith',
+        password: 'password456'
       })
     })
 
-    // Kiểm tra xem hàm mutateAsync được gọi hay chưa
     expect(mockAddUser).toHaveBeenCalled()
-    expect(result.current.addUserMutation.isSuccess).toBe(true) // Kiểm tra trạng thái success của mutation
+    expect(result.current.addUserMutation.isSuccess).toBe(true)
+  })
+
+  it('should return empty arrays when no usersData is provided', () => {
+    const { result } = renderHook(() => useUser(undefined, undefined))
+
+    expect(result.current.superAdmin).toEqual([])
+    expect(result.current.admin).toEqual([])
+    expect(result.current.employee).toEqual([])
+  })
+
+  it('should return empty arrays when allUsers is provided but no users match roles', () => {
+    const allUsers: IUser[] = [
+      {
+        id: '1',
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john@example.com',
+        role: 'Guest',
+        createDate: new Date(),
+        phone: '',
+        username: '',
+        password: ''
+      }
+    ]
+    const { result } = renderHook(() => useUser([], allUsers))
+
+    expect(result.current.superAdmin).toEqual([])
+    expect(result.current.admin).toEqual([])
+    expect(result.current.employee).toEqual([])
+  })
+
+  it('should return correct users when usersData is provided', () => {
+    const usersData: IUser[] = [
+      {
+        id: '1',
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john@example.com',
+        role: 'Admin',
+        createDate: new Date(),
+        phone: '',
+        username: '',
+        password: ''
+      },
+      {
+        id: '2',
+        firstName: 'Jane',
+        lastName: 'Smith',
+        email: 'jane@example.com',
+        role: 'Super Admin',
+        createDate: new Date(),
+        phone: '',
+        username: '',
+        password: ''
+      }
+    ]
+    const { result } = renderHook(() => useUser(usersData, usersData))
+
+    expect(result.current.superAdmin).toHaveLength(1)
+    expect(result.current.admin).toHaveLength(1)
+    expect(result.current.superAdmin[0].id).toBe('2')
+    expect(result.current.admin[0].id).toBe('1')
+  })
+
+  it('should correctly transform users into TableRow format', () => {
+    const usersData: IUser[] = [
+      {
+        id: '1',
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john@example.com',
+        role: 'Admin',
+        createDate: new Date(),
+        phone: '',
+        username: '',
+        password: ''
+      }
+    ]
+    const { result } = renderHook(() => useUser(usersData, usersData))
+
+    expect(result.current.transformedUsers).toHaveLength(1)
+    expect(result.current.transformedUsers[0].name).toBeTruthy()
   })
 })
