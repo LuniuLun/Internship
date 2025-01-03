@@ -62,6 +62,7 @@ describe('User Service', () => {
     const result = await fetchUsers(params)
     expect(result.status).toBe('success')
     expect(result.data).toEqual(mockApiResponse)
+    expect(result.message).toBeTruthy()
   })
 
   it('fetchUsers should apply sorting correctly', async () => {
@@ -78,6 +79,7 @@ describe('User Service', () => {
     const result = await fetchUsers(params)
     expect(result.status).toBe('success')
     expect(result.data).toEqual(mockApiResponse)
+    expect(result.message).toBeTruthy()
   })
 
   // Test fetchAllUsers
@@ -110,6 +112,17 @@ describe('User Service', () => {
     const result = await fetchAllUsers('role', 'Admin')
     expect(result.status).toBe('success')
     expect(result.data).toEqual(mockApiResponse)
+  })
+
+  it('fetchAllUsers should return error message on failure', async () => {
+    ;(fetch as jest.Mock).mockResolvedValueOnce({
+      ok: false,
+      json: () => Promise.resolve({})
+    })
+
+    const result = await fetchAllUsers()
+    expect(result.status).toBe('error')
+    expect(result.message).toBeTruthy()
   })
 
   // Test addUser
@@ -170,6 +183,21 @@ describe('User Service', () => {
     expect(result.message).toBeTruthy()
   })
 
+  it('editUser should return error message on failure', async () => {
+    const mockApiResponse = {
+      users: [mockUser]
+    }
+
+    ;(fetch as jest.Mock).mockResolvedValueOnce({
+      ok: false,
+      json: () => Promise.resolve(mockApiResponse)
+    })
+
+    const result = await editUser(mockUser)
+    expect(result.status).toBe('error')
+    expect(result.message).toBeTruthy()
+  })
+
   it('editUser should return error if user ID is missing', async () => {
     const result = await editUser({} as IUser)
     expect(result.status).toBe('error')
@@ -223,6 +251,14 @@ describe('User Service', () => {
     ;(fetch as jest.Mock).mockRejectedValueOnce(new Error('Network Error'))
 
     const result = await fetchAllUsers()
+    expect(result.status).toBe('error')
+    expect(result.message).toBe('Network Error')
+  })
+
+  it('addUser should handle network errors gracefully', async () => {
+    ;(fetch as jest.Mock).mockRejectedValueOnce(new Error('Network Error'))
+
+    const result = await addUser(mockUser)
     expect(result.status).toBe('error')
     expect(result.message).toBe('Network Error')
   })
