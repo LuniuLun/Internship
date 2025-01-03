@@ -11,6 +11,7 @@ const meta = {
   argTypes: {
     onEdit: { action: 'edited' },
     onDelete: { action: 'deleted' },
+    isLoaded: { control: { type: 'boolean' } },
     title: {
       control: { type: 'text' },
       description: 'Table title'
@@ -43,7 +44,8 @@ export const Default: Story = {
   args: {
     data: sampleData,
     onEdit: (row) => alert(`Edit: ${row}`),
-    onDelete: (row) => alert(`Delete: ${row}`)
+    onDelete: (row) => alert(`Delete: ${row}`),
+    isLoaded: true
   }
 }
 
@@ -52,6 +54,17 @@ export const HavingTitle: Story = {
     title: 'Having title',
     data: sampleData,
     onEdit: (row) => alert(`Edit: ${row}`),
-    onDelete: (row) => alert(`Delete: ${row}`)
+    onDelete: (row) => alert(`Delete: ${row}`),
+    isLoaded: true
+  }
+}
+
+export const Loading: Story = {
+  args: {
+    title: 'Having title',
+    data: sampleData,
+    onEdit: (row) => alert(`Edit: ${row}`),
+    onDelete: (row) => alert(`Delete: ${row}`),
+    isLoaded: false
   }
 }
