@@ -32,6 +32,15 @@ describe('Filter Component', () => {
     expect(getByText('Test Child Component')).toBeInTheDocument()
   })
 
+  test('should call setSortBy when sort option is changed and isLoaded is true', () => {
+    const { getByRole } = renderSelect(true)
+    const select = getByRole('combobox', { name: /sort/i }) as HTMLSelectElement
+
+    fireEvent.change(select, { target: { value: 'createDate' } })
+
+    expect(mockSetSortBy).toHaveBeenCalledWith('createDate')
+  })
+
   test('updates searchQuery on input change when isLoaded is true', () => {
     const { getByPlaceholderText } = renderSelect()
     const searchInput = getByPlaceholderText('Search') as HTMLInputElement
@@ -46,14 +55,6 @@ describe('Filter Component', () => {
 
     fireEvent.change(searchInput, { target: { value: 'test' } })
     expect(mockSetSearchQuery).not.toHaveBeenCalled()
-  })
-
-  test('prevents sortBy change when isLoaded is false', () => {
-    const { getByRole } = renderSelect(false)
-    const select = getByRole('combobox', { name: /sort/i }) as HTMLSelectElement
-
-    fireEvent.change(select, { target: { value: 'price' } })
-    expect(mockSetSortBy).not.toHaveBeenCalled()
   })
 
   test('prevents sortBy change when isLoaded is false', () => {
