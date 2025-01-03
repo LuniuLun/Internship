@@ -14,7 +14,7 @@ describe('UserModal', () => {
     email: 'john.doe@example.com',
     phone: '123456789',
     role: 'Admin',
-    username: 'johndoe',
+    username: 'johnDoe',
     password: 'password123',
     createDate: new Date()
   }
@@ -30,74 +30,155 @@ describe('UserModal', () => {
     )
   }
 
-  it('should render the modal with title and content when open', () => {
+  it('should render the modal with the correct fields and pre-filled values when open', () => {
     renderModal(true, selectedUser)
 
-    // Check if modal title and inputs are rendered
     expect(screen.getByText('Edit User')).toBeInTheDocument()
-    expect(screen.getByPlaceholderText('First Name *')).toHaveValue('John')
-    expect(screen.getByPlaceholderText('Last Name *')).toHaveValue('Doe')
-    expect(screen.getByPlaceholderText('Email *')).toHaveValue('john.doe@example.com')
+    expect(screen.getByLabelText('firstName')).toHaveValue(selectedUser.firstName)
+    expect(screen.getByLabelText('lastName')).toHaveValue(selectedUser.lastName)
+    expect(screen.getByLabelText('email')).toHaveValue(selectedUser.email)
+    expect(screen.getByLabelText('phone')).toHaveValue(Number(selectedUser.phone))
+    expect(screen.getByLabelText('username')).toHaveValue(selectedUser.username)
+    expect(screen.getByLabelText('check-password')).toHaveValue(selectedUser.password)
   })
 
-  it('should not render the modal when closed', () => {
-    renderModal(false)
+  it('should show validation errors for required fields', async () => {
+    const validationCases = [
+      { field: 'firstName', value: '', error: 'Please enter First Name' },
+      { field: 'lastName', value: '', error: 'Please enter Last Name' },
+      { field: 'email', value: '', error: 'Please enter Email' },
+      { field: 'phone', value: '', error: 'Please enter Mobile number' },
+      { field: 'username', value: '', error: 'Please enter Username' },
+      { field: 'check-password', value: '', error: 'Please enter Password' },
+      { field: 'confirmPassword', value: '', error: 'Please confirm your Password' }
+    ]
 
-    // Check that modal is not rendered
-    expect(screen.queryByText('Edit User')).not.toBeInTheDocument()
-    expect(screen.queryByPlaceholderText('First Name *')).not.toBeInTheDocument()
+    renderModal(true)
+
+    const submitButton = screen.getByRole('button', { name: /submit/i })
+
+    for (const { field, value, error } of validationCases) {
+      const input = screen.getByLabelText(field) as HTMLInputElement
+      fireEvent.change(input, { target: { value } })
+
+      fireEvent.click(submitButton)
+
+      await waitFor(() => {
+        expect(screen.getByText(error)).toBeInTheDocument()
+      })
+    }
+  })
+
+  it('should show validation error for invalid email format', async () => {
+    renderModal(true)
+
+    const emailInput = screen.getByLabelText('email') as HTMLInputElement
+    fireEvent.change(emailInput, { target: { value: 'invalidEmail' } })
+
+    const submitButton = screen.getByRole('button', { name: /submit/i })
+    fireEvent.click(submitButton)
+
+    await waitFor(() => {
+      expect(screen.getByText(/Invalid email address/i)).toBeInTheDocument()
+    })
+  })
+
+  it('should show validation error for short username', async () => {
+    renderModal(true)
+
+    const usernameInput = screen.getByLabelText('username') as HTMLInputElement
+    fireEvent.change(usernameInput, { target: { value: 'short' } })
+
+    const submitButton = screen.getByRole('button', { name: /submit/i })
+    fireEvent.click(submitButton)
+
+    await waitFor(() => {
+      expect(screen.getByText(/Username must have at least 6 characters/i)).toBeInTheDocument()
+    })
+  })
+
+  it('should show validation error for phone number length', async () => {
+    renderModal(true)
+
+    const phoneInput = screen.getByLabelText('phone') as HTMLInputElement
+    fireEvent.change(phoneInput, { target: { value: '123' } })
+
+    const submitButton = screen.getByRole('button', { name: /submit/i })
+    fireEvent.click(submitButton)
+
+    await waitFor(() => {
+      expect(screen.getByText(/Mobile number must have at least 9 characters/i)).toBeInTheDocument()
+    })
+  })
+
+  it('should render empty fields when no selectedUser is provided', () => {
+    renderModal(true)
+
+    expect(screen.getByLabelText('firstName')).toHaveValue('')
+    expect(screen.getByLabelText('lastName')).toHaveValue('')
+    expect(screen.getByLabelText('email')).toHaveValue('')
+    expect(screen.getByLabelText('phone')).toHaveValue(null)
+    expect(screen.getByLabelText('username')).toHaveValue('')
+    expect(screen.getByLabelText('check-password')).toHaveValue('')
   })
 
   it('should call onClose when the cancel button is clicked', () => {
     renderModal(true)
 
-    // Assume there's a Cancel button
     const cancelButton = screen.getByRole('button', { name: /cancel/i })
     fireEvent.click(cancelButton)
 
     expect(mockOnClose).toHaveBeenCalledTimes(1)
   })
 
-  // it('should call handleSubmit when the form is submitted with valid data', async () => {
-  //   renderModal(true, selectedUser)
+  test('should show password validation errors if password requirements are not met', async () => {
+    renderModal(true)
+    const validationMessages = [
+      { value: 'short', regex: /Password must have at least 8 characters/i },
+      { value: 'weak1231.', regex: /Password must contain at least one uppercase letter/i },
+      { value: 'WEAKPASSWORD1.', regex: /Password must contain at least one lowercase letter/i },
+      { value: 'WeakPassword.', regex: /Password must contain at least one number/i },
+      { value: 'WeakPassword1', regex: /Password must contain at least one special character/i }
+    ]
 
-  //   // Simulate input changes
-  //   fireEvent.change(screen.getByPlaceholderText('First Name *'), { target: { value: 'Jane' } })
-  //   fireEvent.change(screen.getByPlaceholderText('Last Name *'), { target: { value: 'Smith' } })
-  //   fireEvent.change(screen.getByPlaceholderText('Email *'), { target: { value: 'jane.smith@example.com' } })
+    const submitButton = screen.getByRole('button', { name: /submit/i })
 
-  //   // Submit the form
-  //   const submitButton = screen.getByRole('button', { name: /submit/i })
-  //   fireEvent.click(submitButton)
-  //   console.log(submitButton)
+    for (const { value, regex } of validationMessages) {
+      const passwordInput = screen.getByLabelText(/check-password/i)
+      fireEvent.change(passwordInput, { target: { value } })
 
-  //   // Wait for the mock submit handler to be called
-  //   await waitFor(() => expect(mockHandleSubmit).toHaveBeenCalledTimes(1))
+      fireEvent.click(submitButton)
 
-  //   // Check that the handleSubmit was called with correct data
-  //   expect(mockHandleSubmit).toHaveBeenCalledWith({
-  //     id: '123',
-  //     firstName: 'Jane',
-  //     lastName: 'Smith',
-  //     email: 'jane.smith@example.com',
-  //     phone: '123456789',
-  //     role: 'Admin',
-  //     username: 'johndoe',
-  //     password: 'password123',
-  //     createDate: expect.any(Date)
-  //   })
-  // })
+      await waitFor(() => {
+        expect(screen.getByText(regex)).toBeInTheDocument()
+      })
+    }
+  })
 
-  it('should show error messages if required fields are not filled', async () => {
+  it('should show confirmation password error if passwords do not match', async () => {
     renderModal(true)
 
-    // Try to submit without filling in required fields
+    const passwordInput = screen.getByLabelText('check-password')
+    fireEvent.change(passwordInput, { target: { value: 'password123' } })
+
+    const confirmPasswordInput = screen.getByLabelText('confirmPassword')
+    fireEvent.change(confirmPasswordInput, { target: { value: 'differentPassword' } })
+
     const submitButton = screen.getByRole('button', { name: /submit/i })
     fireEvent.click(submitButton)
 
-    // Check for error messages
-    expect(await screen.findByText('Please enter First Name')).toBeInTheDocument()
-    expect(await screen.findByText('Please enter Last Name')).toBeInTheDocument()
-    expect(await screen.findByText('Please enter Email')).toBeInTheDocument()
+    expect(await screen.findByText('Passwords do not match')).toBeInTheDocument()
+  })
+
+  it('should open the modal when isModalOpen is true', () => {
+    renderModal(true)
+
+    expect(screen.getByText('Add User')).toBeInTheDocument()
+  })
+
+  it('should not render the modal when isModalOpen is false', () => {
+    renderModal(false)
+
+    expect(screen.queryByText('Add User')).not.toBeInTheDocument()
   })
 })
