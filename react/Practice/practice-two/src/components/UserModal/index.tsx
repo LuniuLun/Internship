@@ -73,7 +73,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
       title={selectedUser?.id ? 'Edit User' : 'Add User'}
       handleSubmit={onSubmit(onFormSubmit)}
     >
-      <Stack gap={4} px={4}>
+      <Stack gap={5} px={4}>
         <Flex gap={4} marginTop={4} flexDirection={{ base: 'column', md: 'row' }}>
           <FormControl>
             <TextField
