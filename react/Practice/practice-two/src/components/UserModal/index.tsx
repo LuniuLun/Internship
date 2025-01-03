@@ -84,6 +84,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               })}
               errorMessage={errors.firstName?.message}
               variant='outline'
+              aria-label='firstName'
             />
           </FormControl>
           <FormControl>
@@ -95,6 +96,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               })}
               errorMessage={errors.lastName?.message}
               variant='outline'
+              aria-label='lastName'
             />
           </FormControl>
         </Flex>
@@ -108,6 +110,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               })}
               errorMessage={errors.email?.message}
               variant='outline'
+              aria-label='email'
             />
           </FormControl>
           <FormControl>
@@ -115,10 +118,13 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               placeholder='Mobile *'
               {...register('phone', {
                 required: 'Please enter Mobile number',
-                minLength: { value: 2, message: 'Mobile number must have at least 2 characters' }
+                minLength: { value: 9, message: 'Mobile number must have at least 9 characters' },
+                maxLength: { value: 11, message: 'Mobile number must have at most 11 characters' }
               })}
+              type='number'
               errorMessage={errors.phone?.message}
               variant='outline'
+              aria-label='phone'
             />
           </FormControl>
           <CustomSelect
@@ -130,6 +136,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
             maxW='100%'
             h='34px'
             fontWeight='light'
+            aria-label='role'
             {...register('role', { required: 'Please select Role' })}
           />
         </Flex>
@@ -143,6 +150,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               })}
               errorMessage={errors.username?.message}
               variant='outline'
+              aria-label='username'
             />
           </FormControl>
           <FormControl>
@@ -163,6 +171,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               })}
               errorMessage={errors.password?.message}
               variant='outline'
+              aria-label='check-password'
             />
           </FormControl>
           <FormControl>
@@ -180,6 +189,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               })}
               errorMessage={errors.confirmPassword?.message}
               variant='outline'
+              aria-label='confirmPassword'
             />
           </FormControl>
         </Flex>
