@@ -166,7 +166,6 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
                   if (!/[0-9]/.test(value)) return 'Password must contain at least one number'
                   if (!/[!@#$%^&*(),.?":{}|<>]/.test(value))
                     return 'Password must contain at least one special character'
-                  return true
                 }
               })}
               errorMessage={errors.password?.message}
@@ -184,7 +183,6 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
                   if (value !== getValues('password')) {
                     return 'Passwords do not match'
                   }
-                  return true
                 }
               })}
               errorMessage={errors.confirmPassword?.message}
