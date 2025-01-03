@@ -16,7 +16,7 @@ describe('UserModal', () => {
     role: 'Admin',
     username: 'johnDoe',
     password: 'password123',
-    createDate: new Date()
+    createDate: new Date('2025-01-03T09:14:00.0000Z')
   }
 
   const renderModal = (isModalOpen: boolean, selectedUser?: IUser) => {
@@ -180,5 +180,40 @@ describe('UserModal', () => {
     renderModal(false)
 
     expect(screen.queryByText('Add User')).not.toBeInTheDocument()
+  })
+
+  it('should call handleSubmit with the correct data when the form is submitted', async () => {
+    // Render modal with mock handleSubmit
+    renderModal(true, selectedUser)
+
+    // Fill in the form with new user data
+    fireEvent.change(screen.getByLabelText('firstName'), { target: { value: 'Jane' } })
+    fireEvent.change(screen.getByLabelText('lastName'), { target: { value: 'Smith' } })
+    fireEvent.change(screen.getByLabelText('email'), { target: { value: 'jane.smith@example.com' } })
+    fireEvent.change(screen.getByLabelText('phone'), { target: { value: '987654321' } })
+    fireEvent.change(screen.getByLabelText('role'), { target: { value: 'Employee' } })
+    fireEvent.change(screen.getByLabelText('username'), { target: { value: 'janeSmith' } })
+    fireEvent.change(screen.getByLabelText('check-password'), { target: { value: 'newPassword123!' } })
+    fireEvent.change(screen.getByLabelText('confirmPassword'), { target: { value: 'newPassword123!' } })
+
+    const submitButton = screen.getByRole('button', { name: /submit/i })
+
+    // Trigger form submission
+    fireEvent.click(submitButton)
+
+    // Ensure handleSubmit is called with correct user data
+    await waitFor(() => {
+      expect(mockHandleSubmit).toHaveBeenCalledWith({
+        id: '123',
+        firstName: 'Jane',
+        lastName: 'Smith',
+        email: 'jane.smith@example.com',
+        phone: '987654321',
+        role: 'Employee',
+        username: 'janeSmith',
+        password: 'newPassword123!',
+        createDate: selectedUser?.createDate || new Date(Date.now())
+      })
+    })
   })
 })
