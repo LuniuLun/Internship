@@ -39,6 +39,7 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
         gap='unset'
         alignItems='center'
         justifyContent='center'
+        position='relative'
         backgroundColor='transparent'
         w='100%'
       >
@@ -73,7 +74,15 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
             </InputRightElement>
           )}
         </InputGroup>
-        <Text alignSelf='flex-start' marginLeft='12px' color={colors.brand.red} fontSize='xs' fontWeight='light'>
+        <Text
+          position='absolute'
+          left='12px'
+          bottom='-10px'
+          color={colors.brand.red}
+          fontSize='xs'
+          fontWeight='light'
+          height='12px'
+        >
           {errorMessage}
         </Text>
       </Stack>
