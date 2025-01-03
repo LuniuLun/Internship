@@ -21,12 +21,20 @@ const meta = {
     variant: 'primary',
     children: 'Button Text'
   }
-} satisfies Meta<typeof Button>
+} as Meta<typeof Button>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+export const Loading: Story = {
+  args: {
+    variant: 'primary',
+    children: 'Primary Button',
+    isLoading: true
+  }
+}
 
 export const Primary: Story = {
   args: {
