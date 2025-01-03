@@ -22,7 +22,7 @@ const errorCustom = definePartsStyle({
 const AlertStyles = defineMultiStyleConfig({
   baseStyle: {
     description: {
-      color: 'brand.blackTextTertiary'
+      color: 'brand.secondary'
     },
     title: {
       color: 'brand.white'
