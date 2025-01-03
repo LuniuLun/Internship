@@ -58,14 +58,14 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
             size={size}
             value={value}
             onChange={handleChange}
-            type={type === 'password' && !showPassword ? 'password' : type}
+            type={type === 'password' ? (!showPassword ? 'password' : 'text') : type}
             {...props}
           />
           {type === 'password' && (
             <InputRightElement width='4.5rem'>
               <IconButton
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
-                icon={showPassword ? <CloseEyeIcon /> : <EyeIcon />}
+                icon={showPassword ? <EyeIcon /> : <CloseEyeIcon />}
                 variant='link'
                 onClick={togglePasswordVisibility}
                 size='sm'
