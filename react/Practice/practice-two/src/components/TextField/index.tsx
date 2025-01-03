@@ -57,7 +57,7 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
             size={size}
             value={value}
             onChange={handleChange}
-            type={type === 'password' && !showPassword ? 'password' : 'text'}
+            type={type === 'password' && !showPassword ? 'password' : type}
             {...props}
           />
           {type === 'password' && (
