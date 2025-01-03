@@ -157,7 +157,9 @@ const Dashboard = () => {
         Users
       </Heading>
 
-      <Filter>
+      <Filter
+        isLoaded={!addUserMutation.isPending && !editUserMutation.isPending && !isFetchingNextPage && !isFetching}
+      >
         <Button display='flex' gap={2} onClick={onOpenUserModal} w='100%' isLoading={addUserMutation.isPending}>
           Add user <PlusIcon />
         </Button>
