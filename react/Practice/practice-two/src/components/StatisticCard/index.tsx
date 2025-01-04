@@ -10,7 +10,7 @@ interface IStatisticsCardProps {
 
 const StatisticsCard = ({ isLoaded, label, value }: IStatisticsCardProps) => {
   return (
-    <Stack flex={1} p={4} borderWidth={1} borderRadius='md' bg='white'>
+    <Stack flex={1} p={4} borderWidth={1} borderRadius='md' bg='white' borderColor={colors.brand.secondary}>
       <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300'>
         <Text fontSize='sm' fontWeight='medium' color={colors.brand.blackTextSecondary}>
           {label}
