@@ -60,7 +60,7 @@ const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: Cust
           </TableCaption>
         )}
         <Thead>
-          <Tr bgColor={colors.brand.secondary} color={colors.brand.blackTextSecondary}>
+          <Tr bgColor={colors.brand.secondary}>
             {filteredHeaders.map((header, index) => (
               <Th
                 key={header}
@@ -70,6 +70,7 @@ const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: Cust
                 fontSize='md'
                 textTransform='capitalize'
                 textAlign={index === 0 ? 'left' : 'center'}
+                color={colors.brand.blackTextSecondary}
               >
                 <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300'>
                   {header.replace(/([a-z])([A-Z])/g, '$1 $2')}
