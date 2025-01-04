@@ -172,7 +172,7 @@ const Dashboard = () => {
 
       <CustomTable
         data={transformedUsers}
-        title='List User'
+        title='List Users'
         onEdit={handleEdit}
         onDelete={handleDelete}
         isLoaded={!addUserMutation.isPending && !editUserMutation.isPending && !isFetchingNextPage && !isFetching}
