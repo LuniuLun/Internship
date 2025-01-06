@@ -3,7 +3,7 @@ import MESSAGE from '@constants/message'
 import { IUser } from '@type/models'
 import { IFilterOptions } from '@type/filterOptions'
 
-const baseUrl = `${import.meta.env?.VITE_APP_BASE_URL || process.env.VITE_APP_BASE_URL}${import.meta.env?.VITE_APP_USER_ENDPOINT || process.env.VITE_APP_USER_ENDPOINT}`
+const baseUrl = `${import.meta.env.VITE_APP_BASE_URL}${import.meta.env.VITE_APP_USER_ENDPOINT}`
 
 export const fetchUsers = async (
   params: IFilterOptions = {
