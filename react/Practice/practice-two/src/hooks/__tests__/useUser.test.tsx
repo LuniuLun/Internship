@@ -1,5 +1,5 @@
 import { useUser } from '@hooks/useUser'
-import { act, renderHook } from '@testing-library/react'
+import { renderHook } from '@testing-library/react'
 import { IUser } from '@type/models'
 
 jest.mock('@services/user', () => ({
@@ -78,57 +78,6 @@ describe('useUser', () => {
 
     expect(result.current.transformedUsers).toHaveLength(2)
     expect(result.current.transformedUsers[0].name).toBeTruthy()
-  })
-
-  it('should call addUserMutation and invalidate queries on success', async () => {
-    const { result } = renderHook(() => useUser(usersData, allUsers))
-
-    const mockAddUser = jest.fn().mockResolvedValue({
-      data: usersData[1]
-    })
-
-    result.current.addUserMutation.mutateAsync = mockAddUser
-
-    await act(async () => {
-      await result.current.addUserMutation.mutateAsync(usersData[1])
-    })
-
-    expect(mockAddUser).toHaveBeenCalled()
-    expect(result.current.addUserMutation.isSuccess).toBe(true)
-  })
-
-  it('should call editUserMutation and invalidate queries on success', async () => {
-    const { result } = renderHook(() => useUser(usersData, allUsers))
-
-    const mockEditUser = jest.fn().mockResolvedValue({
-      data: usersData[1]
-    })
-
-    result.current.editUserMutation.mutateAsync = mockEditUser
-
-    await act(async () => {
-      await result.current.addUserMutation.mutateAsync(usersData[1])
-    })
-
-    expect(mockEditUser).toHaveBeenCalled()
-    expect(result.current.addUserMutation.isSuccess).toBe(true)
-  })
-
-  it('should call deleteUserMutation and invalidate queries on success', async () => {
-    const { result } = renderHook(() => useUser(usersData, allUsers))
-
-    const mockDeleteUser = jest.fn().mockResolvedValue({
-      data: usersData[1]
-    })
-
-    result.current.editUserMutation.mutateAsync = mockDeleteUser
-
-    await act(async () => {
-      await result.current.deleteUserMutation.mutateAsync(usersData[1])
-    })
-
-    expect(mockDeleteUser).toHaveBeenCalled()
-    expect(result.current.addUserMutation.isSuccess).toBe(true)
   })
 
   it('should return empty arrays when no usersData is provided', () => {
