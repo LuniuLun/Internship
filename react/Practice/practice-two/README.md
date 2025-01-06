@@ -15,7 +15,7 @@ This design is an admin dashboard for user management.
 
 - Continue to improve component writing to be as common and clean as possible, plus it handles logic streams very efficiently.
 - Become better understood and create your own custom hook to reduce redundant code.
-Applying Chakra UI simplifies component styling and ensures consistency across the application.
+- Applying Chakra UI simplifies component styling and ensures consistency across the application.
 - Be aware of catching common and specific errors (errors from API, from logic,...) for one React application to prevent crashing issues dramatically.
 - Keep moving with Storybook which will assist in managing components in the development environment.
 - Practice should consist of additional libraries namely React Query, React Hook Form, and Zustand.
