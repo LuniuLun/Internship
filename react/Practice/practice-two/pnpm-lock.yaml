@@ -91,6 +91,9 @@ devDependencies:
   '@vitejs/plugin-react':
     specifier: ^4.3.4
     version: 4.3.4(vite@5.4.11)
+  dotenv:
+    specifier: ^16.4.7
+    version: 16.4.7
   eslint:
     specifier: ^9.15.0
     version: 9.15.0
@@ -3206,6 +3209,11 @@ packages:
 
   /dotenv-expand@5.1.0:
     resolution: {integrity: sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==}
+    dev: true
+
+  /dotenv@16.4.7:
+    resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
+    engines: {node: '>=12'}
     dev: true
 
   /dotenv@8.2.0:
