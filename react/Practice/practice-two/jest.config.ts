@@ -1,3 +1,6 @@
+import { config } from 'dotenv'
+config({ path: '.env.development.local' })
+
 export default {
   setupFilesAfterEnv: ['@testing-library/jest-dom', '<rootDir>/jest.setup.ts'],
   testEnvironment: 'jsdom',
@@ -14,8 +17,10 @@ export default {
               path: 'node_modules/ts-jest-mock-import-meta',
               options: {
                 metaObjectReplacement: {
-                  VITE_APP_BASE_URL: 'https://669e22209a1bda368005842c.mockapi.io/api/v1/',
-                  VITE_APP_USER_ENDPOINT: 'users'
+                  env: {
+                    VITE_APP_BASE_URL: process.env.VITE_APP_BASE_URL,
+                    VITE_APP_USER_ENDPOINT: process.env.VITE_APP_USER_ENDPOINT
+                  }
                 }
               }
             }
