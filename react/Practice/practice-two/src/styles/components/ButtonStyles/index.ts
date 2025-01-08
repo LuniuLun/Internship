@@ -34,7 +34,7 @@ const ButtonStyles: ComponentStyleConfig = {
       color: 'brand.blackTextSecondary',
       _hover: {
         border: 'none',
-        bg: 'brand.hoverBtnColor',
+        bg: 'brand.red  ',
         transform: 'scale(1.02)',
         color: 'brand.white',
         boxShadow: 'md'
