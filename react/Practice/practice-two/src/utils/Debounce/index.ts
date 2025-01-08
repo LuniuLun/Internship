@@ -1,7 +1,4 @@
-export const debounce = <T extends (...args: never[]) => void>(
-  func: T,
-  delay: number
-): ((...args: Parameters<T>) => void) => {
+const debounce = <T extends (...args: never[]) => void>(func: T, delay: number): ((...args: Parameters<T>) => void) => {
   let timeoutId: NodeJS.Timeout
 
   return (...args: Parameters<T>) => {
@@ -11,3 +8,5 @@ export const debounce = <T extends (...args: never[]) => void>(
     }, delay)
   }
 }
+
+export default debounce
