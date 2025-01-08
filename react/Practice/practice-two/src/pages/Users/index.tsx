@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Spinner, Stack, useDisclosure } from '@chakra-ui/react'
+import { Button, Flex, Heading, Stack, useDisclosure } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomTable, Pagination, UserModal, WarningModal, StatisticCard, Filter } from '@components'
 import { useUser } from '@hooks/useUser'
@@ -28,7 +28,7 @@ const Dashboard = () => {
     refetch,
     isError,
     error,
-    isLoading: firstUserLoading
+    isLoading: isFirstUserLoading
   } = useInfiniteQuery({
     queryKey: ['users', itemsPerPage, searchQuery, sortBy],
     queryFn: async ({ pageParam = 1 }) => {
@@ -51,7 +51,7 @@ const Dashboard = () => {
 
   const {
     data: allUsers,
-    isLoading,
+    isLoading: isFirstAllUserLoading,
     isError: allUsersIsError,
     error: allUsersError
   } = useQuery({
@@ -137,14 +137,6 @@ const Dashboard = () => {
     handleCloseUserModal()
   }
 
-  if (firstUserLoading) {
-    return (
-      <Flex w='100%' h='100vh' justifyContent='center' alignItems='center'>
-        <Spinner size='xl' color='brand.primary' />
-      </Flex>
-    )
-  }
-
   if (isError || allUsersIsError)
     showToast({
       status: 'error',
@@ -158,7 +150,14 @@ const Dashboard = () => {
       </Heading>
 
       <Filter
-        isLoaded={!addUserMutation.isPending && !editUserMutation.isPending && !isFetchingNextPage && !isFetching}
+        isLoaded={
+          !addUserMutation.isPending &&
+          !editUserMutation.isPending &&
+          !isFetchingNextPage &&
+          !isFetching &&
+          !isFirstAllUserLoading &&
+          !isFirstUserLoading
+        }
       >
         <Button display='flex' gap={2} onClick={onOpenUserModal} w='100%' isLoading={addUserMutation.isPending}>
           Add user <PlusIcon />
@@ -167,12 +166,12 @@ const Dashboard = () => {
 
       <Flex gap={4} flexDirection={{ base: 'column', md: 'row' }}>
         <Flex gap={4} w='100%'>
-          <StatisticCard label='Users' value={allUsers?.data?.length || 0} isLoaded={!isLoading} />
-          <StatisticCard label='Super Admins' value={superAdmin.length} isLoaded={!isLoading} />
+          <StatisticCard label='Users' value={allUsers?.data?.length || 0} isLoaded={!isFirstAllUserLoading} />
+          <StatisticCard label='Super Admins' value={superAdmin.length} isLoaded={!isFirstAllUserLoading} />
         </Flex>
         <Flex gap={4} w='100%'>
-          <StatisticCard label='Admins' value={admin.length} isLoaded={!isLoading} />
-          <StatisticCard label='Employees' value={employee.length} isLoaded={!isLoading} />
+          <StatisticCard label='Admins' value={admin.length} isLoaded={!isFirstAllUserLoading} />
+          <StatisticCard label='Employees' value={employee.length} isLoaded={!isFirstAllUserLoading} />
         </Flex>
       </Flex>
 
@@ -181,7 +180,14 @@ const Dashboard = () => {
         title='List Users'
         onEdit={handleEdit}
         onDelete={handleDelete}
-        isLoaded={!addUserMutation.isPending && !editUserMutation.isPending && !isFetchingNextPage && !isFetching}
+        isLoaded={
+          !addUserMutation.isPending &&
+          !editUserMutation.isPending &&
+          !isFetchingNextPage &&
+          !isFetching &&
+          !isFirstAllUserLoading &&
+          !isFirstUserLoading
+        }
       />
 
       <Flex justifyContent='center'>
@@ -200,7 +206,8 @@ const Dashboard = () => {
             !editUserMutation.isPending &&
             !isFetchingNextPage &&
             !isFetching &&
-            !isLoading
+            !isFirstAllUserLoading &&
+            !isFirstUserLoading
           }
         />
       </Flex>
