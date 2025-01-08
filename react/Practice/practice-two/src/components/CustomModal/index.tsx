@@ -19,7 +19,7 @@ interface CustomModalProps extends ModalProps {
 
 const CustomModal = ({ isOpen, onClose, handleSubmit, title, children, ...props }: CustomModalProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInBottom' scrollBehavior='inside' {...props}>
+    <Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInBottom' scrollBehavior='inside' isCentered {...props}>
       <ModalOverlay />
       <ModalContent bgColor={colors.brand.white}>
         <ModalHeader borderBottom={`1px solid ${colors.brand.secondary}`}>
