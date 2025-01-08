@@ -124,6 +124,9 @@ const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: Cust
                       <IconButton
                         aria-label='delete-user-btn'
                         bgColor={colors.brand.white}
+                        _hover={{
+                          bgColor: colors.brand.red
+                        }}
                         icon={<BinIcon />}
                         size='sm'
                         colorScheme='red'
