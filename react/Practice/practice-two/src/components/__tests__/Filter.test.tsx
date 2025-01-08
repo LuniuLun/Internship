@@ -36,9 +36,9 @@ describe('Filter Component', () => {
     const { getByRole } = renderSelect(true)
     const select = getByRole('combobox', { name: /sort/i }) as HTMLSelectElement
 
-    fireEvent.change(select, { target: { value: 'createDate' } })
+    fireEvent.change(select, { target: { value: 'createdDate' } })
 
-    expect(mockSetSortBy).toHaveBeenCalledWith('createDate')
+    expect(mockSetSortBy).toHaveBeenCalledWith('createdDate')
   })
 
   test('updates searchQuery on input change when isLoaded is true', () => {

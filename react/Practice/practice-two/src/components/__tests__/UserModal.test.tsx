@@ -16,7 +16,7 @@ describe('UserModal', () => {
     role: 'Admin',
     username: 'johnDoe',
     password: 'password123',
-    createDate: new Date('2025-01-03T09:14:00.0000Z')
+    createdDate: new Date('2025-01-03T09:14:00.0000Z')
   }
 
   const renderModal = (isModalOpen: boolean, selectedUser?: IUser) => {
@@ -212,7 +212,7 @@ describe('UserModal', () => {
         role: 'Employee',
         username: 'janeSmith',
         password: 'newPassword123!',
-        createDate: selectedUser?.createDate || new Date(Date.now())
+        createdDate: selectedUser?.createdDate || new Date(Date.now())
       })
     })
   })

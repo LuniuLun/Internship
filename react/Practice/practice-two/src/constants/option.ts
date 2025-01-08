@@ -3,7 +3,7 @@ import { SelectOption } from '@components/CustomSelect'
 export const SORT_OPTION: SelectOption<string>[] = [
   { value: 'firstName', label: 'Name' },
   { value: 'role', label: 'Role' },
-  { value: 'createDate', label: 'Created date' }
+  { value: 'createdDate', label: 'Created date' }
 ]
 
 export const ROLE_OPTION: SelectOption<string>[] = [

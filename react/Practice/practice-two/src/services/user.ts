@@ -27,7 +27,7 @@ export const fetchUsers = async (
       calledUrl.searchParams.append('sortBy', sortBy)
       calledUrl.searchParams.append('order', order)
     } else {
-      calledUrl.searchParams.append('sortBy', 'createDate')
+      calledUrl.searchParams.append('sortBy', 'createdDate')
       calledUrl.searchParams.append('order', 'desc')
     }
 

@@ -17,7 +17,7 @@ jest.mock('@tanstack/react-query', () => ({
         lastName: 'Smith',
         email: 'jane@example.com',
         role: 'Admin',
-        createDate: new Date('2024-01-02'),
+        createdDate: new Date('2024-01-02'),
         phone: '9876543210',
         username: 'jane.smith',
         password: 'password456'
@@ -36,7 +36,7 @@ describe('useUser', () => {
       lastName: 'Doe',
       email: 'john@example.com',
       role: 'Admin',
-      createDate: new Date('2024-01-01T00:00:00'),
+      createdDate: new Date('2024-01-01T00:00:00'),
       phone: '1234567890',
       username: 'john.doe',
       password: 'password123'
@@ -47,7 +47,7 @@ describe('useUser', () => {
       lastName: 'Smith',
       email: 'jane@example.com',
       role: 'Super Admin',
-      createDate: new Date('2024-01-02T00:00:00'),
+      createdDate: new Date('2024-01-02T00:00:00'),
       phone: '9876543210',
       username: 'jane.smith',
       password: 'password456'
@@ -62,7 +62,7 @@ describe('useUser', () => {
       lastName: 'Johnson',
       email: 'alice@example.com',
       role: 'Employee',
-      createDate: new Date('2024-01-03T00:00:00'),
+      createdDate: new Date('2024-01-03T00:00:00'),
       phone: '5551234567',
       username: 'alice.johnson',
       password: 'password789'

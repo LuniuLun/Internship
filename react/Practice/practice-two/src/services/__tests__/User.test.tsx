@@ -9,7 +9,7 @@ const mockUser: IUser = {
   lastName: 'Doe',
   email: 'john@example.com',
   role: 'Admin',
-  createDate: new Date('2024-01-01T00:00:00'),
+  createdDate: new Date('2024-01-01T00:00:00'),
   phone: '0987654321',
   username: 'john_doe',
   password: 'password123'
@@ -70,7 +70,7 @@ describe('User Service', () => {
       users: [mockUser]
     }
 
-    const params = { sortBy: 'createDate' }
+    const params = { sortBy: 'createdDate' }
     ;(fetch as jest.Mock).mockResolvedValueOnce({
       ok: true,
       json: () => Promise.resolve(mockApiResponse)
