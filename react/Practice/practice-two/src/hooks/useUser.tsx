@@ -63,6 +63,7 @@ export const useUser = (usersData?: IUser[], allUsers?: IUser[]): UseUserReturn 
     mutationFn: addUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] })
+      queryClient.invalidateQueries({ queryKey: ['allUsers'] })
     }
   })
 
@@ -70,6 +71,7 @@ export const useUser = (usersData?: IUser[], allUsers?: IUser[]): UseUserReturn 
     mutationFn: editUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] })
+      queryClient.invalidateQueries({ queryKey: ['allUsers'] })
     }
   })
 
@@ -77,6 +79,7 @@ export const useUser = (usersData?: IUser[], allUsers?: IUser[]): UseUserReturn 
     mutationFn: (variables: IUser) => deleteUser(variables.id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] })
+      queryClient.invalidateQueries({ queryKey: ['allUsers'] })
     }
   })
 
