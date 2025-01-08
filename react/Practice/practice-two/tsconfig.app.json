@@ -39,6 +39,7 @@
       "@services/*": ["src/services/*"],
       "@contexts": ["src/contexts/index"],
       "@contexts/*": ["src/contexts/*"],
+      "@utils": ["src/utils/index.ts"],
       "@utils/*": ["src/utils/*"]
     }
   },
