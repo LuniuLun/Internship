@@ -215,7 +215,7 @@ const Dashboard = () => {
       <WarningModal
         isModalOpen={isWarningModalOpen}
         onClose={handleCloseWarningModal}
-        title='Warning'
+        title='WARNING'
         message='This action will permanently delete the user. Do you want to proceed?'
         handleSubmit={handleWarningSubmit}
       />
