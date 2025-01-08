@@ -38,7 +38,8 @@
       "@constants/*": ["src/constants/*"],
       "@services/*": ["src/services/*"],
       "@contexts": ["src/contexts/index"],
-      "@contexts/*": ["src/contexts/*"]
+      "@contexts/*": ["src/contexts/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "include": ["src", "./jest.setup.ts", "./src/vite-env.d.ts"]

@@ -26,7 +26,8 @@
       "@constants/*": ["src/constants/*"],
       "@services/*": ["src/services/*"],
       "@contexts": ["src/contexts/index.ts"],
-      "@contexts/*": ["src/contexts/*"]
+      "@contexts/*": ["src/contexts/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "types": ["jest", "node", "vite/client"],
