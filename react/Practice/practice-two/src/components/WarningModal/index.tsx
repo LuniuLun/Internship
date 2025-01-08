@@ -13,7 +13,7 @@ const WarningModal = ({ isModalOpen, onClose, title, message, handleSubmit }: Wa
   return (
     <CustomModal size={'lg'} isOpen={isModalOpen} onClose={onClose} title={title} handleSubmit={handleSubmit}>
       <Box textAlign='center' marginTop={4} px={10}>
-        <Text fontSize='lg' color='brand.red' fontWeight='Bold'>
+        <Text fontSize='lg' color='brand.blackTextSecondary' fontWeight='Bold'>
           {message}
         </Text>
       </Box>
