@@ -38,6 +38,7 @@
     "src/components/__tests__/**",
     "src/layout/components/__tests__/**",
     "src/assets/__tests__/**",
-    "src/services/__tests__/**"
+    "src/services/__tests__/**",
+    "src/utils/__tests__/**"
   ]
 }
