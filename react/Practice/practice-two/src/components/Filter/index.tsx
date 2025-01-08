@@ -1,9 +1,10 @@
-import { ReactNode } from 'react'
+import { ReactNode, useState, useMemo } from 'react'
 import { Box, Flex } from '@chakra-ui/react'
 import { CustomSelect, TextField } from '@components'
 import { FilterIcon, SearchIcon } from '@assets/icons'
 import { SORT_OPTION } from '@constants/option'
 import { useFilterStore } from '@hooks/useFilterStore'
+import { debounce } from '@utils'
 
 interface FilterProps {
   children?: ReactNode
@@ -12,13 +13,18 @@ interface FilterProps {
 
 const Filter = ({ isLoaded = true, children }: FilterProps) => {
   const { searchQuery, sortBy, setSearchQuery, setSortBy } = useFilterStore()
+  const [localSearchQuery, setLocalSearchQuery] = useState(searchQuery)
+
+  const debouncedSearchQuery = useMemo(() => debounce((value: string) => setSearchQuery(value), 700), [setSearchQuery])
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!isLoaded) {
       e.preventDefault()
       return
     }
-    setSearchQuery(e.target.value)
+    const value = e.target.value
+    setLocalSearchQuery(value)
+    debouncedSearchQuery(value)
   }
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -36,7 +42,7 @@ const Filter = ({ isLoaded = true, children }: FilterProps) => {
         variant='outline'
         size='lg'
         placeholder='Search'
-        value={searchQuery}
+        value={localSearchQuery}
         onChange={handleSearchChange}
         isDisabled={!isLoaded}
       />
