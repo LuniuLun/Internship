@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, waitFor } from '@testing-library/react'
 import { useFilterStore } from '@hooks/useFilterStore'
 import Filter from '@components/Filter'
 
@@ -41,12 +41,14 @@ describe('Filter Component', () => {
     expect(mockSetSortBy).toHaveBeenCalledWith('createdDate')
   })
 
-  test('updates searchQuery on input change when isLoaded is true', () => {
+  test('updates searchQuery on input change when isLoaded is true', async () => {
     const { getByPlaceholderText } = renderSelect()
     const searchInput = getByPlaceholderText('Search') as HTMLInputElement
 
     fireEvent.change(searchInput, { target: { value: 'test' } })
-    expect(mockSetSearchQuery).toHaveBeenCalledWith('test')
+    await waitFor(() => {
+      expect(mockSetSearchQuery).toHaveBeenCalledWith('test')
+    })
   })
 
   test('prevents searchQuery change when isLoaded is false', () => {
