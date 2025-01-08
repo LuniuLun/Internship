@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from 'react'
-import { Button, Stack, Heading, useDisclosure, Flex, Spinner } from '@chakra-ui/react'
+import { Button, Stack, Heading, useDisclosure, Flex } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomTable, Filter, Pagination, UserModal, WarningModal } from '@components'
 import { useUser } from '@hooks/useUser'
@@ -28,7 +28,7 @@ const Dashboard = () => {
     refetch,
     isError,
     error,
-    isLoading: firstUserLoading
+    isLoading: isFirstUserLoading
   } = useInfiniteQuery({
     queryKey: ['users', itemsPerPage, searchQuery, sortBy],
     queryFn: async ({ pageParam = 1 }) => {
@@ -51,7 +51,7 @@ const Dashboard = () => {
 
   const {
     data: allUsers,
-    isLoading,
+    isLoading: isFirstAllUserLoading,
     isError: allUsersIsError,
     error: allUsersError
   } = useQuery({
@@ -139,14 +139,6 @@ const Dashboard = () => {
     handleCloseUserModal()
   }
 
-  if (firstUserLoading) {
-    return (
-      <Flex w='100%' h='100vh' justifyContent='center' alignItems='center'>
-        <Spinner size='xl' color='brand.primary' aria-label='loading' />
-      </Flex>
-    )
-  }
-
   if (isError || allUsersIsError)
     showToast({ status: 'error', title: error?.message || allUsersError?.message || 'Error fetching users' })
 
@@ -156,7 +148,14 @@ const Dashboard = () => {
         Users Dashboard
       </Heading>
       <Filter
-        isLoaded={!addUserMutation.isPending && !editUserMutation.isPending && !isFetchingNextPage && !isFetching}
+        isLoaded={
+          !addUserMutation.isPending &&
+          !editUserMutation.isPending &&
+          !isFetchingNextPage &&
+          !isFetching &&
+          !isFirstAllUserLoading &&
+          !isFirstUserLoading
+        }
       >
         <Button
           display='flex'
@@ -175,7 +174,14 @@ const Dashboard = () => {
         title='List Users'
         onEdit={handleEdit}
         onDelete={handleDelete}
-        isLoaded={!addUserMutation.isPending && !editUserMutation.isPending && !isFetchingNextPage && !isFetching}
+        isLoaded={
+          !addUserMutation.isPending &&
+          !editUserMutation.isPending &&
+          !isFetchingNextPage &&
+          !isFetching &&
+          !isFirstAllUserLoading &&
+          !isFirstUserLoading
+        }
       />
 
       <Flex justifyContent='center'>
@@ -194,7 +200,8 @@ const Dashboard = () => {
             !editUserMutation.isPending &&
             !isFetchingNextPage &&
             !isFetching &&
-            !isLoading
+            !isFirstAllUserLoading &&
+            !isFirstUserLoading
           }
         />
       </Flex>
