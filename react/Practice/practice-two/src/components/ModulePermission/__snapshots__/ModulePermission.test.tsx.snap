@@ -1,0 +1,428 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModulePermission Component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-ayshjd"
+  >
+    <table
+      class="chakra-table css-skigho"
+    >
+      <thead
+        class="css-0"
+      >
+        <tr
+          class="css-1lhvjyp"
+        >
+          <th
+            class="css-17q743j"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              module Permission
+            </div>
+          </th>
+          <th
+            class="css-19um1lb"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              read
+            </div>
+          </th>
+          <th
+            class="css-19um1lb"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              write
+            </div>
+          </th>
+          <th
+            class="css-19um1lb"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              delete
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="css-0"
+      >
+        <tr
+          class="css-r22d1o"
+        >
+          <td
+            class="css-1kpmq"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              <div
+                class="css-106yyfx"
+              >
+                Super Admin
+              </div>
+            </div>
+          </td>
+          <td
+            class="css-37za5x"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              <label
+                class="chakra-checkbox css-1elxtiq"
+                data-checked=""
+              >
+                <input
+                  aria-label="Cell active status for undefined"
+                  checked=""
+                  class="chakra-checkbox__input"
+                  readonly=""
+                  style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                  type="checkbox"
+                  value=""
+                />
+                <span
+                  aria-hidden="true"
+                  class="chakra-checkbox__control css-dnty2r"
+                  data-checked=""
+                  data-readonly=""
+                >
+                  <div
+                    class="css-0"
+                    style="display: flex; align-items: center; justify-content: center; height: 100%;"
+                  >
+                    <svg
+                      class="css-1w6vdd7"
+                      style="fill: none; stroke-width: 2; stroke: currentColor; stroke-dasharray: 16;"
+                      viewBox="0 0 12 10"
+                    >
+                      <polyline
+                        points="1.5 6 4.5 9 10.5 1"
+                      />
+                    </svg>
+                  </div>
+                </span>
+              </label>
+            </div>
+          </td>
+          <td
+            class="css-37za5x"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              <label
+                class="chakra-checkbox css-1elxtiq"
+                data-checked=""
+              >
+                <input
+                  aria-label="Cell active status for undefined"
+                  checked=""
+                  class="chakra-checkbox__input"
+                  readonly=""
+                  style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                  type="checkbox"
+                  value=""
+                />
+                <span
+                  aria-hidden="true"
+                  class="chakra-checkbox__control css-dnty2r"
+                  data-checked=""
+                  data-readonly=""
+                >
+                  <div
+                    class="css-0"
+                    style="display: flex; align-items: center; justify-content: center; height: 100%;"
+                  >
+                    <svg
+                      class="css-1w6vdd7"
+                      style="fill: none; stroke-width: 2; stroke: currentColor; stroke-dasharray: 16;"
+                      viewBox="0 0 12 10"
+                    >
+                      <polyline
+                        points="1.5 6 4.5 9 10.5 1"
+                      />
+                    </svg>
+                  </div>
+                </span>
+              </label>
+            </div>
+          </td>
+          <td
+            class="css-37za5x"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              <label
+                class="chakra-checkbox css-1elxtiq"
+                data-checked=""
+              >
+                <input
+                  aria-label="Cell active status for undefined"
+                  checked=""
+                  class="chakra-checkbox__input"
+                  readonly=""
+                  style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                  type="checkbox"
+                  value=""
+                />
+                <span
+                  aria-hidden="true"
+                  class="chakra-checkbox__control css-dnty2r"
+                  data-checked=""
+                  data-readonly=""
+                >
+                  <div
+                    class="css-0"
+                    style="display: flex; align-items: center; justify-content: center; height: 100%;"
+                  >
+                    <svg
+                      class="css-1w6vdd7"
+                      style="fill: none; stroke-width: 2; stroke: currentColor; stroke-dasharray: 16;"
+                      viewBox="0 0 12 10"
+                    >
+                      <polyline
+                        points="1.5 6 4.5 9 10.5 1"
+                      />
+                    </svg>
+                  </div>
+                </span>
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="css-r22d1o"
+        >
+          <td
+            class="css-1kpmq"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              <div
+                class="css-106yyfx"
+              >
+                Admin
+              </div>
+            </div>
+          </td>
+          <td
+            class="css-37za5x"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              <label
+                class="chakra-checkbox css-1elxtiq"
+                data-checked=""
+              >
+                <input
+                  aria-label="Cell active status for undefined"
+                  checked=""
+                  class="chakra-checkbox__input"
+                  readonly=""
+                  style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                  type="checkbox"
+                  value=""
+                />
+                <span
+                  aria-hidden="true"
+                  class="chakra-checkbox__control css-dnty2r"
+                  data-checked=""
+                  data-readonly=""
+                >
+                  <div
+                    class="css-0"
+                    style="display: flex; align-items: center; justify-content: center; height: 100%;"
+                  >
+                    <svg
+                      class="css-1w6vdd7"
+                      style="fill: none; stroke-width: 2; stroke: currentColor; stroke-dasharray: 16;"
+                      viewBox="0 0 12 10"
+                    >
+                      <polyline
+                        points="1.5 6 4.5 9 10.5 1"
+                      />
+                    </svg>
+                  </div>
+                </span>
+              </label>
+            </div>
+          </td>
+          <td
+            class="css-37za5x"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              <label
+                class="chakra-checkbox css-1elxtiq"
+              >
+                <input
+                  aria-label="Cell active status for undefined"
+                  class="chakra-checkbox__input"
+                  readonly=""
+                  style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                  type="checkbox"
+                  value=""
+                />
+                <span
+                  aria-hidden="true"
+                  class="chakra-checkbox__control css-dnty2r"
+                  data-readonly=""
+                />
+              </label>
+            </div>
+          </td>
+          <td
+            class="css-37za5x"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              <label
+                class="chakra-checkbox css-1elxtiq"
+              >
+                <input
+                  aria-label="Cell active status for undefined"
+                  class="chakra-checkbox__input"
+                  readonly=""
+                  style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                  type="checkbox"
+                  value=""
+                />
+                <span
+                  aria-hidden="true"
+                  class="chakra-checkbox__control css-dnty2r"
+                  data-readonly=""
+                />
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="css-r22d1o"
+        >
+          <td
+            class="css-1kpmq"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              <div
+                class="css-6nauf0"
+              >
+                Employee
+              </div>
+            </div>
+          </td>
+          <td
+            class="css-37za5x"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              <label
+                class="chakra-checkbox css-1elxtiq"
+                data-checked=""
+              >
+                <input
+                  aria-label="Cell active status for undefined"
+                  checked=""
+                  class="chakra-checkbox__input"
+                  readonly=""
+                  style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                  type="checkbox"
+                  value=""
+                />
+                <span
+                  aria-hidden="true"
+                  class="chakra-checkbox__control css-dnty2r"
+                  data-checked=""
+                  data-readonly=""
+                >
+                  <div
+                    class="css-0"
+                    style="display: flex; align-items: center; justify-content: center; height: 100%;"
+                  >
+                    <svg
+                      class="css-1w6vdd7"
+                      style="fill: none; stroke-width: 2; stroke: currentColor; stroke-dasharray: 16;"
+                      viewBox="0 0 12 10"
+                    >
+                      <polyline
+                        points="1.5 6 4.5 9 10.5 1"
+                      />
+                    </svg>
+                  </div>
+                </span>
+              </label>
+            </div>
+          </td>
+          <td
+            class="css-37za5x"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              <label
+                class="chakra-checkbox css-1elxtiq"
+              >
+                <input
+                  aria-label="Cell active status for undefined"
+                  class="chakra-checkbox__input"
+                  readonly=""
+                  style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                  type="checkbox"
+                  value=""
+                />
+                <span
+                  aria-hidden="true"
+                  class="chakra-checkbox__control css-dnty2r"
+                  data-readonly=""
+                />
+              </label>
+            </div>
+          </td>
+          <td
+            class="css-37za5x"
+          >
+            <div
+              class="chakra-skeleton css-cdkrf0"
+            >
+              <label
+                class="chakra-checkbox css-1elxtiq"
+              >
+                <input
+                  aria-label="Cell active status for undefined"
+                  class="chakra-checkbox__input"
+                  readonly=""
+                  style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+                  type="checkbox"
+                  value=""
+                />
+                <span
+                  aria-hidden="true"
+                  class="chakra-checkbox__control css-dnty2r"
+                  data-readonly=""
+                />
+              </label>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</DocumentFragment>
+`;
