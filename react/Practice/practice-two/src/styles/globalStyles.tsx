@@ -10,12 +10,20 @@ const globalStyles = {
   styles: {
     global: () => ({
       body: {
-        color: 'brand.blackTextPrimary',
-        bg: 'brand.whiteBg'
-        // color: mode('brand.blackTextPrimary', 'brand.white')(props),
-        // bg: mode('brand.whiteBg', 'brand.blackBg')(props),
-      },
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
 
+        color: 'brand.blackTextPrimary',
+        bg: 'brand.white'
+      },
+      '#root': {
+        width: '100%',
+        maxWidth: '1800px',
+        backgroundColor: 'brand.grey',
+        boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.1)',
+        margin: '0 1.5em'
+      },
       '::-webkit-scrollbar': {
         width: '8px',
         height: '10px',
