@@ -43,7 +43,7 @@ const Dashboard = () => {
       if (!lastPage.data || lastPage.data.length === 0) return undefined
       return lastPageParam + 1
     },
-    staleTime: 5 * 60 * 1000
+    refetchOnWindowFocus: false
   })
 
   const {
@@ -54,7 +54,7 @@ const Dashboard = () => {
   } = useQuery({
     queryKey: ['allUsers', searchQuery],
     queryFn: () => fetchAllUsers('firstName', searchQuery),
-    staleTime: 5 * 60 * 1000
+    refetchOnWindowFocus: false
   })
 
   const usersData: IUser[] = data?.pages[currentPage]?.data || []
