@@ -1,6 +1,6 @@
 import { useToast, UseToastOptions } from '@chakra-ui/react'
 
-export const useCustomToast = () => {
+const useCustomToast = () => {
   const toast = useToast()
 
   const showToast = ({ status, position = 'bottom', ...props }: UseToastOptions) => {
@@ -15,3 +15,5 @@ export const useCustomToast = () => {
 
   return { showToast }
 }
+
+export default useCustomToast

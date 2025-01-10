@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import { render, fireEvent, waitFor } from '@testing-library/react'
-import { useFilterStore } from '@hooks/useFilterStore'
-import Filter from '@components/Filter'
+import { useFilterStore } from '@hooks'
+import { Filter } from '@components'
 
 jest.mock('@hooks/useFilterStore', () => ({
   useFilterStore: jest.fn()

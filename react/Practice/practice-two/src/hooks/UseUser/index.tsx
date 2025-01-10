@@ -5,7 +5,7 @@ import { IUser } from '@type/models'
 import { addUser, deleteUser, editUser } from '@services/user'
 import { useMutation, UseMutationResult, useQueryClient, InfiniteData } from '@tanstack/react-query'
 import { IApiResponse } from '@type/apiResponse'
-import { useFilterStore } from '@hooks/useFilterStore'
+import { useFilterStore } from '@hooks'
 
 interface TransformedUser extends Pick<IUser, 'id' | 'role'>, TableRow {
   name: ReactNode
@@ -33,7 +33,7 @@ interface AllUsersQueryData {
   data: IUser[]
 }
 
-export const useUser = (usersData: IUser[], allUsers: IUser[], currentPage: number): UseUserReturn => {
+const useUser = (usersData: IUser[], allUsers: IUser[], currentPage: number): UseUserReturn => {
   const queryClient = useQueryClient()
   const { searchQuery, sortBy, itemsPerPage } = useFilterStore()
 
@@ -173,3 +173,5 @@ export const useUser = (usersData: IUser[], allUsers: IUser[], currentPage: numb
     deleteUserMutation
   }
 }
+
+export default useUser

@@ -2,13 +2,11 @@ import { useState, useEffect, FormEvent } from 'react'
 import { Button, Stack, Heading, useDisclosure, Flex } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomTable, Filter, Pagination, UserModal, WarningModal } from '@components'
-import { useUser } from '@hooks/useUser'
 import { IUser } from '@type/models'
 import { fetchUsers, fetchAllUsers } from '@services/user'
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { ITEM_PER_PAGE } from '@constants/option'
-import { useCustomToast } from '@hooks/useCustomToast'
-import { useFilterStore } from '@hooks/useFilterStore'
+import { useCustomToast, useFilterStore, useUser } from '@hooks'
 
 const Dashboard = () => {
   const { showToast } = useCustomToast()

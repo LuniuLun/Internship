@@ -1,5 +1,5 @@
-import { useFilterStore } from '@hooks/useFilterStore'
 import { act } from '@testing-library/react'
+import useFilterStore from '.'
 
 describe('useFilterStore', () => {
   it('should initialize with default state', () => {

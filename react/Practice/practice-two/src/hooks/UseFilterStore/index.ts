@@ -9,7 +9,7 @@ interface FilterState {
   setSortBy: (sort: string) => void
 }
 
-export const useFilterStore = create<FilterState>((set) => ({
+const useFilterStore = create<FilterState>((set) => ({
   searchQuery: '',
   sortBy: '',
   itemsPerPage: 5,
@@ -17,3 +17,5 @@ export const useFilterStore = create<FilterState>((set) => ({
   setSortBy: (sort: string) => set(() => ({ sortBy: sort })),
   setItemsPerPage: (itemsPerPage: number) => set(() => ({ itemsPerPage }))
 }))
+
+export default useFilterStore

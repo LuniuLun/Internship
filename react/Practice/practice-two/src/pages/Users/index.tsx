@@ -1,14 +1,12 @@
+import { useEffect, useState } from 'react'
 import { Button, Flex, Heading, Stack, useDisclosure } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomTable, Pagination, UserModal, WarningModal, StatisticCard, Filter } from '@components'
-import { useUser } from '@hooks/useUser'
 import { IUser } from '@type/models'
 import { fetchAllUsers, fetchUsers } from '@services/user'
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { ITEM_PER_PAGE } from '@constants/option'
-import { useCustomToast } from '@hooks/useCustomToast'
-import { useEffect, useState } from 'react'
-import { useFilterStore } from '@hooks/useFilterStore'
+import { useCustomToast, useFilterStore, useUser } from '@hooks'
 
 const Dashboard = () => {
   const { showToast } = useCustomToast()

@@ -1,4 +1,4 @@
-import { useUser } from '@hooks/useUser'
+import { useUser } from '@hooks'
 import { renderHook } from '@testing-library/react'
 import { IUser } from '@type/models'
 
@@ -70,7 +70,7 @@ describe('useUser', () => {
   ]
 
   it('should return transformed users and all necessary data', () => {
-    const { result } = renderHook(() => useUser(usersData, allUsers))
+    const { result } = renderHook(() => useUser(usersData, allUsers, 1))
 
     expect(result.current.superAdmin).toEqual([allUsers[1]])
     expect(result.current.admin).toEqual([allUsers[0]])
@@ -81,7 +81,7 @@ describe('useUser', () => {
   })
 
   it('should return empty arrays when no usersData is provided', () => {
-    const { result } = renderHook(() => useUser(undefined, undefined))
+    const { result } = renderHook(() => useUser([], [], 1))
 
     expect(result.current.superAdmin).toEqual([])
     expect(result.current.admin).toEqual([])
@@ -89,14 +89,14 @@ describe('useUser', () => {
   })
 
   it('should return correct users when usersData is provided', () => {
-    const { result } = renderHook(() => useUser(usersData, allUsers))
+    const { result } = renderHook(() => useUser(usersData, allUsers, 1))
 
     expect(result.current.superAdmin).toHaveLength(1)
     expect(result.current.admin).toHaveLength(1)
   })
 
   it('should correctly transform users into TableRow format', () => {
-    const { result } = renderHook(() => useUser(usersData, usersData))
+    const { result } = renderHook(() => useUser(usersData, usersData, 1))
 
     expect(result.current.transformedUsers).toHaveLength(usersData.length)
     expect(result.current.transformedUsers[0].name).toBeTruthy()

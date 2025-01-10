@@ -1,6 +1,6 @@
-import { useCustomToast } from '@hooks/useCustomToast'
 import { useToast } from '@chakra-ui/react'
 import { act, renderHook } from '@testing-library/react'
+import useCustomToast from '.'
 
 jest.mock('@chakra-ui/react', () => ({
   useToast: jest.fn()

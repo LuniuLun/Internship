@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import { useSidebar } from '@hooks/useSidebar'
+import useSidebar from '.'
 
 test('useSidebar throws error when not wrapped in SidebarProvider', () => {
   const TestComponent = () => {
