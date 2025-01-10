@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField matches snapshot for username input 1`] = `
+<DocumentFragment>
+  <div
+    class="chakra-stack css-h0k0po"
+  >
+    <div
+      class="chakra-input__group css-bx0blc"
+      data-group="true"
+    >
+      <input
+        class="chakra-input css-c7pnka"
+        placeholder="Enter username"
+        type="text"
+        value=""
+      />
+    </div>
+    <p
+      class="chakra-text css-oahvu8"
+    />
+  </div>
+</DocumentFragment>
+`;
