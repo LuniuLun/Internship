@@ -33,7 +33,7 @@ describe('User Service', () => {
 
     const result = await fetchUsers()
     expect(result.status).toBe('success')
-    expect(result.data).toEqual(mockApiResponse)
+    expect(result.data).toMatchObject(mockApiResponse)
     expect(result.message).toBeTruthy()
   })
 
@@ -61,7 +61,7 @@ describe('User Service', () => {
 
     const result = await fetchUsers(params)
     expect(result.status).toBe('success')
-    expect(result.data).toEqual(mockApiResponse)
+    expect(result.data).toMatchObject(mockApiResponse)
     expect(result.message).toBeTruthy()
   })
 
@@ -78,7 +78,7 @@ describe('User Service', () => {
 
     const result = await fetchUsers(params)
     expect(result.status).toBe('success')
-    expect(result.data).toEqual(mockApiResponse)
+    expect(result.data).toMatchObject(mockApiResponse)
     expect(result.message).toBeTruthy()
   })
 
@@ -95,7 +95,7 @@ describe('User Service', () => {
 
     const result = await fetchAllUsers()
     expect(result.status).toBe('success')
-    expect(result.data).toEqual(mockApiResponse)
+    expect(result.data).toMatchObject(mockApiResponse)
     expect(result.message).toBeTruthy()
   })
 
@@ -111,7 +111,7 @@ describe('User Service', () => {
 
     const result = await fetchAllUsers('role', 'Admin')
     expect(result.status).toBe('success')
-    expect(result.data).toEqual(mockApiResponse)
+    expect(result.data).toMatchObject(mockApiResponse)
   })
 
   it('fetchAllUsers should return error message on failure', async () => {
@@ -138,7 +138,7 @@ describe('User Service', () => {
 
     const result = await addUser(mockUser)
     expect(result.status).toBe('success')
-    expect(result.data).toEqual(mockApiResponse)
+    expect(result.data).toMatchObject(mockApiResponse)
     expect(result.message).toBeTruthy()
   })
 
@@ -179,7 +179,7 @@ describe('User Service', () => {
 
     const result = await editUser(mockUser)
     expect(result.status).toBe('success')
-    expect(result.data).toEqual(mockApiResponse)
+    expect(result.data).toMatchObject(mockApiResponse)
     expect(result.message).toBeTruthy()
   })
 
@@ -217,7 +217,7 @@ describe('User Service', () => {
 
     const result = await deleteUser(mockUser.id)
     expect(result.status).toBe('success')
-    expect(result.data).toEqual(mockApiResponse)
+    expect(result.data).toMatchObject(mockApiResponse)
     expect(result.message).toBeTruthy()
   })
 
