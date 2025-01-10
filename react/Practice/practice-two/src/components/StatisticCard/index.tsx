@@ -8,7 +8,7 @@ interface IStatisticsCardProps {
   isLoaded?: boolean
 }
 
-const StatisticsCard = ({ isLoaded, label, value }: IStatisticsCardProps) => {
+const StatisticsCard = ({ isLoaded = true, label, value }: IStatisticsCardProps) => {
   return (
     <Stack flex={1} p={4} borderWidth={1} borderRadius='md' bg='white' borderColor={colors.brand.secondary}>
       <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300'>
