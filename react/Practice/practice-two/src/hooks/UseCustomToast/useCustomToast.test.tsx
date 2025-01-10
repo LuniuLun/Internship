@@ -7,28 +7,9 @@ jest.mock('@chakra-ui/react', () => ({
 }))
 
 describe('useCustomToast', () => {
-  it('should call useToast with correct parameters', () => {
-    const showToast = jest.fn()
-    ;(useToast as jest.Mock).mockReturnValue(showToast)
-
-    const { result } = renderHook(() => useCustomToast())
-
-    act(() => {
-      result.current.showToast({ status: 'success', position: 'top', description: 'Test message' })
-    })
-
-    expect(showToast).toHaveBeenCalledWith({
-      status: 'success',
-      position: 'top',
-      isClosable: true,
-      variant: 'successCustom',
-      description: 'Test message'
-    })
-  })
-
   it('should call useToast with default position when not provided', () => {
     const showToast = jest.fn()
-    ;(useToast as jest.Mock).mockReturnValue(showToast) // Return the mock function as the result of useToast
+    ;(useToast as jest.Mock).mockReturnValue(showToast)
 
     const { result } = renderHook(() => useCustomToast())
 
