@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomSelect matches the snapshot when no selected value or placeholder is provided 1`] = `
+<DocumentFragment>
+  <div
+    class="chakra-select__wrapper css-1p30zcz"
+  >
+    <select
+      class="chakra-select css-1ezy4v2"
+    >
+      <option
+        disabled=""
+        hidden=""
+        value=""
+      >
+        Select
+      </option>
+      <option
+        value="option1"
+      >
+        Option 1
+      </option>
+      <option
+        value="option2"
+      >
+        Option 2
+      </option>
+      <option
+        value="option3"
+      >
+        Option 3
+      </option>
+    </select>
+    <div
+      class="chakra-select__icon-wrapper css-162mkon"
+    >
+      <svg
+        aria-hidden="true"
+        class="chakra-select__icon"
+        focusable="false"
+        role="presentation"
+        style="width: 1em; height: 1em; color: currentColor;"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CustomSelect matches the snapshot with bottom border 1`] = `
+<DocumentFragment>
+  <div
+    class="chakra-select__wrapper css-1p30zcz"
+  >
+    <select
+      class="chakra-select css-1pclosf"
+    >
+      <option
+        disabled=""
+        hidden=""
+        value=""
+      >
+        Select an option
+      </option>
+      <option
+        value="option1"
+      >
+        Option 1
+      </option>
+      <option
+        value="option2"
+      >
+        Option 2
+      </option>
+      <option
+        value="option3"
+      >
+        Option 3
+      </option>
+    </select>
+    <div
+      class="chakra-select__icon-wrapper css-162mkon"
+    >
+      <svg
+        aria-hidden="true"
+        class="chakra-select__icon"
+        focusable="false"
+        role="presentation"
+        style="width: 1em; height: 1em; color: currentColor;"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CustomSelect matches the snapshot with full border 1`] = `
+<DocumentFragment>
+  <div
+    class="chakra-select__wrapper css-1p30zcz"
+  >
+    <select
+      class="chakra-select css-p5iot1"
+    >
+      <option
+        disabled=""
+        hidden=""
+        value=""
+      >
+        Select an option
+      </option>
+      <option
+        value="option1"
+      >
+        Option 1
+      </option>
+      <option
+        value="option2"
+      >
+        Option 2
+      </option>
+      <option
+        value="option3"
+      >
+        Option 3
+      </option>
+    </select>
+    <div
+      class="chakra-select__icon-wrapper css-162mkon"
+    >
+      <svg
+        aria-hidden="true"
+        class="chakra-select__icon"
+        focusable="false"
+        role="presentation"
+        style="width: 1em; height: 1em; color: currentColor;"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;

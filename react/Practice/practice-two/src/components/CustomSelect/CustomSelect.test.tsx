@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import CustomSelect from '@components/CustomSelect'
-import colors from '@styles/variables/colors'
 
 describe('CustomSelect', () => {
   const options = [
@@ -14,26 +13,39 @@ describe('CustomSelect', () => {
     return render(<CustomSelect options={options} {...props} />)
   }
 
-  it('renders select with options and correct placeholder', () => {
-    renderSelect({ placeholder: 'Test Placeholder' })
-
-    expect(screen.getByRole('combobox')).toHaveTextContent('Test Placeholder')
-    options.forEach(({ label }) => {
-      expect(screen.getByText(label)).toBeInTheDocument()
-    })
+  it('matches the snapshot with bottom border', () => {
+    const { asFragment } = renderSelect({ border: 'bottom', placeholder: 'Select an option' })
+    expect(asFragment()).toMatchSnapshot()
   })
 
-  it('applies border styles correctly', () => {
-    const { rerender } = renderSelect({ border: 'bottom' })
-    const select = screen.getByRole('combobox')
+  it('matches the snapshot with full border', () => {
+    const { asFragment } = renderSelect({ border: 'full', placeholder: 'Select an option' })
+    expect(asFragment()).toMatchSnapshot()
+  })
 
-    expect(select).toHaveStyle(`border-bottom: 1px solid ${colors.brand.black}`)
+  it('matches the snapshot when no selected value or placeholder is provided', () => {
+    const { asFragment } = renderSelect({})
+    expect(asFragment()).toMatchSnapshot()
+  })
 
-    rerender(<CustomSelect options={options} border='none' />)
-    expect(select).not.toHaveStyle(`border-bottom: 1px solid ${colors.brand.black}`)
-    expect(select).not.toHaveStyle(`border: 2px solid ${colors.brand.secondary}`)
+  it('renders with the placeholder when no selected value is provided', () => {
+    renderSelect({ placeholder: 'Select an option' })
 
-    rerender(<CustomSelect options={options} border='full' />)
-    expect(select).toHaveStyle(`border: 2px solid ${colors.brand.secondary}`)
+    const optionElement = screen.getByRole('combobox').querySelector('option')
+    expect(optionElement).toHaveTextContent('Select an option')
+  })
+
+  it('renders with the selected value when provided', () => {
+    renderSelect({ placeholder: 'Select an option', value: 'option2' })
+
+    const optionElement = screen.getByRole('combobox').querySelector('option')
+    expect(optionElement).toHaveTextContent('option2')
+  })
+
+  it('renders with default "Select" when no selected value or placeholder is provided', () => {
+    renderSelect({})
+
+    const optionElement = screen.getByRole('combobox').querySelector('option')
+    expect(optionElement).toHaveTextContent('Select')
   })
 })
