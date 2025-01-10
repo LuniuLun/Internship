@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination matches snapshot with items and next page available 1`] = `
+<DocumentFragment>
+  <div
+    class="css-lphe3t"
+  >
+    <div
+      class="chakra-skeleton css-ajbpsb"
+    >
+      <div
+        class="css-1ey8ulv"
+      >
+        <div
+          class="css-1ey8ulv"
+        >
+          <p
+            class="chakra-text css-epvm6"
+          >
+            Items per page:
+          </p>
+          <div
+            class="chakra-select__wrapper css-1p30zcz"
+          >
+            <select
+              aria-label="items-per-page"
+              class="chakra-select css-10pl3cs"
+            >
+              <option
+                disabled=""
+                hidden=""
+                value=""
+              >
+                10
+              </option>
+              <option
+                value="10"
+              >
+                10
+              </option>
+              <option
+                value="20"
+              >
+                20
+              </option>
+              <option
+                value="30"
+              >
+                30
+              </option>
+            </select>
+            <div
+              class="chakra-select__icon-wrapper css-162mkon"
+            >
+              <svg
+                aria-hidden="true"
+                class="chakra-select__icon"
+                focusable="false"
+                role="presentation"
+                style="width: 1em; height: 1em; color: currentColor;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <p
+          class="chakra-text css-0"
+        >
+          1-10 of 100
+        </p>
+      </div>
+    </div>
+    <div
+      class="chakra-skeleton css-ajbpsb"
+    >
+      <div
+        class="css-147dy5z"
+      >
+        <button
+          aria-label="previous-page"
+          class="chakra-button css-4xx2wk"
+          disabled=""
+          type="button"
+        >
+          <svg
+            fill="none"
+            height="20"
+            viewBox="0 0 20 20"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              filter="url(#filter0_d_1_1064)"
+            >
+              <path
+                d="M15 5.591H5"
+                stroke="#717171"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10 10.591L5 5.591L10 0.591003"
+                stroke="#717171"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+          </svg>
+        </button>
+        <button
+          aria-label="next-page"
+          class="chakra-button css-4xx2wk"
+          type="button"
+        >
+          <svg
+            fill="none"
+            height="20"
+            viewBox="0 0 20 20"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              filter="url(#filter0_d_1_1061)"
+            >
+              <path
+                d="M5 5.59101L15 5.59101"
+                stroke="#717171"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10 0.591003L15 5.591L10 10.591"
+                stroke="#717171"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

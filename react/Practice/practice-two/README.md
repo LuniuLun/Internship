@@ -1,11 +1,11 @@
-# Food management
+# User management
 
 This design is an admin dashboard for user management.
 
 ## Overview
 
-- Design: [Food management](https://www.figma.com/design/1YZIcBdB3irhLktTCSkgwq/User-management?node-id=0-1&t=S8GKEx5DgZG9qkPh-1)
-- Timeline: 80 hours (2024/11/29 - 2024/12/20)
+- Design: [User management](https://www.figma.com/design/1YZIcBdB3irhLktTCSkgwq/User-management?node-id=0-1&t=S8GKEx5DgZG9qkPh-1)
+- Timeline: 80 hours (2024/11/29 - 2024/01/03)
 
 ## Team size
 
@@ -15,7 +15,7 @@ This design is an admin dashboard for user management.
 
 - Continue to improve component writing to be as common and clean as possible, plus it handles logic streams very efficiently.
 - Become better understood and create your own custom hook to reduce redundant code.
-Applying Chakra UI simplifies component styling and ensures consistency across the application.
+- Applying Chakra UI simplifies component styling and ensures consistency across the application.
 - Be aware of catching common and specific errors (errors from API, from logic,...) for one React application to prevent crashing issues dramatically.
 - Keep moving with Storybook which will assist in managing components in the development environment.
 - Practice should consist of additional libraries namely React Query, React Hook Form, and Zustand.
@@ -57,4 +57,10 @@ pnpm dev
 
 ```bash
 pnpm build
+```
+
+### Run Jest test
+
+```bash
+pnpm test
 ```

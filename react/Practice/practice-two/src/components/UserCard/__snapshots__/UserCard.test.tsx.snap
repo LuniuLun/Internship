@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserCard matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-1b35ox0"
+  >
+    <span
+      class="chakra-avatar css-1ruhx4w"
+    >
+      <div
+        aria-label="John Doe"
+        class="chakra-avatar__initials css-0"
+        role="img"
+      >
+        JD
+      </div>
+    </span>
+    <div
+      class="css-136njel"
+    >
+      <div
+        class="chakra-stack css-mw8ufx"
+      >
+        <p
+          class="chakra-text css-lqfo9t"
+        >
+          John Doe
+        </p>
+        <p
+          class="chakra-text css-157uzmr"
+        >
+          Developer
+        </p>
+      </div>
+      <button
+        aria-label="dropdown"
+        class="chakra-button css-duhdl2"
+        type="button"
+      >
+        <svg
+          fill="black"
+          height="8"
+          viewBox="0 0 13 8"
+          width="13"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1.47757 0.300601L6.07232 4.88584L10.6576 0.291085L12.069 1.70962L6.07525 7.71584L0.069038 1.72206L1.47757 0.300601Z"
+            fill="black"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

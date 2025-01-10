@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomCell Component should render a checkbox for boolean values 1`] = `
+<DocumentFragment>
+  <label
+    class="chakra-checkbox css-1elxtiq"
+    data-checked=""
+  >
+    <input
+      aria-label="Cell active status for John Doe"
+      checked=""
+      class="chakra-checkbox__input"
+      readonly=""
+      style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+      type="checkbox"
+      value=""
+    />
+    <span
+      aria-hidden="true"
+      class="chakra-checkbox__control css-dnty2r"
+      data-checked=""
+      data-readonly=""
+    >
+      <div
+        class="css-0"
+        style="display: flex; align-items: center; justify-content: center; height: 100%;"
+      >
+        <svg
+          class="css-1w6vdd7"
+          style="fill: none; stroke-width: 2; stroke: currentColor; stroke-dasharray: 16;"
+          viewBox="0 0 12 10"
+        >
+          <polyline
+            points="1.5 6 4.5 9 10.5 1"
+          />
+        </svg>
+      </div>
+    </span>
+  </label>
+</DocumentFragment>
+`;
+
+exports[`CustomCell Component should render the role and modulePermission in a styled flex box 1`] = `
+<DocumentFragment>
+  <div
+    class="css-1ajkn56"
+  >
+    Admin
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CustomCell Component should return an empty string if value is null or undefined 1`] = `<DocumentFragment />`;
