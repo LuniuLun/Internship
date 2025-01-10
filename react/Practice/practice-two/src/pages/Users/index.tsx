@@ -113,7 +113,7 @@ const Dashboard = () => {
         onError: (response) => showToast({ status: 'error', title: response.message })
       }
     )
-    onCloseWarningModal()
+    handleCloseWarningModal()
   }
 
   const handleSubmit = (data: IUser) => {
