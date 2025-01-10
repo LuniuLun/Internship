@@ -12,9 +12,8 @@ import { useFilterStore } from '@hooks/useFilterStore'
 
 const Dashboard = () => {
   const { showToast } = useCustomToast()
-  const { searchQuery, sortBy } = useFilterStore()
+  const { searchQuery, sortBy, itemsPerPage, setItemsPerPage } = useFilterStore()
   const [currentPage, setCurrentPage] = useState<number>(0)
-  const [itemsPerPage, setItemsPerPage] = useState<number>(5)
   const [selectedUser, setSelectedUser] = useState<IUser | null>(null)
   const { isOpen: isUserModalOpen, onOpen: onOpenUserModal, onClose: onCloseUserModal } = useDisclosure()
   const { isOpen: isWarningModalOpen, onOpen: onOpenWarningModal, onClose: onCloseWarningModal } = useDisclosure()
@@ -63,7 +62,8 @@ const Dashboard = () => {
   const usersData: IUser[] = data?.pages[currentPage]?.data || []
   const { transformedUsers, addUserMutation, editUserMutation, deleteUserMutation } = useUser(
     usersData,
-    allUsers?.data || []
+    allUsers?.data || [],
+    currentPage
   )
 
   useEffect(() => {
@@ -118,7 +118,7 @@ const Dashboard = () => {
         onError: (response) => showToast({ status: 'error', title: response.message })
       }
     )
-    onCloseWarningModal()
+    handleCloseWarningModal()
   }
 
   const handleSubmit = (data: IUser) => {
@@ -158,6 +158,7 @@ const Dashboard = () => {
         }
       >
         <Button
+          size='md'
           display='flex'
           gap={2}
           onClick={onOpenUserModal}

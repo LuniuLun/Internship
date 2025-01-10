@@ -12,9 +12,8 @@ import { useFilterStore } from '@hooks/useFilterStore'
 
 const Dashboard = () => {
   const { showToast } = useCustomToast()
-  const { searchQuery, sortBy } = useFilterStore()
+  const { searchQuery, sortBy, itemsPerPage, setItemsPerPage } = useFilterStore()
   const [currentPage, setCurrentPage] = useState<number>(0)
-  const [itemsPerPage, setItemsPerPage] = useState<number>(5)
   const [selectedUser, setSelectedUser] = useState<IUser | null>(null)
   const { isOpen: isUserModalOpen, onOpen: onOpenUserModal, onClose: onCloseUserModal } = useDisclosure()
   const { isOpen: isWarningModalOpen, onOpen: onOpenWarningModal, onClose: onCloseWarningModal } = useDisclosure()
@@ -62,7 +61,7 @@ const Dashboard = () => {
 
   const usersData: IUser[] = data?.pages[currentPage]?.data || []
   const { transformAllUsers, addUserMutation, editUserMutation, deleteUserMutation, admin, employee, superAdmin } =
-    useUser(usersData, allUsers?.data || [])
+    useUser(usersData, allUsers?.data || [], currentPage)
 
   useEffect(() => {
     setCurrentPage(0)
@@ -159,7 +158,14 @@ const Dashboard = () => {
           !isFirstUserLoading
         }
       >
-        <Button display='flex' gap={2} onClick={onOpenUserModal} w='100%' isLoading={addUserMutation.isPending}>
+        <Button
+          size='md'
+          display='flex'
+          gap={2}
+          onClick={onOpenUserModal}
+          w='100%'
+          isLoading={addUserMutation.isPending}
+        >
           Add user <PlusIcon />
         </Button>
       </Filter>
