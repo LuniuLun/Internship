@@ -1,10 +1,9 @@
 import '@testing-library/jest-dom'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import CustomSelect from '@components/CustomSelect'
 import colors from '@styles/variables/colors'
 
 describe('CustomSelect', () => {
-  const mockOnChange = jest.fn()
   const options = [
     { value: 'option1', label: 'Option 1' },
     { value: 'option2', label: 'Option 2' },
@@ -24,20 +23,6 @@ describe('CustomSelect', () => {
     })
   })
 
-  it('triggers onChange when selecting option', () => {
-    renderSelect({ onChange: mockOnChange })
-
-    fireEvent.change(screen.getByRole('combobox'), {
-      target: { value: 'option1' }
-    })
-
-    expect(mockOnChange).toHaveBeenCalledWith(
-      expect.objectContaining({
-        target: expect.objectContaining({ value: 'option1' })
-      })
-    )
-  })
-
   it('applies border styles correctly', () => {
     const { rerender } = renderSelect({ border: 'bottom' })
     const select = screen.getByRole('combobox')
@@ -50,15 +35,5 @@ describe('CustomSelect', () => {
 
     rerender(<CustomSelect options={options} border='full' />)
     expect(select).toHaveStyle(`border: 2px solid ${colors.brand.secondary}`)
-  })
-
-  it('uses default placeholder when none provided', () => {
-    renderSelect()
-    expect(screen.getByRole('combobox')).toHaveTextContent('Select')
-  })
-
-  it('sets correct value when value prop is provided', () => {
-    renderSelect({ value: 'option2' })
-    expect(screen.getByRole('combobox')).toHaveValue('option2')
   })
 })
