@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filter Component matches snapshot when filter is loaded 1`] = `
+<DocumentFragment>
+  <div
+    class="css-30qmkb"
+  >
+    <div
+      class="chakra-stack css-h0k0po"
+    >
+      <div
+        class="chakra-input__group css-bx0blc"
+        data-group="true"
+      >
+        <div
+          class="chakra-input__left-element css-1fpc2up"
+        >
+          <svg
+            fill="#404040"
+            height="13"
+            viewBox="0 0 14 13"
+            width="14"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5.68504 0.335637C6.61702 0.334634 7.53074 0.594133 8.32307 1.08485C9.1154 1.57557 9.75481 2.27797 10.1691 3.11279C10.5835 3.94761 10.7562 4.88162 10.6679 5.80941C10.5796 6.73721 10.2337 7.62185 9.66936 8.36351L12.8346 11.5236C12.9543 11.6434 13.0239 11.8043 13.0293 11.9736C13.0346 12.1429 12.9753 12.3079 12.8634 12.4351C12.7515 12.5622 12.5954 12.642 12.4268 12.6583C12.2582 12.6745 12.0898 12.6259 11.9557 12.5225L11.8929 12.4672L8.72634 9.30849C8.09551 9.79054 7.35895 10.1154 6.57762 10.2563C5.79628 10.3972 4.99264 10.3499 4.23318 10.1185C3.47372 9.88715 2.78028 9.47822 2.21024 8.92561C1.6402 8.37299 1.20996 7.69258 0.9551 6.94067C0.700243 6.18876 0.628104 5.38696 0.744653 4.60163C0.861202 3.81631 1.16309 3.07002 1.62533 2.42453C2.08757 1.77904 2.69688 1.25291 3.40284 0.889661C4.1088 0.526415 4.89111 0.336502 5.68504 0.335637ZM5.68642 1.66897C4.71396 1.66998 3.78173 2.05725 3.09481 2.7456C2.40789 3.43394 2.02255 4.36698 2.02356 5.33944C2.02456 6.3119 2.41184 7.24413 3.10018 7.93105C3.78853 8.61797 4.72156 9.00331 5.69402 9.0023C6.66648 9.00129 7.59871 8.61402 8.28563 7.92567C8.97255 7.23732 9.35789 6.30429 9.35688 5.33183C9.35588 4.35937 8.9686 3.42714 8.28026 2.74022C7.59191 2.0533 6.65888 1.66796 5.68642 1.66897Z"
+              fill="#404040"
+            />
+          </svg>
+        </div>
+        <input
+          class="chakra-input css-qcqkus"
+          placeholder="Search"
+          type="text"
+          value=""
+        />
+      </div>
+      <p
+        class="chakra-text css-oahvu8"
+      />
+    </div>
+    <div
+      class="css-7gb88h"
+    >
+      <div
+        class="chakra-select__wrapper css-ggfhl5"
+      >
+        <select
+          aria-label="sort"
+          class="chakra-select css-1ezy4v2"
+        >
+          <option
+            disabled=""
+            hidden=""
+            value=""
+          >
+            Sort by
+          </option>
+          <option
+            value="firstName"
+          >
+            Name
+          </option>
+          <option
+            value="role"
+          >
+            Role
+          </option>
+          <option
+            value="createdDate"
+          >
+            Created date
+          </option>
+        </select>
+        <div
+          class="chakra-select__icon-wrapper css-162mkon"
+        >
+          <svg
+            aria-hidden="true"
+            class="chakra-select__icon"
+            focusable="false"
+            role="presentation"
+            style="width: 1em; height: 1em; color: currentColor;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="css-161letl"
+      >
+        <svg
+          fill="none"
+          height="19"
+          viewBox="0 0 19 19"
+          width="19"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M7.6 0C6.365 0 5.32 0.798 4.921 1.9H0V3.8H4.921C5.3105 4.902 6.3555 5.7 7.6 5.7C9.1675 5.7 10.45 4.4175 10.45 2.85C10.45 1.2825 9.1675 0 7.6 0ZM12.35 1.9V3.8H19V1.9H12.35ZM12.35 6.65C11.115 6.65 10.07 7.448 9.671 8.55H0V10.45H9.671C10.0605 11.552 11.1055 12.35 12.35 12.35C13.9175 12.35 15.2 11.0675 15.2 9.5C15.2 7.9325 13.9175 6.65 12.35 6.65ZM17.1 8.55V10.45H19V8.55H17.1ZM4.75 13.3C3.515 13.3 2.47 14.098 2.071 15.2H0V17.1H2.071C2.4605 18.202 3.5055 19 4.75 19C6.3175 19 7.6 17.7175 7.6 16.15C7.6 14.5825 6.3175 13.3 4.75 13.3ZM9.5 15.2V17.1H19V15.2H9.5Z"
+            fill="#404040"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
