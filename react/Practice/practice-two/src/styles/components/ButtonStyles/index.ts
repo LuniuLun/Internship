@@ -42,7 +42,7 @@ const ButtonStyles: ComponentStyleConfig = {
     }
   },
   defaultProps: {
-    size: 'md',
+    size: 'sm',
     variant: 'primary'
   }
 }
