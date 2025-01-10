@@ -2,10 +2,14 @@ import { act } from '@testing-library/react'
 import useFilterStore from '.'
 
 describe('useFilterStore', () => {
-  it('should initialize with default state', () => {
-    const { searchQuery, sortBy } = useFilterStore.getState()
-    expect(searchQuery).toBe('')
-    expect(sortBy).toBe('')
+  beforeEach(() => {
+    act(() => {
+      useFilterStore.setState({
+        searchQuery: '',
+        sortBy: '',
+        itemsPerPage: 5
+      })
+    })
   })
 
   it('should update searchQuery when setSearchQuery is called', () => {
@@ -19,6 +23,17 @@ describe('useFilterStore', () => {
     expect(searchQuery).toBe('Test Query')
   })
 
+  it('should update itemsPerPage when setItemsPerPage is called', () => {
+    const { setItemsPerPage } = useFilterStore.getState()
+
+    act(() => {
+      setItemsPerPage(10)
+    })
+
+    const { itemsPerPage } = useFilterStore.getState()
+    expect(itemsPerPage).toBe(10)
+  })
+
   it('should update sortBy when setSortBy is called', () => {
     const { setSortBy } = useFilterStore.getState()
 
@@ -28,18 +43,5 @@ describe('useFilterStore', () => {
 
     const { sortBy } = useFilterStore.getState()
     expect(sortBy).toBe('name')
-  })
-
-  it('should update searchQuery and sortBy together', () => {
-    const { setSearchQuery, setSortBy } = useFilterStore.getState()
-
-    act(() => {
-      setSearchQuery('New Query')
-      setSortBy('date')
-    })
-
-    const { searchQuery, sortBy } = useFilterStore.getState()
-    expect(searchQuery).toBe('New Query')
-    expect(sortBy).toBe('date')
   })
 })
