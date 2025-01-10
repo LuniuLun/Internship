@@ -34,12 +34,5 @@
   },
   "types": ["jest", "node", "vite/client"],
   "files": [],
-  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
-  "exclude": [
-    "src/components/__tests__/**",
-    "src/layout/components/__tests__/**",
-    "src/assets/__tests__/**",
-    "src/services/__tests__/**",
-    "src/utils/__tests__/**"
-  ]
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
 }
