@@ -75,7 +75,7 @@ const Sidebar = () => {
       }}
       zIndex={1000}
       width='254px'
-      height='100vh'
+      minH='100vh'
       padding='40px 0 40px'
       bgColor='white'
     >
