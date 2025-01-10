@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoGroup renders the heading and description correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="chakra-stack css-mw8ufx"
+  >
+    <p
+      class="chakra-text css-mwjwfh"
+    >
+      Test Heading
+    </p>
+    <p
+      class="chakra-text css-t7ioy4"
+    >
+      Test description for the InfoGroup component.
+    </p>
+  </div>
+</DocumentFragment>
+`;
