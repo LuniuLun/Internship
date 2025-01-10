@@ -3,8 +3,8 @@ import { Box, Flex } from '@chakra-ui/react'
 import { CustomSelect, TextField } from '@components'
 import { FilterIcon, SearchIcon } from '@assets/icons'
 import { SORT_OPTION } from '@constants/option'
-import { useFilterStore } from '@hooks/UseFilterStore'
 import { debounce } from '@utils'
+import { useFilterStore } from '@hooks'
 
 interface FilterProps {
   children?: ReactNode

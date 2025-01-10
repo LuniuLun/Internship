@@ -1,7 +1,7 @@
 import { Box, Flex, IconButton } from '@chakra-ui/react'
 import { MenuIcon, NotificationIcon } from '@assets/icons'
 import { InfoGroup, UserCard } from '@components'
-import { useSidebar } from '@hooks/UseSidebar'
+import { useSidebar } from '@hooks'
 
 const Header = () => {
   const { toggleSidebar } = useSidebar()

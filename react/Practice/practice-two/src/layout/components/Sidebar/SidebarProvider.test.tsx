@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { SidebarProvider } from '@layout/components/Sidebar/SidebarProvider'
-import { useSidebar } from '@hooks/UseSidebar'
+import { useSidebar } from '@hooks'
 
 describe('SidebarProvider', () => {
   it('should provide correct initial state', () => {

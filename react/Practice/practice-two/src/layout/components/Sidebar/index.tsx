@@ -3,7 +3,6 @@ import { Stack, useBreakpointValue } from '@chakra-ui/react'
 import { Logo, NavItem } from '@components'
 import { useLocation } from 'react-router-dom'
 import { NAV_ITEMS } from '@constants/option'
-import { useSidebar } from '@hooks/UseSidebar'
 import {
   DashboardIcon,
   LeaderboardIcon,
@@ -15,6 +14,7 @@ import {
   SettingIcon,
   LogoIcon
 } from '@assets/icons'
+import { useSidebar } from '@hooks'
 
 const iconMap: Record<string, ElementType> = {
   dashboard: DashboardIcon,
