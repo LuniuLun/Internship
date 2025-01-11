@@ -1,4 +1,4 @@
-import { ReactNode, useState, useMemo } from 'react'
+import React, { ReactNode, useState, useCallback, memo } from 'react'
 import { Box, Flex } from '@chakra-ui/react'
 import { CustomSelect, TextField } from '@components'
 import { FilterIcon, SearchIcon } from '@assets/icons'
@@ -15,25 +15,34 @@ const Filter = ({ isLoaded = true, children }: FilterProps) => {
   const { searchQuery, sortBy, setSearchQuery, setSortBy } = useFilterStore()
   const [localSearchQuery, setLocalSearchQuery] = useState(searchQuery)
 
-  const debouncedSearchQuery = useMemo(() => debounce((value: string) => setSearchQuery(value), 700), [setSearchQuery])
+  const debouncedSearchQuery = useCallback(
+    debounce((value: string) => setSearchQuery(value), 700),
+    [setSearchQuery]
+  )
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!isLoaded) {
-      e.preventDefault()
-      return
-    }
-    const value = e.target.value
-    setLocalSearchQuery(value)
-    debouncedSearchQuery(value)
-  }
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!isLoaded) {
+        e.preventDefault()
+        return
+      }
+      const value = e.target.value
+      setLocalSearchQuery(value)
+      debouncedSearchQuery(value)
+    },
+    [isLoaded, debouncedSearchQuery]
+  )
 
-  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!isLoaded) {
-      e.preventDefault()
-      return
-    }
-    setSortBy(e.target.value)
-  }
+  const handleSortChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      if (!isLoaded) {
+        e.preventDefault()
+        return
+      }
+      setSortBy(e.target.value)
+    },
+    [isLoaded, setSortBy]
+  )
 
   return (
     <Flex gap={8} alignItems='center' flexDirection={{ base: 'column', md: 'row' }}>
@@ -65,4 +74,21 @@ const Filter = ({ isLoaded = true, children }: FilterProps) => {
   )
 }
 
-export default Filter
+const areEqual = (prevProps: FilterProps, nextProps: FilterProps) => {
+  if (prevProps.isLoaded !== nextProps.isLoaded) {
+    return false
+  }
+
+  const areChildrenEqual =
+    React.Children.count(prevProps.children) === React.Children.count(nextProps.children) &&
+    React.Children.toArray(prevProps.children).every((child, index) => {
+      const nextChild = React.Children.toArray(nextProps.children)[index]
+      return React.isValidElement(child) && React.isValidElement(nextChild)
+        ? child.key === nextChild.key
+        : child === nextChild
+    })
+
+  return areChildrenEqual
+}
+
+export default memo(Filter, areEqual)
