@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, FormEvent, useCallback } from 'react'
-import { Button, Stack, Heading, useDisclosure, Flex } from '@chakra-ui/react'
+import { Button, Stack, useDisclosure, Flex } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
-import { CustomTable, Filter, Pagination, UserModal, WarningModal } from '@components'
+import { CustomHeading, CustomTable, Filter, Pagination, UserModal, WarningModal } from '@components'
 import { IUser } from '@type/models'
 import { fetchUsers, fetchAllUsers } from '@services/user'
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
@@ -153,9 +153,7 @@ const Dashboard = () => {
 
   return (
     <Stack gap={6}>
-      <Heading variant='primary' paddingLeft='13px'>
-        Users Dashboard
-      </Heading>
+      <CustomHeading variant='primary' paddingLeft='13px' title='Users Dashboard' />
       <Filter
         isLoaded={
           !addUserMutation.isPending &&
