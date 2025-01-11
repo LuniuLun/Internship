@@ -70,9 +70,13 @@ const Dashboard = () => {
     refetch()
   }, [itemsPerPage, searchQuery, sortBy, refetch])
 
-  const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleItemsPerPageChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     setItemsPerPage(parseInt(e.target.value))
-  }
+  }, [])
+
+  const handlePageChange = useCallback((page: number) => {
+    setCurrentPage(page - 1)
+  }, [])
 
   const handleEdit = useCallback(
     (id: string) => {
@@ -195,7 +199,7 @@ const Dashboard = () => {
           currentPage={currentPage + 1}
           totalItems={allUsers?.data?.length || 0}
           itemsPerPage={itemsPerPage}
-          onPageChange={(page) => setCurrentPage(page - 1)}
+          onPageChange={handlePageChange}
           onItemsPerPageChange={handleItemsPerPageChange}
           fetchNextPage={fetchNextPage}
           hasNextPage={hasNextPage}
