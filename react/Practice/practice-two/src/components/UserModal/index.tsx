@@ -45,14 +45,8 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
       setValue('role', selectedUser.role)
       setValue('username', selectedUser.username)
       setValue('password', selectedUser.password)
-    }
+    } else reset()
   }, [selectedUser])
-
-  useEffect(() => {
-    if (!isModalOpen) {
-      reset()
-    }
-  }, [isModalOpen])
 
   const onFormSubmit: SubmitHandler<UserFormData> = (data) => {
     const userData = { ...data }
