@@ -29,6 +29,8 @@ const Pagination = memo(
     isFetchingNextPage,
     isLoaded
   }: PaginationProps) => {
+    if ((totalItems === 0 || itemsPerPage === 0) && isLoaded) return null
+
     const totalPages = Math.ceil(totalItems / itemsPerPage)
 
     const selectOptions = itemsPerPageOptions.map((option) => ({
@@ -48,8 +50,6 @@ const Pagination = memo(
         if (!isFetchingNextPage && hasNextPage) fetchNextPage()
       }
     }
-
-    if ((totalItems === 0 || itemsPerPage === 0) && isLoaded) return null
 
     return (
       <Flex
