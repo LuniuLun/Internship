@@ -10,7 +10,7 @@ exports[`renders Header correctly 1`] = `
     >
       <button
         aria-label="toggle-sidebar"
-        class="chakra-button css-14dtn4h"
+        class="chakra-button css-wrebi9"
         type="button"
       >
         <svg
