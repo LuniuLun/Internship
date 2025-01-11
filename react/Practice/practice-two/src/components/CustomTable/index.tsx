@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import {
   Table,
   Thead,
@@ -30,7 +31,7 @@ interface CustomTableProps extends TableProps {
   isLoaded?: boolean
 }
 
-const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: CustomTableProps) => {
+const CustomTable = memo(({ isLoaded, title, data, onEdit, onDelete, ...props }: CustomTableProps) => {
   if (data.length === 0 && isLoaded) {
     return (
       <Heading variant='secondary' color='brand.red'>
@@ -150,6 +151,6 @@ const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: Cust
       </Table>
     </Box>
   )
-}
+})
 
 export default CustomTable
