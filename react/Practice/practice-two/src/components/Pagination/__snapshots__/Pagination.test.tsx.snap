@@ -6,7 +6,7 @@ exports[`Pagination matches snapshot with items and next page available 1`] = `
     class="css-lphe3t"
   >
     <div
-      class="chakra-skeleton css-ajbpsb"
+      class="chakra-skeleton css-1jr7ew8"
     >
       <div
         class="css-1ey8ulv"
@@ -76,21 +76,21 @@ exports[`Pagination matches snapshot with items and next page available 1`] = `
       </div>
     </div>
     <div
-      class="chakra-skeleton css-ajbpsb"
+      class="chakra-skeleton css-1jr7ew8"
     >
       <div
         class="css-147dy5z"
       >
         <button
           aria-label="previous-page"
-          class="chakra-button css-4xx2wk"
+          class="chakra-button css-50f1ws"
           disabled=""
           type="button"
         >
           <svg
             fill="none"
-            height="20"
-            viewBox="0 0 20 20"
+            height="12"
+            viewBox="0 0 20 12"
             width="20"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -114,13 +114,13 @@ exports[`Pagination matches snapshot with items and next page available 1`] = `
         </button>
         <button
           aria-label="next-page"
-          class="chakra-button css-4xx2wk"
+          class="chakra-button css-50f1ws"
           type="button"
         >
           <svg
             fill="none"
-            height="20"
-            viewBox="0 0 20 20"
+            height="12"
+            viewBox="0 0 20 12"
             width="20"
             xmlns="http://www.w3.org/2000/svg"
           >
