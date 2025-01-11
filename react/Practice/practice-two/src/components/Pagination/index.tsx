@@ -1,5 +1,5 @@
 import { memo, useCallback, useMemo } from 'react'
-import { Flex, Text, Button, Skeleton } from '@chakra-ui/react'
+import { Flex, Text, Skeleton, IconButton } from '@chakra-ui/react'
 import { LeftArrowIcon, RightArrowIcon } from '@assets/icons'
 import CustomSelect from '@components/CustomSelect'
 import colors from '@styles/variables/colors'
@@ -70,7 +70,7 @@ const Pagination = memo(
         color={colors.brand.blackTextQuaternary}
         fontSize='xs'
       >
-        <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' h='25px'>
+        <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' minH='25px'>
           <Flex align='center' gap='26px'>
             <Flex align='center' gap='26px'>
               <Text whiteSpace='nowrap'>Items per page:</Text>
@@ -87,24 +87,22 @@ const Pagination = memo(
             <Text>{paginationRange}</Text>
           </Flex>
         </Skeleton>
-        <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' h='25px'>
+        <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' minH='25px'>
           <Flex gap={2}>
-            <Button
+            <IconButton
+              icon={<LeftArrowIcon />}
               variant='unstyled'
               onClick={handlePrevious}
               isDisabled={currentPage === 1}
               aria-label='previous-page'
-            >
-              <LeftArrowIcon />
-            </Button>
-            <Button
+            />
+            <IconButton
+              icon={<RightArrowIcon />}
               variant='unstyled'
               onClick={handleNext}
               isDisabled={currentPage === totalPages || !hasNextPage || isFetchingNextPage}
               aria-label='next-page'
-            >
-              <RightArrowIcon />
-            </Button>
+            ></IconButton>
           </Flex>
         </Skeleton>
       </Flex>
