@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from 'react'
+import { memo } from 'react'
 import { Flex, Text, Skeleton, IconButton } from '@chakra-ui/react'
 import { LeftArrowIcon, RightArrowIcon } from '@assets/icons'
 import CustomSelect from '@components/CustomSelect'
@@ -29,35 +29,25 @@ const Pagination = memo(
     isFetchingNextPage,
     isLoaded
   }: PaginationProps) => {
-    const totalPages = useMemo(() => Math.ceil(totalItems / itemsPerPage), [totalItems, itemsPerPage])
+    const totalPages = Math.ceil(totalItems / itemsPerPage)
 
-    const paginationRange = useMemo(() => {
-      const start = (currentPage - 1) * itemsPerPage + 1
-      const end = Math.min(currentPage * itemsPerPage, totalItems)
-      return `${start}-${end} of ${totalItems}`
-    }, [currentPage, itemsPerPage, totalItems])
+    const selectOptions = itemsPerPageOptions.map((option) => ({
+      value: option,
+      label: option.toString()
+    }))
 
-    const selectOptions = useMemo(
-      () =>
-        itemsPerPageOptions.map((option) => ({
-          value: option,
-          label: option.toString()
-        })),
-      [itemsPerPageOptions]
-    )
-
-    const handlePrevious = useCallback(() => {
+    const handlePrevious = () => {
       if (currentPage > 1) {
         onPageChange(currentPage - 1)
       }
-    }, [currentPage, onPageChange])
+    }
 
-    const handleNext = useCallback(() => {
+    const handleNext = () => {
       if (currentPage < totalPages) {
         onPageChange(currentPage + 1)
         if (!isFetchingNextPage && hasNextPage) fetchNextPage()
       }
-    }, [currentPage, totalPages, onPageChange, isFetchingNextPage, hasNextPage, fetchNextPage])
+    }
 
     if ((totalItems === 0 || itemsPerPage === 0) && isLoaded) return null
 
@@ -84,7 +74,7 @@ const Pagination = memo(
               />
             </Flex>
 
-            <Text>{paginationRange}</Text>
+            <Text>{`${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems}`}</Text>
           </Flex>
         </Skeleton>
         <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' minH='25px'>
