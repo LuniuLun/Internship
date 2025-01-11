@@ -14,7 +14,7 @@ const Header = () => {
           aria-label='toggle-sidebar'
           onClick={toggleSidebar}
           bgColor='brand.secondary'
-          display={{ base: 'block', xl: 'none' }}
+          display={{ base: 'flex', xl: 'none' }}
         />
         <InfoGroup heading='Hello, Lekan' description='Have a nice day' size='md' />
       </Flex>
