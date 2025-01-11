@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useCallback, useEffect, useState } from 'react'
 import { Button, Flex, Heading, Stack, useDisclosure } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomTable, Pagination, UserModal, WarningModal, StatisticCard, Filter } from '@components'
@@ -70,25 +71,31 @@ const Dashboard = () => {
     setItemsPerPage(parseInt(e.target.value))
   }
 
-  const handleEdit = (id: string) => {
-    const user = usersData.find((user) => user.id === id)
-    if (!user) {
-      showToast({ status: 'error', title: 'User does not exist' })
-      return
-    }
-    setSelectedUser(user)
-    onOpenUserModal()
-  }
+  const handleEdit = useCallback(
+    (id: string) => {
+      const user = usersData.find((user) => user.id === id)
+      if (!user) {
+        showToast({ status: 'error', title: 'User does not exist' })
+        return
+      }
+      setSelectedUser(user)
+      onOpenUserModal()
+    },
+    [usersData]
+  )
 
-  const handleDelete = (id: string) => {
-    const user = usersData.find((user) => user.id === id)
-    if (!user) {
-      showToast({ status: 'error', title: 'User does not exist' })
-      return
-    }
-    setSelectedUser(user)
-    onOpenWarningModal()
-  }
+  const handleDelete = useCallback(
+    (id: string) => {
+      const user = usersData.find((user) => user.id === id)
+      if (!user) {
+        showToast({ status: 'error', title: 'User does not exist' })
+        return
+      }
+      setSelectedUser(user)
+      onOpenWarningModal()
+    },
+    [usersData]
+  )
 
   const handleCloseUserModal = () => {
     setSelectedUser(null)
