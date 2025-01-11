@@ -1,6 +1,7 @@
 import { DownArrowIcon } from '@assets/icons'
 import { Avatar, IconButton, Flex } from '@chakra-ui/react'
 import InfoGroup from '@components/InfoGroup'
+import { memo } from 'react'
 
 interface UserCardProps {
   name: string
@@ -8,7 +9,7 @@ interface UserCardProps {
   avatar?: string
 }
 
-const UserCard = ({ name, role, avatar }: UserCardProps) => {
+const UserCard = memo(({ name, role, avatar }: UserCardProps) => {
   return (
     <Flex gap={4} alignItems='center' backgroundColor='transparent' boxShadow='sm' maxWidth='260px'>
       <Avatar name={name} src={avatar} size='md' />
@@ -25,6 +26,6 @@ const UserCard = ({ name, role, avatar }: UserCardProps) => {
       </Flex>
     </Flex>
   )
-}
+})
 
 export default UserCard
