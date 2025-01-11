@@ -1,6 +1,7 @@
 import { Stack, Text } from '@chakra-ui/react'
-import colors from '@styles/variables/colors'
 import { Skeleton } from '@chakra-ui/react'
+import { memo } from 'react'
+import colors from '@styles/variables/colors'
 
 interface IStatisticsCardProps {
   label: string
@@ -8,7 +9,7 @@ interface IStatisticsCardProps {
   isLoaded?: boolean
 }
 
-const StatisticsCard = ({ isLoaded = true, label, value }: IStatisticsCardProps) => {
+const StatisticsCard = memo(({ isLoaded = true, label, value }: IStatisticsCardProps) => {
   return (
     <Stack flex={1} p={4} borderWidth={1} borderRadius='md' bg='white' borderColor={colors.brand.secondary}>
       <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300'>
@@ -23,6 +24,6 @@ const StatisticsCard = ({ isLoaded = true, label, value }: IStatisticsCardProps)
       </Skeleton>
     </Stack>
   )
-}
+})
 
 export default StatisticsCard
