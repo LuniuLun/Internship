@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomHeading matches the snapshot 1`] = `
+<DocumentFragment>
+  <h2
+    class="chakra-heading css-0"
+  >
+    Test Heading
+  </h2>
+</DocumentFragment>
+`;
