@@ -7,11 +7,19 @@ interface WarningModalProps {
   title: string
   message: string
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+  isSubmitting?: boolean
 }
 
-const WarningModal = ({ isModalOpen, onClose, title, message, handleSubmit }: WarningModalProps) => {
+const WarningModal = ({ isModalOpen, onClose, title, message, handleSubmit, isSubmitting }: WarningModalProps) => {
   return (
-    <CustomModal size={'lg'} isOpen={isModalOpen} onClose={onClose} title={title} handleSubmit={handleSubmit}>
+    <CustomModal
+      size={'lg'}
+      isOpen={isModalOpen}
+      onClose={onClose}
+      title={title}
+      handleSubmit={handleSubmit}
+      isSubmitting={isSubmitting}
+    >
       <Box textAlign='center' marginTop={4} px={10}>
         <Text fontSize='lg' color='brand.blackTextSecondary' fontWeight='Bold'>
           {message}
