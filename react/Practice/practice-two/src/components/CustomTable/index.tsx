@@ -106,11 +106,18 @@ const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: Cust
                 <Td
                   key={header}
                   borderBottom={`2px solid ${colors.brand.secondary}`}
-                  minW='150px'
+                  maxW='200px'
                   textAlign={index === 0 ? 'left' : 'center'}
                   bgColor={colors.brand.white}
                 >
-                  <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300'>
+                  <Skeleton
+                    isLoaded={isLoaded}
+                    startColor='gray.100'
+                    endColor='gray.300'
+                    overflow='hidden'
+                    textOverflow='ellipsis'
+                    whiteSpace='nowrap'
+                  >
                     {CustomCell({ header, row })}
                   </Skeleton>
                 </Td>
