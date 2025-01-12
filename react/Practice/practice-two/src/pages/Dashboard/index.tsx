@@ -14,6 +14,7 @@ const Dashboard = () => {
   const [selectedUser, setSelectedUser] = useState<IUser | null>(null)
   const { isOpen: isUserModalOpen, onOpen: onOpenUserModal, onClose: onCloseUserModal } = useDisclosure()
   const { isOpen: isWarningModalOpen, onOpen: onOpenWarningModal, onClose: onCloseWarningModal } = useDisclosure()
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const {
     usersQuery,
     allUsersQuery,
@@ -81,26 +82,47 @@ const Dashboard = () => {
       showToast({ status: 'error', title: 'User does not exist' })
       return
     }
+    setIsSubmitting(true)
     deleteUserMutation.mutate(selectedUser, {
-      onSuccess: (response) => showToast({ status: 'success', title: response.message }),
-      onError: (response) => showToast({ status: 'error', title: response.message })
+      onSuccess: (response) => {
+        showToast({ status: 'success', title: response.message })
+        handleCloseWarningModal()
+        setIsSubmitting(false)
+      },
+      onError: (response) => {
+        showToast({ status: 'error', title: response.message })
+        setIsSubmitting(false)
+      }
     })
-    handleCloseWarningModal()
   }
 
   const handleSubmit = (data: IUser) => {
+    setIsSubmitting(true)
     if (selectedUser?.id) {
       editUserMutation.mutate(data, {
-        onSuccess: (response) => showToast({ status: 'success', title: response.message }),
-        onError: (response) => showToast({ status: 'error', title: response.message })
+        onSuccess: (response) => {
+          showToast({ status: 'success', title: response.message })
+          handleCloseUserModal()
+          setIsSubmitting(false)
+        },
+        onError: (response) => {
+          showToast({ status: 'error', title: response.message })
+          setIsSubmitting(false)
+        }
       })
     } else {
       addUserMutation.mutate(data, {
-        onSuccess: (response) => showToast({ status: 'success', title: response.message }),
-        onError: (response) => showToast({ status: 'error', title: response.message })
+        onSuccess: (response) => {
+          showToast({ status: 'success', title: response.message })
+          handleCloseUserModal()
+          setIsSubmitting(false)
+        },
+        onError: (response) => {
+          showToast({ status: 'error', title: response.message })
+          setIsSubmitting(false)
+        }
       })
     }
-    handleCloseUserModal()
   }
 
   if (usersQuery.isError || allUsersQuery.isError) {
@@ -155,6 +177,7 @@ const Dashboard = () => {
         isModalOpen={isUserModalOpen}
         onClose={handleCloseUserModal}
         handleSubmit={handleSubmit}
+        isSubmitting={isSubmitting}
       />
       <WarningModal
         isModalOpen={isWarningModalOpen}
@@ -162,6 +185,7 @@ const Dashboard = () => {
         title='WARNING'
         message='This action will permanently delete the user. Do you want to proceed?'
         handleSubmit={handleWarningSubmit}
+        isSubmitting={isSubmitting}
       />
     </Stack>
   )
