@@ -40,6 +40,12 @@ exports[`CustomCell Component should render a checkbox for boolean values 1`] = 
 </DocumentFragment>
 `;
 
+exports[`CustomCell Component should render the date as an ISO string (formatted date) 1`] = `
+<DocumentFragment>
+  2025-01-01
+</DocumentFragment>
+`;
+
 exports[`CustomCell Component should render the role and modulePermission in a styled flex box 1`] = `
 <DocumentFragment>
   <div

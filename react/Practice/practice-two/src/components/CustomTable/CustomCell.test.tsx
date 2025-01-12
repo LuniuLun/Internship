@@ -7,7 +7,8 @@ describe('CustomCell Component', () => {
     name: 'John Doe',
     role: 'Admin',
     modulePermission: 'View Only',
-    isActive: true
+    isActive: true,
+    date: new Date('2025-01-01')
   }
 
   it('should render a checkbox for boolean values', () => {
@@ -27,6 +28,15 @@ describe('CustomCell Component', () => {
 
   it('should return an empty string if value is null or undefined', () => {
     const { asFragment } = render(<CustomCell header='unknown' row={mockRow} />)
+    expect(asFragment()).toMatchSnapshot()
+  })
+
+  it('should render the date as an ISO string (formatted date)', () => {
+    const { asFragment } = render(<CustomCell header='date' row={mockRow} />)
+
+    const dateValue = screen.getByText('2025-01-01')
+    expect(dateValue).toBeInTheDocument()
+
     expect(asFragment()).toMatchSnapshot()
   })
 })
