@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Button, Flex, Stack, useDisclosure } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomTable, Pagination, UserModal, WarningModal, StatisticCard, Filter, CustomHeading } from '@components'
@@ -112,26 +112,10 @@ const Users = () => {
     })
   }
 
-  const isLoading = useMemo(() => {
-    return (
-      addUserMutation.isPending ||
-      editUserMutation.isPending ||
-      usersQuery.isFetching ||
-      usersQuery.isFetchingNextPage ||
-      allUsersQuery.isFetching
-    )
-  }, [
-    addUserMutation.isPending,
-    editUserMutation.isPending,
-    usersQuery.isFetching,
-    usersQuery.isFetchingNextPage,
-    allUsersQuery.isFetching
-  ])
-
   return (
     <Stack gap={6}>
       <CustomHeading variant='primary' paddingLeft='13px' title='Users' />
-      <Filter isLoaded={!isLoading}>
+      <Filter isLoaded={!usersQuery.isFetching || usersQuery.isFetchingNextPage || allUsersQuery.isFetching}>
         <Button
           size='md'
           display='flex'
@@ -146,12 +130,12 @@ const Users = () => {
 
       <Flex gap={4} flexDirection={{ base: 'column', md: 'row' }}>
         <Flex gap={4} w='100%'>
-          <StatisticCard label='Users' value={lengthAllUsers} isLoaded={!isLoading} />
-          <StatisticCard label='Super Admins' value={superAdmin?.length || 0} isLoaded={!isLoading} />
+          <StatisticCard label='Users' value={lengthAllUsers} isLoaded={!allUsersQuery.isFetching} />
+          <StatisticCard label='Super Admins' value={superAdmin?.length || 0} isLoaded={!allUsersQuery.isFetching} />
         </Flex>
         <Flex gap={4} w='100%'>
-          <StatisticCard label='Admins' value={admin?.length || 0} isLoaded={!isLoading} />
-          <StatisticCard label='Employees' value={employee?.length || 0} isLoaded={!isLoading} />
+          <StatisticCard label='Admins' value={admin?.length || 0} isLoaded={!allUsersQuery.isFetching} />
+          <StatisticCard label='Employees' value={employee?.length || 0} isLoaded={!allUsersQuery.isFetching} />
         </Flex>
       </Flex>
 
@@ -165,7 +149,7 @@ const Users = () => {
         title='List Users'
         onEdit={handleEdit}
         onDelete={handleDelete}
-        isLoaded={!isLoading}
+        isLoaded={!usersQuery.isFetching || usersQuery.isFetchingNextPage || allUsersQuery.isFetching}
       />
 
       <Flex justifyContent='center'>
@@ -179,7 +163,7 @@ const Users = () => {
           hasNextPage={usersQuery.hasNextPage}
           isFetchingNextPage={usersQuery.isFetchingNextPage}
           itemsPerPageOptions={ITEM_PER_PAGE}
-          isLoaded={!isLoading}
+          isLoaded={!allUsersQuery.isFetching}
         />
       </Flex>
 
