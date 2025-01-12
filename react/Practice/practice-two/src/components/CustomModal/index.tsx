@@ -11,6 +11,7 @@ import {
   Modal
 } from '@chakra-ui/react'
 import colors from '@styles/variables/colors'
+import { memo } from 'react'
 
 interface CustomModalProps extends ModalProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
@@ -53,4 +54,4 @@ const CustomModal = ({ isOpen, onClose, handleSubmit, title, isSubmitting, child
   )
 }
 
-export default CustomModal
+export default memo(CustomModal)
