@@ -9,7 +9,7 @@ interface IInfoGroupProps {
   size?: TSizeInfoGroup
 }
 
-const InfoGroup = memo(({ heading, description, size = 'sm' }: IInfoGroupProps) => {
+const InfoGroup = ({ heading, description, size = 'sm' }: IInfoGroupProps) => {
   return (
     <Stack align='center' alignItems={'start'} gap={0}>
       <Text fontWeight='500' fontSize={size === 'sm' ? '0.875rem' : '1rem'} color={colors.brand.black}>
@@ -24,6 +24,6 @@ const InfoGroup = memo(({ heading, description, size = 'sm' }: IInfoGroupProps) 
       </Text>
     </Stack>
   )
-})
+}
 
 export default memo(InfoGroup)
