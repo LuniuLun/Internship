@@ -56,6 +56,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
       ...userData,
       createdDate: selectedUser?.createdDate || new Date(Date.now())
     }
+    reset()
     handleSubmit(user)
   }
 
