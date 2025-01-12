@@ -31,12 +31,12 @@ exports[`renders Header correctly 1`] = `
         class="chakra-stack css-mw8ufx"
       >
         <p
-          class="chakra-text css-lqfo9t"
+          class="chakra-text css-1nz35ut"
         >
           Hello, Lekan
         </p>
         <p
-          class="chakra-text css-157uzmr"
+          class="chakra-text css-1gb4ylf"
         >
           Have a nice day
         </p>
@@ -89,12 +89,12 @@ exports[`renders Header correctly 1`] = `
             class="chakra-stack css-mw8ufx"
           >
             <p
-              class="chakra-text css-lqfo9t"
+              class="chakra-text css-1nz35ut"
             >
               Lekan Okeowo
             </p>
             <p
-              class="chakra-text css-157uzmr"
+              class="chakra-text css-1gb4ylf"
             >
               Admin
             </p>
