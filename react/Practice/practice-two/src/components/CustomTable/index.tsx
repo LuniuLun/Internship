@@ -31,7 +31,7 @@ interface CustomTableProps extends TableProps {
   isLoaded?: boolean
 }
 
-const CustomTable = memo(({ isLoaded, title, data, onEdit, onDelete, ...props }: CustomTableProps) => {
+const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: CustomTableProps) => {
   if (!data || (data.length === 0 && isLoaded)) {
     return (
       <Heading variant='secondary' color='brand.red'>
@@ -151,6 +151,6 @@ const CustomTable = memo(({ isLoaded, title, data, onEdit, onDelete, ...props }:
       </Table>
     </Box>
   )
-})
+}
 
-export default CustomTable
+export default memo(CustomTable)
