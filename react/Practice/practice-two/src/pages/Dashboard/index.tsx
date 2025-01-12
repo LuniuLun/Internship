@@ -113,14 +113,7 @@ const Dashboard = () => {
   return (
     <Stack gap={6}>
       <CustomHeading variant='primary' paddingLeft='13px' title='Users Dashboard' />
-      <Filter
-        isLoaded={
-          !addUserMutation.isPending &&
-          !editUserMutation.isPending &&
-          !usersQuery.isFetching &&
-          !allUsersQuery.isFetching
-        }
-      >
+      <Filter isLoaded={!usersQuery.isFetching || usersQuery.isFetchingNextPage || allUsersQuery.isFetching}>
         <Button
           size='md'
           display='flex'
@@ -139,7 +132,7 @@ const Dashboard = () => {
         title='List Users'
         onEdit={handleEdit}
         onDelete={handleDelete}
-        isLoaded={!addUserMutation.isPending && !editUserMutation.isPending && !usersQuery.isFetching}
+        isLoaded={!usersQuery.isFetching}
       />
 
       <Flex justifyContent='center'>
@@ -153,7 +146,7 @@ const Dashboard = () => {
           hasNextPage={usersQuery.hasNextPage}
           isFetchingNextPage={usersQuery.isFetchingNextPage}
           itemsPerPageOptions={ITEM_PER_PAGE}
-          isLoaded={!addUserMutation.isPending && !editUserMutation.isPending && !usersQuery.isFetching}
+          isLoaded={!usersQuery.isFetching}
         />
       </Flex>
 
