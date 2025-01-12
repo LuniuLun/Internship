@@ -61,6 +61,8 @@ export const fetchAllUsers = async (property?: string, value?: string): Promise<
     if (property && value) {
       calledUrl.searchParams.append(property, value)
     }
+    calledUrl.searchParams.append('sortBy', 'createdDate')
+    calledUrl.searchParams.append('order', 'desc')
     const response = await fetch(calledUrl)
 
     if (!response.ok) {
