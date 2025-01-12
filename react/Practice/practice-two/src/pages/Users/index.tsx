@@ -1,15 +1,13 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Button, Flex, Stack, useDisclosure } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomTable, Pagination, UserModal, WarningModal, StatisticCard, Filter, CustomHeading } from '@components'
 import { IUser } from '@type/models'
-import { fetchAllUsers, fetchUsers } from '@services/user'
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { ITEM_PER_PAGE } from '@constants/option'
 import { useCustomToast, useFilterStore, useUser } from '@hooks'
+import { TableRow } from '@components/CustomTable'
 
-const Dashboard = () => {
+const Users = () => {
   const { showToast } = useCustomToast()
   const { searchQuery, sortBy, itemsPerPage, setItemsPerPage } = useFilterStore()
   const [currentPage, setCurrentPage] = useState<number>(0)
@@ -18,54 +16,22 @@ const Dashboard = () => {
   const { isOpen: isWarningModalOpen, onOpen: onOpenWarningModal, onClose: onCloseWarningModal } = useDisclosure()
 
   const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    refetch,
-    isError,
-    error,
-    isLoading: isFirstUserLoading
-  } = useInfiniteQuery({
-    queryKey: ['users', itemsPerPage, searchQuery, sortBy],
-    queryFn: async ({ pageParam = 1 }) => {
-      return await fetchUsers({
-        page: pageParam.toString(),
-        limit: itemsPerPage.toString(),
-        property: 'firstName',
-        value: searchQuery,
-        sortBy,
-        order: 'asc'
-      })
-    },
-    initialPageParam: 1,
-    getNextPageParam: (lastPage, _, lastPageParam) => {
-      if (!lastPage.data || lastPage.data.length === 0) return undefined
-      return lastPageParam + 1
-    },
-    refetchOnWindowFocus: false
-  })
-
-  const {
-    data: allUsers,
-    isLoading: isFirstAllUserLoading,
-    isError: allUsersIsError,
-    error: allUsersError
-  } = useQuery({
-    queryKey: ['allUsers', searchQuery],
-    queryFn: () => fetchAllUsers('firstName', searchQuery),
-    refetchOnWindowFocus: false
-  })
-
-  const usersData: IUser[] = data?.pages[currentPage]?.data || []
-  const { transformAllUsers, addUserMutation, editUserMutation, deleteUserMutation, admin, employee, superAdmin } =
-    useUser(usersData, allUsers?.data || [], currentPage)
+    usersQuery,
+    allUsersQuery,
+    transformAllUsers,
+    addUserMutation,
+    editUserMutation,
+    deleteUserMutation,
+    lengthAllUsers,
+    superAdmin,
+    admin,
+    employee
+  } = useUser()
 
   useEffect(() => {
     setCurrentPage(0)
-    refetch()
-  }, [itemsPerPage, searchQuery, sortBy, refetch])
+    usersQuery.refetch()
+  }, [itemsPerPage, searchQuery, sortBy])
 
   const handleItemsPerPageChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     setItemsPerPage(parseInt(e.target.value))
@@ -77,7 +43,7 @@ const Dashboard = () => {
 
   const handleEdit = useCallback(
     (id: string) => {
-      const user = usersData.find((user) => user.id === id)
+      const user = transformAllUsers?.find((user) => user.id === id)
       if (!user) {
         showToast({ status: 'error', title: 'User does not exist' })
         return
@@ -85,12 +51,12 @@ const Dashboard = () => {
       setSelectedUser(user)
       onOpenUserModal()
     },
-    [usersData]
+    [transformAllUsers]
   )
 
   const handleDelete = useCallback(
     (id: string) => {
-      const user = usersData.find((user) => user.id === id)
+      const user = transformAllUsers?.find((user) => user.id === id)
       if (!user) {
         showToast({ status: 'error', title: 'User does not exist' })
         return
@@ -98,7 +64,7 @@ const Dashboard = () => {
       setSelectedUser(user)
       onOpenWarningModal()
     },
-    [usersData]
+    [transformAllUsers]
   )
 
   const handleCloseUserModal = () => {
@@ -117,25 +83,19 @@ const Dashboard = () => {
       showToast({ status: 'error', title: 'User does not exist' })
       return
     }
-    deleteUserMutation.mutate(
-      { ...selectedUser },
-      {
-        onSuccess: (response) => showToast({ status: 'success', title: response.message }),
-        onError: (response) => showToast({ status: 'error', title: response.message })
-      }
-    )
+    deleteUserMutation.mutate(selectedUser, {
+      onSuccess: (response) => showToast({ status: 'success', title: response.message }),
+      onError: (response) => showToast({ status: 'error', title: response.message })
+    })
     handleCloseWarningModal()
   }
 
   const handleSubmit = (data: IUser) => {
     if (selectedUser?.id) {
-      editUserMutation.mutate(
-        { ...data },
-        {
-          onSuccess: (response) => showToast({ status: 'success', title: response.message }),
-          onError: (response) => showToast({ status: 'error', title: response.message })
-        }
-      )
+      editUserMutation.mutate(data, {
+        onSuccess: (response) => showToast({ status: 'success', title: response.message }),
+        onError: (response) => showToast({ status: 'error', title: response.message })
+      })
     } else {
       addUserMutation.mutate(data, {
         onSuccess: (response) => showToast({ status: 'success', title: response.message }),
@@ -145,25 +105,33 @@ const Dashboard = () => {
     handleCloseUserModal()
   }
 
-  if (isError || allUsersIsError)
+  if (usersQuery.isError || allUsersQuery.isError) {
     showToast({
       status: 'error',
-      title: error?.message || allUsersError?.message || allUsersError?.message || 'Error fetching users'
+      title: 'Error fetching users'
     })
+  }
+
+  const isLoading = useMemo(() => {
+    return (
+      addUserMutation.isPending ||
+      editUserMutation.isPending ||
+      usersQuery.isFetching ||
+      usersQuery.isFetchingNextPage ||
+      allUsersQuery.isFetching
+    )
+  }, [
+    addUserMutation.isPending,
+    editUserMutation.isPending,
+    usersQuery.isFetching,
+    usersQuery.isFetchingNextPage,
+    allUsersQuery.isFetching
+  ])
 
   return (
     <Stack gap={6}>
       <CustomHeading variant='primary' paddingLeft='13px' title='Users' />
-      <Filter
-        isLoaded={
-          !addUserMutation.isPending &&
-          !editUserMutation.isPending &&
-          !isFetchingNextPage &&
-          !isFetching &&
-          !isFirstAllUserLoading &&
-          !isFirstUserLoading
-        }
-      >
+      <Filter isLoaded={!isLoading}>
         <Button
           size='md'
           display='flex'
@@ -178,49 +146,40 @@ const Dashboard = () => {
 
       <Flex gap={4} flexDirection={{ base: 'column', md: 'row' }}>
         <Flex gap={4} w='100%'>
-          <StatisticCard label='Users' value={allUsers?.data?.length || 0} isLoaded={!isFirstAllUserLoading} />
-          <StatisticCard label='Super Admins' value={superAdmin.length} isLoaded={!isFirstAllUserLoading} />
+          <StatisticCard label='Users' value={lengthAllUsers} isLoaded={!isLoading} />
+          <StatisticCard label='Super Admins' value={superAdmin?.length || 0} isLoaded={!isLoading} />
         </Flex>
         <Flex gap={4} w='100%'>
-          <StatisticCard label='Admins' value={admin.length} isLoaded={!isFirstAllUserLoading} />
-          <StatisticCard label='Employees' value={employee.length} isLoaded={!isFirstAllUserLoading} />
+          <StatisticCard label='Admins' value={admin?.length || 0} isLoaded={!isLoading} />
+          <StatisticCard label='Employees' value={employee?.length || 0} isLoaded={!isLoading} />
         </Flex>
       </Flex>
 
       <CustomTable
-        data={transformAllUsers}
+        data={
+          transformAllUsers?.slice(
+            currentPage * itemsPerPage,
+            (currentPage + 1) * itemsPerPage
+          ) as unknown as TableRow[]
+        }
         title='List Users'
         onEdit={handleEdit}
         onDelete={handleDelete}
-        isLoaded={
-          !addUserMutation.isPending &&
-          !editUserMutation.isPending &&
-          !isFetchingNextPage &&
-          !isFetching &&
-          !isFirstAllUserLoading &&
-          !isFirstUserLoading
-        }
+        isLoaded={!isLoading}
       />
 
       <Flex justifyContent='center'>
         <Pagination
           currentPage={currentPage + 1}
-          totalItems={allUsers?.data?.length || 0}
+          totalItems={lengthAllUsers}
           itemsPerPage={itemsPerPage}
           onPageChange={handlePageChange}
           onItemsPerPageChange={handleItemsPerPageChange}
-          fetchNextPage={fetchNextPage}
-          hasNextPage={hasNextPage}
-          isFetchingNextPage={isFetchingNextPage}
+          fetchNextPage={usersQuery.fetchNextPage}
+          hasNextPage={usersQuery.hasNextPage}
+          isFetchingNextPage={usersQuery.isFetchingNextPage}
           itemsPerPageOptions={ITEM_PER_PAGE}
-          isLoaded={
-            !addUserMutation.isPending &&
-            !editUserMutation.isPending &&
-            !isFetchingNextPage &&
-            !isFetching &&
-            !isFirstAllUserLoading &&
-            !isFirstUserLoading
-          }
+          isLoaded={!isLoading}
         />
       </Flex>
 
@@ -242,4 +201,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Users
