@@ -9,7 +9,7 @@ interface UserCardProps {
   avatar?: string
 }
 
-const UserCard = memo(({ name, role, avatar }: UserCardProps) => {
+const UserCard = ({ name, role, avatar }: UserCardProps) => {
   return (
     <Flex gap={4} alignItems='center' backgroundColor='transparent' boxShadow='sm' maxWidth='260px'>
       <Avatar name={name} src={avatar} size='md' />
@@ -26,6 +26,6 @@ const UserCard = memo(({ name, role, avatar }: UserCardProps) => {
       </Flex>
     </Flex>
   )
-})
+}
 
-export default UserCard
+export default memo(UserCard)
