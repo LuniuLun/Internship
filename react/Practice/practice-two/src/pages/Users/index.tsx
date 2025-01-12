@@ -171,7 +171,7 @@ const Users = () => {
         title='List Users'
         onEdit={handleEdit}
         onDelete={handleDelete}
-        isLoaded={!usersQuery.isFetching || usersQuery.isFetchingNextPage || allUsersQuery.isFetching}
+        isLoaded={!usersQuery.isFetching && !usersQuery.isFetchingNextPage && !allUsersQuery.isFetching}
       />
 
       <Flex justifyContent='center'>
