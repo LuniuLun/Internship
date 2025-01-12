@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 import { Link } from 'react-router-dom'
 
 interface LogoProps {
-  icon: React.ReactNode
+  icon: React.ReactElement
   src: string
   width?: string
   height?: string
@@ -12,7 +12,7 @@ interface LogoProps {
 const Logo = ({ src, icon, width = '100px', height = '100px' }: LogoProps) => {
   return (
     <Link to={src}>
-      <Box borderRadius='50%'>{React.cloneElement(icon as React.ReactElement, { width, height })}</Box>
+      <Box borderRadius='50%'>{React.cloneElement(icon, { width, height })}</Box>
     </Link>
   )
 }
