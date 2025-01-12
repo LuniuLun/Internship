@@ -20,19 +20,19 @@ import FAKE_TABLE_DATA from '@constants/fakeTable'
 import CustomCell from './CustomCell'
 
 export interface TableRow {
-  [key: string]: string | number | boolean | React.ReactNode
+  [key: string]: string | number | boolean | Date | React.ReactNode
 }
 
 interface CustomTableProps extends TableProps {
   title?: string
-  data: TableRow[]
+  data: TableRow[] | undefined
   onEdit?: (id: string) => void
   onDelete?: (id: string) => void
   isLoaded?: boolean
 }
 
 const CustomTable = memo(({ isLoaded, title, data, onEdit, onDelete, ...props }: CustomTableProps) => {
-  if (data.length === 0 && isLoaded) {
+  if (!data || (data.length === 0 && isLoaded)) {
     return (
       <Heading variant='secondary' color='brand.red'>
         No data found
