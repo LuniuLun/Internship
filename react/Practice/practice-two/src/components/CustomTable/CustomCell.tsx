@@ -12,8 +12,13 @@ const CustomCell = ({ header, row }: CustomCellProps) => {
 
   if (!value && value !== false) return ''
 
+  if (value instanceof Date) {
+    return value.toISOString().split('T')[0]
+  }
+
   if (header.toLowerCase() === 'role' || header.toLowerCase() === 'modulepermission') {
     const isAdmin = value?.toString().toLowerCase().includes('admin')
+
     return (
       <Flex
         justifyContent='center'
