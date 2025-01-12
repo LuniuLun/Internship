@@ -16,88 +16,86 @@ interface PaginationProps {
   isFetchingNextPage: boolean
   isLoaded?: boolean
 }
-const Pagination = memo(
-  ({
-    currentPage,
-    totalItems,
-    itemsPerPage,
-    itemsPerPageOptions,
-    onPageChange,
-    onItemsPerPageChange,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    isLoaded
-  }: PaginationProps) => {
-    if ((totalItems === 0 || itemsPerPage === 0) && isLoaded) return null
+const Pagination = ({
+  currentPage,
+  totalItems,
+  itemsPerPage,
+  itemsPerPageOptions,
+  onPageChange,
+  onItemsPerPageChange,
+  fetchNextPage,
+  hasNextPage,
+  isFetchingNextPage,
+  isLoaded
+}: PaginationProps) => {
+  if ((totalItems === 0 || itemsPerPage === 0) && isLoaded) return null
 
-    const totalPages = Math.ceil(totalItems / itemsPerPage)
+  const totalPages = Math.ceil(totalItems / itemsPerPage)
 
-    const selectOptions = itemsPerPageOptions.map((option) => ({
-      value: option,
-      label: option.toString()
-    }))
+  const selectOptions = itemsPerPageOptions.map((option) => ({
+    value: option,
+    label: option.toString()
+  }))
 
-    const handlePrevious = () => {
-      if (currentPage > 1) {
-        onPageChange(currentPage - 1)
-      }
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1)
     }
-
-    const handleNext = () => {
-      if (currentPage < totalPages) {
-        onPageChange(currentPage + 1)
-        if (!isFetchingNextPage && hasNextPage) fetchNextPage()
-      }
-    }
-
-    return (
-      <Flex
-        align='center'
-        gap='26px'
-        flexDirection={{ base: 'column', md: 'row' }}
-        p={4}
-        color={colors.brand.blackTextQuaternary}
-        fontSize='xs'
-      >
-        <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' minH='25px'>
-          <Flex align='center' gap='26px'>
-            <Flex align='center' gap='26px'>
-              <Text whiteSpace='nowrap'>Items per page:</Text>
-              <CustomSelect
-                placeholder={itemsPerPage.toString()}
-                border='bottom'
-                fontSize='xs'
-                onChange={onItemsPerPageChange}
-                options={selectOptions}
-                aria-label='items-per-page'
-              />
-            </Flex>
-
-            <Text>{`${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems}`}</Text>
-          </Flex>
-        </Skeleton>
-        <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' minH='25px'>
-          <Flex gap={2}>
-            <IconButton
-              icon={<LeftArrowIcon />}
-              variant='unstyled'
-              onClick={handlePrevious}
-              isDisabled={currentPage === 1}
-              aria-label='previous-page'
-            />
-            <IconButton
-              icon={<RightArrowIcon />}
-              variant='unstyled'
-              onClick={handleNext}
-              isDisabled={currentPage === totalPages || !hasNextPage || isFetchingNextPage}
-              aria-label='next-page'
-            ></IconButton>
-          </Flex>
-        </Skeleton>
-      </Flex>
-    )
   }
-)
 
-export default Pagination
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1)
+      if (!isFetchingNextPage && hasNextPage) fetchNextPage()
+    }
+  }
+
+  return (
+    <Flex
+      align='center'
+      gap='26px'
+      flexDirection={{ base: 'column', md: 'row' }}
+      p={4}
+      color={colors.brand.blackTextQuaternary}
+      fontSize='xs'
+    >
+      <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' minH='25px'>
+        <Flex align='center' gap='26px'>
+          <Flex align='center' gap='26px'>
+            <Text whiteSpace='nowrap'>Items per page:</Text>
+            <CustomSelect
+              placeholder={itemsPerPage.toString()}
+              border='bottom'
+              fontSize='xs'
+              onChange={onItemsPerPageChange}
+              options={selectOptions}
+              aria-label='items-per-page'
+            />
+          </Flex>
+
+          <Text>{`${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems}`}</Text>
+        </Flex>
+      </Skeleton>
+      <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' minH='25px'>
+        <Flex gap={2}>
+          <IconButton
+            icon={<LeftArrowIcon />}
+            variant='unstyled'
+            onClick={handlePrevious}
+            isDisabled={currentPage === 1}
+            aria-label='previous-page'
+          />
+          <IconButton
+            icon={<RightArrowIcon />}
+            variant='unstyled'
+            onClick={handleNext}
+            isDisabled={currentPage === totalPages || !hasNextPage || isFetchingNextPage}
+            aria-label='next-page'
+          ></IconButton>
+        </Flex>
+      </Skeleton>
+    </Flex>
+  )
+}
+
+export default memo(Pagination)
