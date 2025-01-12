@@ -23,12 +23,12 @@ exports[`UserCard matches snapshot 1`] = `
         class="chakra-stack css-mw8ufx"
       >
         <p
-          class="chakra-text css-lqfo9t"
+          class="chakra-text css-1nz35ut"
         >
           John Doe
         </p>
         <p
-          class="chakra-text css-157uzmr"
+          class="chakra-text css-1gb4ylf"
         >
           Developer
         </p>
