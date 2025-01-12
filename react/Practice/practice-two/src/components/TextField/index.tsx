@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, memo } from 'react'
 import {
   Text,
   InputProps,
@@ -19,7 +19,18 @@ export interface ITextFieldProps extends InputProps {
 
 const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
   (
-    { value, onChange, placeholder, variant = 'unstyled', size = 'sm', errorMessage, icon, type = 'text', ...props },
+    {
+      value,
+      onChange,
+      placeholder,
+      variant = 'unstyled',
+      size = 'sm',
+      errorMessage,
+      icon,
+      type = 'text',
+      isDisabled,
+      ...props
+    },
     ref
   ) => {
     const [showPassword, setShowPassword] = React.useState(false)
@@ -58,6 +69,7 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
             size={size}
             value={value}
             onChange={handleChange}
+            disabled={isDisabled}
             type={type === 'password' ? (!showPassword ? 'password' : 'text') : type}
             {...props}
           />
@@ -90,4 +102,4 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
   }
 )
 
-export default TextField
+export default memo(TextField)
