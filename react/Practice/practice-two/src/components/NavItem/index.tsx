@@ -4,7 +4,7 @@ import colors from '@styles/variables/colors'
 import { Link, LinkProps } from 'react-router-dom'
 
 interface NavItemProps extends LinkProps {
-  icon: React.ReactNode
+  icon: React.ReactElement
   title: string
   isActive: boolean
 }
@@ -22,7 +22,7 @@ const NavItem = ({ icon, title, isActive, to, onClick }: NavItemProps) => {
         _hover={{ bg: 'gray.50' }}
       >
         <Box>
-          {React.cloneElement(icon as React.ReactElement, {
+          {React.cloneElement(icon, {
             fill: isActive ? colors.brand.primary : colors.brand.blackTextTertiary
           })}
         </Box>
