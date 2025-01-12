@@ -7,7 +7,7 @@ describe('TextField', () => {
 
   const renderTextField = (props: {
     errorMessage?: string
-    icon?: React.ReactNode
+    icon?: React.ReactElement
     placeholder: string
     type?: string
   }) => render(<TextField {...props} onChange={handleChangeMock} />)

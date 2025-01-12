@@ -13,7 +13,7 @@ import colors from '@styles/variables/colors'
 import { EyeIcon, CloseEyeIcon } from '@assets/icons'
 
 export interface ITextFieldProps extends InputProps {
-  icon?: React.ReactNode
+  icon?: React.ReactElement
   errorMessage?: string
 }
 
@@ -57,7 +57,7 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
         <InputGroup>
           {icon && (
             <InputLeftElement pointerEvents='none' height='100%' transform='translateX(30%)'>
-              {React.cloneElement(icon as React.ReactElement)}
+              {React.cloneElement(icon)}
             </InputLeftElement>
           )}
           <Input
