@@ -1,25 +1,23 @@
-import { renderHook } from '@testing-library/react'
+import { renderHook, act } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { addUser, editUser, deleteUser } from '@services/user'
-import { useUser } from '@hooks'
-import { IUser } from '@type/models'
+import { addUser, editUser, deleteUser, fetchUsers, fetchAllUsers } from '@services/user'
+import { useFilterStore, useUser } from '@hooks'
 
-jest.mock('@services/user', () => ({
-  addUser: jest.fn(),
-  editUser: jest.fn(),
-  deleteUser: jest.fn()
+// Mock the services
+jest.mock('@services/user')
+jest.mock('@hooks', () => ({
+  useFilterStore: jest.fn()
 }))
 
-const queryClient = new QueryClient()
-
-export const usersData: IUser[] = [
+// Setup mock data
+const mockUsers = [
   {
     id: '1',
     firstName: 'John',
     lastName: 'Doe',
     email: 'john@example.com',
     role: 'Admin',
-    createdDate: new Date('2024-01-01T00:00:00'),
+    createdDate: new Date('2024-01-01'),
     phone: '1234567890',
     username: 'john.doe',
     password: 'password123'
@@ -30,130 +28,190 @@ export const usersData: IUser[] = [
     lastName: 'Smith',
     email: 'jane@example.com',
     role: 'Super Admin',
-    createdDate: new Date('2024-01-02T00:00:00'),
+    createdDate: new Date('2024-01-02'),
     phone: '9876543210',
     username: 'jane.smith',
-    password: 'password456'
-  }
-]
-
-const allUsers: IUser[] = [
-  ...usersData,
+    password: 'password123'
+  },
   {
     id: '3',
     firstName: 'Alice',
     lastName: 'Johnson',
     email: 'alice@example.com',
     role: 'Employee',
-    createdDate: new Date('2024-01-03T00:00:00'),
+    createdDate: new Date('2024-01-02'),
     phone: '5551234567',
     username: 'alice.johnson',
-    password: 'password789'
+    password: 'password123'
   }
 ]
 
-const newUser: IUser = {
-  firstName: 'Jane',
-  lastName: 'Smith',
-  email: 'jane@example.com',
-  role: 'Super Admin',
-  createdDate: new Date('2024-01-02T00:00:00'),
-  phone: '9876543210',
-  username: 'jane.smith',
-  password: 'password456',
-  id: '3'
-}
-
-const wrapper = ({ children }: { children: React.ReactNode }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-)
-
 describe('useUser hook', () => {
+  let queryClient: QueryClient
+
   beforeEach(() => {
-    queryClient.clear()
-    queryClient.setQueryData<IUser[]>(['users', 10, '', ''], usersData)
+    jest.clearAllMocks()
+    queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: false
+        }
+      }
+    })
+
+    // Setup default mocks
+    ;(useFilterStore as unknown as jest.Mock).mockReturnValue({
+      searchQuery: '',
+      sortBy: '',
+      itemsPerPage: 10
+    })
+
+    // Mock the initial query responses
+    ;(fetchUsers as jest.Mock).mockResolvedValue({
+      data: mockUsers,
+      page: 1,
+      limit: 10
+    })
+    ;(fetchAllUsers as jest.Mock).mockResolvedValue({
+      data: mockUsers
+    })
   })
 
-  it('should return transformed users and all necessary data', () => {
-    const { result } = renderHook(() => useUser(usersData, allUsers, 1), { wrapper })
+  const wrapper = ({ children }: { children: React.ReactNode }) => (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  )
 
-    expect(result.current.superAdmin).toEqual([allUsers[1]])
-    expect(result.current.admin).toEqual([allUsers[0]])
-    expect(result.current.employee).toEqual([allUsers[2]])
+  it('should fetch and transform users correctly', async () => {
+    const { result } = renderHook(() => useUser(), { wrapper })
 
-    expect(result.current.transformedUsers).toHaveLength(2)
-    expect(result.current.transformedUsers[0].name).toBeTruthy()
+    // Wait for initial data to be available
+    await act(async () => {
+      await result.current.usersQuery.fetchNextPage()
+    })
+
+    expect(result.current.transformedUsers).toHaveLength(mockUsers.length)
+    expect(result.current.transformedUsers?.[0]).toHaveProperty('name')
+    expect(result.current.transformedUsers?.[0]).toHaveProperty('role')
+    expect(result.current.transformedUsers?.[0]).toHaveProperty('createdDate')
   })
 
-  it('should return empty arrays when no usersData is provided', () => {
-    const { result } = renderHook(() => useUser([], [], 1), { wrapper })
+  it('should filter users by role correctly', async () => {
+    const { result } = renderHook(() => useUser(), { wrapper })
 
-    expect(result.current.superAdmin).toEqual([])
-    expect(result.current.admin).toEqual([])
-    expect(result.current.employee).toEqual([])
-  })
+    // Wait for data to be loaded
+    await act(async () => {
+      await result.current.allUsersQuery.refetch()
+    })
 
-  it('should return correct users when usersData is provided', () => {
-    const { result } = renderHook(() => useUser(usersData, allUsers, 1), { wrapper })
+    // Wait for next render cycle
+    await act(() => Promise.resolve())
 
     expect(result.current.superAdmin).toHaveLength(1)
     expect(result.current.admin).toHaveLength(1)
+    expect(result.current.employee).toHaveLength(1)
   })
 
-  it('should correctly transform users into TableRow format', () => {
-    const { result } = renderHook(() => useUser(usersData, usersData, 1), { wrapper })
+  it('should handle add user mutation successfully', async () => {
+    const newUser = {
+      id: '4',
+      firstName: 'New',
+      lastName: 'User',
+      email: 'new@example.com',
+      role: 'Employee',
+      createdDate: new Date('2024-01-04'),
+      phone: '1112223333',
+      username: 'new.user',
+      password: 'password123'
+    }
 
-    expect(result.current.transformedUsers).toHaveLength(usersData.length)
-    expect(result.current.transformedUsers[0].name).toBeTruthy()
-  })
-
-  it('should edit a user and update cache', async () => {
-    const updatedUser: IUser = { ...usersData[0], firstName: 'John', lastName: 'Doe Edited' }
-    ;(editUser as jest.Mock).mockResolvedValue({ data: updatedUser })
-
-    const { result } = renderHook(() => useUser(usersData, allUsers, 0), { wrapper })
-
-    await result.current.editUserMutation.mutateAsync(usersData[0])
-
-    expect(editUser).toHaveBeenCalledWith(usersData[0])
-
-    queryClient.setQueryData<IUser[]>(['users', 10, '', ''], (oldData = []) =>
-      oldData.map((user) => (user.id === updatedUser.id ? updatedUser : user))
-    )
-
-    const cachedUsers = queryClient.getQueryData<IUser[]>(['users', 10, '', ''])
-    expect(cachedUsers).toContainEqual(updatedUser)
-  })
-
-  it('should add a new user and update cache', async () => {
     ;(addUser as jest.Mock).mockResolvedValue({ data: newUser })
 
-    const { result } = renderHook(() => useUser(usersData, allUsers, 0), { wrapper })
+    const { result } = renderHook(() => useUser(), { wrapper })
 
-    await result.current.addUserMutation.mutateAsync(newUser)
+    await act(async () => {
+      await result.current.addUserMutation.mutateAsync(newUser)
+    })
 
     expect(addUser).toHaveBeenCalledWith(newUser)
-
-    queryClient.setQueryData<IUser[]>(['users', 10, '', ''], (oldData = []) => [...oldData, newUser])
-
-    const cachedUsers = queryClient.getQueryData<IUser[]>(['users', 10, '', ''])
-    expect(cachedUsers).toContainEqual(newUser)
   })
 
-  it('should delete a user and update cache', async () => {
-    ;(deleteUser as jest.Mock).mockResolvedValue({ data: usersData[0] })
+  it('should handle edit user mutation successfully', async () => {
+    const updatedUser = {
+      ...mockUsers[0],
+      firstName: 'Updated'
+    }
 
-    const { result } = renderHook(() => useUser(usersData, allUsers, 0), { wrapper })
+    ;(editUser as jest.Mock).mockResolvedValue({ data: updatedUser })
 
-    await result.current.deleteUserMutation.mutateAsync(usersData[0])
+    const { result } = renderHook(() => useUser(), { wrapper })
 
-    expect(deleteUser).toHaveBeenCalledWith(usersData[0].id)
+    await act(async () => {
+      await result.current.editUserMutation.mutateAsync(updatedUser)
+    })
 
-    queryClient.setQueryData<IUser[]>(['users', 10, '', ''], (oldData = []) =>
-      oldData.filter((user) => user.id !== usersData[0].id)
+    expect(editUser).toHaveBeenCalledWith(updatedUser)
+  })
+
+  it('should handle delete user mutation successfully', async () => {
+    const userToDelete = mockUsers[0]
+    ;(deleteUser as jest.Mock).mockResolvedValue({ data: userToDelete })
+
+    const { result } = renderHook(() => useUser(), { wrapper })
+
+    await act(async () => {
+      await result.current.deleteUserMutation.mutateAsync(userToDelete)
+    })
+
+    expect(deleteUser).toHaveBeenCalledWith(userToDelete.id)
+  })
+
+  it('should handle infinite query pagination', async () => {
+    const secondPageUsers = [
+      {
+        id: '4',
+        firstName: 'Bob',
+        lastName: 'Wilson',
+        email: 'bob@example.com',
+        role: 'Employee',
+        createdDate: new Date('2024-01-04'),
+        phone: '1112223333',
+        username: 'bob.wilson',
+        password: 'password123'
+      }
+    ]
+
+    ;(fetchUsers as jest.Mock)
+      .mockResolvedValueOnce({ data: mockUsers, page: 1, limit: 10 })
+      .mockResolvedValueOnce({ data: secondPageUsers, page: 2, limit: 10 })
+
+    const { result } = renderHook(() => useUser(), { wrapper })
+
+    await act(async () => {
+      await result.current.usersQuery.fetchNextPage()
+      await result.current.usersQuery.fetchNextPage()
+    })
+
+    expect(fetchUsers).toHaveBeenCalledTimes(2)
+    expect(result.current.transformedUsers?.length).toBeGreaterThan(mockUsers.length)
+  })
+
+  it('should handle search query changes', async () => {
+    ;(useFilterStore as unknown as jest.Mock).mockReturnValue({
+      searchQuery: 'John',
+      sortBy: '',
+      itemsPerPage: 10
+    })
+
+    const { result } = renderHook(() => useUser(), { wrapper })
+
+    await act(async () => {
+      await result.current.usersQuery.fetchNextPage()
+    })
+
+    expect(fetchUsers).toHaveBeenCalledWith(
+      expect.objectContaining({
+        value: 'John'
+      })
     )
-
-    const cachedUsers = queryClient.getQueryData<IUser[]>(['users', 10, '', ''])
-    expect(cachedUsers).not.toContainEqual(usersData[0])
   })
 })
