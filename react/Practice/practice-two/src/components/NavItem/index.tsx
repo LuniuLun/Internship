@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Flex, Text, Box } from '@chakra-ui/react'
 import colors from '@styles/variables/colors'
 import { Link, LinkProps } from 'react-router-dom'
@@ -38,4 +38,4 @@ const NavItem = ({ icon, title, isActive, to, onClick }: NavItemProps) => {
   )
 }
 
-export default NavItem
+export default memo(NavItem)
