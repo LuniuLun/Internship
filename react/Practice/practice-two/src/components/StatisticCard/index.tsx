@@ -9,7 +9,7 @@ interface IStatisticsCardProps {
   isLoaded?: boolean
 }
 
-const StatisticsCard = memo(({ isLoaded = true, label, value }: IStatisticsCardProps) => {
+const StatisticsCard = ({ isLoaded = true, label, value }: IStatisticsCardProps) => {
   return (
     <Stack flex={1} p={4} borderWidth={1} borderRadius='md' bg='white' borderColor={colors.brand.secondary}>
       <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300'>
@@ -24,6 +24,6 @@ const StatisticsCard = memo(({ isLoaded = true, label, value }: IStatisticsCardP
       </Skeleton>
     </Stack>
   )
-})
+}
 
-export default StatisticsCard
+export default memo(StatisticsCard)
