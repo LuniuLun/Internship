@@ -80,12 +80,15 @@ exports[`ModulePermission Component matches snapshot 1`] = `
               <label
                 class="chakra-checkbox css-1elxtiq"
                 data-checked=""
+                data-disabled=""
+                disabled=""
               >
                 <input
+                  aria-disabled="true"
                   aria-label="Cell active status for undefined"
                   checked=""
                   class="chakra-checkbox__input"
-                  readonly=""
+                  disabled=""
                   style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
                   type="checkbox"
                   value=""
@@ -94,7 +97,7 @@ exports[`ModulePermission Component matches snapshot 1`] = `
                   aria-hidden="true"
                   class="chakra-checkbox__control css-dnty2r"
                   data-checked=""
-                  data-readonly=""
+                  data-disabled=""
                 >
                   <div
                     class="css-0"
@@ -123,12 +126,15 @@ exports[`ModulePermission Component matches snapshot 1`] = `
               <label
                 class="chakra-checkbox css-1elxtiq"
                 data-checked=""
+                data-disabled=""
+                disabled=""
               >
                 <input
+                  aria-disabled="true"
                   aria-label="Cell active status for undefined"
                   checked=""
                   class="chakra-checkbox__input"
-                  readonly=""
+                  disabled=""
                   style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
                   type="checkbox"
                   value=""
@@ -137,7 +143,7 @@ exports[`ModulePermission Component matches snapshot 1`] = `
                   aria-hidden="true"
                   class="chakra-checkbox__control css-dnty2r"
                   data-checked=""
-                  data-readonly=""
+                  data-disabled=""
                 >
                   <div
                     class="css-0"
@@ -166,12 +172,15 @@ exports[`ModulePermission Component matches snapshot 1`] = `
               <label
                 class="chakra-checkbox css-1elxtiq"
                 data-checked=""
+                data-disabled=""
+                disabled=""
               >
                 <input
+                  aria-disabled="true"
                   aria-label="Cell active status for undefined"
                   checked=""
                   class="chakra-checkbox__input"
-                  readonly=""
+                  disabled=""
                   style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
                   type="checkbox"
                   value=""
@@ -180,7 +189,7 @@ exports[`ModulePermission Component matches snapshot 1`] = `
                   aria-hidden="true"
                   class="chakra-checkbox__control css-dnty2r"
                   data-checked=""
-                  data-readonly=""
+                  data-disabled=""
                 >
                   <div
                     class="css-0"
@@ -226,12 +235,15 @@ exports[`ModulePermission Component matches snapshot 1`] = `
               <label
                 class="chakra-checkbox css-1elxtiq"
                 data-checked=""
+                data-disabled=""
+                disabled=""
               >
                 <input
+                  aria-disabled="true"
                   aria-label="Cell active status for undefined"
                   checked=""
                   class="chakra-checkbox__input"
-                  readonly=""
+                  disabled=""
                   style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
                   type="checkbox"
                   value=""
@@ -240,7 +252,7 @@ exports[`ModulePermission Component matches snapshot 1`] = `
                   aria-hidden="true"
                   class="chakra-checkbox__control css-dnty2r"
                   data-checked=""
-                  data-readonly=""
+                  data-disabled=""
                 >
                   <div
                     class="css-0"
@@ -268,11 +280,14 @@ exports[`ModulePermission Component matches snapshot 1`] = `
             >
               <label
                 class="chakra-checkbox css-1elxtiq"
+                data-disabled=""
+                disabled=""
               >
                 <input
+                  aria-disabled="true"
                   aria-label="Cell active status for undefined"
                   class="chakra-checkbox__input"
-                  readonly=""
+                  disabled=""
                   style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
                   type="checkbox"
                   value=""
@@ -280,7 +295,7 @@ exports[`ModulePermission Component matches snapshot 1`] = `
                 <span
                   aria-hidden="true"
                   class="chakra-checkbox__control css-dnty2r"
-                  data-readonly=""
+                  data-disabled=""
                 />
               </label>
             </div>
@@ -293,11 +308,14 @@ exports[`ModulePermission Component matches snapshot 1`] = `
             >
               <label
                 class="chakra-checkbox css-1elxtiq"
+                data-disabled=""
+                disabled=""
               >
                 <input
+                  aria-disabled="true"
                   aria-label="Cell active status for undefined"
                   class="chakra-checkbox__input"
-                  readonly=""
+                  disabled=""
                   style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
                   type="checkbox"
                   value=""
@@ -305,7 +323,7 @@ exports[`ModulePermission Component matches snapshot 1`] = `
                 <span
                   aria-hidden="true"
                   class="chakra-checkbox__control css-dnty2r"
-                  data-readonly=""
+                  data-disabled=""
                 />
               </label>
             </div>
@@ -336,12 +354,15 @@ exports[`ModulePermission Component matches snapshot 1`] = `
               <label
                 class="chakra-checkbox css-1elxtiq"
                 data-checked=""
+                data-disabled=""
+                disabled=""
               >
                 <input
+                  aria-disabled="true"
                   aria-label="Cell active status for undefined"
                   checked=""
                   class="chakra-checkbox__input"
-                  readonly=""
+                  disabled=""
                   style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
                   type="checkbox"
                   value=""
@@ -350,7 +371,7 @@ exports[`ModulePermission Component matches snapshot 1`] = `
                   aria-hidden="true"
                   class="chakra-checkbox__control css-dnty2r"
                   data-checked=""
-                  data-readonly=""
+                  data-disabled=""
                 >
                   <div
                     class="css-0"
@@ -378,11 +399,14 @@ exports[`ModulePermission Component matches snapshot 1`] = `
             >
               <label
                 class="chakra-checkbox css-1elxtiq"
+                data-disabled=""
+                disabled=""
               >
                 <input
+                  aria-disabled="true"
                   aria-label="Cell active status for undefined"
                   class="chakra-checkbox__input"
-                  readonly=""
+                  disabled=""
                   style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
                   type="checkbox"
                   value=""
@@ -390,7 +414,7 @@ exports[`ModulePermission Component matches snapshot 1`] = `
                 <span
                   aria-hidden="true"
                   class="chakra-checkbox__control css-dnty2r"
-                  data-readonly=""
+                  data-disabled=""
                 />
               </label>
             </div>
@@ -403,11 +427,14 @@ exports[`ModulePermission Component matches snapshot 1`] = `
             >
               <label
                 class="chakra-checkbox css-1elxtiq"
+                data-disabled=""
+                disabled=""
               >
                 <input
+                  aria-disabled="true"
                   aria-label="Cell active status for undefined"
                   class="chakra-checkbox__input"
-                  readonly=""
+                  disabled=""
                   style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
                   type="checkbox"
                   value=""
@@ -415,7 +442,7 @@ exports[`ModulePermission Component matches snapshot 1`] = `
                 <span
                   aria-hidden="true"
                   class="chakra-checkbox__control css-dnty2r"
-                  data-readonly=""
+                  data-disabled=""
                 />
               </label>
             </div>
