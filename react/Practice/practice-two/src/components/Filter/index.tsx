@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useCallback, memo } from 'react'
+import React, { ReactNode, useState, useCallback, memo, useMemo } from 'react'
 import { Box, Flex } from '@chakra-ui/react'
 import { CustomSelect, TextField } from '@components'
 import { FilterIcon, SearchIcon } from '@assets/icons'
@@ -15,10 +15,7 @@ const Filter = ({ isLoaded = true, children }: FilterProps) => {
   const { searchQuery, sortBy, setSearchQuery, setSortBy } = useFilterStore()
   const [localSearchQuery, setLocalSearchQuery] = useState(searchQuery)
 
-  const debouncedSearchQuery = useCallback(
-    debounce((value: string) => setSearchQuery(value), 700),
-    [setSearchQuery]
-  )
+  const debouncedSearchQuery = useMemo(() => debounce((value: string) => setSearchQuery(value), 700), [setSearchQuery])
 
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
