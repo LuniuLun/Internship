@@ -157,4 +157,47 @@ describe('useUser Hook', () => {
     expect(userService.fetchAllUsers).toHaveBeenCalled()
     expect(userService.fetchUsers).toHaveBeenCalled()
   })
+
+  test('should successfully delete a user and update the cache', async () => {
+    const userToDelete: IUser = {
+      id: '1',
+      firstName: 'Bob',
+      lastName: 'Marley',
+      email: 'bob.marley@example.com',
+      role: 'Employee',
+      createdDate: new Date('2025-01-01T00:00:00'),
+      phone: '5559876543',
+      username: 'bob.marley',
+      password: 'password123'
+    }
+
+    const { result } = renderHook(() => useUser(), {
+      wrapper: createWrapper()
+    })
+
+    const deleteUserMock = userService.deleteUser as jest.Mock
+    deleteUserMock.mockResolvedValue({
+      status: 'success',
+      message: 'User deleted successfully',
+      data: userToDelete
+    })
+
+    await act(async () => {
+      await result.current.deleteUserMutation.mutateAsync(userToDelete)
+    })
+
+    await waitFor(() => {
+      const transformedUsers = result.current.transformedUsers
+      expect(transformedUsers).toHaveLength(2)
+
+      expect(transformedUsers).not.toContain(
+        expect.objectContaining({
+          id: '1',
+          name: expect.anything()
+        })
+      )
+    })
+
+    expect(result.current.deleteUserMutation.isSuccess).toBe(true)
+  })
 })
