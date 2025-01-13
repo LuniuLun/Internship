@@ -36,7 +36,7 @@ const CustomCell = ({ header, row }: CustomCellProps) => {
   }
 
   if (typeof value === 'boolean') {
-    return <Checkbox isChecked={value} isReadOnly aria-label={`Cell active status for ${row.name}`} />
+    return <Checkbox isChecked={value} disabled aria-label={`Cell active status for ${row.name}`} />
   }
 
   return value
