@@ -5,12 +5,15 @@ exports[`CustomCell Component should render a checkbox for boolean values 1`] = 
   <label
     class="chakra-checkbox css-1elxtiq"
     data-checked=""
+    data-disabled=""
+    disabled=""
   >
     <input
+      aria-disabled="true"
       aria-label="Cell active status for John Doe"
       checked=""
       class="chakra-checkbox__input"
-      readonly=""
+      disabled=""
       style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
       type="checkbox"
       value=""
@@ -19,7 +22,7 @@ exports[`CustomCell Component should render a checkbox for boolean values 1`] = 
       aria-hidden="true"
       class="chakra-checkbox__control css-dnty2r"
       data-checked=""
-      data-readonly=""
+      data-disabled=""
     >
       <div
         class="css-0"
