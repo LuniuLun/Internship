@@ -3,13 +3,13 @@ import { Button, Stack, useDisclosure, Flex } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomHeading, CustomTable, Filter, Pagination, UserModal, WarningModal } from '@components'
 import { IUser } from '@type/models'
-import { useFilterStore } from '@hooks'
+import { filterStore } from '@stores'
 import { ITEM_PER_PAGE } from '@constants/option'
 import { useCustomToast, useUser } from '@hooks'
 
 const Dashboard = () => {
   const { showToast } = useCustomToast()
-  const { searchQuery, sortBy, itemsPerPage, setItemsPerPage } = useFilterStore()
+  const { searchQuery, sortBy, itemsPerPage, setItemsPerPage } = filterStore()
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [selectedUser, setSelectedUser] = useState<IUser | null>(null)
   const { isOpen: isUserModalOpen, onOpen: onOpenUserModal, onClose: onCloseUserModal } = useDisclosure()

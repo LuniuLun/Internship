@@ -11,7 +11,7 @@ const mockStore = {
   setItemsPerPage: jest.fn()
 }
 
-jest.mock('@hooks/useFilterStore', () => ({
+jest.mock('@hooks/filterStore', () => ({
   __esModule: true,
   default: () => mockStore
 }))

@@ -10,7 +10,7 @@ import { useMemo } from 'react'
 import { addUser, deleteUser, editUser, fetchUsers, fetchAllUsers } from '@services/user'
 import { IUser } from '@type/models'
 import { IApiResponse } from '@type/apiResponse'
-import { useFilterStore } from '@hooks'
+import { filterStore } from '@stores'
 import { TableRow } from '@components/CustomTable'
 import { InfoGroup } from '@components'
 
@@ -44,7 +44,7 @@ interface UseUserReturn {
 }
 
 const useUser = (): UseUserReturn => {
-  const { searchQuery, sortBy, itemsPerPage } = useFilterStore()
+  const { searchQuery, sortBy, itemsPerPage } = filterStore()
   const queryClient = useQueryClient()
 
   const usersQuery = useInfiniteQuery({

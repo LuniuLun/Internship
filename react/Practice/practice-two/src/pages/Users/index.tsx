@@ -4,12 +4,13 @@ import { PlusIcon } from '@assets/icons'
 import { CustomTable, Pagination, UserModal, WarningModal, StatisticCard, Filter, CustomHeading } from '@components'
 import { IUser } from '@type/models'
 import { ITEM_PER_PAGE } from '@constants/option'
-import { useCustomToast, useFilterStore, useUser } from '@hooks'
+import { useCustomToast, useUser } from '@hooks'
 import { TableRow } from '@components/CustomTable'
+import { filterStore } from '@stores'
 
 const Users = () => {
   const { showToast } = useCustomToast()
-  const { searchQuery, sortBy, itemsPerPage, setItemsPerPage } = useFilterStore()
+  const { searchQuery, sortBy, itemsPerPage, setItemsPerPage } = filterStore()
   const [currentPage, setCurrentPage] = useState<number>(0)
   const [selectedUser, setSelectedUser] = useState<IUser | null>(null)
   const { isOpen: isUserModalOpen, onOpen: onOpenUserModal, onClose: onCloseUserModal } = useDisclosure()

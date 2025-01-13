@@ -4,7 +4,7 @@ import { CustomSelect, TextField } from '@components'
 import { FilterIcon, SearchIcon } from '@assets/icons'
 import { SORT_OPTION } from '@constants/option'
 import { debounce } from '@utils'
-import { useFilterStore } from '@hooks'
+import { filterStore } from '@stores'
 
 interface FilterProps {
   children?: ReactNode
@@ -12,7 +12,7 @@ interface FilterProps {
 }
 
 const Filter = ({ isLoaded = true, children }: FilterProps) => {
-  const { searchQuery, sortBy, setSearchQuery, setSortBy } = useFilterStore()
+  const { searchQuery, sortBy, setSearchQuery, setSortBy } = filterStore()
   const [localSearchQuery, setLocalSearchQuery] = useState(searchQuery)
 
   const debouncedSearchQuery = useMemo(() => debounce((value: string) => setSearchQuery(value), 700), [setSearchQuery])

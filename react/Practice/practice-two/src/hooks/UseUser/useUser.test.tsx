@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react'
 import { createWrapper } from './utils'
 import { useUser } from '@hooks'
-import { useFilterStore } from '@hooks'
+import { filterStore } from '@stores'
 import * as userService from '@services/user'
 import mockUsers from '@constants/mockUsers'
 import { act } from 'react'
@@ -9,7 +9,7 @@ import { IUser } from '@type/models'
 
 jest.mock('@hooks', () => ({
   ...jest.requireActual('@hooks'),
-  useFilterStore: jest.fn(() => ({
+  filterStore: jest.fn(() => ({
     searchQuery: '',
     sortBy: 'firstName',
     itemsPerPage: 10
@@ -32,7 +32,7 @@ const successResponse = {
 
 describe('useUser Hook', () => {
   beforeEach(() => {
-    ;(useFilterStore as unknown as jest.Mock).mockReturnValue(mockFilterStore)
+    ;(filterStore as unknown as jest.Mock).mockReturnValue(mockFilterStore)
     ;(userService.fetchUsers as jest.Mock).mockResolvedValue({
       status: 'success',
       message: 'Success',
