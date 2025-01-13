@@ -108,4 +108,53 @@ describe('useUser Hook', () => {
 
     expect(result.current.addUserMutation.isSuccess).toBe(true)
   })
+
+  test('should successfully edit a user and update the cache', async () => {
+    const editedUser: IUser = {
+      id: '1',
+      firstName: 'Bob',
+      lastName: 'Marley',
+      email: 'bob.marley.edited@example.com',
+      role: 'Employee',
+      createdDate: new Date('2025-01-01T00:00:00'),
+      phone: '5559876543',
+      username: 'bob.marley',
+      password: 'password123'
+    }
+
+    const { result } = renderHook(() => useUser(), {
+      wrapper: createWrapper()
+    })
+
+    const editUserMock = userService.editUser as jest.Mock
+    editUserMock.mockResolvedValue({
+      status: 'success',
+      message: 'User edited successfully',
+      data: editedUser
+    })
+
+    await act(async () => {
+      await result.current.editUserMutation.mutateAsync(editedUser)
+    })
+
+    await waitFor(() => {
+      const transformedUsers = result.current.transformedUsers
+      expect(transformedUsers).toHaveLength(3)
+      expect(transformedUsers).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            id: '1',
+            role: 'Employee',
+            createdDate: expect.any(String),
+            name: expect.anything()
+          })
+        ])
+      )
+    })
+
+    expect(result.current.editUserMutation.isSuccess).toBe(true)
+
+    expect(userService.fetchAllUsers).toHaveBeenCalled()
+    expect(userService.fetchUsers).toHaveBeenCalled()
+  })
 })
