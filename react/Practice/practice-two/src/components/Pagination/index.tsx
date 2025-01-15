@@ -10,17 +10,9 @@ interface PaginationProps {
   itemsPerPageOptions: number[]
   fetchNextPage: () => void
   hasNextPage: boolean
-  isFetchingNextPage: boolean
   isLoaded?: boolean
 }
-const Pagination = ({
-  totalItems,
-  itemsPerPageOptions,
-  fetchNextPage,
-  hasNextPage,
-  isFetchingNextPage,
-  isLoaded
-}: PaginationProps) => {
+const Pagination = ({ totalItems, itemsPerPageOptions, fetchNextPage, hasNextPage, isLoaded }: PaginationProps) => {
   const { itemsPerPage, currentPage, setItemsPerPage, setCurrentPage } = filterStore()
   if ((totalItems === 0 || itemsPerPage === 0) && isLoaded) return null
 
@@ -45,7 +37,7 @@ const Pagination = ({
   const handleNext = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1)
-      if (!isFetchingNextPage && hasNextPage) fetchNextPage()
+      if (hasNextPage) fetchNextPage()
     }
   }
 
@@ -88,7 +80,7 @@ const Pagination = ({
             icon={<RightArrowIcon />}
             variant='unstyled'
             onClick={handleNext}
-            isDisabled={currentPage + 1 === totalPages || !hasNextPage || isFetchingNextPage}
+            isDisabled={currentPage + 1 === totalPages || !hasNextPage}
             aria-label='next-page'
           ></IconButton>
         </Flex>
