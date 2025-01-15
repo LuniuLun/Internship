@@ -33,6 +33,7 @@ const Pagination = ({
 
   const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setItemsPerPage(parseInt(e.target.value))
+    setCurrentPage(0)
   }
 
   const handlePrevious = () => {
@@ -87,7 +88,7 @@ const Pagination = ({
             icon={<RightArrowIcon />}
             variant='unstyled'
             onClick={handleNext}
-            isDisabled={currentPage === totalPages || !hasNextPage || isFetchingNextPage}
+            isDisabled={currentPage + 1 === totalPages || !hasNextPage || isFetchingNextPage}
             aria-label='next-page'
           ></IconButton>
         </Flex>

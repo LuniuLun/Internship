@@ -32,7 +32,7 @@ const Users = () => {
   useEffect(() => {
     setCurrentPage(0)
     usersQuery.refetch()
-  }, [itemsPerPage, searchQuery, sortBy])
+  }, [searchQuery, sortBy])
 
   const handleEdit = useCallback(
     (id: string) => {
