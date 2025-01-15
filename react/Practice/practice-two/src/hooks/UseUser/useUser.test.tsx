@@ -17,6 +17,7 @@ jest.mock('@hooks', () => ({
 }))
 
 jest.mock('@services/user')
+jest.mock('@stores/Filter')
 
 const mockFilterStore = {
   searchQuery: '',
