@@ -13,7 +13,6 @@ const meta: Meta<typeof Pagination> = {
     itemsPerPageOptions: { control: { type: 'select' }, options: [10, 20, 50] },
     isLoaded: { control: { type: 'boolean' } },
     hasNextPage: { control: { type: 'boolean' } },
-    isFetchingNextPage: { control: { type: 'boolean' } },
     fetchNextPage: { action: 'fetchNextPage' }
   }
 }
@@ -28,7 +27,6 @@ export const Default: Story = {
     itemsPerPageOptions: [10, 20, 50],
     fetchNextPage: () => alert('Fetching next page'),
     hasNextPage: true,
-    isFetchingNextPage: false,
     isLoaded: true
   }
 }
@@ -39,29 +37,6 @@ export const Loading: Story = {
     itemsPerPageOptions: [10, 20, 50],
     fetchNextPage: () => alert('Fetching next page'),
     hasNextPage: false,
-    isFetchingNextPage: false,
     isLoaded: false
-  }
-}
-
-export const EndOfPagination: Story = {
-  args: {
-    totalItems: 100,
-    itemsPerPageOptions: [10, 20, 50],
-    fetchNextPage: () => alert('Fetching next page'),
-    hasNextPage: false,
-    isFetchingNextPage: false,
-    isLoaded: true
-  }
-}
-
-export const FetchingNextPage: Story = {
-  args: {
-    totalItems: 100,
-    itemsPerPageOptions: [10, 20, 50],
-    fetchNextPage: () => alert('Fetching next page'),
-    hasNextPage: true,
-    isFetchingNextPage: true,
-    isLoaded: true
   }
 }
