@@ -3,31 +3,25 @@ import { Flex, Text, Skeleton, IconButton } from '@chakra-ui/react'
 import { LeftArrowIcon, RightArrowIcon } from '@assets/icons'
 import CustomSelect from '@components/CustomSelect'
 import colors from '@styles/variables/colors'
+import { filterStore } from '@stores'
 
 interface PaginationProps {
-  currentPage: number
   totalItems: number
-  itemsPerPage: number
   itemsPerPageOptions: number[]
-  onPageChange: (page: number) => void
-  onItemsPerPageChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
   fetchNextPage: () => void
   hasNextPage: boolean
   isFetchingNextPage: boolean
   isLoaded?: boolean
 }
 const Pagination = ({
-  currentPage,
   totalItems,
-  itemsPerPage,
   itemsPerPageOptions,
-  onPageChange,
-  onItemsPerPageChange,
   fetchNextPage,
   hasNextPage,
   isFetchingNextPage,
   isLoaded
 }: PaginationProps) => {
+  const { itemsPerPage, currentPage, setItemsPerPage, setCurrentPage } = filterStore()
   if ((totalItems === 0 || itemsPerPage === 0) && isLoaded) return null
 
   const totalPages = Math.ceil(totalItems / itemsPerPage)
@@ -37,15 +31,19 @@ const Pagination = ({
     label: option.toString()
   }))
 
+  const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setItemsPerPage(parseInt(e.target.value))
+  }
+
   const handlePrevious = () => {
-    if (currentPage > 1) {
-      onPageChange(currentPage - 1)
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1)
     }
   }
 
   const handleNext = () => {
     if (currentPage < totalPages) {
-      onPageChange(currentPage + 1)
+      setCurrentPage(currentPage + 1)
       if (!isFetchingNextPage && hasNextPage) fetchNextPage()
     }
   }
@@ -67,13 +65,13 @@ const Pagination = ({
               placeholder={itemsPerPage.toString()}
               border='bottom'
               fontSize='xs'
-              onChange={onItemsPerPageChange}
+              onChange={handleItemsPerPageChange}
               options={selectOptions}
               aria-label='items-per-page'
             />
           </Flex>
 
-          <Text>{`${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems}`}</Text>
+          <Text>{`${currentPage * itemsPerPage + 1} - ${Math.min((currentPage + 1) * itemsPerPage, totalItems)} of ${totalItems}`}</Text>
         </Flex>
       </Skeleton>
       <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' minH='25px'>
@@ -82,7 +80,7 @@ const Pagination = ({
             icon={<LeftArrowIcon />}
             variant='unstyled'
             onClick={handlePrevious}
-            isDisabled={currentPage === 1}
+            isDisabled={currentPage < 1}
             aria-label='previous-page'
           />
           <IconButton
