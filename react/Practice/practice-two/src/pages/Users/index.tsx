@@ -171,9 +171,8 @@ const Users = () => {
           totalItems={lengthAllUsers}
           fetchNextPage={usersQuery.fetchNextPage}
           hasNextPage={usersQuery.hasNextPage}
-          isFetchingNextPage={usersQuery.isFetchingNextPage}
           itemsPerPageOptions={ITEM_PER_PAGE}
-          isLoaded={!allUsersQuery.isFetching}
+          isLoaded={!allUsersQuery.isFetching || !usersQuery.isFetchingNextPage}
         />
       </Flex>
 

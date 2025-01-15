@@ -153,9 +153,8 @@ const Dashboard = () => {
           totalItems={lengthAllUsers}
           fetchNextPage={usersQuery.fetchNextPage}
           hasNextPage={usersQuery.hasNextPage}
-          isFetchingNextPage={usersQuery.isFetchingNextPage}
           itemsPerPageOptions={ITEM_PER_PAGE}
-          isLoaded={!usersQuery.isFetching}
+          isLoaded={!usersQuery.isFetching || !usersQuery.isFetchingNextPage}
         />
       </Flex>
 
