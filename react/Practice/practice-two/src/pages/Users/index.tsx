@@ -10,8 +10,7 @@ import { filterStore } from '@stores'
 
 const Users = () => {
   const { showToast } = useCustomToast()
-  const { searchQuery, sortBy, itemsPerPage, setItemsPerPage } = filterStore()
-  const [currentPage, setCurrentPage] = useState<number>(0)
+  const { searchQuery, sortBy, itemsPerPage, currentPage, setCurrentPage } = filterStore()
   const [selectedUser, setSelectedUser] = useState<IUser | null>(null)
   const { isOpen: isUserModalOpen, onOpen: onOpenUserModal, onClose: onCloseUserModal } = useDisclosure()
   const { isOpen: isWarningModalOpen, onOpen: onOpenWarningModal, onClose: onCloseWarningModal } = useDisclosure()
@@ -34,14 +33,6 @@ const Users = () => {
     setCurrentPage(0)
     usersQuery.refetch()
   }, [itemsPerPage, searchQuery, sortBy])
-
-  const handleItemsPerPageChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    setItemsPerPage(parseInt(e.target.value))
-  }, [])
-
-  const handlePageChange = useCallback((page: number) => {
-    setCurrentPage(page - 1)
-  }, [])
 
   const handleEdit = useCallback(
     (id: string) => {
@@ -177,11 +168,7 @@ const Users = () => {
 
       <Flex justifyContent='center'>
         <Pagination
-          currentPage={currentPage + 1}
           totalItems={lengthAllUsers}
-          itemsPerPage={itemsPerPage}
-          onPageChange={handlePageChange}
-          onItemsPerPageChange={handleItemsPerPageChange}
           fetchNextPage={usersQuery.fetchNextPage}
           hasNextPage={usersQuery.hasNextPage}
           isFetchingNextPage={usersQuery.isFetchingNextPage}
