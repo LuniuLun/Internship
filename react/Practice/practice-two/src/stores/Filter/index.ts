@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-interface FilterState {
+export interface FilterState {
   searchQuery: string
   sortBy: string
   itemsPerPage: number
@@ -16,10 +16,28 @@ const filterStore = create<FilterState>((set) => ({
   sortBy: '',
   itemsPerPage: 5,
   currentPage: 0,
-  setCurrentPage: (currentPage: number) => set(() => ({ currentPage: currentPage })),
-  setSearchQuery: (query: string) => set(() => ({ searchQuery: query })),
-  setSortBy: (sort: string) => set(() => ({ sortBy: sort })),
-  setItemsPerPage: (itemsPerPage: number) => set(() => ({ itemsPerPage }))
+  setCurrentPage: (currentPage: number) => set(() => ({ currentPage })),
+  setSearchQuery: (query: string) =>
+    set((state) => {
+      if (state.searchQuery !== query) {
+        return { searchQuery: query, currentPage: 0 }
+      }
+      return {}
+    }),
+  setSortBy: (sort: string) =>
+    set((state) => {
+      if (state.sortBy !== sort) {
+        return { sortBy: sort, currentPage: 0 }
+      }
+      return {}
+    }),
+  setItemsPerPage: (itemsPerPage: number) =>
+    set((state) => {
+      if (state.itemsPerPage !== itemsPerPage) {
+        return { itemsPerPage, currentPage: 0 }
+      }
+      return {}
+    })
 }))
 
 export default filterStore
