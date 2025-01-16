@@ -1,9 +1,10 @@
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import { Flex, Text, Skeleton, IconButton } from '@chakra-ui/react'
 import { LeftArrowIcon, RightArrowIcon } from '@assets/icons'
 import CustomSelect from '@components/CustomSelect'
 import colors from '@styles/variables/colors'
 import { filterStore } from '@stores'
+import { useShallow } from 'zustand/shallow'
 
 export interface PaginationProps {
   totalItems: number
@@ -12,9 +13,25 @@ export interface PaginationProps {
   hasNextPage: boolean
   isLoaded?: boolean
 }
-
 const Pagination = ({ totalItems, itemsPerPageOptions, fetchNextPage, hasNextPage, isLoaded }: PaginationProps) => {
-  const { itemsPerPage, currentPage, setItemsPerPage, setCurrentPage } = filterStore()
+  const { itemsPerPage, currentPage } = filterStore(
+    useShallow((state) => ({
+      itemsPerPage: state.itemsPerPage,
+      currentPage: state.currentPage
+    }))
+  )
+  const { setItemsPerPage, setCurrentPage } = filterStore()
+
+  const handleItemsPerPageChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const newItemsPerPage = parseInt(e.target.value)
+      if (newItemsPerPage !== itemsPerPage) {
+        setItemsPerPage(newItemsPerPage)
+      }
+    },
+    [itemsPerPage]
+  )
+
   if ((totalItems === 0 || itemsPerPage === 0) && isLoaded) return null
 
   const totalPages = Math.ceil(totalItems / itemsPerPage)
@@ -23,11 +40,6 @@ const Pagination = ({ totalItems, itemsPerPageOptions, fetchNextPage, hasNextPag
     value: option,
     label: option.toString()
   }))
-
-  const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setItemsPerPage(parseInt(e.target.value))
-    setCurrentPage(0)
-  }
 
   const handlePrevious = () => {
     if (currentPage > 0) {
