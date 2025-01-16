@@ -5,13 +5,14 @@ import CustomSelect from '@components/CustomSelect'
 import colors from '@styles/variables/colors'
 import { filterStore } from '@stores'
 
-interface PaginationProps {
+export interface PaginationProps {
   totalItems: number
   itemsPerPageOptions: number[]
   fetchNextPage: () => void
   hasNextPage: boolean
   isLoaded?: boolean
 }
+
 const Pagination = ({ totalItems, itemsPerPageOptions, fetchNextPage, hasNextPage, isLoaded }: PaginationProps) => {
   const { itemsPerPage, currentPage, setItemsPerPage, setCurrentPage } = filterStore()
   if ((totalItems === 0 || itemsPerPage === 0) && isLoaded) return null
