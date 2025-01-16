@@ -13,6 +13,7 @@ import { IApiResponse } from '@type/apiResponse'
 import { filterStore } from '@stores'
 import { TableRow } from '@components/CustomTable'
 import { InfoGroup } from '@components'
+import { useShallow } from 'zustand/shallow'
 
 interface TransformedUser extends Pick<IUser, 'id' | 'role'>, TableRow {
   name: React.ReactNode
@@ -44,7 +45,13 @@ interface UseUserReturn {
 }
 
 const useUser = (): UseUserReturn => {
-  const { searchQuery, sortBy, itemsPerPage } = filterStore()
+  const { searchQuery, sortBy, itemsPerPage } = filterStore(
+    useShallow((state) => ({
+      searchQuery: state.searchQuery,
+      sortBy: state.sortBy,
+      itemsPerPage: state.itemsPerPage
+    }))
+  )
   const queryClient = useQueryClient()
 
   const usersQuery = useInfiniteQuery({

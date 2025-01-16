@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent, useCallback } from 'react'
+import { useState, FormEvent, useCallback } from 'react'
 import { Button, Stack, useDisclosure, Flex } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomHeading, CustomTable, Filter, Pagination, UserModal, WarningModal } from '@components'
@@ -6,10 +6,16 @@ import { IUser } from '@type/models'
 import { filterStore } from '@stores'
 import { ITEM_PER_PAGE } from '@constants/option'
 import { useCustomToast, useUser } from '@hooks'
+import { useShallow } from 'zustand/shallow'
 
 const Dashboard = () => {
   const { showToast } = useCustomToast()
-  const { searchQuery, sortBy, itemsPerPage, currentPage, setCurrentPage } = filterStore()
+  const { itemsPerPage, currentPage } = filterStore(
+    useShallow((state) => ({
+      itemsPerPage: state.itemsPerPage,
+      currentPage: state.currentPage
+    }))
+  )
   const [selectedUser, setSelectedUser] = useState<IUser | null>(null)
   const { isOpen: isUserModalOpen, onOpen: onOpenUserModal, onClose: onCloseUserModal } = useDisclosure()
   const { isOpen: isWarningModalOpen, onOpen: onOpenWarningModal, onClose: onCloseWarningModal } = useDisclosure()
@@ -24,11 +30,6 @@ const Dashboard = () => {
     deleteUserMutation,
     lengthAllUsers
   } = useUser()
-
-  useEffect(() => {
-    setCurrentPage(0)
-    usersQuery.refetch()
-  }, [searchQuery, sortBy])
 
   const handleEdit = useCallback(
     (id: string) => {
