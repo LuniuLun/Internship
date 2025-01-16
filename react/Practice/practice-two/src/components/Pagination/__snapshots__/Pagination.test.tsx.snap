@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Pagination matches snapshot with items and next page available 1`] = `
+exports[`Pagination component matches snapshot with items and next page available 1`] = `
 <DocumentFragment>
   <div
     class="css-lphe3t"
@@ -31,7 +31,7 @@ exports[`Pagination matches snapshot with items and next page available 1`] = `
                 hidden=""
                 value=""
               >
-                10
+                5
               </option>
               <option
                 value="10"
@@ -71,7 +71,7 @@ exports[`Pagination matches snapshot with items and next page available 1`] = `
         <p
           class="chakra-text css-0"
         >
-          1-10 of 100
+          1 - 5 of 100
         </p>
       </div>
     </div>
