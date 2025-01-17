@@ -20,7 +20,7 @@ interface UserModalProps {
 const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit, isSubmitting }: UserModalProps) => {
   const {
     register,
-    handleSubmit: onSubmit,
+    handleSubmit: handleRegisterSubmit,
     reset,
     setValue,
     getValues,
@@ -49,7 +49,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit, isSubmitt
     } else reset()
   }, [selectedUser])
 
-  const onFormSubmit: SubmitHandler<UserFormData> = async (data) => {
+  const handleFormSubmit: SubmitHandler<UserFormData> = async (data) => {
     const userData = { ...data }
     delete userData.confirmPassword
     const user: IUser = {
@@ -66,7 +66,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit, isSubmitt
       isOpen={isModalOpen}
       onClose={onClose}
       title={selectedUser?.id ? 'Edit User' : 'Add User'}
-      handleSubmit={onSubmit(onFormSubmit)}
+      handleSubmit={handleRegisterSubmit(handleFormSubmit)}
       isSubmitting={isSubmitting}
     >
       <Stack gap={5} px={4}>
