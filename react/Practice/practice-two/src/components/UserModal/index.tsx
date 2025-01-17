@@ -1,6 +1,6 @@
 import { Flex, FormControl, Stack } from '@chakra-ui/react'
-import { CustomModal, CustomSelect, ModulePermission, TextField } from '@components'
-import { ROLE_OPTION } from '@constants/option'
+import { CustomModal, CustomSelect, CustomTable, TextField } from '@components'
+import { MODULE_PERMISSION, ROLE_OPTION } from '@constants/option'
 import { IUser } from '@type/models'
 import { useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
@@ -196,7 +196,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit, isSubmitt
           </FormControl>
         </Flex>
       </Stack>
-      <ModulePermission />
+      <CustomTable data={MODULE_PERMISSION} marginTop={10} isLoaded={true} />
     </CustomModal>
   )
 }
