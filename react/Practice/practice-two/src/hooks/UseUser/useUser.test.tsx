@@ -55,22 +55,6 @@ describe('useUser Hook', () => {
     })
   })
 
-  // test('should correctly transform and categorize users', async () => {
-  //   const { result } = renderHook(() => useGetUser(), {
-  //     wrapper: createWrapper()
-  //   })
-
-  //   await waitFor(() => {
-  //     expect(result.current.transformedUsers).toHaveLength(3)
-  //   })
-
-  //   expect(result.current.superAdmin).toHaveLength(1)
-  //   expect(result.current.admin).toHaveLength(1)
-  //   expect(result.current.employee).toHaveLength(1)
-
-  //   expect(result.current.lengthAllUsers).toBe(3)
-  // })
-
   test('should successfully add a user ', async () => {
     const newUser: IUser = {
       id: '4',
