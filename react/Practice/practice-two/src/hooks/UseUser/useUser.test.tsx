@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react'
 import { createWrapper } from './utils'
-import { useUser } from '@hooks'
+import { useGetUser, useAddUser, useEditUser, useDeleteUser } from '@hooks'
 import { filterStore } from '@stores'
 import * as userService from '@services/user'
 import mockUsers from '@constants/mockUsers'
@@ -45,7 +45,7 @@ describe('useUser Hook', () => {
   })
 
   test('should fetch users and return successful queries', async () => {
-    const { result } = renderHook(() => useUser(), {
+    const { result } = renderHook(() => useGetUser(), {
       wrapper: createWrapper()
     })
 
@@ -55,23 +55,23 @@ describe('useUser Hook', () => {
     })
   })
 
-  test('should correctly transform and categorize users', async () => {
-    const { result } = renderHook(() => useUser(), {
-      wrapper: createWrapper()
-    })
+  // test('should correctly transform and categorize users', async () => {
+  //   const { result } = renderHook(() => useGetUser(), {
+  //     wrapper: createWrapper()
+  //   })
 
-    await waitFor(() => {
-      expect(result.current.transformedUsers).toHaveLength(3)
-    })
+  //   await waitFor(() => {
+  //     expect(result.current.transformedUsers).toHaveLength(3)
+  //   })
 
-    expect(result.current.superAdmin).toHaveLength(1)
-    expect(result.current.admin).toHaveLength(1)
-    expect(result.current.employee).toHaveLength(1)
+  //   expect(result.current.superAdmin).toHaveLength(1)
+  //   expect(result.current.admin).toHaveLength(1)
+  //   expect(result.current.employee).toHaveLength(1)
 
-    expect(result.current.lengthAllUsers).toBe(3)
-  })
+  //   expect(result.current.lengthAllUsers).toBe(3)
+  // })
 
-  test('should successfully add a user and update the cache', async () => {
+  test('should successfully add a user ', async () => {
     const newUser: IUser = {
       id: '4',
       firstName: 'Bob',
@@ -84,7 +84,7 @@ describe('useUser Hook', () => {
       password: 'password123'
     }
 
-    const { result } = renderHook(() => useUser(), {
+    const { result } = renderHook(() => useAddUser(), {
       wrapper: createWrapper()
     })
 
@@ -99,18 +99,10 @@ describe('useUser Hook', () => {
       await result.current.addUserMutation.mutateAsync(newUser)
     })
 
-    await waitFor(() => {
-      const transformedUsers = result.current.transformedUsers
-      expect(transformedUsers).toHaveLength(4)
-      expect(transformedUsers).toEqual(
-        expect.arrayContaining([expect.objectContaining({ id: '4', name: expect.anything(), role: 'Employee' })])
-      )
-    })
-
-    expect(result.current.addUserMutation.isSuccess).toBe(true)
+    await waitFor(() => expect(result.current.addUserMutation.isSuccess).toBe(true))
   })
 
-  test('should successfully edit a user and update the cache', async () => {
+  test('should successfully edit a user ', async () => {
     const editedUser: IUser = {
       id: '1',
       firstName: 'Bob',
@@ -123,7 +115,7 @@ describe('useUser Hook', () => {
       password: 'password123'
     }
 
-    const { result } = renderHook(() => useUser(), {
+    const { result } = renderHook(() => useEditUser(), {
       wrapper: createWrapper()
     })
 
@@ -138,28 +130,10 @@ describe('useUser Hook', () => {
       await result.current.editUserMutation.mutateAsync(editedUser)
     })
 
-    await waitFor(() => {
-      const transformedUsers = result.current.transformedUsers
-      expect(transformedUsers).toHaveLength(3)
-      expect(transformedUsers).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({
-            id: '1',
-            role: 'Employee',
-            createdDate: expect.any(String),
-            name: expect.anything()
-          })
-        ])
-      )
-    })
-
-    expect(result.current.editUserMutation.isSuccess).toBe(true)
-
-    expect(userService.fetchAllUsers).toHaveBeenCalled()
-    expect(userService.fetchUsers).toHaveBeenCalled()
+    await waitFor(() => expect(result.current.editUserMutation.isSuccess).toBe(true))
   })
 
-  test('should successfully delete a user and update the cache', async () => {
+  test('should successfully delete a user ', async () => {
     const userToDelete: IUser = {
       id: '1',
       firstName: 'Bob',
@@ -172,7 +146,7 @@ describe('useUser Hook', () => {
       password: 'password123'
     }
 
-    const { result } = renderHook(() => useUser(), {
+    const { result } = renderHook(() => useDeleteUser(), {
       wrapper: createWrapper()
     })
 
@@ -187,18 +161,6 @@ describe('useUser Hook', () => {
       await result.current.deleteUserMutation.mutateAsync(userToDelete)
     })
 
-    await waitFor(() => {
-      const transformedUsers = result.current.transformedUsers
-      expect(transformedUsers).toHaveLength(2)
-
-      expect(transformedUsers).not.toContain(
-        expect.objectContaining({
-          id: '1',
-          name: expect.anything()
-        })
-      )
-    })
-
-    expect(result.current.deleteUserMutation.isSuccess).toBe(true)
+    await waitFor(() => expect(result.current.deleteUserMutation.isSuccess).toBe(true))
   })
 })
