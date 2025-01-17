@@ -13,7 +13,6 @@ describe('Component Exports', () => {
     'Pagination',
     'CustomModal',
     'CustomSelect',
-    'ModulePermission',
     'UserModal',
     'WarningModal',
     'Filter'
