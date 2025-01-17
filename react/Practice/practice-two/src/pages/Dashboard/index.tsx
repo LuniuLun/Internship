@@ -1,4 +1,4 @@
-import { useState, FormEvent, useCallback } from 'react'
+import { useState, FormEvent, useCallback, useMemo } from 'react'
 import { Button, Stack, useDisclosure, Flex, Heading } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomTable, Filter, Pagination, UserModal, WarningModal } from '@components'
@@ -30,6 +30,10 @@ const Dashboard = () => {
     deleteUserMutation,
     lengthAllUsers
   } = useUser()
+
+  const dataTable = useMemo(() => {
+    return transformedUsers?.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+  }, [transformedUsers])
 
   const handleEdit = useCallback(
     (id: string) => {
@@ -144,7 +148,7 @@ const Dashboard = () => {
       </Filter>
 
       <CustomTable
-        data={transformedUsers?.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)}
+        data={dataTable}
         title='List Users'
         onEdit={handleEdit}
         onDelete={handleDelete}
