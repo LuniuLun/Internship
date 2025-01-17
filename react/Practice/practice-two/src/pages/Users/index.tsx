@@ -4,7 +4,7 @@ import { PlusIcon } from '@assets/icons'
 import { CustomTable, Pagination, UserModal, WarningModal, StatisticCard, Filter } from '@components'
 import { IUser } from '@type/models'
 import { ITEM_PER_PAGE } from '@constants/option'
-import { useCustomToast, useUser } from '@hooks'
+import { useAddUser, useCustomToast, useDeleteUser, useEditUser, useGetUser } from '@hooks'
 import { TableRow } from '@components/CustomTable'
 import { filterStore } from '@stores'
 import { useShallow } from 'zustand/shallow'
@@ -22,18 +22,10 @@ const Users = () => {
   const { isOpen: isWarningModalOpen, onOpen: onOpenWarningModal, onClose: onCloseWarningModal } = useDisclosure()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const {
-    usersQuery,
-    allUsersQuery,
-    transformAllUsers,
-    addUserMutation,
-    editUserMutation,
-    deleteUserMutation,
-    lengthAllUsers,
-    superAdmin,
-    admin,
-    employee
-  } = useUser()
+  const { usersQuery, allUsersQuery, transformAllUsers, lengthAllUsers, superAdmin, admin, employee } = useGetUser()
+  const { deleteUserMutation } = useDeleteUser()
+  const { addUserMutation } = useAddUser()
+  const { editUserMutation } = useEditUser()
 
   const dataTable = useMemo(() => {
     return transformAllUsers?.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
