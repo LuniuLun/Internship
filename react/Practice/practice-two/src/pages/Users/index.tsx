@@ -1,7 +1,7 @@
 import { FormEvent, useCallback, useState } from 'react'
-import { Button, Flex, Stack, useDisclosure } from '@chakra-ui/react'
+import { Button, Flex, Heading, Stack, useDisclosure } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
-import { CustomTable, Pagination, UserModal, WarningModal, StatisticCard, Filter, CustomHeading } from '@components'
+import { CustomTable, Pagination, UserModal, WarningModal, StatisticCard, Filter } from '@components'
 import { IUser } from '@type/models'
 import { ITEM_PER_PAGE } from '@constants/option'
 import { useCustomToast, useUser } from '@hooks'
@@ -129,7 +129,9 @@ const Users = () => {
 
   return (
     <Stack gap={6}>
-      <CustomHeading variant='primary' paddingLeft='13px' title='Users' />
+      <Heading variant='primary' paddingLeft='13px'>
+        Users
+      </Heading>
       <Filter isLoaded={!usersQuery.isFetching || usersQuery.isFetchingNextPage || allUsersQuery.isFetching}>
         <Button
           size='md'

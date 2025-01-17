@@ -1,7 +1,7 @@
 import { useState, FormEvent, useCallback } from 'react'
-import { Button, Stack, useDisclosure, Flex } from '@chakra-ui/react'
+import { Button, Stack, useDisclosure, Flex, Heading } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
-import { CustomHeading, CustomTable, Filter, Pagination, UserModal, WarningModal } from '@components'
+import { CustomTable, Filter, Pagination, UserModal, WarningModal } from '@components'
 import { IUser } from '@type/models'
 import { filterStore } from '@stores'
 import { ITEM_PER_PAGE } from '@constants/option'
@@ -126,7 +126,9 @@ const Dashboard = () => {
 
   return (
     <Stack gap={6}>
-      <CustomHeading variant='primary' paddingLeft='13px' title='Users Dashboard' />
+      <Heading variant='primary' paddingLeft='13px'>
+        Users Dashboard
+      </Heading>
       <Filter isLoaded={!usersQuery.isFetching || usersQuery.isFetchingNextPage || allUsersQuery.isFetching}>
         <Button
           size='md'
