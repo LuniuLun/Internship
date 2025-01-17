@@ -33,7 +33,7 @@ exports[`renders Header correctly 1`] = `
         <p
           class="chakra-text css-1nz35ut"
         >
-          Hello, Lekan
+          Hello 
         </p>
         <p
           class="chakra-text css-1gb4ylf"
@@ -45,80 +45,12 @@ exports[`renders Header correctly 1`] = `
     <div
       class="css-gt2sd1"
     >
-      <div
-        class="css-10klw3m"
+      <button
+        class="chakra-button css-4xx2wk"
+        type="button"
       >
-        <svg
-          fill="none"
-          height="25"
-          viewBox="0 0 25 25"
-          width="25"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M21.0189 7.47509C21.0209 9.40509 19.4526 10.9767 17.5226 10.9787C15.5926 10.9807 14.0209 9.41234 14.0189 7.48234C14.0169 5.55234 15.5853 3.98072 17.5153 3.97872C19.4453 3.97672 21.0169 5.54509 21.0189 7.47509ZM19.0244 12.7672C18.5246 12.8977 18.0246 12.9782 17.5246 12.9787C16.0668 12.9776 14.6687 12.3987 13.6368 11.3689C12.6049 10.3391 12.0231 8.94229 12.0189 7.48442C12.0174 6.01442 12.596 4.68382 13.515 3.69286C13.3333 3.47059 13.1043 3.29166 12.8447 3.1691C12.5851 3.04655 12.3014 2.98345 12.0143 2.98442C10.9143 2.98556 10.0152 3.88649 10.0164 4.98649L10.0167 5.27649C7.04757 6.15957 5.0204 8.89167 5.02361 11.9917L5.02983 17.9917L3.03191 19.9937L3.03294 20.9937L21.0329 20.9751L21.0319 19.9751L19.0298 17.9772L19.0244 12.7672ZM12.036 23.9844C13.146 23.9833 14.0351 23.0923 14.034 21.9823L10.034 21.9865C10.0345 22.5169 10.2458 23.0254 10.6212 23.4001C10.9967 23.7748 11.5056 23.985 12.036 23.9844Z"
-            fill="#0A0A0A"
-          />
-          <circle
-            cx="17.5189"
-            cy="7.4787"
-            fill="#0A0A0A"
-            r="3.5"
-            transform="rotate(-0.0593957 17.5189 7.4787)"
-          />
-        </svg>
-      </div>
-      <div
-        class="css-1b35ox0"
-      >
-        <span
-          class="chakra-avatar css-1ruhx4w"
-        >
-          <div
-            aria-label="Lekan Okeowo"
-            class="chakra-avatar__initials css-0"
-            role="img"
-          >
-            LO
-          </div>
-        </span>
-        <div
-          class="css-136njel"
-        >
-          <div
-            class="chakra-stack css-mw8ufx"
-          >
-            <p
-              class="chakra-text css-1nz35ut"
-            >
-              Lekan Okeowo
-            </p>
-            <p
-              class="chakra-text css-1gb4ylf"
-            >
-              Admin
-            </p>
-          </div>
-          <button
-            aria-label="dropdown"
-            class="chakra-button css-duhdl2"
-            type="button"
-          >
-            <svg
-              fill="black"
-              height="8"
-              viewBox="0 0 13 8"
-              width="13"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M1.47757 0.300601L6.07232 4.88584L10.6576 0.291085L12.069 1.70962L6.07525 7.71584L0.069038 1.72206L1.47757 0.300601Z"
-                fill="black"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
+        Login
+      </button>
     </div>
   </div>
 </div>
