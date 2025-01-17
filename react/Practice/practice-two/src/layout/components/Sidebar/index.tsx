@@ -31,7 +31,6 @@ const Sidebar = () => {
   const [activeNavItem, setActiveNavItem] = useState<string>('dashboard')
   const { isSidebarOpen, closeSidebar } = useSidebar()
   const sidebarRef = useRef<HTMLDivElement>(null)
-
   const location = useLocation()
   const isTablet = useBreakpointValue({ base: true, xl: false })
 
