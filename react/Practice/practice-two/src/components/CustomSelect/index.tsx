@@ -21,7 +21,7 @@ const CustomSelect = forwardRef<HTMLSelectElement, ICustomSelectProps<string | n
     const [selectedValue, setSelectedValue] = useState<string | number>('')
 
     useEffect(() => {
-      if (value !== undefined) {
+      if (value) {
         setSelectedValue(value)
       }
     }, [value])
