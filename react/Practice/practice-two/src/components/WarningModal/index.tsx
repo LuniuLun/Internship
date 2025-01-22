@@ -1,5 +1,6 @@
 import { Box, Text } from '@chakra-ui/react'
 import { CustomModal } from '@components'
+import { memo } from 'react'
 
 interface WarningModalProps {
   isModalOpen: boolean
@@ -29,4 +30,4 @@ const WarningModal = ({ isModalOpen, onClose, title, message, handleSubmit, isSu
   )
 }
 
-export default WarningModal
+export default memo(WarningModal)
