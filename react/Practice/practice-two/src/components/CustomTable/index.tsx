@@ -118,7 +118,7 @@ const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: Cust
                     textOverflow='ellipsis'
                     whiteSpace='nowrap'
                   >
-                    {CustomCell({ header, row })}
+                    <CustomCell header={header} row={row} />
                   </Skeleton>
                 </Td>
               ))}
