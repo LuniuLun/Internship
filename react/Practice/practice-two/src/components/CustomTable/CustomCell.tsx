@@ -1,6 +1,7 @@
 import { Checkbox, Flex } from '@chakra-ui/react'
 import { TableRow } from '.'
 import colors from '@styles/variables/colors'
+import { memo } from 'react'
 
 interface CustomCellProps {
   header: string
@@ -10,20 +11,26 @@ interface CustomCellProps {
 const CustomCell = ({ header, row }: CustomCellProps) => {
   const value = row[header]
 
-  if (!value && value !== false) return ''
+  if (typeof value === 'boolean') {
+    return <Checkbox isChecked={value} disabled aria-label={`Cell active status for ${row.name}`} />
+  }
+
+  if (!value) return ''
 
   if (value instanceof Date) {
     return value.toISOString().split('T')[0]
   }
 
-  if (header.toLowerCase() === 'role' || header.toLowerCase() === 'modulepermission') {
+  const lowerHeader = header.toLowerCase()
+
+  if (lowerHeader === 'role' || lowerHeader === 'modulepermission') {
     const isAdmin = value?.toString().toLowerCase().includes('admin')
 
     return (
       <Flex
         justifyContent='center'
         borderRadius='md'
-        margin={header.toLowerCase() === 'role' ? 'auto' : 'unset'}
+        margin={lowerHeader === 'role' ? 'auto' : 'unset'}
         w='130px'
         py='6px'
         fontWeight='semibold'
@@ -35,11 +42,7 @@ const CustomCell = ({ header, row }: CustomCellProps) => {
     )
   }
 
-  if (typeof value === 'boolean') {
-    return <Checkbox isChecked={value} disabled aria-label={`Cell active status for ${row.name}`} />
-  }
-
   return value
 }
 
-export default CustomCell
+export default memo(CustomCell)
