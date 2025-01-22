@@ -2,7 +2,7 @@ import { Flex, FormControl, Stack } from '@chakra-ui/react'
 import { CustomModal, CustomSelect, CustomTable, TextField } from '@components'
 import { MODULE_PERMISSION, ROLE_OPTION } from '@constants/option'
 import { IUser } from '@type/models'
-import { useEffect } from 'react'
+import { memo, useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 interface UserFormData extends Omit<IUser, 'id'> {
@@ -53,8 +53,8 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit, isSubmitt
     const userData = { ...data }
     delete userData.confirmPassword
     const user: IUser = {
-      id: selectedUser?.id || '',
       ...userData,
+      id: selectedUser?.id || '',
       createdDate: selectedUser?.createdDate || new Date(Date.now())
     }
     handleSubmit(user)
@@ -201,4 +201,4 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit, isSubmitt
   )
 }
 
-export default UserModal
+export default memo(UserModal)
