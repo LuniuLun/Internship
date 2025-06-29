@@ -163,8 +163,8 @@ export const FilterIcon = ({ width = '19', height = '19', fill = '#404040' }: Ic
   </svg>
 )
 
-export const LeftArrowIcon = ({ width = '20', height = '20', fill = '#717171' }: IconProps) => (
-  <svg width={width} height={height} viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
+export const LeftArrowIcon = ({ width = '20', height = '12', fill = '#717171' }: IconProps) => (
+  <svg width={width} height={height} viewBox='0 0 20 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
     <g filter='url(#filter0_d_1_1064)'>
       <path d='M15 5.591H5' stroke={fill} strokeLinecap='round' strokeLinejoin='round' />
       <path d='M10 10.591L5 5.591L10 0.591003' stroke={fill} strokeLinecap='round' strokeLinejoin='round' />
@@ -172,8 +172,8 @@ export const LeftArrowIcon = ({ width = '20', height = '20', fill = '#717171' }:
   </svg>
 )
 
-export const RightArrowIcon = ({ width = '20', height = '20', fill = '#717171' }: IconProps) => (
-  <svg width={width} height={height} viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
+export const RightArrowIcon = ({ width = '20', height = '12', fill = '#717171' }: IconProps) => (
+  <svg width={width} height={height} viewBox='0 0 20 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
     <g filter='url(#filter0_d_1_1061)'>
       <path d='M5 5.59101L15 5.59101' stroke={fill} strokeLinecap='round' strokeLinejoin='round' />
       <path d='M10 0.591003L15 5.591L10 10.591' stroke={fill} strokeLinecap='round' strokeLinejoin='round' />

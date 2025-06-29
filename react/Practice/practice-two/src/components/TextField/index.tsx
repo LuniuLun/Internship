@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, memo } from 'react'
 import {
   Text,
   InputProps,
@@ -13,13 +13,24 @@ import colors from '@styles/variables/colors'
 import { EyeIcon, CloseEyeIcon } from '@assets/icons'
 
 export interface ITextFieldProps extends InputProps {
-  icon?: React.ReactNode
+  icon?: React.ReactElement
   errorMessage?: string
 }
 
 const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
   (
-    { value, onChange, placeholder, variant = 'unstyled', size = 'sm', errorMessage, icon, type = 'text', ...props },
+    {
+      value,
+      onChange,
+      placeholder,
+      variant = 'unstyled',
+      size = 'sm',
+      errorMessage,
+      icon,
+      type = 'text',
+      isDisabled,
+      ...props
+    },
     ref
   ) => {
     const [showPassword, setShowPassword] = React.useState(false)
@@ -46,7 +57,7 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
         <InputGroup>
           {icon && (
             <InputLeftElement pointerEvents='none' height='100%' transform='translateX(30%)'>
-              {React.cloneElement(icon as React.ReactElement)}
+              {React.cloneElement(icon)}
             </InputLeftElement>
           )}
           <Input
@@ -58,6 +69,7 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
             size={size}
             value={value}
             onChange={handleChange}
+            disabled={isDisabled}
             type={type === 'password' ? (!showPassword ? 'password' : 'text') : type}
             {...props}
           />
@@ -90,4 +102,4 @@ const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
   }
 )
 
-export default TextField
+export default memo(TextField)

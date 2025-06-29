@@ -6,12 +6,12 @@ exports[`InfoGroup renders the heading and description correctly 1`] = `
     class="chakra-stack css-mw8ufx"
   >
     <p
-      class="chakra-text css-mwjwfh"
+      class="chakra-text css-1exsflz"
     >
       Test Heading
     </p>
     <p
-      class="chakra-text css-t7ioy4"
+      class="chakra-text css-fa5uwm"
     >
       Test description for the InfoGroup component.
     </p>

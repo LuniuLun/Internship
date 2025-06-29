@@ -30,7 +30,7 @@ export const Default: Story = {
     placeholder: 'Enter text here',
     variant: 'outline',
     size: 'sm',
-    icon: '',
+    icon: <SearchIcon />,
     errorMessage: ''
   }
 }
@@ -52,7 +52,6 @@ export const WithError: Story = {
     placeholder: 'Enter text with error',
     variant: 'outline',
     size: 'md',
-    icon: '',
     errorMessage: 'This field is required.'
   }
 }
@@ -63,7 +62,6 @@ export const SmallSized: Story = {
     placeholder: 'Enter text (small)',
     variant: 'outline',
     size: 'sm',
-    icon: '',
     errorMessage: ''
   }
 }
@@ -74,7 +72,6 @@ export const MiddleSized: Story = {
     placeholder: 'Enter text (middle-sized)',
     variant: 'outline',
     size: 'md',
-    icon: '',
     errorMessage: ''
   }
 }
@@ -85,7 +82,6 @@ export const LargeSized: Story = {
     placeholder: 'Enter text (large-sized)',
     variant: 'filled',
     size: 'lg',
-    icon: <SearchIcon />,
     errorMessage: ''
   }
 }

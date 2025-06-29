@@ -1,104 +1,150 @@
-import { useUser } from '@hooks'
-import { renderHook } from '@testing-library/react'
+import { renderHook, waitFor } from '@testing-library/react'
+import { createWrapper } from './utils'
+import { useGetUser, useAddUser, useEditUser, useDeleteUser } from '@hooks'
+import { filterStore } from '@stores'
+import * as userService from '@services/user'
+import mockUsers from '@constants/mockUsers'
+import { act } from 'react'
 import { IUser } from '@type/models'
 
-jest.mock('@services/user', () => ({
-  addUser: jest.fn(),
-  editUser: jest.fn(),
-  deleteUser: jest.fn()
+jest.mock('@hooks', () => ({
+  ...jest.requireActual('@hooks'),
+  filterStore: jest.fn(() => ({
+    searchQuery: '',
+    sortBy: 'firstName',
+    itemsPerPage: 10
+  }))
 }))
 
-jest.mock('@tanstack/react-query', () => ({
-  useMutation: jest.fn().mockReturnValue({
-    mutateAsync: jest.fn().mockResolvedValue({
-      data: {
-        id: '2',
-        firstName: 'Jane',
-        lastName: 'Smith',
-        email: 'jane@example.com',
-        role: 'Admin',
-        createdDate: new Date('2024-01-02'),
-        phone: '9876543210',
-        username: 'jane.smith',
-        password: 'password456'
-      } as IUser
-    }),
-    isSuccess: true
-  }),
-  useQueryClient: jest.fn().mockReturnValue({ invalidateQueries: jest.fn() })
-}))
+jest.mock('@services/user')
+jest.mock('@stores/Filter')
 
-describe('useUser', () => {
-  const usersData: IUser[] = [
-    {
-      id: '1',
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john@example.com',
-      role: 'Admin',
-      createdDate: new Date('2024-01-01T00:00:00'),
-      phone: '1234567890',
-      username: 'john.doe',
-      password: 'password123'
-    },
-    {
-      id: '2',
-      firstName: 'Jane',
-      lastName: 'Smith',
-      email: 'jane@example.com',
-      role: 'Super Admin',
-      createdDate: new Date('2024-01-02T00:00:00'),
-      phone: '9876543210',
-      username: 'jane.smith',
-      password: 'password456'
-    }
-  ]
+const mockFilterStore = {
+  searchQuery: '',
+  sortBy: 'firstName',
+  itemsPerPage: 10
+}
 
-  const allUsers: IUser[] = [
-    ...usersData,
-    {
-      id: '3',
-      firstName: 'Alice',
-      lastName: 'Johnson',
-      email: 'alice@example.com',
+const successResponse = {
+  status: 'success',
+  message: 'Success',
+  data: mockUsers
+}
+
+describe('useUser Hook', () => {
+  beforeEach(() => {
+    ;(filterStore as unknown as jest.Mock).mockReturnValue(mockFilterStore)
+    ;(userService.fetchUsers as jest.Mock).mockResolvedValue({
+      status: 'success',
+      message: 'Success',
+      data: mockUsers,
+      page: 1,
+      limit: 10
+    })
+    ;(userService.fetchAllUsers as jest.Mock).mockResolvedValue(successResponse)
+  })
+
+  test('should fetch users and return successful queries', async () => {
+    const { result } = renderHook(() => useGetUser(), {
+      wrapper: createWrapper()
+    })
+
+    await waitFor(() => {
+      expect(result.current.usersQuery.isSuccess).toBe(true)
+      expect(result.current.allUsersQuery.isSuccess).toBe(true)
+    })
+  })
+
+  test('should successfully add a user ', async () => {
+    const newUser: IUser = {
+      id: '4',
+      firstName: 'Bob',
+      lastName: 'Marley',
+      email: 'bob.marley@example.com',
       role: 'Employee',
-      createdDate: new Date('2024-01-03T00:00:00'),
-      phone: '5551234567',
-      username: 'alice.johnson',
-      password: 'password789'
+      createdDate: new Date('2024-12-31T00:00:00'),
+      phone: '5559876543',
+      username: 'bob.marley',
+      password: 'password123'
     }
-  ]
 
-  it('should return transformed users and all necessary data', () => {
-    const { result } = renderHook(() => useUser(usersData, allUsers, 1))
+    const { result } = renderHook(() => useAddUser(), {
+      wrapper: createWrapper()
+    })
 
-    expect(result.current.superAdmin).toEqual([allUsers[1]])
-    expect(result.current.admin).toEqual([allUsers[0]])
-    expect(result.current.employee).toEqual([allUsers[2]])
+    const addUserMock = userService.addUser as jest.Mock
+    addUserMock.mockResolvedValue({
+      status: 'success',
+      message: 'User added successfully',
+      data: newUser
+    })
 
-    expect(result.current.transformedUsers).toHaveLength(2)
-    expect(result.current.transformedUsers[0].name).toBeTruthy()
+    await act(async () => {
+      await result.current.addUserMutation.mutateAsync(newUser)
+    })
+
+    await waitFor(() => expect(result.current.addUserMutation.isSuccess).toBe(true))
   })
 
-  it('should return empty arrays when no usersData is provided', () => {
-    const { result } = renderHook(() => useUser([], [], 1))
+  test('should successfully edit a user ', async () => {
+    const editedUser: IUser = {
+      id: '1',
+      firstName: 'Bob',
+      lastName: 'Marley',
+      email: 'bob.marley.edited@example.com',
+      role: 'Employee',
+      createdDate: new Date('2025-01-01T00:00:00'),
+      phone: '5559876543',
+      username: 'bob.marley',
+      password: 'password123'
+    }
 
-    expect(result.current.superAdmin).toEqual([])
-    expect(result.current.admin).toEqual([])
-    expect(result.current.employee).toEqual([])
+    const { result } = renderHook(() => useEditUser(), {
+      wrapper: createWrapper()
+    })
+
+    const editUserMock = userService.editUser as jest.Mock
+    editUserMock.mockResolvedValue({
+      status: 'success',
+      message: 'User edited successfully',
+      data: editedUser
+    })
+
+    await act(async () => {
+      await result.current.editUserMutation.mutateAsync(editedUser)
+    })
+
+    await waitFor(() => expect(result.current.editUserMutation.isSuccess).toBe(true))
   })
 
-  it('should return correct users when usersData is provided', () => {
-    const { result } = renderHook(() => useUser(usersData, allUsers, 1))
+  test('should successfully delete a user ', async () => {
+    const userToDelete: IUser = {
+      id: '1',
+      firstName: 'Bob',
+      lastName: 'Marley',
+      email: 'bob.marley@example.com',
+      role: 'Employee',
+      createdDate: new Date('2025-01-01T00:00:00'),
+      phone: '5559876543',
+      username: 'bob.marley',
+      password: 'password123'
+    }
 
-    expect(result.current.superAdmin).toHaveLength(1)
-    expect(result.current.admin).toHaveLength(1)
-  })
+    const { result } = renderHook(() => useDeleteUser(), {
+      wrapper: createWrapper()
+    })
 
-  it('should correctly transform users into TableRow format', () => {
-    const { result } = renderHook(() => useUser(usersData, usersData, 1))
+    const deleteUserMock = userService.deleteUser as jest.Mock
+    deleteUserMock.mockResolvedValue({
+      status: 'success',
+      message: 'User deleted successfully',
+      data: userToDelete
+    })
 
-    expect(result.current.transformedUsers).toHaveLength(usersData.length)
-    expect(result.current.transformedUsers[0].name).toBeTruthy()
+    await act(async () => {
+      await result.current.deleteUserMutation.mutateAsync(userToDelete)
+    })
+
+    await waitFor(() => expect(result.current.deleteUserMutation.isSuccess).toBe(true))
   })
 })

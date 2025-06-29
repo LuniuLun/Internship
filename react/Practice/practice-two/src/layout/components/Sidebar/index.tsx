@@ -31,7 +31,6 @@ const Sidebar = () => {
   const [activeNavItem, setActiveNavItem] = useState<string>('dashboard')
   const { isSidebarOpen, closeSidebar } = useSidebar()
   const sidebarRef = useRef<HTMLDivElement>(null)
-
   const location = useLocation()
   const isTablet = useBreakpointValue({ base: true, xl: false })
 
@@ -75,7 +74,7 @@ const Sidebar = () => {
       }}
       zIndex={1000}
       width='254px'
-      height='100vh'
+      minH='100vh'
       padding='40px 0 40px'
       bgColor='white'
     >

@@ -11,15 +11,25 @@ import {
   Modal
 } from '@chakra-ui/react'
 import colors from '@styles/variables/colors'
+import { memo } from 'react'
 
 interface CustomModalProps extends ModalProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   title: string
+  isSubmitting?: boolean
 }
 
-const CustomModal = ({ isOpen, onClose, handleSubmit, title, children, ...props }: CustomModalProps) => {
+const CustomModal = ({ isOpen, onClose, handleSubmit, title, isSubmitting, children, ...props }: CustomModalProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInBottom' scrollBehavior='inside' isCentered {...props}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      motionPreset='slideInBottom'
+      scrollBehavior='inside'
+      isCentered
+      closeOnOverlayClick={!isSubmitting}
+      {...props}
+    >
       <ModalOverlay />
       <ModalContent bgColor={colors.brand.white}>
         <ModalHeader borderBottom={`1px solid ${colors.brand.secondary}`}>
@@ -30,10 +40,10 @@ const CustomModal = ({ isOpen, onClose, handleSubmit, title, children, ...props 
           <form onSubmit={handleSubmit}>
             {children}
             <ModalFooter gap={4} marginTop={10}>
-              <Button variant='primary' type='submit' aria-label='submit'>
+              <Button variant='primary' type='submit' aria-label='submit' isLoading={isSubmitting}>
                 Submit
               </Button>
-              <Button variant='secondary' onClick={onClose} aria-label='cancel'>
+              <Button variant='secondary' onClick={onClose} aria-label='cancel' disabled={isSubmitting}>
                 Cancel
               </Button>
             </ModalFooter>
@@ -44,4 +54,4 @@ const CustomModal = ({ isOpen, onClose, handleSubmit, title, children, ...props 
   )
 }
 
-export default CustomModal
+export default memo(CustomModal)

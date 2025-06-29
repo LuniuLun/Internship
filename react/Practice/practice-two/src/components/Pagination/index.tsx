@@ -1,48 +1,56 @@
-import React from 'react'
-import { Flex, Text, Button, Skeleton } from '@chakra-ui/react'
+import { memo, useCallback } from 'react'
+import { Flex, Text, Skeleton, IconButton } from '@chakra-ui/react'
 import { LeftArrowIcon, RightArrowIcon } from '@assets/icons'
 import CustomSelect from '@components/CustomSelect'
 import colors from '@styles/variables/colors'
+import { filterStore } from '@stores'
+import { useShallow } from 'zustand/shallow'
 
-interface PaginationProps {
-  currentPage: number
+export interface PaginationProps {
   totalItems: number
-  itemsPerPage: number
   itemsPerPageOptions: number[]
-  onPageChange: (page: number) => void
-  onItemsPerPageChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
   fetchNextPage: () => void
   hasNextPage: boolean
-  isFetchingNextPage: boolean
   isLoaded?: boolean
 }
+const Pagination = ({ totalItems, itemsPerPageOptions, fetchNextPage, hasNextPage, isLoaded }: PaginationProps) => {
+  const { itemsPerPage, currentPage } = filterStore(
+    useShallow((state) => ({
+      itemsPerPage: state.itemsPerPage,
+      currentPage: state.currentPage
+    }))
+  )
+  const { setItemsPerPage, setCurrentPage } = filterStore()
 
-const Pagination = ({
-  currentPage,
-  totalItems,
-  itemsPerPage,
-  itemsPerPageOptions,
-  onPageChange,
-  onItemsPerPageChange,
-  fetchNextPage,
-  hasNextPage,
-  isFetchingNextPage,
-  isLoaded
-}: PaginationProps) => {
+  const handleItemsPerPageChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const newItemsPerPage = parseInt(e.target.value)
+      if (newItemsPerPage !== itemsPerPage) {
+        setItemsPerPage(newItemsPerPage)
+      }
+    },
+    [itemsPerPage]
+  )
+
   if ((totalItems === 0 || itemsPerPage === 0) && isLoaded) return null
 
   const totalPages = Math.ceil(totalItems / itemsPerPage)
 
+  const selectOptions = itemsPerPageOptions.map((option) => ({
+    value: option,
+    label: option.toString()
+  }))
+
   const handlePrevious = () => {
-    if (currentPage > 1) {
-      onPageChange(currentPage - 1)
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1)
     }
   }
 
   const handleNext = () => {
     if (currentPage < totalPages) {
-      onPageChange(currentPage + 1)
-      if (!isFetchingNextPage && hasNextPage) fetchNextPage()
+      setCurrentPage(currentPage + 1)
+      if (hasNextPage) fetchNextPage()
     }
   }
 
@@ -55,7 +63,7 @@ const Pagination = ({
       color={colors.brand.blackTextQuaternary}
       fontSize='xs'
     >
-      <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' h='25px'>
+      <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' minH='25px'>
         <Flex align='center' gap='26px'>
           <Flex align='center' gap='26px'>
             <Text whiteSpace='nowrap'>Items per page:</Text>
@@ -63,37 +71,35 @@ const Pagination = ({
               placeholder={itemsPerPage.toString()}
               border='bottom'
               fontSize='xs'
-              onChange={onItemsPerPageChange}
-              options={itemsPerPageOptions.map((option) => ({
-                value: option,
-                label: option.toString()
-              }))}
+              onChange={handleItemsPerPageChange}
+              options={selectOptions}
               aria-label='items-per-page'
             />
           </Flex>
 
-          <Text>
-            {`${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, totalItems)} of ${totalItems}`}
-          </Text>
+          <Text>{`${currentPage * itemsPerPage + 1} - ${Math.min((currentPage + 1) * itemsPerPage, totalItems)} of ${totalItems}`}</Text>
         </Flex>
       </Skeleton>
-      <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' h='25px'>
+      <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300' minH='25px'>
         <Flex gap={2}>
-          <Button variant='unstyled' onClick={handlePrevious} isDisabled={currentPage === 1} aria-label='previous-page'>
-            <LeftArrowIcon />
-          </Button>
-          <Button
+          <IconButton
+            icon={<LeftArrowIcon />}
+            variant='unstyled'
+            onClick={handlePrevious}
+            isDisabled={currentPage < 1}
+            aria-label='previous-page'
+          />
+          <IconButton
+            icon={<RightArrowIcon />}
             variant='unstyled'
             onClick={handleNext}
-            isDisabled={currentPage === totalPages || !hasNextPage || isFetchingNextPage}
+            isDisabled={currentPage + 1 === totalPages || !hasNextPage}
             aria-label='next-page'
-          >
-            <RightArrowIcon />
-          </Button>
+          ></IconButton>
         </Flex>
       </Skeleton>
     </Flex>
   )
 }
 
-export default Pagination
+export default memo(Pagination)

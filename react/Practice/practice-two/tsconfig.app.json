@@ -41,7 +41,9 @@
       "@contexts": ["src/contexts/index"],
       "@contexts/*": ["src/contexts/*"],
       "@utils": ["src/utils/index.ts"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@stores": ["src/stores/index.ts"],
+      "@stores/*": ["src/stores/*"]
     }
   },
   "include": ["src", "./jest.setup.ts", "./src/vite-env.d.ts"]

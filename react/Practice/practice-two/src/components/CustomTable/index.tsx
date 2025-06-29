@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import {
   Table,
   Thead,
@@ -19,19 +20,19 @@ import FAKE_TABLE_DATA from '@constants/fakeTable'
 import CustomCell from './CustomCell'
 
 export interface TableRow {
-  [key: string]: string | number | boolean | React.ReactNode
+  [key: string]: string | number | boolean | Date | React.ReactNode
 }
 
 interface CustomTableProps extends TableProps {
   title?: string
-  data: TableRow[]
+  data: TableRow[] | undefined
   onEdit?: (id: string) => void
   onDelete?: (id: string) => void
   isLoaded?: boolean
 }
 
 const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: CustomTableProps) => {
-  if (data.length === 0 && isLoaded) {
+  if (!data || (data.length === 0 && isLoaded)) {
     return (
       <Heading variant='secondary' color='brand.red'>
         No data found
@@ -105,12 +106,19 @@ const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: Cust
                 <Td
                   key={header}
                   borderBottom={`2px solid ${colors.brand.secondary}`}
-                  minW='150px'
+                  maxW='200px'
                   textAlign={index === 0 ? 'left' : 'center'}
                   bgColor={colors.brand.white}
                 >
-                  <Skeleton isLoaded={isLoaded} startColor='gray.100' endColor='gray.300'>
-                    {CustomCell({ header, row })}
+                  <Skeleton
+                    isLoaded={isLoaded}
+                    startColor='gray.100'
+                    endColor='gray.300'
+                    overflow='hidden'
+                    textOverflow='ellipsis'
+                    whiteSpace='nowrap'
+                  >
+                    <CustomCell header={header} row={row} />
                   </Skeleton>
                 </Td>
               ))}
@@ -152,4 +160,4 @@ const CustomTable = ({ isLoaded, title, data, onEdit, onDelete, ...props }: Cust
   )
 }
 
-export default CustomTable
+export default memo(CustomTable)

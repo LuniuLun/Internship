@@ -1,6 +1,7 @@
 import { Stack, Text } from '@chakra-ui/react'
-import colors from '@styles/variables/colors'
 import { Skeleton } from '@chakra-ui/react'
+import { memo } from 'react'
+import colors from '@styles/variables/colors'
 
 interface IStatisticsCardProps {
   label: string
@@ -25,4 +26,4 @@ const StatisticsCard = ({ isLoaded = true, label, value }: IStatisticsCardProps)
   )
 }
 
-export default StatisticsCard
+export default memo(StatisticsCard)

@@ -1,5 +1,5 @@
 import { Select, SelectProps } from '@chakra-ui/react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import { TBorderDirection } from '@type/variant'
 import colors from '@styles/variables/colors'
 import React, { forwardRef } from 'react'
@@ -21,7 +21,7 @@ const CustomSelect = forwardRef<HTMLSelectElement, ICustomSelectProps<string | n
     const [selectedValue, setSelectedValue] = useState<string | number>('')
 
     useEffect(() => {
-      if (value !== undefined) {
+      if (value) {
         setSelectedValue(value)
       }
     }, [value])
@@ -61,4 +61,4 @@ const CustomSelect = forwardRef<HTMLSelectElement, ICustomSelectProps<string | n
   }
 )
 
-export default CustomSelect
+export default memo(CustomSelect)

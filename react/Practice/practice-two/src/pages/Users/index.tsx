@@ -1,94 +1,61 @@
-import { useEffect, useState } from 'react'
+import { FormEvent, useCallback, useMemo, useState } from 'react'
 import { Button, Flex, Heading, Stack, useDisclosure } from '@chakra-ui/react'
 import { PlusIcon } from '@assets/icons'
 import { CustomTable, Pagination, UserModal, WarningModal, StatisticCard, Filter } from '@components'
 import { IUser } from '@type/models'
-import { fetchAllUsers, fetchUsers } from '@services/user'
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { ITEM_PER_PAGE } from '@constants/option'
-import { useCustomToast, useFilterStore, useUser } from '@hooks'
+import { useAddUser, useCustomToast, useDeleteUser, useEditUser, useGetUser } from '@hooks'
+import { TableRow } from '@components/CustomTable'
+import { filterStore } from '@stores'
+import { useShallow } from 'zustand/shallow'
 
-const Dashboard = () => {
+const Users = () => {
   const { showToast } = useCustomToast()
-  const { searchQuery, sortBy, itemsPerPage, setItemsPerPage } = useFilterStore()
-  const [currentPage, setCurrentPage] = useState<number>(0)
+  const { itemsPerPage, currentPage } = filterStore(
+    useShallow((state) => ({
+      itemsPerPage: state.itemsPerPage,
+      currentPage: state.currentPage
+    }))
+  )
   const [selectedUser, setSelectedUser] = useState<IUser | null>(null)
   const { isOpen: isUserModalOpen, onOpen: onOpenUserModal, onClose: onCloseUserModal } = useDisclosure()
   const { isOpen: isWarningModalOpen, onOpen: onOpenWarningModal, onClose: onCloseWarningModal } = useDisclosure()
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    refetch,
-    isError,
-    error,
-    isLoading: isFirstUserLoading
-  } = useInfiniteQuery({
-    queryKey: ['users', itemsPerPage, searchQuery, sortBy],
-    queryFn: async ({ pageParam = 1 }) => {
-      return await fetchUsers({
-        page: pageParam.toString(),
-        limit: itemsPerPage.toString(),
-        property: 'firstName',
-        value: searchQuery,
-        sortBy,
-        order: 'asc'
-      })
+  const { usersQuery, allUsersQuery, transformAllUsers, lengthAllUsers, superAdmin, admin, employee } = useGetUser()
+  const { deleteUserMutation } = useDeleteUser()
+  const { addUserMutation } = useAddUser()
+  const { editUserMutation } = useEditUser()
+
+  const dataTable = useMemo(() => {
+    return transformAllUsers?.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+  }, [transformAllUsers])
+
+  const handleEdit = useCallback(
+    (id: string) => {
+      const user = transformAllUsers?.find((user) => user.id === id)
+      if (!user) {
+        showToast({ status: 'error', title: 'User does not exist' })
+        return
+      }
+      setSelectedUser(user)
+      onOpenUserModal()
     },
-    initialPageParam: 1,
-    getNextPageParam: (lastPage, _, lastPageParam) => {
-      if (!lastPage.data || lastPage.data.length === 0) return undefined
-      return lastPageParam + 1
+    [transformAllUsers]
+  )
+
+  const handleDelete = useCallback(
+    (id: string) => {
+      const user = transformAllUsers?.find((user) => user.id === id)
+      if (!user) {
+        showToast({ status: 'error', title: 'User does not exist' })
+        return
+      }
+      setSelectedUser(user)
+      onOpenWarningModal()
     },
-    refetchOnWindowFocus: false
-  })
-
-  const {
-    data: allUsers,
-    isLoading: isFirstAllUserLoading,
-    isError: allUsersIsError,
-    error: allUsersError
-  } = useQuery({
-    queryKey: ['allUsers', searchQuery],
-    queryFn: () => fetchAllUsers('firstName', searchQuery),
-    refetchOnWindowFocus: false
-  })
-
-  const usersData: IUser[] = data?.pages[currentPage]?.data || []
-  const { transformAllUsers, addUserMutation, editUserMutation, deleteUserMutation, admin, employee, superAdmin } =
-    useUser(usersData, allUsers?.data || [], currentPage)
-
-  useEffect(() => {
-    setCurrentPage(0)
-    refetch()
-  }, [itemsPerPage, searchQuery, sortBy, refetch])
-
-  const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setItemsPerPage(parseInt(e.target.value))
-  }
-
-  const handleEdit = (id: string) => {
-    const user = usersData.find((user) => user.id === id)
-    if (!user) {
-      showToast({ status: 'error', title: 'User does not exist' })
-      return
-    }
-    setSelectedUser(user)
-    onOpenUserModal()
-  }
-
-  const handleDelete = (id: string) => {
-    const user = usersData.find((user) => user.id === id)
-    if (!user) {
-      showToast({ status: 'error', title: 'User does not exist' })
-      return
-    }
-    setSelectedUser(user)
-    onOpenWarningModal()
-  }
+    [transformAllUsers]
+  )
 
   const handleCloseUserModal = () => {
     setSelectedUser(null)
@@ -100,62 +67,68 @@ const Dashboard = () => {
     onCloseWarningModal()
   }
 
-  const handleWarningSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleWarningSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!selectedUser?.id) {
       showToast({ status: 'error', title: 'User does not exist' })
       return
     }
-    deleteUserMutation.mutate(
-      { ...selectedUser },
-      {
-        onSuccess: (response) => showToast({ status: 'success', title: response.message }),
-        onError: (response) => showToast({ status: 'error', title: response.message })
+    setIsSubmitting(true)
+    deleteUserMutation.mutate(selectedUser, {
+      onSuccess: (response) => {
+        showToast({ status: 'success', title: response.message })
+        handleCloseWarningModal()
+        setIsSubmitting(false)
+      },
+      onError: (response) => {
+        showToast({ status: 'error', title: response.message })
+        setIsSubmitting(false)
       }
-    )
-    handleCloseWarningModal()
+    })
   }
 
   const handleSubmit = (data: IUser) => {
+    setIsSubmitting(true)
     if (selectedUser?.id) {
-      editUserMutation.mutate(
-        { ...data },
-        {
-          onSuccess: (response) => showToast({ status: 'success', title: response.message }),
-          onError: (response) => showToast({ status: 'error', title: response.message })
+      editUserMutation.mutate(data, {
+        onSuccess: (response) => {
+          showToast({ status: 'success', title: response.message })
+          handleCloseUserModal()
+          setIsSubmitting(false)
+        },
+        onError: (response) => {
+          showToast({ status: 'error', title: response.message })
+          setIsSubmitting(false)
         }
-      )
+      })
     } else {
       addUserMutation.mutate(data, {
-        onSuccess: (response) => showToast({ status: 'success', title: response.message }),
-        onError: (response) => showToast({ status: 'error', title: response.message })
+        onSuccess: (response) => {
+          showToast({ status: 'success', title: response.message })
+          handleCloseUserModal()
+          setIsSubmitting(false)
+        },
+        onError: (response) => {
+          showToast({ status: 'error', title: response.message })
+          setIsSubmitting(false)
+        }
       })
     }
-    handleCloseUserModal()
   }
 
-  if (isError || allUsersIsError)
+  if (usersQuery.isError || allUsersQuery.isError) {
     showToast({
       status: 'error',
-      title: error?.message || allUsersError?.message || allUsersError?.message || 'Error fetching users'
+      title: 'Error fetching users'
     })
+  }
 
   return (
     <Stack gap={6}>
       <Heading variant='primary' paddingLeft='13px'>
         Users
       </Heading>
-
-      <Filter
-        isLoaded={
-          !addUserMutation.isPending &&
-          !editUserMutation.isPending &&
-          !isFetchingNextPage &&
-          !isFetching &&
-          !isFirstAllUserLoading &&
-          !isFirstUserLoading
-        }
-      >
+      <Filter isLoaded={!usersQuery.isFetching || usersQuery.isFetchingNextPage || allUsersQuery.isFetching}>
         <Button
           size='md'
           display='flex'
@@ -170,49 +143,30 @@ const Dashboard = () => {
 
       <Flex gap={4} flexDirection={{ base: 'column', md: 'row' }}>
         <Flex gap={4} w='100%'>
-          <StatisticCard label='Users' value={allUsers?.data?.length || 0} isLoaded={!isFirstAllUserLoading} />
-          <StatisticCard label='Super Admins' value={superAdmin.length} isLoaded={!isFirstAllUserLoading} />
+          <StatisticCard label='Users' value={lengthAllUsers} isLoaded={!allUsersQuery.isFetching} />
+          <StatisticCard label='Super Admins' value={superAdmin?.length || 0} isLoaded={!allUsersQuery.isFetching} />
         </Flex>
         <Flex gap={4} w='100%'>
-          <StatisticCard label='Admins' value={admin.length} isLoaded={!isFirstAllUserLoading} />
-          <StatisticCard label='Employees' value={employee.length} isLoaded={!isFirstAllUserLoading} />
+          <StatisticCard label='Admins' value={admin?.length || 0} isLoaded={!allUsersQuery.isFetching} />
+          <StatisticCard label='Employees' value={employee?.length || 0} isLoaded={!allUsersQuery.isFetching} />
         </Flex>
       </Flex>
 
       <CustomTable
-        data={transformAllUsers}
+        data={dataTable as unknown as TableRow[]}
         title='List Users'
         onEdit={handleEdit}
         onDelete={handleDelete}
-        isLoaded={
-          !addUserMutation.isPending &&
-          !editUserMutation.isPending &&
-          !isFetchingNextPage &&
-          !isFetching &&
-          !isFirstAllUserLoading &&
-          !isFirstUserLoading
-        }
+        isLoaded={!usersQuery.isFetching && !usersQuery.isFetchingNextPage && !allUsersQuery.isFetching}
       />
 
       <Flex justifyContent='center'>
         <Pagination
-          currentPage={currentPage + 1}
-          totalItems={allUsers?.data?.length || 0}
-          itemsPerPage={itemsPerPage}
-          onPageChange={(page) => setCurrentPage(page - 1)}
-          onItemsPerPageChange={handleItemsPerPageChange}
-          fetchNextPage={fetchNextPage}
-          hasNextPage={hasNextPage}
-          isFetchingNextPage={isFetchingNextPage}
+          totalItems={lengthAllUsers}
+          fetchNextPage={usersQuery.fetchNextPage}
+          hasNextPage={usersQuery.hasNextPage}
           itemsPerPageOptions={ITEM_PER_PAGE}
-          isLoaded={
-            !addUserMutation.isPending &&
-            !editUserMutation.isPending &&
-            !isFetchingNextPage &&
-            !isFetching &&
-            !isFirstAllUserLoading &&
-            !isFirstUserLoading
-          }
+          isLoaded={!allUsersQuery.isFetching || !usersQuery.isFetchingNextPage}
         />
       </Flex>
 
@@ -221,6 +175,7 @@ const Dashboard = () => {
         isModalOpen={isUserModalOpen}
         onClose={handleCloseUserModal}
         handleSubmit={handleSubmit}
+        isSubmitting={isSubmitting}
       />
 
       <WarningModal
@@ -229,9 +184,10 @@ const Dashboard = () => {
         title='WARNING'
         message='This action will permanently delete the user. Do you want to proceed?'
         handleSubmit={handleWarningSubmit}
+        isSubmitting={isSubmitting}
       />
     </Stack>
   )
 }
 
-export default Dashboard
+export default Users

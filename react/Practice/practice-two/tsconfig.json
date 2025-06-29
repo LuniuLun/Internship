@@ -29,7 +29,9 @@
       "@contexts": ["src/contexts/index.ts"],
       "@contexts/*": ["src/contexts/*"],
       "@utils": ["src/utils/index.ts"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@stores": ["src/stores/index.ts"],
+      "@stores/*": ["src/stores/*"]
     }
   },
   "types": ["jest", "node", "vite/client"],

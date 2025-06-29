@@ -1,8 +1,8 @@
 import { Flex, FormControl, Stack } from '@chakra-ui/react'
-import { CustomModal, CustomSelect, ModulePermission, TextField } from '@components'
-import { ROLE_OPTION } from '@constants/option'
+import { CustomModal, CustomSelect, CustomTable, TextField } from '@components'
+import { MODULE_PERMISSION, ROLE_OPTION } from '@constants/option'
 import { IUser } from '@type/models'
-import { useEffect } from 'react'
+import { memo, useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 interface UserFormData extends Omit<IUser, 'id'> {
@@ -14,12 +14,13 @@ interface UserModalProps {
   isModalOpen: boolean
   onClose: () => void
   handleSubmit: (data: IUser) => void
+  isSubmitting?: boolean
 }
 
-const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserModalProps) => {
+const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit, isSubmitting }: UserModalProps) => {
   const {
     register,
-    handleSubmit: onSubmit,
+    handleSubmit: handleRegisterSubmit,
     reset,
     setValue,
     getValues,
@@ -45,21 +46,15 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
       setValue('role', selectedUser.role)
       setValue('username', selectedUser.username)
       setValue('password', selectedUser.password)
-    }
+    } else reset()
   }, [selectedUser])
 
-  useEffect(() => {
-    if (!isModalOpen) {
-      reset()
-    }
-  }, [isModalOpen])
-
-  const onFormSubmit: SubmitHandler<UserFormData> = (data) => {
+  const handleFormSubmit: SubmitHandler<UserFormData> = async (data) => {
     const userData = { ...data }
     delete userData.confirmPassword
     const user: IUser = {
-      id: selectedUser?.id || '',
       ...userData,
+      id: selectedUser?.id || '',
       createdDate: selectedUser?.createdDate || new Date(Date.now())
     }
     handleSubmit(user)
@@ -71,7 +66,8 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
       isOpen={isModalOpen}
       onClose={onClose}
       title={selectedUser?.id ? 'Edit User' : 'Add User'}
-      handleSubmit={onSubmit(onFormSubmit)}
+      handleSubmit={handleRegisterSubmit(handleFormSubmit)}
+      isSubmitting={isSubmitting}
     >
       <Stack gap={5} px={4}>
         <Flex gap={4} marginTop={4} flexDirection={{ base: 'column', md: 'row' }}>
@@ -85,6 +81,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               errorMessage={errors.firstName?.message}
               variant='outline'
               aria-label='firstName'
+              isDisabled={isSubmitting}
             />
           </FormControl>
           <FormControl>
@@ -97,6 +94,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               errorMessage={errors.lastName?.message}
               variant='outline'
               aria-label='lastName'
+              isDisabled={isSubmitting}
             />
           </FormControl>
         </Flex>
@@ -111,6 +109,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               errorMessage={errors.email?.message}
               variant='outline'
               aria-label='email'
+              isDisabled={isSubmitting}
             />
           </FormControl>
           <FormControl>
@@ -125,6 +124,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               errorMessage={errors.phone?.message}
               variant='outline'
               aria-label='phone'
+              isDisabled={isSubmitting}
             />
           </FormControl>
           <CustomSelect
@@ -137,6 +137,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
             h='34px'
             fontWeight='light'
             aria-label='role'
+            isDisabled={isSubmitting}
             {...register('role', { required: 'Please select Role' })}
           />
         </Flex>
@@ -151,6 +152,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               errorMessage={errors.username?.message}
               variant='outline'
               aria-label='username'
+              isDisabled={isSubmitting}
             />
           </FormControl>
           <FormControl>
@@ -171,6 +173,7 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               errorMessage={errors.password?.message}
               variant='outline'
               aria-label='check-password'
+              isDisabled={isSubmitting}
             />
           </FormControl>
           <FormControl>
@@ -188,13 +191,14 @@ const UserModal = ({ selectedUser, isModalOpen, onClose, handleSubmit }: UserMod
               errorMessage={errors.confirmPassword?.message}
               variant='outline'
               aria-label='confirmPassword'
+              isDisabled={isSubmitting}
             />
           </FormControl>
         </Flex>
       </Stack>
-      <ModulePermission />
+      <CustomTable data={MODULE_PERMISSION} marginTop={10} isLoaded={true} />
     </CustomModal>
   )
 }
 
-export default UserModal
+export default memo(UserModal)

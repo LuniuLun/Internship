@@ -11,7 +11,7 @@ const mockStore = {
   setItemsPerPage: jest.fn()
 }
 
-jest.mock('@hooks/useFilterStore', () => ({
+jest.mock('@stores/Filter', () => ({
   __esModule: true,
   default: () => mockStore
 }))
@@ -75,5 +75,44 @@ describe('Filter Component', () => {
 
     fireEvent.change(select, { target: { value: 'price' } })
     expect(mockStore.setSortBy).not.toHaveBeenCalled()
+  })
+
+  test('should not re-render when isLoaded and children are unchanged', () => {
+    const { asFragment, rerender } = renderFilter(true, <div>Child</div>)
+
+    const initialRender = asFragment()
+    rerender(
+      <Filter isLoaded={true}>
+        <div>Child</div>
+      </Filter>
+    )
+
+    expect(asFragment()).toStrictEqual(initialRender)
+  })
+
+  test('should re-render when isLoaded prop changes', () => {
+    const { asFragment, rerender } = renderFilter(true, <div>Child</div>)
+
+    const initialRender = asFragment()
+    rerender(
+      <Filter isLoaded={false}>
+        <div>Child</div>
+      </Filter>
+    )
+
+    expect(asFragment()).not.toStrictEqual(initialRender)
+  })
+
+  test('should not re-render when both isLoaded and children remain unchanged', () => {
+    const { asFragment, rerender } = renderFilter(true, <div>Child</div>)
+
+    const initialRender = asFragment()
+    rerender(
+      <Filter isLoaded={true}>
+        <div>Child</div>
+      </Filter>
+    )
+
+    expect(asFragment()).toStrictEqual(initialRender)
   })
 })

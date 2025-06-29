@@ -1,6 +1,7 @@
 import { DownArrowIcon } from '@assets/icons'
 import { Avatar, IconButton, Flex } from '@chakra-ui/react'
 import InfoGroup from '@components/InfoGroup'
+import { memo } from 'react'
 
 interface UserCardProps {
   name: string
@@ -27,4 +28,4 @@ const UserCard = ({ name, role, avatar }: UserCardProps) => {
   )
 }
 
-export default UserCard
+export default memo(UserCard)
